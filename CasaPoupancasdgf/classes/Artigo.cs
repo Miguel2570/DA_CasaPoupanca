@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CasaPoupanca.models
+{
+    public class Artigo
+    {
+        [Key]
+        public int Id { get; set; }
+        public string Nome { get; set; }
+        public int TipoArtigo { get; set; }
+        public virtual TipoArtigo _TipoArtigo { get; set; }
+    }
+}
