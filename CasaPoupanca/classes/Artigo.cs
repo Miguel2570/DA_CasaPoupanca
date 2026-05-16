@@ -12,7 +12,7 @@ namespace CasaPoupanca.models
         [Key]
         public int Id { get; set; }
         public string Nome { get; set; }
-        public int TipoArtigo { get; set; }
-        public virtual TipoArtigo _TipoArtigo { get; set; }
+        public int TipoArtigoId { get; set; }
+        public virtual TipoArtigo TipoArtigo { get; set; }
     }
 }

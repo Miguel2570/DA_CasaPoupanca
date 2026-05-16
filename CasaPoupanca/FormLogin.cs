@@ -1,4 +1,5 @@
 ﻿using CasaPoupança.database;
+using CasaPoupanca.Helpers;
 using CasaPoupanca.models;
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,8 @@ namespace CasaPoupanca
                 {
                     UtilizadorAtual = utilizador.Username;
                     MessageBox.Show($"Bem vindo, {utilizador.Username}");
+
+                    Session.SetUser(utilizador.Id, utilizador.Username);
                     this.Hide();
                     FormDashboard dashboard = new FormDashboard();
                     dashboard.ShowDialog();

@@ -62,6 +62,18 @@
     <Compile Include="classes\Orcamento.cs" />
     <Compile Include="classes\TipoArtigo.cs" />
     <Compile Include="classes\Utilizador.cs" />
+    <Compile Include="FormArtigo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormArtigo.Designer.cs">
+      <DependentUpon>FormArtigo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCompra.Designer.cs">
+      <DependentUpon>FormCompra.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,11 +81,29 @@
       <DependentUpon>FormDashboard.cs</DependentUpon>
     </Compile>
     <Compile Include="database\ConfigDB.cs" />
+    <Compile Include="FormEstatisticas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEstatisticas.Designer.cs">
+      <DependentUpon>FormEstatisticas.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormModoCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormModoCompra.Designer.cs">
+      <DependentUpon>FormModoCompra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormOrcamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOrcamento.Designer.cs">
+      <DependentUpon>FormOrcamento.cs</DependentUpon>
     </Compile>
     <Compile Include="FormRegister.cs">
       <SubType>Form</SubType>
@@ -81,13 +111,44 @@
     <Compile Include="FormRegister.Designer.cs">
       <DependentUpon>FormRegister.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormSession.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSession.Designer.cs">
+      <DependentUpon>FormSession.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTipoArtigo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTipoArtigo.Designer.cs">
+      <DependentUpon>FormTipoArtigo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormUtilizadores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUtilizadores.Designer.cs">
+      <DependentUpon>FormUtilizadores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="classes\Session.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormArtigo.resx">
+      <DependentUpon>FormArtigo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDashboard.resx">
+      <DependentUpon>FormDashboard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormModoCompra.resx">
+      <DependentUpon>FormModoCompra.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormRegister.resx">
       <DependentUpon>FormRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTipoArtigo.resx">
+      <DependentUpon>FormTipoArtigo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

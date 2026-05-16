@@ -17,6 +17,6 @@ namespace CasaPoupanca.models
         public string Nome { get; set; }
         public string Email { get; set; }
         public DateTime DataRegisto { get; set; }
-        public DateTime? DataUltimoRegisto { get; set; }
+        public DateTime? DataUltimoLogin { get; set; }
     }
 }

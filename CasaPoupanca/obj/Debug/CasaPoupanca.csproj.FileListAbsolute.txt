@@ -15,3 +15,7 @@ C:\Users\Migue\Desktop\DA\projeto\DA_CasaPoupanca\CasaPoupanca\obj\Debug\CasaPou
 C:\Users\Migue\Desktop\DA\projeto\DA_CasaPoupanca\CasaPoupanca\obj\Debug\CasaPoupanca.exe
 C:\Users\Migue\Desktop\DA\projeto\DA_CasaPoupanca\CasaPoupanca\obj\Debug\CasaPoupanca.pdb
 C:\Users\Migue\Desktop\DA\projeto\DA_CasaPoupanca\CasaPoupanca\obj\Debug\CasaPoupanca.exe.config
+C:\Users\Migue\Desktop\DA\projeto\DA_CasaPoupanca\CasaPoupanca\obj\Debug\CasaPoupanca.FormDashboard.resources
+C:\Users\Migue\Desktop\DA\projeto\DA_CasaPoupanca\CasaPoupanca\obj\Debug\CasaPoupanca.FormArtigo.resources
+C:\Users\Migue\Desktop\DA\projeto\DA_CasaPoupanca\CasaPoupanca\obj\Debug\CasaPoupanca.FormModoCompra.resources
+C:\Users\Migue\Desktop\DA\projeto\DA_CasaPoupanca\CasaPoupanca\obj\Debug\CasaPoupanca.FormTipoArtigo.resources

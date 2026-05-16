@@ -16,9 +16,9 @@ namespace CasaPoupanca.models
         public decimal Valor { get; set; }
         public int CriadoPorId { get; set; }
         public DateTime DataCriacao { get; set; }
-        public int? AlteradorPorId { get; set; }
-        public int? DataAlteracao { get; set; }
-        public virtual Utilizador CriadorPor { get; set; }
+        public int? AlteradoPorId { get; set; }
+        public DateTime? DataAlteracao { get; set; }
+        public virtual Utilizador CriadoPor { get; set; }
         public virtual Utilizador AlteradoPor { get; set; }
     }
 }
