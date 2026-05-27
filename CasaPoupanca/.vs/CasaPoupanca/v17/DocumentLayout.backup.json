@@ -1,26 +1,10 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Migue\\Desktop\\DA\\projeto\\DA_CasaPoupanca\\CasaPoupanca\\",
+  "WorkspaceRootPath": "C:\\Users\\Migue\\Desktop\\CasaPoupanca\\CasaPoupanca\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|c:\\users\\migue\\desktop\\da\\projeto\\da_casapoupanca\\casapoupanca\\formtipoartigo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|solutionrelative:formtipoartigo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|c:\\users\\migue\\desktop\\da\\projeto\\da_casapoupanca\\casapoupanca\\formartigo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|solutionrelative:formartigo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|c:\\users\\migue\\desktop\\da\\projeto\\da_casapoupanca\\casapoupanca\\formtipoartigo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|solutionrelative:formtipoartigo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|c:\\users\\migue\\desktop\\da\\projeto\\da_casapoupanca\\casapoupanca\\formdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|solutionrelative:formdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|c:\\users\\migue\\desktop\\da\\projeto\\da_casapoupanca\\casapoupanca\\formdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|solutionrelative:formdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|c:\\users\\migue\\desktop\\casapoupanca\\casapoupanca\\formartigo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|solutionrelative:formartigo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,69 +14,18 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "FormArtigo.cs",
-              "DocumentMoniker": "C:\\Users\\Migue\\Desktop\\DA\\projeto\\DA_CasaPoupanca\\CasaPoupanca\\FormArtigo.cs",
-              "RelativeDocumentMoniker": "FormArtigo.cs",
-              "ToolTip": "C:\\Users\\Migue\\Desktop\\DA\\projeto\\DA_CasaPoupanca\\CasaPoupanca\\FormArtigo.cs",
-              "RelativeToolTip": "FormArtigo.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAIwCMAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-16T20:22:21.765Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "FormTipoArtigo.cs",
-              "DocumentMoniker": "C:\\Users\\Migue\\Desktop\\DA\\projeto\\DA_CasaPoupanca\\CasaPoupanca\\FormTipoArtigo.cs",
-              "RelativeDocumentMoniker": "FormTipoArtigo.cs",
-              "ToolTip": "C:\\Users\\Migue\\Desktop\\DA\\projeto\\DA_CasaPoupanca\\CasaPoupanca\\FormTipoArtigo.cs",
-              "RelativeToolTip": "FormTipoArtigo.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAowBsAAAAAAAAAAAAAAA==",
+              "Title": "FormArtigo.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Migue\\Desktop\\CasaPoupanca\\CasaPoupanca\\FormArtigo.cs",
+              "RelativeDocumentMoniker": "FormArtigo.cs",
+              "ToolTip": "C:\\Users\\Migue\\Desktop\\CasaPoupanca\\CasaPoupanca\\FormArtigo.cs [Design]",
+              "RelativeToolTip": "FormArtigo.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-16T20:20:40.774Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "FormTipoArtigo.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Migue\\Desktop\\DA\\projeto\\DA_CasaPoupanca\\CasaPoupanca\\FormTipoArtigo.cs",
-              "RelativeDocumentMoniker": "FormTipoArtigo.cs",
-              "ToolTip": "C:\\Users\\Migue\\Desktop\\DA\\projeto\\DA_CasaPoupanca\\CasaPoupanca\\FormTipoArtigo.cs [Design]",
-              "RelativeToolTip": "FormTipoArtigo.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-16T20:20:38.971Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "FormDashboard.cs",
-              "DocumentMoniker": "C:\\Users\\Migue\\Desktop\\DA\\projeto\\DA_CasaPoupanca\\CasaPoupanca\\FormDashboard.cs",
-              "RelativeDocumentMoniker": "FormDashboard.cs",
-              "ToolTip": "C:\\Users\\Migue\\Desktop\\DA\\projeto\\DA_CasaPoupanca\\CasaPoupanca\\FormDashboard.cs",
-              "RelativeToolTip": "FormDashboard.cs",
-              "ViewState": "AgIAADgAAAAAAAAAAAAwwEMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-16T20:17:52.585Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "FormDashboard.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Migue\\Desktop\\DA\\projeto\\DA_CasaPoupanca\\CasaPoupanca\\FormDashboard.cs",
-              "RelativeDocumentMoniker": "FormDashboard.cs",
-              "ToolTip": "C:\\Users\\Migue\\Desktop\\DA\\projeto\\DA_CasaPoupanca\\CasaPoupanca\\FormDashboard.cs [Design]",
-              "RelativeToolTip": "FormDashboard.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-16T20:15:18.553Z",
+              "WhenOpened": "2026-05-27T10:47:41.322Z",
               "EditorCaption": " [Design]"
             }
           ]
