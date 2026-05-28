@@ -1,4 +1,5 @@
-﻿using CasaPoupança.database;
+﻿using CasaPoupanca.Controllers;
+using CasaPoupança.database;
 using CasaPoupanca.models;
 using System;
 using System.Collections.Generic;
@@ -43,13 +44,9 @@ namespace CasaPoupanca
                 MessageBox.Show("As passwords não coincidem!");
                 return;
             }
-            using (var db = new CasaPoupancaDB())
+
+            using (var auth = new AuthController())
             {
-                if (db.Utilizadores.Any(user => user.Username == username)) 
-                {
-                    MessageBox.Show("O nome de usuário já existe. Por favor, escolha outro.");
-                    return;
-                }
                 var novoUtilizador = new Utilizador
                 {
                     Username = username,
@@ -57,31 +54,18 @@ namespace CasaPoupanca
                     Email = email,
                     DataRegisto = DateTime.Now,
                 };
-                db.Utilizadores.Add(novoUtilizador);
-                db.SaveChanges();
-                MessageBox.Show("Registo bem-sucedido!");
-                this.Close();
+
+                if (auth.Register(novoUtilizador))
+                {
+                    MessageBox.Show("Registo bem-sucedido!");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Username já existe!");
+
+                }
             }
-        }
-
-        private void textBoxUsernameRegister_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxEmailRegister_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

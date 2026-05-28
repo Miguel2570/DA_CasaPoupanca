@@ -62,6 +62,10 @@
     <Compile Include="classes\Orcamento.cs" />
     <Compile Include="classes\TipoArtigo.cs" />
     <Compile Include="classes\Utilizador.cs" />
+    <Compile Include="Controllers\ArtigoController.cs" />
+    <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\CompraController.cs" />
+    <Compile Include="Controllers\ModoCompraController.cs" />
     <Compile Include="FormArtigo.cs">
       <SubType>Form</SubType>
     </Compile>

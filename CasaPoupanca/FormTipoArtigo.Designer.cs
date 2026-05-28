@@ -100,6 +100,7 @@
             this.dataGridViewTipoArtigo.RowHeadersWidth = 62;
             this.dataGridViewTipoArtigo.Size = new System.Drawing.Size(377, 150);
             this.dataGridViewTipoArtigo.TabIndex = 5;
+            this.dataGridViewTipoArtigo.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridViewTipoArtigo_DataBindingComplete);
             this.dataGridViewTipoArtigo.SelectionChanged += new System.EventHandler(this.dataGridViewTipoArtigo_SelectionChanged);
             // 
             // Id
@@ -130,7 +131,7 @@
             // 
             this.pictureBox1.Image = global::CasaPoupanca.Properties.Resources.final_removebg_preview;
             this.pictureBox1.Location = new System.Drawing.Point(91, 20);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(107, 86);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -151,7 +152,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(434, 518);
+            this.ClientSize = new System.Drawing.Size(434, 395);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.buttonVoltar);

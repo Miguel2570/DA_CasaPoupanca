@@ -1,4 +1,5 @@
-﻿using CasaPoupança.database;
+﻿using CasaPoupanca.Controllers;
+using CasaPoupança.database;
 using CasaPoupanca.Helpers;
 using CasaPoupanca.models;
 using System;
@@ -17,14 +18,15 @@ namespace CasaPoupanca
     public partial class FormCompra : Form
     {
         private int? _compraEditandoId = null;
+        private CompraController _controller;
         public FormCompra()
         {
             InitializeComponent();
+            _controller = new CompraController();
             ConfigurarDataGridView();
             CarregarCompras();
 
             dataGridViewCompras.DataBindingComplete += DataGridViewCompras_DataBindingComplete;
-
             LimparCampos();
         }
 
@@ -83,16 +85,9 @@ namespace CasaPoupanca
 
         private void CarregarCompras()
         {
-            using (var db = new CasaPoupancaDB())
-            {
-                var compras = db.Compras
-                    .Where(c => c.CriadoPorId == Session.UtilizadorId)
-                    .OrderByDescending(c => c.DataCriacao)
-                    .ToList();
-
-                dataGridViewCompras.DataSource = null;
-                dataGridViewCompras.DataSource = compras;
-            }
+            var compras = _controller.GetComprasByUtilizador(Session.UtilizadorId);
+            dataGridViewCompras.DataSource = null;
+            dataGridViewCompras.DataSource = compras;
         }
 
         private void buttonAdicionar_Click(object sender, EventArgs e)
@@ -105,18 +100,15 @@ namespace CasaPoupanca
                 return;
             }
 
-            using (var db = new CasaPoupancaDB())
+            var novaCompra = new Compra
             {
-                var novaCompra = new Compra
-                {
-                    Nome = nomeCompra,
-                    DataCriacao = DateTime.Now,
-                    CriadoPorId = Session.UtilizadorId,
-                    IsFechada = false
-                };
-                db.Compras.Add(novaCompra);
-                db.SaveChanges();
-            }
+                Nome = nomeCompra,
+                DataCriacao = DateTime.Now,
+                CriadoPorId = Session.UtilizadorId,
+                IsFechada = false
+            };
+
+            _controller.AddCompra(novaCompra);
             MessageBox.Show("Compra adicionada com sucesso!");
 
             CarregarCompras();
@@ -139,24 +131,24 @@ namespace CasaPoupanca
                 return;
             }
 
-            using (var db = new CasaPoupancaDB())
+            var compra = new Compra
             {
-                var compra = db.Compras.Find(_compraEditandoId.Value);
-                if (compra == null)
-                {
-                    MessageBox.Show("Compra não encontrada.");
-                    return;
-                }
+                Id = _compraEditandoId.Value,
+                Nome = nomeCompra,
+                AlteradoPorId = Session.UtilizadorId,
+                DataAlteracao = DateTime.Now
+            };
 
-                compra.Nome = nomeCompra;
-                compra.AlteradoPorId = Session.UtilizadorId;
-                compra.DataAlteracao = DateTime.Now;
-                db.SaveChanges();
+            if (_controller.UpdateCompra(compra))
+            {
+                MessageBox.Show("Compra editada com sucesso!");
+                CarregarCompras();
+                LimparCampos();
             }
-            MessageBox.Show("Compra editada com sucesso!");
-
-            CarregarCompras();
-            LimparCampos();
+            else
+            {
+                MessageBox.Show("Compra não encontrada.");
+            }
         }
 
         private void buttonRemover_Click(object sender, EventArgs e)
@@ -169,36 +161,29 @@ namespace CasaPoupanca
 
             int id = _compraEditandoId ?? (int)dataGridViewCompras.CurrentRow.Cells["Id"].Value;
 
-            using (var db = new CasaPoupancaDB())
+            // Verificar se está fechada
+            var compra = _controller.GetCompraById(id);
+            if (compra != null && compra.IsFechada)
             {
-                var compra = db.Compras.Find(id);
-                if (compra != null && compra.IsFechada)
-                {
-                    MessageBox.Show("Não pode remover uma compra já fechada.");
-                    return;
-                }
+                MessageBox.Show("Não pode remover uma compra já fechada.");
+                return;
             }
+
             DialogResult resultado = MessageBox.Show("Tem certeza que deseja remover esta compra?",
                 "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (resultado == DialogResult.Yes)
             {
-                using (var db = new CasaPoupancaDB())
+                if (_controller.DeleteCompra(id))
                 {
-                    var compra = db.Compras.Find(id);
-                    if (compra != null)
-                    {
-                        db.Compras.Remove(compra);
-                        db.SaveChanges();
-                        MessageBox.Show("Compra removida com sucesso!");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Compra não encontrada.");
-                    }
+                    MessageBox.Show("Compra removida com sucesso!");
+                    CarregarCompras();
+                    LimparCampos();
                 }
-                CarregarCompras();
-                LimparCampos();
+                else
+                {
+                    MessageBox.Show("Compra não encontrada.");
+                }
             }
         }
 
@@ -217,6 +202,12 @@ namespace CasaPoupanca
         private void buttonVoltar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            _controller?.Dispose();
+            base.OnFormClosed(e);
         }
     }
 }

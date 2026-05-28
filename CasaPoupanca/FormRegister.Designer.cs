@@ -81,7 +81,6 @@
             this.textBoxUsernameRegister.Name = "textBoxUsernameRegister";
             this.textBoxUsernameRegister.Size = new System.Drawing.Size(148, 22);
             this.textBoxUsernameRegister.TabIndex = 11;
-            this.textBoxUsernameRegister.TextChanged += new System.EventHandler(this.textBoxUsernameRegister_TextChanged);
             // 
             // label2
             // 
@@ -159,7 +158,6 @@
             this.textBoxEmailRegister.Name = "textBoxEmailRegister";
             this.textBoxEmailRegister.Size = new System.Drawing.Size(148, 22);
             this.textBoxEmailRegister.TabIndex = 18;
-            this.textBoxEmailRegister.TextChanged += new System.EventHandler(this.textBoxEmailRegister_TextChanged);
             // 
             // label7
             // 
@@ -202,7 +200,6 @@
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox6.TabIndex = 26;
             this.pictureBox6.TabStop = false;
-            this.pictureBox6.Click += new System.EventHandler(this.pictureBox6_Click);
             // 
             // pictureBox5
             // 
@@ -236,7 +233,6 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 23;
             this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // pictureBox1
             // 

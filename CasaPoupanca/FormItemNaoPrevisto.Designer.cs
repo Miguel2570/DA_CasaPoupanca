@@ -36,11 +36,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.numericUpDownPrecoUnitario = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownQuantidade = new System.Windows.Forms.NumericUpDown();
             this.textBoxArtigo = new System.Windows.Forms.TextBox();
             this.textBoxObservacao = new System.Windows.Forms.TextBox();
-            this.textBoxQuantidade = new System.Windows.Forms.TextBox();
+            this.numericUpDownPrecoUnitario = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantidade)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPrecoUnitario)).BeginInit();
             this.SuspendLayout();
             // 
@@ -109,25 +110,25 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(61, 208);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(62, 13);
+            this.label3.Size = new System.Drawing.Size(74, 13);
             this.label3.TabIndex = 26;
-            this.label3.Text = "Quantidade";
+            this.label3.Text = "Preço Unitário";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(57, 249);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(74, 13);
+            this.label4.Size = new System.Drawing.Size(62, 13);
             this.label4.TabIndex = 27;
-            this.label4.Text = "Preço Unitário";
+            this.label4.Text = "Quantidade";
             // 
-            // numericUpDownPrecoUnitario
+            // numericUpDownQuantidade
             // 
-            this.numericUpDownPrecoUnitario.Location = new System.Drawing.Point(137, 247);
-            this.numericUpDownPrecoUnitario.Name = "numericUpDownPrecoUnitario";
-            this.numericUpDownPrecoUnitario.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDownPrecoUnitario.TabIndex = 28;
+            this.numericUpDownQuantidade.Location = new System.Drawing.Point(137, 247);
+            this.numericUpDownQuantidade.Name = "numericUpDownQuantidade";
+            this.numericUpDownQuantidade.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownQuantidade.TabIndex = 28;
             // 
             // textBoxArtigo
             // 
@@ -143,22 +144,22 @@
             this.textBoxObservacao.Size = new System.Drawing.Size(120, 20);
             this.textBoxObservacao.TabIndex = 30;
             // 
-            // textBoxQuantidade
+            // numericUpDownPrecoUnitario
             // 
-            this.textBoxQuantidade.Location = new System.Drawing.Point(137, 205);
-            this.textBoxQuantidade.Name = "textBoxQuantidade";
-            this.textBoxQuantidade.Size = new System.Drawing.Size(120, 20);
-            this.textBoxQuantidade.TabIndex = 31;
+            this.numericUpDownPrecoUnitario.Location = new System.Drawing.Point(137, 206);
+            this.numericUpDownPrecoUnitario.Name = "numericUpDownPrecoUnitario";
+            this.numericUpDownPrecoUnitario.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownPrecoUnitario.TabIndex = 31;
             // 
             // FormItemNaoPrevisto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(374, 401);
-            this.Controls.Add(this.textBoxQuantidade);
+            this.Controls.Add(this.numericUpDownPrecoUnitario);
             this.Controls.Add(this.textBoxObservacao);
             this.Controls.Add(this.textBoxArtigo);
-            this.Controls.Add(this.numericUpDownPrecoUnitario);
+            this.Controls.Add(this.numericUpDownQuantidade);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -170,6 +171,7 @@
             this.Name = "FormItemNaoPrevisto";
             this.Text = "FormItemNaoPrevisto";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantidade)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPrecoUnitario)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -186,9 +188,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.NumericUpDown numericUpDownPrecoUnitario;
+        private System.Windows.Forms.NumericUpDown numericUpDownQuantidade;
         private System.Windows.Forms.TextBox textBoxArtigo;
         private System.Windows.Forms.TextBox textBoxObservacao;
-        private System.Windows.Forms.TextBox textBoxQuantidade;
+        private System.Windows.Forms.NumericUpDown numericUpDownPrecoUnitario;
     }
 }

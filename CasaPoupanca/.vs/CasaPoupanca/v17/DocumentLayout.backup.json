@@ -3,16 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\Migue\\Desktop\\DA\\projeto\\DA_CasaPoupanca\\CasaPoupanca\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|c:\\users\\migue\\desktop\\da\\projeto\\da_casapoupanca\\casapoupanca\\formdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|solutionrelative:formdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|c:\\users\\migue\\desktop\\da\\projeto\\da_casapoupanca\\casapoupanca\\formdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|solutionrelative:formdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|C:\\Users\\Migue\\Desktop\\DA\\projeto\\DA_CasaPoupanca\\CasaPoupanca\\formmodocompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|solutionrelative:formmodocompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|c:\\users\\migue\\desktop\\da\\projeto\\da_casapoupanca\\casapoupanca\\formcompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|solutionrelative:formcompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,38 +19,13 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "FormDashboard.cs",
-              "DocumentMoniker": "C:\\Users\\Migue\\Desktop\\DA\\projeto\\DA_CasaPoupanca\\CasaPoupanca\\FormDashboard.cs",
-              "RelativeDocumentMoniker": "FormDashboard.cs",
-              "ToolTip": "C:\\Users\\Migue\\Desktop\\DA\\projeto\\DA_CasaPoupanca\\CasaPoupanca\\FormDashboard.cs",
-              "RelativeToolTip": "FormDashboard.cs",
-              "ViewState": "AgIAAMUAAAAAAAAAAAAawN4AAAAJAAAAAAAAAA==",
+              "Title": "FormCompra.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Migue\\Desktop\\DA\\projeto\\DA_CasaPoupanca\\CasaPoupanca\\FormCompra.cs",
+              "RelativeDocumentMoniker": "FormCompra.cs",
+              "ToolTip": "C:\\Users\\Migue\\Desktop\\DA\\projeto\\DA_CasaPoupanca\\CasaPoupanca\\FormCompra.cs [Design]",
+              "RelativeToolTip": "FormCompra.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-28T18:10:27.952Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "FormDashboard.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Migue\\Desktop\\DA\\projeto\\DA_CasaPoupanca\\CasaPoupanca\\FormDashboard.cs",
-              "RelativeDocumentMoniker": "FormDashboard.cs",
-              "ToolTip": "C:\\Users\\Migue\\Desktop\\DA\\projeto\\DA_CasaPoupanca\\CasaPoupanca\\FormDashboard.cs [Design]",
-              "RelativeToolTip": "FormDashboard.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-28T18:10:15Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "FormModoCompra.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Migue\\Desktop\\DA\\projeto\\DA_CasaPoupanca\\CasaPoupanca\\FormModoCompra.cs",
-              "RelativeDocumentMoniker": "FormModoCompra.cs",
-              "ToolTip": "C:\\Users\\Migue\\Desktop\\DA\\projeto\\DA_CasaPoupanca\\CasaPoupanca\\FormModoCompra.cs [Design]",
-              "RelativeToolTip": "FormModoCompra.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-28T15:29:34.482Z",
+              "WhenOpened": "2026-05-28T21:07:53.879Z",
               "EditorCaption": " [Design]"
             }
           ]

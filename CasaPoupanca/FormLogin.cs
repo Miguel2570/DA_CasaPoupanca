@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CasaPoupanca.Controllers;
 
 namespace CasaPoupanca
 {
@@ -33,9 +34,9 @@ namespace CasaPoupanca
                 return;
             }
 
-            using (var db = new CasaPoupancaDB())
+            using (var auth = new AuthController())
             {
-                var utilizador = db.Utilizadores.FirstOrDefault(user =>user.Username == username && user.Password == password);
+                var utilizador = auth.Login(username, password);
                 if (utilizador != null)
                 {
                     UtilizadorAtual = utilizador.Username;
@@ -58,26 +59,6 @@ namespace CasaPoupanca
         {
             FormRegister formRegister = new FormRegister();
             formRegister.ShowDialog();
-        }
-
-        private void textBoxUsernameLogin_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click_1(object sender, EventArgs e)
-        {
-
         }
     }
 }

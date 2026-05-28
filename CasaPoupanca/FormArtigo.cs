@@ -1,4 +1,5 @@
-﻿using CasaPoupança.database;
+﻿using CasaPoupanca.Controllers;
+using CasaPoupança.database;
 using CasaPoupanca.models;
 using System;
 using System.Collections.Generic;
@@ -15,16 +16,39 @@ namespace CasaPoupanca
     public partial class FormArtigo : Form
     {
         private int? _artigoEditandoId = null;
+        private ArtigoController _controller;
         public FormArtigo()
         {
             InitializeComponent();
+            _controller = new ArtigoController();
             ConfigurarDataGridView();
             CarregarTiposComboBox();
             CarregarArtigos();
 
             dataGridViewArtigos.DataBindingComplete += DataGridViewArtigos_DataBindingComplete;
-
             LimparCampos();
+        }
+
+        private void CarregarTiposComboBox()
+        {
+            var tipos = _controller.GetTiposComTodos();
+            comboBoxTipo.DataSource = null;
+            comboBoxTipo.DisplayMember = "Nome";
+            comboBoxTipo.ValueMember = "Id";
+            comboBoxTipo.DataSource = tipos;
+
+            comboBoxFiltrar.DataSource = null;
+            comboBoxFiltrar.DisplayMember = "Nome";
+            comboBoxFiltrar.ValueMember = "Id";
+            comboBoxFiltrar.DataSource = tipos.ToList();
+        }
+
+        private void CarregarArtigos()
+        {
+            int filtroId = (int)comboBoxFiltrar.SelectedValue;
+            var artigos = _controller.GetArtigosFiltrados(filtroId > 0 ? filtroId : (int?)null);
+            dataGridViewArtigos.DataSource = null;
+            dataGridViewArtigos.DataSource = artigos;
         }
 
         private void DataGridViewArtigos_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -72,42 +96,6 @@ namespace CasaPoupanca
             });
         }
 
-        private void CarregarTiposComboBox()
-        {
-            using (var db = new CasaPoupancaDB())
-            {
-                var tipoArtigo = db.TiposArtigo.OrderBy(tipo => tipo.Nome).ToList();
-                tipoArtigo.Insert(0, new TipoArtigo { Id = 0, Nome = "Todos" });
-
-                comboBoxTipo.DataSource = null;
-                comboBoxTipo.DisplayMember = "Nome";
-                comboBoxTipo.ValueMember = "Id";
-                comboBoxTipo.DataSource = tipoArtigo;
-
-                comboBoxFiltrar.DataSource = null;
-                comboBoxFiltrar.DisplayMember = "Nome";
-                comboBoxFiltrar.ValueMember = "Id";
-                comboBoxFiltrar.DataSource = tipoArtigo.ToList();
-            }
-        }
-
-        private void CarregarArtigos()
-        {
-            using (var db = new CasaPoupancaDB())
-            {
-                var artigos = db.Artigos.Include("TipoArtigo").ToList();
-
-                int filtroId = (int)comboBoxFiltrar.SelectedValue;
-                if (filtroId > 0)
-                {
-                    artigos = artigos.Where(artigo => artigo.TipoArtigoId == filtroId).ToList();
-                }
-
-                dataGridViewArtigos.DataSource = null;
-                dataGridViewArtigos.DataSource = artigos.OrderBy(a => a.Nome).ToList();
-            }
-        }
-
         private void buttonSearch_Click(object sender, EventArgs e)
         {
             CarregarArtigos();
@@ -130,24 +118,22 @@ namespace CasaPoupanca
                 return;
             }
 
-            using (var db = new CasaPoupancaDB())
+            var novoArtigo = new Artigo
             {
-                if (db.Artigos.Any(artigo => artigo.Nome == nome && artigo.TipoArtigoId == tipoId))
-                {
-                    MessageBox.Show("Este artigo já existe no tipo de artigos!");
-                    return;
-                }
+                Nome = nome,
+                TipoArtigoId = tipoId
+            };
 
-                var novoArtigo = new Artigo
-                {
-                    Nome = nome,
-                    TipoArtigoId = tipoId
-                };
-
-                db.Artigos.Add(novoArtigo);
-                db.SaveChanges();
+            if (_controller.AddArtigo(novoArtigo))
+            {
+                MessageBox.Show("Artigo adicionado com sucesso!");
+                CarregarArtigos();
+                LimparCampos();
             }
-            MessageBox.Show("Artigo adicionado com sucesso!");
+            else
+            {
+                MessageBox.Show("Este artigo já existe no tipo de artigos!");
+            }
 
             CarregarArtigos();
             textBoxNome.Clear();
@@ -177,15 +163,12 @@ namespace CasaPoupanca
                 return;
             }
 
-            using (var db = new CasaPoupancaDB())
+            var artigo = _controller.GetArtigoById(_artigoEditandoId.Value);
+            if (artigo != null)
             {
-                var artigo = db.Artigos.Find(_artigoEditandoId.Value);
-                if (artigo != null)
-                {
-                    artigo.Nome = nome;
-                    artigo.TipoArtigoId = tipoId;
-                    db.SaveChanges();
-                }
+                artigo.Nome = nome;
+                artigo.TipoArtigoId = tipoId;
+                _controller.UpdateArtigo(artigo);
             }
 
             MessageBox.Show("Artigo atualizado com sucesso!");
@@ -213,17 +196,14 @@ namespace CasaPoupanca
 
             if (resultado == DialogResult.Yes)
             {
-                using (var db = new CasaPoupancaDB())
+                if (_controller.DeleteArtigo(id))
                 {
-                    var artigo = db.Artigos.Find(id);
-                    if (artigo != null)
-                    {
-                        db.Artigos.Remove(artigo);
-                        db.SaveChanges();
-                    }
+                    MessageBox.Show("Artigo removido!", "Sucesso");
                 }
-
-                MessageBox.Show("Artigo removido!", "Sucesso");
+                else
+                {
+                    MessageBox.Show("Erro ao remover artigo!");
+                }
 
                 textBoxNome.Clear();
                 _artigoEditandoId = null;
@@ -255,6 +235,12 @@ namespace CasaPoupanca
         private void buttonVoltar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            _controller?.Dispose();
+            base.OnFormClosed(e);
         }
     }
 }

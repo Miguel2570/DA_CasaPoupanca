@@ -1,4 +1,5 @@
-﻿using CasaPoupança.database;
+﻿using CasaPoupanca.Controllers;
+using CasaPoupança.database;
 using CasaPoupanca.models;
 using System;
 using System.Collections.Generic;
@@ -15,25 +16,22 @@ namespace CasaPoupanca
     public partial class FormTipoArtigo : Form
     {
         private int? _tipoEditandoId = null;
+        private ArtigoController _controller;
         public FormTipoArtigo()
         {
             InitializeComponent();
+            _controller = new ArtigoController();
             ConfigurarDataGridView();
             CarregarTiposArtigo();
 
-            dataGridViewTipoArtigo.DataBindingComplete += DataGridViewArtigos_DataBindingComplete;
-
+            dataGridViewTipoArtigo.DataBindingComplete += dataGridViewTipoArtigo_DataBindingComplete;
             LimparCampos();
         }
 
-        private void DataGridViewArtigos_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            dataGridViewTipoArtigo.ClearSelection();
-            LimparCampos();
-        }
         private void LimparCampos()
         {
             textBoxNome.Clear();
+            _tipoEditandoId = null;
             buttonAdicionar.Enabled = true;
             buttonEditar.Enabled = false;
         }
@@ -62,12 +60,9 @@ namespace CasaPoupanca
 
         private void CarregarTiposArtigo()
         {
-            using (var db = new CasaPoupancaDB())
-            {
-                var tipoArtigo = db.TiposArtigo.OrderBy(tipo =>tipo.Nome).ToList();
-                dataGridViewTipoArtigo.DataSource = null;
-                dataGridViewTipoArtigo.DataSource = tipoArtigo;
-            }
+            var tipos = _controller.GetAllTipos();
+            dataGridViewTipoArtigo.DataSource = null;
+            dataGridViewTipoArtigo.DataSource = tipos;
         }
 
         private void buttonAdicionar_Click(object sender, EventArgs e)
@@ -80,25 +75,21 @@ namespace CasaPoupanca
                 return;
             }
 
-            using (var db = new CasaPoupancaDB())
+            var novoTipo = new TipoArtigo
             {
-                if (db.TiposArtigo.Any(tipo => tipo.Nome == nome))
-                {
-                    MessageBox.Show("O nome deste tipo de artigo já existe");
-                    return;
-                }
+                Nome = nome
+            };
 
-                var novoTipo = new TipoArtigo
-                {
-                    Nome = nome,
-                };
-
-                db.TiposArtigo.Add(novoTipo);
-                db.SaveChanges();
+            if (_controller.AddTipo(novoTipo))
+            {
+                MessageBox.Show("Tipo de artigo adicionado com sucesso!");
+                LimparCampos();
+                CarregarTiposArtigo();
             }
-            MessageBox.Show("Tipo de artigo adicionado com sucesso!");
-            textBoxNome.Clear();
-            CarregarTiposArtigo();
+            else
+            {
+                MessageBox.Show("O nome deste tipo de artigo já existe!");
+            }
         }
 
         private void buttonEditar_Click(object sender, EventArgs e)
@@ -117,14 +108,21 @@ namespace CasaPoupanca
                 return;
             }
 
-            using (var db = new CasaPoupancaDB())
+            var tipo = new TipoArtigo
             {
-                var tipo = db.TiposArtigo.Find(_tipoEditandoId.Value);
-                if (tipo != null)
-                {
-                    tipo.Nome = nome;
-                    db.SaveChanges();
-                }
+                Id = _tipoEditandoId.Value,
+                Nome = nome
+            };
+
+            if (_controller.UpdateTipo(tipo))
+            {
+                MessageBox.Show("Tipo de artigo atualizado com sucesso!");
+                LimparCampos();
+                CarregarTiposArtigo();
+            }
+            else
+            {
+                MessageBox.Show("Erro ao atualizar ou nome já existe!");
             }
         }
 
@@ -138,28 +136,22 @@ namespace CasaPoupanca
 
             int id = _tipoEditandoId ?? (int)dataGridViewTipoArtigo.CurrentRow.Cells["Id"].Value;
 
-            DialogResult resultado = MessageBox.Show("Tem certeza que deseja remover este tipo de artigo?\n\nOs artigos associados também serão removidos.",
+            DialogResult resultado = MessageBox.Show(
+                "Tem certeza que deseja remover este tipo de artigo?\n\nOs artigos associados também serão removidos.",
                 "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (resultado == DialogResult.Yes)
             {
-                using (var db = new CasaPoupancaDB())
+                if (_controller.DeleteTipo(id))
                 {
-                    var tipo = db.TiposArtigo.Find(id);
-                    if (tipo != null)
-                    {
-                        db.TiposArtigo.Remove(tipo);
-                        db.SaveChanges();
-                    }
+                    MessageBox.Show("Tipo de artigo removido!");
+                    LimparCampos();
+                    CarregarTiposArtigo();
                 }
-
-                MessageBox.Show("Tipo de artigo removido!", "Sucesso");
-
-                textBoxNome.Clear();
-                _tipoEditandoId = null;
-                buttonAdicionar.Enabled = true;
-                buttonEditar.Enabled = false;
-                CarregarTiposArtigo();
+                else
+                {
+                    MessageBox.Show("Erro ao remover tipo de artigo!");
+                }
             }
         }
 
@@ -167,16 +159,29 @@ namespace CasaPoupanca
         {
             if (dataGridViewTipoArtigo.CurrentRow != null)
             {
-                _tipoEditandoId = (int)dataGridViewTipoArtigo.CurrentRow.Cells ["Id"].Value;
-                textBoxNome.Text = textBoxNome.Text = dataGridViewTipoArtigo.CurrentRow.Cells["Nome"].Value.ToString();
-                buttonAdicionar.Enabled = true;
-                buttonEditar .Enabled = true;
+                _tipoEditandoId = (int)dataGridViewTipoArtigo.CurrentRow.Cells["Id"].Value;
+                textBoxNome.Text = dataGridViewTipoArtigo.CurrentRow.Cells["Nome"].Value.ToString();
+
+                buttonAdicionar.Enabled = false;
+                buttonEditar.Enabled = true;
             }
         }
 
         private void buttonVoltar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void dataGridViewTipoArtigo_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dataGridViewTipoArtigo.ClearSelection();
+            LimparCampos();
+        }
+
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            _controller?.Dispose();
+            base.OnFormClosed(e);
         }
     }
 }

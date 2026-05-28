@@ -99,7 +99,6 @@
             this.textBoxUsernameLogin.Name = "textBoxUsernameLogin";
             this.textBoxUsernameLogin.Size = new System.Drawing.Size(175, 30);
             this.textBoxUsernameLogin.TabIndex = 4;
-            this.textBoxUsernameLogin.TextChanged += new System.EventHandler(this.textBoxUsernameLogin_TextChanged);
             // 
             // textBoxPasswordLogin
             // 
@@ -119,7 +118,6 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(0, 37);
             this.label3.TabIndex = 6;
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
@@ -170,7 +168,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click_1);
             // 
             // FormLogin
             // 

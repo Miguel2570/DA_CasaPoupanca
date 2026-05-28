@@ -32,10 +32,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridViewCompras = new System.Windows.Forms.DataGridView();
-            this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Artigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ações = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -48,6 +44,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.buttonEditar = new System.Windows.Forms.Button();
             this.buttonVoltar = new System.Windows.Forms.Button();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataCriacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsFechada = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCompras)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantidade)).BeginInit();
@@ -88,35 +88,15 @@
             // 
             this.dataGridViewCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewCompras.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Tipo,
-            this.Artigo,
-            this.Quantidade,
-            this.Ações});
+            this.Id,
+            this.Nome,
+            this.DataCriacao,
+            this.IsFechada});
             this.dataGridViewCompras.Location = new System.Drawing.Point(380, 133);
             this.dataGridViewCompras.Name = "dataGridViewCompras";
-            this.dataGridViewCompras.Size = new System.Drawing.Size(448, 150);
+            this.dataGridViewCompras.Size = new System.Drawing.Size(460, 150);
             this.dataGridViewCompras.TabIndex = 19;
             this.dataGridViewCompras.SelectionChanged += new System.EventHandler(this.dataGridViewCompras_SelectionChanged);
-            // 
-            // Tipo
-            // 
-            this.Tipo.HeaderText = "Tipo";
-            this.Tipo.Name = "Tipo";
-            // 
-            // Artigo
-            // 
-            this.Artigo.HeaderText = "Artigo";
-            this.Artigo.Name = "Artigo";
-            // 
-            // Quantidade
-            // 
-            this.Quantidade.HeaderText = "Quantidade";
-            this.Quantidade.Name = "Quantidade";
-            // 
-            // Ações
-            // 
-            this.Ações.HeaderText = "Ações";
-            this.Ações.Name = "Ações";
             // 
             // label3
             // 
@@ -246,6 +226,26 @@
             this.buttonVoltar.UseVisualStyleBackColor = true;
             this.buttonVoltar.Click += new System.EventHandler(this.buttonVoltar_Click);
             // 
+            // Id
+            // 
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            // 
+            // Nome
+            // 
+            this.Nome.HeaderText = "Nome da Compra";
+            this.Nome.Name = "Nome";
+            // 
+            // DataCriacao
+            // 
+            this.DataCriacao.HeaderText = "Data Criação";
+            this.DataCriacao.Name = "DataCriacao";
+            // 
+            // IsFechada
+            // 
+            this.IsFechada.HeaderText = "IsFechada";
+            this.IsFechada.Name = "IsFechada";
+            // 
             // FormCompra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -284,10 +284,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dataGridViewCompras;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Tipo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Artigo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Quantidade;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Ações;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
@@ -300,5 +296,9 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button buttonEditar;
         private System.Windows.Forms.Button buttonVoltar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DataCriacao;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IsFechada;
     }
 }

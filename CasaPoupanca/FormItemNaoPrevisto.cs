@@ -1,4 +1,5 @@
-﻿using CasaPoupança.database;
+﻿using CasaPoupanca.Controllers;
+using CasaPoupança.database;
 using CasaPoupanca.models;
 using System;
 using System.Collections.Generic;
@@ -15,49 +16,48 @@ namespace CasaPoupanca
     public partial class FormItemNaoPrevisto : Form
     {
         private int _compraId;
+        private ModoCompraController _controller;
         public FormItemNaoPrevisto(int compraId)
         {
             InitializeComponent();
             _compraId = compraId;
+            _controller = new ModoCompraController();
         }
 
         private void buttonAdicionar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textBoxArtigo.Text) || string.IsNullOrWhiteSpace(textBoxObservacao.Text) || string.IsNullOrWhiteSpace(textBoxQuantidade.Text))
+            if (string.IsNullOrWhiteSpace(textBoxArtigo.Text))
             {
-                MessageBox.Show("Por favor, preencha todos os campos.");
+                MessageBox.Show("Preencha o nome do artigo!");
                 return;
             }
 
-            int quantidade = (int)numericUpDownPrecoUnitario.Value;
-
+            int quantidade = (int)numericUpDownQuantidade.Value;
             if (quantidade <= 0)
             {
-                MessageBox.Show("A quantidade deve ser maior que zero.");
+                MessageBox.Show("A quantidade deve ser maior que zero!");
                 return;
             }
 
-            if (!decimal.TryParse(textBoxQuantidade.Text, out decimal precoUnitario) || precoUnitario <= 0)
+            decimal precoUnitario = numericUpDownPrecoUnitario.Value;
+            if (precoUnitario <= 0)
             {
-                MessageBox.Show("Preço Inválido! Insira um valor válido.");
+                MessageBox.Show("O preço deve ser maior que zero!");
                 return;
             }
 
-            using (var db = new CasaPoupancaDB())
+            var novoItem = new ItemCompra
             {
-                var novoItem = new ItemCompra
-                {
-                    CompraId = _compraId,
-                    ArtigoId = 0,  // 0 significa que é um artigo não previsto (não está na tabela Artigos)
-                    QuantidadePrevista = 0,
-                    QuantidadeAdquirida = quantidade,
-                    PrecoUnitario = precoUnitario,
-                    IsPrevisto = false,
-                    Observacao = textBoxObservacao.Text.Trim()
-                };
-                db.ItensCompra.Add(novoItem);
-                db.SaveChanges();
-            }
+                CompraId = _compraId,
+                ArtigoId = 0,
+                QuantidadePrevista = 0,
+                QuantidadeAdquirida = quantidade,
+                PrecoUnitario = precoUnitario,
+                IsPrevisto = false,
+                Observacao = textBoxObservacao.Text.Trim()
+            };
+            _controller.AddItemPrevisto(novoItem);
+
             MessageBox.Show("Item não previsto adicionado com sucesso!");
             this.Close();
         }
@@ -65,6 +65,12 @@ namespace CasaPoupanca
         private void Cancelar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            _controller?.Dispose();
+            base.OnFormClosed(e);
         }
     }
 }

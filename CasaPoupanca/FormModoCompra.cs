@@ -1,4 +1,5 @@
-﻿using CasaPoupança.database;
+﻿using CasaPoupanca.Controllers;
+using CasaPoupança.database;
 using CasaPoupanca.Helpers;
 using CasaPoupanca.models;
 using System;
@@ -17,10 +18,12 @@ namespace CasaPoupanca
     {
         private int _compraId;
         private decimal _orcamentoDisponivel;
+        private ModoCompraController _controller;
         public FormModoCompra(int compraId)
         {
             InitializeComponent();
             _compraId = compraId;
+            _controller = new ModoCompraController();
             ConfigurarDataGridViews();
             CarregarDadosCompra();
             CarregarOrcamento();
@@ -140,84 +143,42 @@ namespace CasaPoupanca
         }
         private void CarregarItensPrevistos()
         {
-            using (var db = new CasaPoupancaDB())
-            {
-                var itens = db.ItensCompra
-                    .Where(i => i.CompraId == _compraId && i.IsPrevisto)
-                    .ToList();
-
-                dataGridViewItensPrevistos.DataSource = null;
-                dataGridViewItensPrevistos.DataSource = itens;
-            }
+            var itens = _controller.GetItensPrevistos(_compraId);
+            dataGridViewItensPrevistos.DataSource = null;
+            dataGridViewItensPrevistos.DataSource = itens;
         }
 
         private void CarregarDadosCompra()
         {
-            using (var db = new CasaPoupancaDB())
+            var compra = _controller.GetCompraById(_compraId);
+            if (compra != null)
             {
-                var compra = db.Compras.Find(_compraId);
-                if (compra != null)
-                {
-                    this.Text = $"Modo Compra - {compra.Nome}";
-                }
+                this.Text = $"Modo Compra - {compra.Nome}";
             }
         }
 
         private void CarregarOrcamento()
         {
-            using (var db = new CasaPoupancaDB())
+            _orcamentoDisponivel = _controller.GetOrcamentoDisponivel(Session.UtilizadorId, _compraId);
+            labelOrcamentoDisponivel.Text = $"Orçamento Disponível: {_orcamentoDisponivel:C}";
+
+            if (_orcamentoDisponivel < 0)
             {
-                int mesAtual = DateTime.Now.Month;
-                int anoAtual = DateTime.Now.Year;
-
-                var orcamento = db.Orcamentos
-                    .FirstOrDefault(o => o.Mes == mesAtual && o.Ano == anoAtual);
-
-                decimal valorOrcamento = orcamento?.Valor ?? 0;
-
-                var comprasFechadas = db.Compras
-                    .Where(c => c.DataCriacao.Month == mesAtual &&
-                                c.DataCriacao.Year == anoAtual &&
-                                c.IsFechada)
-                    .ToList();
-
-                decimal totalGasto = 0;
-                foreach (var compra in comprasFechadas)
-                {
-                    var itens = db.ItensCompra.Where(i => i.CompraId == compra.Id);
-                    totalGasto += itens.Sum(i => i.QuantidadeAdquirida * i.PrecoUnitario);
-                }
-
-                var itensAtuais = db.ItensCompra.Where(i => i.CompraId == _compraId);
-                decimal gastoAtual = itensAtuais.Sum(i => i.QuantidadeAdquirida * i.PrecoUnitario);
-
-                _orcamentoDisponivel = valorOrcamento - totalGasto - gastoAtual;
-                labelOrcamentoDisponivel.Text = $"Orçamento Disponível: {_orcamentoDisponivel:C}";
-
-                if (_orcamentoDisponivel < 0)
-                {
-                    labelOrcamentoDisponivel.ForeColor = Color.Red;
-                    labelAviso.Text = "ATENÇÃO: Orçamento ultrapassado!";
-                }
-                else
-                {
-                    labelOrcamentoDisponivel.ForeColor = Color.Green;
-                    labelAviso.Text = "";
-                }
+                labelOrcamentoDisponivel.ForeColor = System.Drawing.Color.Red;
+                labelAviso.Text = "ATENÇÃO: Orçamento ultrapassado!";
+            }
+            else
+            {
+                labelOrcamentoDisponivel.ForeColor = System.Drawing.Color.Green;
+                labelAviso.Text = "";
             }
         }
 
         private void CarregarItensNaoPrevistos()
         {
-            using (var db = new CasaPoupancaDB())
-            {
-                var itens = db.ItensCompra
-                    .Where(i => i.CompraId == _compraId && !i.IsPrevisto)
-                    .ToList();
-
-                dataGridViewItensNaoPrevistos.DataSource = null;
-                dataGridViewItensNaoPrevistos.DataSource = itens;
-            }
+            var itens = _controller.GetItensNaoPrevistos(_compraId);
+            dataGridViewItensNaoPrevistos.DataSource = null;
+            dataGridViewItensNaoPrevistos.DataSource = itens;
         }
         private void AtualizarSubtotaisPrevistos()
         {
@@ -256,39 +217,23 @@ namespace CasaPoupanca
 
         private void buttonFecharCompra_Click(object sender, EventArgs e)
         {
-            using (var db = new CasaPoupancaDB())
-            {
-                var itensNaoAdquiridos = db.ItensCompra
-                    .Where(i => i.CompraId == _compraId && i.IsPrevisto && i.QuantidadeAdquirida == 0)
-                    .ToList();
+            int itensNaoAdquiridos = _controller.CountItensNaoAdquiridos(_compraId);
 
-                if (itensNaoAdquiridos.Any())
-                {
-                    DialogResult resultado = MessageBox.Show(
-                        $"Ainda existem {itensNaoAdquiridos.Count} itens previstos não adquiridos.\n\nDeseja fechar a compra mesmo assim?",
-                        "Aviso", MessageBoxButtons.YesNo);
-                    if (resultado != DialogResult.Yes)
-                        return;
-                }
+            if (itensNaoAdquiridos > 0)
+            {
+                DialogResult resultado = MessageBox.Show(
+                    $"Ainda existem {itensNaoAdquiridos} itens previstos não adquiridos.\n\nDeseja fechar a compra mesmo assim?");
+                if (resultado != DialogResult.Yes)
+                    return;
             }
 
             DialogResult resultadoFinal = MessageBox.Show(
                 "Tem certeza que deseja fechar esta compra?\n\nApós fechada, não poderá mais ser alterada!",
-                "Confirmar", MessageBoxButtons.YesNo);
+                "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (resultadoFinal == DialogResult.Yes)
             {
-                using (var db = new CasaPoupancaDB())
-                {
-                    var compra = db.Compras.Find(_compraId);
-                    if (compra != null)
-                    {
-                        compra.IsFechada = true;
-                        compra.FechadaPorId = Session.UtilizadorId;
-                        compra.DataFecho = DateTime.Now;
-                        db.SaveChanges();
-                    }
-                }
+                _controller.FecharCompra(_compraId, Session.UtilizadorId);
                 MessageBox.Show("Compra fechada com sucesso!");
                 this.Close();
             }
@@ -324,7 +269,7 @@ namespace CasaPoupanca
 
             if (!decimal.TryParse(dataGridViewItensPrevistos.Rows[rowIndex].Cells["PrecoUnitario"].Value?.ToString(), out precoUnitario) || precoUnitario <= 0)
             {
-                MessageBox.Show("Insira um preço válido!", "Aviso");
+                MessageBox.Show("Insira um preço válido!");
                 return;
             }
 
@@ -343,21 +288,12 @@ namespace CasaPoupanca
             {
                 DialogResult resultado = MessageBox.Show(
                     $"Este item custa {subtotal:C}. Orçamento disponível: {_orcamentoDisponivel:C}\n\nDeseja continuar mesmo assim?",
-                    "Aviso de Orçamento", MessageBoxButtons.YesNo);
+                    "Aviso de Orçamento", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (resultado != DialogResult.Yes)
                     return;
             }
 
-            using (var db = new CasaPoupancaDB())
-            {
-                var itemDb = db.ItensCompra.Find(item.Id);
-                if (itemDb != null)
-                {
-                    itemDb.QuantidadeAdquirida = quantidadeAdquirir;
-                    itemDb.PrecoUnitario = precoUnitario;
-                    db.SaveChanges();
-                }
-            }
+            _controller.AdquirirItem(item.Id, quantidadeAdquirir, precoUnitario);
 
             MessageBox.Show($"Item adquirido: {quantidadeAdquirir} x {precoUnitario:C} = {subtotal:C}");
 
@@ -379,23 +315,20 @@ namespace CasaPoupanca
                 var item = (ItemCompra)dataGridViewItensNaoPrevistos.Rows[e.RowIndex].DataBoundItem;
 
                 DialogResult resultado = MessageBox.Show("Tem certeza que deseja remover este item não previsto?",
-                    "Confirmar", MessageBoxButtons.YesNo);
+                    "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (resultado == DialogResult.Yes)
                 {
-                    using (var db = new CasaPoupancaDB())
-                    {
-                        var itemDb = db.ItensCompra.Find(item.Id);
-                        if (itemDb != null)
-                        {
-                            db.ItensCompra.Remove(itemDb);
-                            db.SaveChanges();
-                        }
-                    }
+                    _controller.RemoverItemNaoPrevisto(item.Id);
                     CarregarOrcamento();
                     CarregarItensNaoPrevistos();
                 }
             }
+        }
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            _controller?.Dispose();
+            base.OnFormClosed(e);
         }
     }
 }
