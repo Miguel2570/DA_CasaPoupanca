@@ -87,6 +87,12 @@
     <Compile Include="FormEstatisticas.Designer.cs">
       <DependentUpon>FormEstatisticas.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormItemNaoPrevisto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormItemNaoPrevisto.Designer.cs">
+      <DependentUpon>FormItemNaoPrevisto.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,11 +117,11 @@
     <Compile Include="FormRegister.Designer.cs">
       <DependentUpon>FormRegister.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormSession.cs">
+    <Compile Include="FormProfile.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormSession.Designer.cs">
-      <DependentUpon>FormSession.cs</DependentUpon>
+    <Compile Include="FormProfile.Designer.cs">
+      <DependentUpon>FormProfile.cs</DependentUpon>
     </Compile>
     <Compile Include="FormTipoArtigo.cs">
       <SubType>Form</SubType>
@@ -140,6 +146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDashboard.resx">
       <DependentUpon>FormDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormItemNaoPrevisto.resx">
+      <DependentUpon>FormItemNaoPrevisto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>

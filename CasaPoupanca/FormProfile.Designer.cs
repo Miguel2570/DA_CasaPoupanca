@@ -1,6 +1,6 @@
 ﻿namespace CasaPoupanca
 {
-    partial class FormSession
+    partial class FormProfile
     {
         /// <summary>
         /// Required designer variable.

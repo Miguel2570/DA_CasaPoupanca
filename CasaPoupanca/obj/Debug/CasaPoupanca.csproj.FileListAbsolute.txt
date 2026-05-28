@@ -42,3 +42,7 @@ C:\Users\gonca\Desktop\Disciplinas\Segundo_Semestre\Desenvolvimento_de_aplicacao
 C:\Users\gonca\Desktop\Disciplinas\Segundo_Semestre\Desenvolvimento_de_aplicacao\DA_CasaPoupanca\CasaPoupanca\obj\Debug\CasaPoupanca.FormOrcamento.resources
 C:\Users\gonca\Desktop\Disciplinas\Segundo_Semestre\Desenvolvimento_de_aplicacao\DA_CasaPoupanca\CasaPoupanca\obj\Debug\CasaPoupanca.FormUtilizadores.resources
 C:\Users\gonca\Desktop\Disciplinas\Segundo_Semestre\Desenvolvimento_de_aplicacao\DA_CasaPoupanca\CasaPoupanca\obj\Debug\CasaPoupanca.FormCompra.resources
+C:\Users\Migue\Desktop\DA\projeto\DA_CasaPoupanca\CasaPoupanca\obj\Debug\CasaPoupanca.FormCompra.resources
+C:\Users\Migue\Desktop\DA\projeto\DA_CasaPoupanca\CasaPoupanca\obj\Debug\CasaPoupanca.FormOrcamento.resources
+C:\Users\Migue\Desktop\DA\projeto\DA_CasaPoupanca\CasaPoupanca\obj\Debug\CasaPoupanca.FormUtilizadores.resources
+C:\Users\Migue\Desktop\DA\projeto\DA_CasaPoupanca\CasaPoupanca\obj\Debug\CasaPoupanca.FormItemNaoPrevisto.resources

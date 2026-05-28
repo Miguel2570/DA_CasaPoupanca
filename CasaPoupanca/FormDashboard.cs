@@ -208,69 +208,18 @@ namespace CasaPoupanca
             utilizadores.ShowDialog();
         }
 
-        private void FormDashboard_Load(object sender, EventArgs e)
+        private void modoCompraToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
+            if (dataGridViewCompras.CurrentRow == null)
+            {
+                MessageBox.Show("Selecione uma compra para continuar.");
+                return;
+            }
 
-        }
+            var compra = (Compra)dataGridViewCompras.CurrentRow.DataBoundItem;
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void labelPerfil_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void ficheiroToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelTotalGasto_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelOrcamento_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelDisponivel_Click(object sender, EventArgs e)
-        {
-
+            FormModoCompra modoCompra = new FormModoCompra(compra.Id);
+            modoCompra.ShowDialog();
         }
     }
 }

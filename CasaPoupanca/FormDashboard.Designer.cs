@@ -62,6 +62,7 @@
             this.buttonSair = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.modoCompraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCompras)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -77,14 +78,14 @@
             this.oToolStripMenuItem,
             this.tiposDeArtigoToolStripMenuItem,
             this.artigosToolStripMenuItem,
-            this.utilizadoresToolStripMenuItem});
+            this.utilizadoresToolStripMenuItem,
+            this.modoCompraToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
             this.menuStrip1.Size = new System.Drawing.Size(999, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
-            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // ficheiroToolStripMenuItem
             // 
@@ -94,7 +95,6 @@
             this.ficheiroToolStripMenuItem.Name = "ficheiroToolStripMenuItem";
             this.ficheiroToolStripMenuItem.Size = new System.Drawing.Size(61, 22);
             this.ficheiroToolStripMenuItem.Text = "Ficheiro";
-            this.ficheiroToolStripMenuItem.Click += new System.EventHandler(this.ficheiroToolStripMenuItem_Click);
             // 
             // sairToolStripMenuItem
             // 
@@ -160,7 +160,6 @@
             this.label2.Size = new System.Drawing.Size(92, 20);
             this.label2.TabIndex = 2;
             this.label2.Text = "Orçamento:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
@@ -171,7 +170,6 @@
             this.label3.Size = new System.Drawing.Size(96, 20);
             this.label3.TabIndex = 3;
             this.label3.Text = "Total Gasto:";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
@@ -182,7 +180,6 @@
             this.label4.Size = new System.Drawing.Size(85, 20);
             this.label4.TabIndex = 4;
             this.label4.Text = "Disponivel:";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // labelOrcamento
             // 
@@ -193,7 +190,6 @@
             this.labelOrcamento.Size = new System.Drawing.Size(36, 17);
             this.labelOrcamento.TabIndex = 5;
             this.labelOrcamento.Text = "0,00";
-            this.labelOrcamento.Click += new System.EventHandler(this.labelOrcamento_Click);
             // 
             // labelTotalGasto
             // 
@@ -204,7 +200,6 @@
             this.labelTotalGasto.Size = new System.Drawing.Size(36, 17);
             this.labelTotalGasto.TabIndex = 6;
             this.labelTotalGasto.Text = "0,00";
-            this.labelTotalGasto.Click += new System.EventHandler(this.labelTotalGasto_Click);
             // 
             // labelDisponivel
             // 
@@ -215,7 +210,6 @@
             this.labelDisponivel.Size = new System.Drawing.Size(36, 17);
             this.labelDisponivel.TabIndex = 7;
             this.labelDisponivel.Text = "0,00";
-            this.labelDisponivel.Click += new System.EventHandler(this.labelDisponivel_Click);
             // 
             // label5
             // 
@@ -226,7 +220,6 @@
             this.label5.Size = new System.Drawing.Size(116, 15);
             this.label5.TabIndex = 8;
             this.label5.Text = "Compras em Aberto";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // buttonNovaCompra
             // 
@@ -272,7 +265,7 @@
             this.dataGridViewCompras.ReadOnly = true;
             this.dataGridViewCompras.RowHeadersWidth = 62;
             this.dataGridViewCompras.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewCompras.Size = new System.Drawing.Size(869, 150);
+            this.dataGridViewCompras.Size = new System.Drawing.Size(859, 150);
             this.dataGridViewCompras.TabIndex = 12;
             // 
             // Id
@@ -323,7 +316,6 @@
             this.labelPerfil.Size = new System.Drawing.Size(60, 13);
             this.labelPerfil.TabIndex = 13;
             this.labelPerfil.Text = "Bem vindo,";
-            this.labelPerfil.Click += new System.EventHandler(this.labelPerfil_Click);
             // 
             // imageList1
             // 
@@ -361,12 +353,19 @@
             // 
             this.pictureBox1.Image = global::CasaPoupanca.Properties.Resources.final_removebg_preview;
             this.pictureBox1.Location = new System.Drawing.Point(8, 32);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(79, 65);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 14;
             this.pictureBox1.TabStop = false;
+            // 
+            // modoCompraToolStripMenuItem
+            // 
+            this.modoCompraToolStripMenuItem.Name = "modoCompraToolStripMenuItem";
+            this.modoCompraToolStripMenuItem.Size = new System.Drawing.Size(97, 22);
+            this.modoCompraToolStripMenuItem.Text = "Modo Compra";
+            this.modoCompraToolStripMenuItem.Click += new System.EventHandler(this.modoCompraToolStripMenuItem_Click_1);
             // 
             // FormDashboard
             // 
@@ -392,7 +391,6 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormDashboard";
             this.Text = "Dashboard";
-            this.Load += new System.EventHandler(this.FormDashboard_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCompras)).EndInit();
@@ -436,5 +434,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn IsFechada;
         private System.Windows.Forms.ToolStripMenuItem converterEmCSVToolStripMenuItem;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ToolStripMenuItem modoCompraToolStripMenuItem;
     }
 }

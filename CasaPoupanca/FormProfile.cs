@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CasaPoupanca
 {
-    public partial class FormSession : Form
+    public partial class FormProfile : Form
     {
-        public FormSession()
+        public FormProfile()
         {
             InitializeComponent();
         }
