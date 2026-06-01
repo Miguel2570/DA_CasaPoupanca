@@ -22,7 +22,7 @@ namespace CasaPoupanca
         }
         private void CarregarDados()
         {
-            labelPerfil.Text = $"Perfil: {Session.Username}";
+            labelPerfil.Text = $"Bem vindo, {Session.Username}";
             CarregarOrcamento();
             CarregarComprasAberto();
             ConfigurarDataGridView();
@@ -220,6 +220,11 @@ namespace CasaPoupanca
 
             FormModoCompra modoCompra = new FormModoCompra(compra.Id);
             modoCompra.ShowDialog();
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
