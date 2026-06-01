@@ -22,7 +22,7 @@ namespace CasaPoupanca
         }
         private void CarregarDados()
         {
-            labelPerfil.Text = $"Bem vindo, {Session.Username}";
+            labelPerfil.Text = $"Perfil {Session.Username}";
             CarregarOrcamento();
             CarregarComprasAberto();
             ConfigurarDataGridView();
