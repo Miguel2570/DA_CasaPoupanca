@@ -157,11 +157,11 @@
             this.Column1,
             this.ValorMaximo,
             this.mes});
-            this.dataGridView1.Location = new System.Drawing.Point(32, 369);
+            this.dataGridView1.Location = new System.Drawing.Point(22, 358);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(1136, 298);
+            this.dataGridView1.Size = new System.Drawing.Size(1136, 270);
             this.dataGridView1.TabIndex = 24;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -270,7 +270,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1198, 686);
+            this.ClientSize = new System.Drawing.Size(1198, 642);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.buttonRemover);
