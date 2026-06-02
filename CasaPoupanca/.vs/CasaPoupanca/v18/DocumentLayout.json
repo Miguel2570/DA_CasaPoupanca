@@ -3,36 +3,44 @@
   "WorkspaceRootPath": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|c:\\users\\gonca\\desktop\\disciplinas\\segundo_semestre\\desenvolvimento_de_aplicacao\\da_casapoupanca\\casapoupanca\\formdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\formorcamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|solutionrelative:formorcamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\formdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|solutionrelative:formdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|c:\\users\\gonca\\desktop\\disciplinas\\segundo_semestre\\desenvolvimento_de_aplicacao\\da_casapoupanca\\casapoupanca\\formorcamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|solutionrelative:formorcamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|c:\\users\\gonca\\desktop\\disciplinas\\segundo_semestre\\desenvolvimento_de_aplicacao\\da_casapoupanca\\casapoupanca\\controllers\\orcamentocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|solutionrelative:controllers\\orcamentocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\formdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|solutionrelative:formdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\formorcamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|solutionrelative:formorcamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\classes\\Orcamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:classes\\Orcamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\classes\\session.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|solutionrelative:classes\\session.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\classes\\Session.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:classes\\Session.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\classes\\orcamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|solutionrelative:classes\\orcamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\classes\\ItemCompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:classes\\ItemCompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\classes\\itemcompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|solutionrelative:classes\\itemcompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\classes\\Compra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:classes\\Compra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\classes\\compra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|solutionrelative:classes\\compra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\classes\\artigo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|solutionrelative:classes\\artigo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\classes\\Artigo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:classes\\Artigo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,32 +50,46 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "FormDashboard.cs",
-              "DocumentMoniker": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\FormDashboard.cs",
-              "RelativeDocumentMoniker": "FormDashboard.cs",
-              "ToolTip": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\FormDashboard.cs",
-              "RelativeToolTip": "FormDashboard.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABoAAAAkAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "OrcamentoController.cs",
+              "DocumentMoniker": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\Controllers\\OrcamentoController.cs",
+              "RelativeDocumentMoniker": "Controllers\\OrcamentoController.cs",
+              "ToolTip": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\Controllers\\OrcamentoController.cs*",
+              "RelativeToolTip": "Controllers\\OrcamentoController.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-01T11:35:06.034Z",
+              "WhenOpened": "2026-06-02T18:48:46.137Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FormOrcamento.cs",
+              "DocumentMoniker": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\FormOrcamento.cs",
+              "RelativeDocumentMoniker": "FormOrcamento.cs",
+              "ToolTip": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\FormOrcamento.cs",
+              "RelativeToolTip": "FormOrcamento.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAcwBQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-02T14:10:27.958Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "FormDashboard.cs [Design]",
+              "Title": "FormDashboard.cs",
               "DocumentMoniker": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\FormDashboard.cs",
               "RelativeDocumentMoniker": "FormDashboard.cs",
-              "ToolTip": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\FormDashboard.cs [Design]",
-              "RelativeToolTip": "FormDashboard.cs [Design]",
+              "ToolTip": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\FormDashboard.cs",
+              "RelativeToolTip": "FormDashboard.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABoAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-01T11:25:49.495Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-06-01T11:35:06.034Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
@@ -87,61 +109,68 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
+              "Title": "Orcamento.cs",
+              "DocumentMoniker": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\classes\\Orcamento.cs",
+              "RelativeDocumentMoniker": "classes\\Orcamento.cs",
+              "ToolTip": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\classes\\Orcamento.cs",
+              "RelativeToolTip": "classes\\Orcamento.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-26T07:56:38.151Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "Session.cs",
               "DocumentMoniker": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\classes\\Session.cs",
               "RelativeDocumentMoniker": "classes\\Session.cs",
               "ToolTip": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\classes\\Session.cs",
               "RelativeToolTip": "classes\\Session.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-26T07:56:39.099Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "Orcamento.cs",
-              "DocumentMoniker": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\classes\\Orcamento.cs",
-              "RelativeDocumentMoniker": "classes\\Orcamento.cs",
-              "ToolTip": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\classes\\Orcamento.cs",
-              "RelativeToolTip": "classes\\Orcamento.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "FormDashboard.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\FormDashboard.cs",
+              "RelativeDocumentMoniker": "FormDashboard.cs",
+              "ToolTip": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\FormDashboard.cs [Design]",
+              "RelativeToolTip": "FormDashboard.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-26T07:56:38.151Z"
+              "WhenOpened": "2026-06-01T11:25:49.495Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "ItemCompra.cs",
               "DocumentMoniker": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\classes\\ItemCompra.cs",
               "RelativeDocumentMoniker": "classes\\ItemCompra.cs",
               "ToolTip": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\classes\\ItemCompra.cs",
               "RelativeToolTip": "classes\\ItemCompra.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-26T07:56:37.159Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "Compra.cs",
               "DocumentMoniker": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\classes\\Compra.cs",
               "RelativeDocumentMoniker": "classes\\Compra.cs",
               "ToolTip": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\classes\\Compra.cs",
               "RelativeToolTip": "classes\\Compra.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-26T07:56:35.96Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "Artigo.cs",
               "DocumentMoniker": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\classes\\Artigo.cs",
               "RelativeDocumentMoniker": "classes\\Artigo.cs",
               "ToolTip": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\classes\\Artigo.cs",
               "RelativeToolTip": "classes\\Artigo.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-26T07:56:33.754Z"
             }

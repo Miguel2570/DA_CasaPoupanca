@@ -1,9 +1,41 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Migue\\Desktop\\DA\\projeto\\DA_CasaPoupanca\\CasaPoupanca\\",
+  "WorkspaceRootPath": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|c:\\users\\migue\\desktop\\da\\projeto\\da_casapoupanca\\casapoupanca\\formcompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|c:\\users\\gonca\\desktop\\disciplinas\\segundo_semestre\\desenvolvimento_de_aplicacao\\da_casapoupanca\\casapoupanca\\formdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|solutionrelative:formdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|c:\\users\\gonca\\desktop\\disciplinas\\segundo_semestre\\desenvolvimento_de_aplicacao\\da_casapoupanca\\casapoupanca\\formdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|solutionrelative:formdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|c:\\users\\gonca\\desktop\\disciplinas\\segundo_semestre\\desenvolvimento_de_aplicacao\\da_casapoupanca\\casapoupanca\\formexportarcsv.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|solutionrelative:formexportarcsv.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|c:\\users\\gonca\\desktop\\disciplinas\\segundo_semestre\\desenvolvimento_de_aplicacao\\da_casapoupanca\\casapoupanca\\formexportarcsv.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|solutionrelative:formexportarcsv.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|c:\\users\\gonca\\desktop\\disciplinas\\segundo_semestre\\desenvolvimento_de_aplicacao\\da_casapoupanca\\casapoupanca\\formestatisticas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|solutionrelative:formestatisticas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|c:\\users\\gonca\\desktop\\disciplinas\\segundo_semestre\\desenvolvimento_de_aplicacao\\da_casapoupanca\\casapoupanca\\formestatisticas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|solutionrelative:formestatisticas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|c:\\users\\gonca\\desktop\\disciplinas\\segundo_semestre\\desenvolvimento_de_aplicacao\\da_casapoupanca\\casapoupanca\\controllers\\estatisticascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|solutionrelative:controllers\\estatisticascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|c:\\users\\gonca\\desktop\\disciplinas\\segundo_semestre\\desenvolvimento_de_aplicacao\\da_casapoupanca\\casapoupanca\\controllers\\orcamentocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|solutionrelative:controllers\\orcamentocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|c:\\users\\gonca\\desktop\\disciplinas\\segundo_semestre\\desenvolvimento_de_aplicacao\\da_casapoupanca\\casapoupanca\\formcompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{BF0CCEC3-3033-4343-9381-871C45800C24}|CasaPoupanca.csproj|solutionrelative:formcompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
@@ -19,10 +51,111 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "FormDashboard.cs",
+              "DocumentMoniker": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\FormDashboard.cs",
+              "RelativeDocumentMoniker": "FormDashboard.cs",
+              "ToolTip": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\FormDashboard.cs",
+              "RelativeToolTip": "FormDashboard.cs",
+              "ViewState": "AgIAANwAAAAAAAAAAAAYwPMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-02T22:57:12.556Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FormDashboard.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\FormDashboard.cs",
+              "RelativeDocumentMoniker": "FormDashboard.cs",
+              "ToolTip": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\FormDashboard.cs [Design]",
+              "RelativeToolTip": "FormDashboard.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-02T22:57:10.972Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FormExportarCSV.cs",
+              "DocumentMoniker": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\FormExportarCSV.cs",
+              "RelativeDocumentMoniker": "FormExportarCSV.cs",
+              "ToolTip": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\FormExportarCSV.cs",
+              "RelativeToolTip": "FormExportarCSV.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAYBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-02T22:55:50.666Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FormExportarCSV.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\FormExportarCSV.cs",
+              "RelativeDocumentMoniker": "FormExportarCSV.cs",
+              "ToolTip": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\FormExportarCSV.cs [Design]",
+              "RelativeToolTip": "FormExportarCSV.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-02T22:55:43.763Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "FormEstatisticas.cs",
+              "DocumentMoniker": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\FormEstatisticas.cs",
+              "RelativeDocumentMoniker": "FormEstatisticas.cs",
+              "ToolTip": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\FormEstatisticas.cs",
+              "RelativeToolTip": "FormEstatisticas.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAUAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-02T22:51:32.877Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FormEstatisticas.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\FormEstatisticas.cs",
+              "RelativeDocumentMoniker": "FormEstatisticas.cs",
+              "ToolTip": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\FormEstatisticas.cs [Design]",
+              "RelativeToolTip": "FormEstatisticas.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-02T22:51:26.806Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "EstatisticasController.cs",
+              "DocumentMoniker": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\Controllers\\EstatisticasController.cs",
+              "RelativeDocumentMoniker": "Controllers\\EstatisticasController.cs",
+              "ToolTip": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\Controllers\\EstatisticasController.cs",
+              "RelativeToolTip": "Controllers\\EstatisticasController.cs",
+              "ViewState": "AgIAAJYAAAAAAAAAAAAowMMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-02T22:51:06.447Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "OrcamentoController.cs",
+              "DocumentMoniker": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\Controllers\\OrcamentoController.cs",
+              "RelativeDocumentMoniker": "Controllers\\OrcamentoController.cs",
+              "ToolTip": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\Controllers\\OrcamentoController.cs",
+              "RelativeToolTip": "Controllers\\OrcamentoController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-02T22:20:48.507Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "FormCompra.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Migue\\Desktop\\DA\\projeto\\DA_CasaPoupanca\\CasaPoupanca\\FormCompra.cs",
+              "DocumentMoniker": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\FormCompra.cs",
               "RelativeDocumentMoniker": "FormCompra.cs",
-              "ToolTip": "C:\\Users\\Migue\\Desktop\\DA\\projeto\\DA_CasaPoupanca\\CasaPoupanca\\FormCompra.cs [Design]",
+              "ToolTip": "C:\\Users\\gonca\\Desktop\\Disciplinas\\Segundo_Semestre\\Desenvolvimento_de_aplicacao\\DA_CasaPoupanca\\CasaPoupanca\\FormCompra.cs [Design]",
               "RelativeToolTip": "FormCompra.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-28T21:07:53.879Z",

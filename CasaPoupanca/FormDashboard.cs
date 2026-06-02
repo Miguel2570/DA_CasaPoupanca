@@ -226,5 +226,19 @@ namespace CasaPoupanca
         {
 
         }
+
+        // Botão Exportar CSV (se tiveres um botão no formulário)
+        private void btnExportarCSV_Click(object sender, EventArgs e)
+        {
+            FormExportarCSV exportar = new FormExportarCSV();
+            exportar.ShowDialog();
+        }
+
+        // Item do menu para Exportar CSV (se tiveres no MenuStrip)
+        private void exportarCSVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormExportarCSV exportar = new FormExportarCSV();
+            exportar.ShowDialog();
+        }
     }
 }

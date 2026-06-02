@@ -56,12 +56,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="classes\Artigo.cs" />
-    <Compile Include="classes\Compra.cs" />
-    <Compile Include="classes\ItemCompra.cs" />
-    <Compile Include="classes\Orcamento.cs" />
-    <Compile Include="classes\TipoArtigo.cs" />
-    <Compile Include="classes\Utilizador.cs" />
+    <Compile Include="Controllers\EstatisticasController.cs" />
+    <Compile Include="Controllers\OrcamentoController.cs" />
+    <Compile Include="model\Artigo.cs" />
+    <Compile Include="model\Compra.cs" />
+    <Compile Include="model\ItemCompra.cs" />
+    <Compile Include="model\Orcamento.cs" />
+    <Compile Include="model\TipoArtigo.cs" />
+    <Compile Include="model\Utilizador.cs" />
     <Compile Include="Controllers\ArtigoController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CompraController.cs" />
@@ -139,9 +141,15 @@
     <Compile Include="FormUtilizadores.Designer.cs">
       <DependentUpon>FormUtilizadores.cs</DependentUpon>
     </Compile>
-    <Compile Include="classes\Session.cs" />
+    <Compile Include="model\Session.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FormExportarCSV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormExportarCSV.Designer.cs">
+      <DependentUpon>FormExportarCSV.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FormArtigo.resx">
       <DependentUpon>FormArtigo.cs</DependentUpon>
     </EmbeddedResource>
@@ -150,6 +158,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDashboard.resx">
       <DependentUpon>FormDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEstatisticas.resx">
+      <DependentUpon>FormEstatisticas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormExportarCSV.resx">
+      <DependentUpon>FormExportarCSV.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormItemNaoPrevisto.resx">
       <DependentUpon>FormItemNaoPrevisto.cs</DependentUpon>

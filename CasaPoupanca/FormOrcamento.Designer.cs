@@ -30,11 +30,11 @@
         {
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxMes = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBoxAno = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxValor = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,7 +47,7 @@
             this.buttonRemover = new System.Windows.Forms.Button();
             this.buttonEditar = new System.Windows.Forms.Button();
             this.buttonAdicionar = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBoxAlteracoes = new System.Windows.Forms.ListBox();
             this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -73,27 +73,27 @@
             this.label1.TabIndex = 17;
             this.label1.Text = "Mês";
             // 
-            // comboBox1
+            // comboBoxMes
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Janeiro",
-            "Fevereiro",
-            "Março",
-            "Abril",
-            "Maio",
-            "Junho",
-            "Julho",
-            "Agosto",
-            "Setembro",
-            "Outubro",
-            "Novembro",
-            "Dezembro"});
-            this.comboBox1.Location = new System.Drawing.Point(182, 182);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 28);
-            this.comboBox1.TabIndex = 18;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboBoxMes.FormattingEnabled = true;
+            this.comboBoxMes.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12"});
+            this.comboBoxMes.Location = new System.Drawing.Point(182, 182);
+            this.comboBoxMes.Name = "comboBoxMes";
+            this.comboBoxMes.Size = new System.Drawing.Size(121, 28);
+            this.comboBoxMes.TabIndex = 18;
+            this.comboBoxMes.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -105,18 +105,19 @@
             this.label2.TabIndex = 19;
             this.label2.Text = "Ano";
             // 
-            // comboBox2
+            // comboBoxAno
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.comboBoxAno.FormattingEnabled = true;
+            this.comboBoxAno.Items.AddRange(new object[] {
             "2025",
             "2026",
             "2027",
             "2028"});
-            this.comboBox2.Location = new System.Drawing.Point(380, 182);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 28);
-            this.comboBox2.TabIndex = 20;
+            this.comboBoxAno.Location = new System.Drawing.Point(380, 182);
+            this.comboBoxAno.Name = "comboBoxAno";
+            this.comboBoxAno.Size = new System.Drawing.Size(121, 28);
+            this.comboBoxAno.TabIndex = 20;
+            this.comboBoxAno.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -128,12 +129,12 @@
             this.label3.TabIndex = 21;
             this.label3.Text = "Valor do orçamento";
             // 
-            // textBox1
+            // textBoxValor
             // 
-            this.textBox1.Location = new System.Drawing.Point(330, 242);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(211, 26);
-            this.textBox1.TabIndex = 22;
+            this.textBoxValor.Location = new System.Drawing.Point(330, 242);
+            this.textBoxValor.Name = "textBoxValor";
+            this.textBoxValor.Size = new System.Drawing.Size(211, 26);
+            this.textBoxValor.TabIndex = 22;
             // 
             // label4
             // 
@@ -247,14 +248,14 @@
             this.buttonAdicionar.Text = "Adicionar";
             this.buttonAdicionar.UseVisualStyleBackColor = true;
             // 
-            // listBox1
+            // listBoxAlteracoes
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 20;
-            this.listBox1.Location = new System.Drawing.Point(672, 68);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(486, 284);
-            this.listBox1.TabIndex = 29;
+            this.listBoxAlteracoes.FormattingEnabled = true;
+            this.listBoxAlteracoes.ItemHeight = 20;
+            this.listBoxAlteracoes.Location = new System.Drawing.Point(672, 68);
+            this.listBoxAlteracoes.Name = "listBoxAlteracoes";
+            this.listBoxAlteracoes.Size = new System.Drawing.Size(486, 284);
+            this.listBoxAlteracoes.TabIndex = 29;
             // 
             // label5
             // 
@@ -272,17 +273,17 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1198, 642);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.listBoxAlteracoes);
             this.Controls.Add(this.buttonRemover);
             this.Controls.Add(this.buttonEditar);
             this.Controls.Add(this.buttonAdicionar);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxValor);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.comboBoxAno);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboBoxMes);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Name = "FormOrcamento";
@@ -298,17 +299,17 @@
 
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxMes;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboBoxAno;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxValor;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button buttonRemover;
         private System.Windows.Forms.Button buttonEditar;
         private System.Windows.Forms.Button buttonAdicionar;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBoxAlteracoes;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;

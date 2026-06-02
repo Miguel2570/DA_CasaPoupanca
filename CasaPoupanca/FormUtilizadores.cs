@@ -39,8 +39,6 @@ namespace CasaPoupanca
             textBoxNome.Clear();
             textBoxEmail.Clear();
             _utilizadorEditandoId = null;
-            buttonAdicionar.Enabled = true;
-            buttonEditar.Enabled = false;
         }
 
         private void ConfigurarDataGridView()
@@ -100,88 +98,6 @@ namespace CasaPoupanca
             }
         }
 
-        private void buttonAdicionar_Click(object sender, EventArgs e)
-        {
-            string username = textBoxUsername.Text.Trim();
-            string password = textBoxPassword.Text.Trim();
-            string nome = textBoxNome.Text.Trim();
-            string email = textBoxEmail.Text.Trim();
-
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(nome) || string.IsNullOrEmpty(email))
-            {
-                MessageBox.Show("Por favor, preencha todos os campos.");
-                return;
-            }
-
-            using (var db = new CasaPoupancaDB())
-            {
-                if (db.Utilizadores.Any(user => user.Username == username))
-                {
-                    MessageBox.Show("O username já existe. Por favor, escolha outro.", "Erro");
-                    return;
-                }
-
-                var novoUtilizador = new models.Utilizador
-                {
-                    Username = username,
-                    Password = password,
-                    Nome = nome,
-                    Email = email,
-                    DataRegisto = DateTime.Now
-                };
-                db.Utilizadores.Add(novoUtilizador);
-                db.SaveChanges();
-            }
-            MessageBox.Show("Utilizador adicionado com sucesso!");
-
-            CarregarUtilizadores();
-            LimparCampos();
-        }
-
-        private void buttonEditar_Click(object sender, EventArgs e)
-        {
-            if (_utilizadorEditandoId == null)
-            {
-                MessageBox.Show("Nenhum utilizador selecionado para edição.");
-                return;
-            }
-
-            string username = textBoxUsername.Text.Trim();
-            string password = textBoxPassword.Text.Trim();
-            string nome = textBoxNome.Text.Trim();
-            string email = textBoxEmail.Text.Trim();
-
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(nome) || string.IsNullOrEmpty(email))
-            {
-                MessageBox.Show("Por favor, preencha todos os campos.");
-                return;
-            }
-
-            using (var db = new CasaPoupancaDB())
-            {
-                var utilizador = db.Utilizadores.Find(_utilizadorEditandoId.Value);
-                if (utilizador == null)
-                {
-                    MessageBox.Show("Utilizador não encontrado.");
-                    return;
-                }
-                if (db.Utilizadores.Any(user => user.Username == username && user.Id != _utilizadorEditandoId.Value))
-                {
-                    MessageBox.Show("O username já existe. Por favor, escolha outro.");
-                    return;
-                }
-                utilizador.Username = username;
-                utilizador.Password = password;
-                utilizador.Nome = nome;
-                utilizador.Email = email;
-                db.SaveChanges();
-            }
-
-            MessageBox.Show("Utilizador editado com sucesso!");
-
-            CarregarUtilizadores();
-            LimparCampos();
-        }
 
         private void buttonRemover_Click(object sender, EventArgs e)
         {
@@ -233,8 +149,7 @@ namespace CasaPoupanca
                 textBoxEmail.Text = dataGridViewUtilizadores.CurrentRow.Cells["Email"].Value?.ToString();
                 textBoxPassword.Clear(); // Password não é carregada por segurança
 
-                buttonAdicionar.Enabled = false;
-                buttonEditar.Enabled = true;
+               
             }
         }
 

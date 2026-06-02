@@ -100,14 +100,16 @@ namespace CasaPoupanca.Controllers
             decimal totalGasto = 0;
             foreach (var compra in comprasFechadas)
             {
+                // CORREÇÃO: Usar (decimal?) para permitir null e ?? 0
                 totalGasto += _db.ItensCompra
                     .Where(i => i.CompraId == compra.Id)
-                    .Sum(i => i.QuantidadeAdquirida * i.PrecoUnitario);
+                    .Sum(i => (decimal?)i.QuantidadeAdquirida * i.PrecoUnitario) ?? 0;
             }
 
+            // CORREÇÃO: Usar (decimal?) para permitir null e ?? 0
             var gastoAtual = _db.ItensCompra
                 .Where(i => i.CompraId == compraId)
-                .Sum(i => i.QuantidadeAdquirida * i.PrecoUnitario);
+                .Sum(i => (decimal?)i.QuantidadeAdquirida * i.PrecoUnitario) ?? 0;
 
             return valorOrcamento - totalGasto - gastoAtual;
         }

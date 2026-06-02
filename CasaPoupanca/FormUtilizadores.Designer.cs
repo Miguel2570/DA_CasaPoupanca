@@ -29,11 +29,13 @@
         private void InitializeComponent()
         {
             this.dataGridViewUtilizadores = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.buttonAdicionar = new System.Windows.Forms.Button();
-            this.buttonEditar = new System.Windows.Forms.Button();
             this.buttonRemover = new System.Windows.Forms.Button();
             this.buttonVoltar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -44,10 +46,6 @@
             this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.textBoxNome = new System.Windows.Forms.TextBox();
             this.textBoxEmail = new System.Windows.Forms.TextBox();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUtilizadores)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -60,148 +58,13 @@
             this.Column4,
             this.Column2,
             this.Email});
-            this.dataGridViewUtilizadores.Location = new System.Drawing.Point(342, 85);
-            this.dataGridViewUtilizadores.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridViewUtilizadores.Location = new System.Drawing.Point(394, 149);
             this.dataGridViewUtilizadores.Name = "dataGridViewUtilizadores";
             this.dataGridViewUtilizadores.RowHeadersWidth = 62;
             this.dataGridViewUtilizadores.RowTemplate.Height = 28;
-            this.dataGridViewUtilizadores.Size = new System.Drawing.Size(666, 195);
+            this.dataGridViewUtilizadores.Size = new System.Drawing.Size(681, 300);
             this.dataGridViewUtilizadores.TabIndex = 0;
             this.dataGridViewUtilizadores.SelectionChanged += new System.EventHandler(this.dataGridViewUtilizadores_SelectionChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(240, 71);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 13);
-            this.label1.TabIndex = 1;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::CasaPoupanca.Properties.Resources.final_removebg_preview;
-            this.pictureBox1.Location = new System.Drawing.Point(11, 11);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(125, 86);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 16;
-            this.pictureBox1.TabStop = false;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(15, 85);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(116, 18);
-            this.label4.TabIndex = 17;
-            this.label4.Text = "G.Utilizadores";
-            // 
-            // buttonAdicionar
-            // 
-            this.buttonAdicionar.Location = new System.Drawing.Point(18, 299);
-            this.buttonAdicionar.Name = "buttonAdicionar";
-            this.buttonAdicionar.Size = new System.Drawing.Size(75, 23);
-            this.buttonAdicionar.TabIndex = 19;
-            this.buttonAdicionar.Text = "Adicionar";
-            this.buttonAdicionar.UseVisualStyleBackColor = true;
-            this.buttonAdicionar.Click += new System.EventHandler(this.buttonAdicionar_Click);
-            // 
-            // buttonEditar
-            // 
-            this.buttonEditar.Location = new System.Drawing.Point(110, 299);
-            this.buttonEditar.Name = "buttonEditar";
-            this.buttonEditar.Size = new System.Drawing.Size(75, 23);
-            this.buttonEditar.TabIndex = 20;
-            this.buttonEditar.Text = "Editar";
-            this.buttonEditar.UseVisualStyleBackColor = true;
-            this.buttonEditar.Click += new System.EventHandler(this.buttonEditar_Click);
-            // 
-            // buttonRemover
-            // 
-            this.buttonRemover.Location = new System.Drawing.Point(208, 299);
-            this.buttonRemover.Name = "buttonRemover";
-            this.buttonRemover.Size = new System.Drawing.Size(75, 23);
-            this.buttonRemover.TabIndex = 21;
-            this.buttonRemover.Text = "Remover";
-            this.buttonRemover.UseVisualStyleBackColor = true;
-            this.buttonRemover.Click += new System.EventHandler(this.buttonRemover_Click);
-            // 
-            // buttonVoltar
-            // 
-            this.buttonVoltar.Location = new System.Drawing.Point(18, 354);
-            this.buttonVoltar.Name = "buttonVoltar";
-            this.buttonVoltar.Size = new System.Drawing.Size(75, 23);
-            this.buttonVoltar.TabIndex = 22;
-            this.buttonVoltar.Text = "Voltar";
-            this.buttonVoltar.UseVisualStyleBackColor = true;
-            this.buttonVoltar.Click += new System.EventHandler(this.buttonVoltar_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(26, 132);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(55, 13);
-            this.label2.TabIndex = 23;
-            this.label2.Text = "Username";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(26, 166);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 13);
-            this.label3.TabIndex = 24;
-            this.label3.Text = "Password";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(26, 208);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
-            this.label5.TabIndex = 25;
-            this.label5.Text = "Nome";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(26, 245);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(32, 13);
-            this.label6.TabIndex = 26;
-            this.label6.Text = "Email";
-            // 
-            // textBoxUsername
-            // 
-            this.textBoxUsername.Location = new System.Drawing.Point(100, 129);
-            this.textBoxUsername.Name = "textBoxUsername";
-            this.textBoxUsername.Size = new System.Drawing.Size(100, 20);
-            this.textBoxUsername.TabIndex = 27;
-            // 
-            // textBoxPassword
-            // 
-            this.textBoxPassword.Location = new System.Drawing.Point(100, 166);
-            this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.Size = new System.Drawing.Size(100, 20);
-            this.textBoxPassword.TabIndex = 28;
-            // 
-            // textBoxNome
-            // 
-            this.textBoxNome.Location = new System.Drawing.Point(100, 205);
-            this.textBoxNome.Name = "textBoxNome";
-            this.textBoxNome.Size = new System.Drawing.Size(100, 20);
-            this.textBoxNome.TabIndex = 29;
-            // 
-            // textBoxEmail
-            // 
-            this.textBoxEmail.Location = new System.Drawing.Point(100, 242);
-            this.textBoxEmail.Name = "textBoxEmail";
-            this.textBoxEmail.Size = new System.Drawing.Size(100, 20);
-            this.textBoxEmail.TabIndex = 30;
             // 
             // Column1
             // 
@@ -227,13 +90,138 @@
             // Email
             // 
             this.Email.HeaderText = "Email";
+            this.Email.MinimumWidth = 8;
             this.Email.Name = "Email";
+            this.Email.Width = 150;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(360, 109);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(0, 20);
+            this.label1.TabIndex = 1;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::CasaPoupanca.Properties.Resources.final_removebg_preview;
+            this.pictureBox1.Location = new System.Drawing.Point(16, 17);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(188, 132);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 16;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(22, 131);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(163, 26);
+            this.label4.TabIndex = 17;
+            this.label4.Text = "G.Utilizadores";
+            // 
+            // buttonRemover
+            // 
+            this.buttonRemover.Location = new System.Drawing.Point(92, 435);
+            this.buttonRemover.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonRemover.Name = "buttonRemover";
+            this.buttonRemover.Size = new System.Drawing.Size(112, 35);
+            this.buttonRemover.TabIndex = 21;
+            this.buttonRemover.Text = "Remover";
+            this.buttonRemover.UseVisualStyleBackColor = true;
+            this.buttonRemover.Click += new System.EventHandler(this.buttonRemover_Click);
+            // 
+            // buttonVoltar
+            // 
+            this.buttonVoltar.Location = new System.Drawing.Point(92, 503);
+            this.buttonVoltar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonVoltar.Name = "buttonVoltar";
+            this.buttonVoltar.Size = new System.Drawing.Size(112, 35);
+            this.buttonVoltar.TabIndex = 22;
+            this.buttonVoltar.Text = "Voltar";
+            this.buttonVoltar.UseVisualStyleBackColor = true;
+            this.buttonVoltar.Click += new System.EventHandler(this.buttonVoltar_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(39, 203);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(83, 20);
+            this.label2.TabIndex = 23;
+            this.label2.Text = "Username";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(39, 255);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(78, 20);
+            this.label3.TabIndex = 24;
+            this.label3.Text = "Password";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(39, 320);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(51, 20);
+            this.label5.TabIndex = 25;
+            this.label5.Text = "Nome";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(39, 377);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(48, 20);
+            this.label6.TabIndex = 26;
+            this.label6.Text = "Email";
+            // 
+            // textBoxUsername
+            // 
+            this.textBoxUsername.Location = new System.Drawing.Point(150, 198);
+            this.textBoxUsername.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxUsername.Name = "textBoxUsername";
+            this.textBoxUsername.Size = new System.Drawing.Size(148, 26);
+            this.textBoxUsername.TabIndex = 27;
+            // 
+            // textBoxPassword
+            // 
+            this.textBoxPassword.Location = new System.Drawing.Point(150, 255);
+            this.textBoxPassword.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxPassword.Name = "textBoxPassword";
+            this.textBoxPassword.Size = new System.Drawing.Size(148, 26);
+            this.textBoxPassword.TabIndex = 28;
+            // 
+            // textBoxNome
+            // 
+            this.textBoxNome.Location = new System.Drawing.Point(150, 315);
+            this.textBoxNome.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxNome.Name = "textBoxNome";
+            this.textBoxNome.Size = new System.Drawing.Size(148, 26);
+            this.textBoxNome.TabIndex = 29;
+            // 
+            // textBoxEmail
+            // 
+            this.textBoxEmail.Location = new System.Drawing.Point(150, 372);
+            this.textBoxEmail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxEmail.Name = "textBoxEmail";
+            this.textBoxEmail.Size = new System.Drawing.Size(148, 26);
+            this.textBoxEmail.TabIndex = 30;
             // 
             // FormUtilizadores
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1115, 515);
+            this.ClientSize = new System.Drawing.Size(1672, 792);
             this.Controls.Add(this.textBoxEmail);
             this.Controls.Add(this.textBoxNome);
             this.Controls.Add(this.textBoxPassword);
@@ -244,13 +232,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.buttonVoltar);
             this.Controls.Add(this.buttonRemover);
-            this.Controls.Add(this.buttonEditar);
-            this.Controls.Add(this.buttonAdicionar);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridViewUtilizadores);
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormUtilizadores";
             this.Text = "FormUtilizadores";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUtilizadores)).EndInit();
@@ -266,8 +251,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button buttonAdicionar;
-        private System.Windows.Forms.Button buttonEditar;
         private System.Windows.Forms.Button buttonRemover;
         private System.Windows.Forms.Button buttonVoltar;
         private System.Windows.Forms.Label label2;
