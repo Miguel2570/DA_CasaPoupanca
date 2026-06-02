@@ -70,7 +70,6 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ficheiroToolStripMenuItem,
@@ -83,7 +82,8 @@
             this.modoCompraToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1123, 33);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
+            this.menuStrip1.Size = new System.Drawing.Size(749, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -93,68 +93,68 @@
             this.sairToolStripMenuItem,
             this.converterEmCSVToolStripMenuItem});
             this.ficheiroToolStripMenuItem.Name = "ficheiroToolStripMenuItem";
-            this.ficheiroToolStripMenuItem.Size = new System.Drawing.Size(89, 29);
+            this.ficheiroToolStripMenuItem.Size = new System.Drawing.Size(61, 22);
             this.ficheiroToolStripMenuItem.Text = "Ficheiro";
             // 
             // sairToolStripMenuItem
             // 
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            this.sairToolStripMenuItem.Size = new System.Drawing.Size(258, 34);
+            this.sairToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.sairToolStripMenuItem.Text = "Sair";
             this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
             // 
             // converterEmCSVToolStripMenuItem
             // 
             this.converterEmCSVToolStripMenuItem.Name = "converterEmCSVToolStripMenuItem";
-            this.converterEmCSVToolStripMenuItem.Size = new System.Drawing.Size(258, 34);
+            this.converterEmCSVToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.converterEmCSVToolStripMenuItem.Text = "Converter em CSV";
             // 
             // comprasToolStripMenuItem
             // 
             this.comprasToolStripMenuItem.Name = "comprasToolStripMenuItem";
-            this.comprasToolStripMenuItem.Size = new System.Drawing.Size(100, 29);
+            this.comprasToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
             this.comprasToolStripMenuItem.Text = "Compras";
             this.comprasToolStripMenuItem.Click += new System.EventHandler(this.comprasToolStripMenuItem_Click);
             // 
             // estatisticasToolStripMenuItem
             // 
             this.estatisticasToolStripMenuItem.Name = "estatisticasToolStripMenuItem";
-            this.estatisticasToolStripMenuItem.Size = new System.Drawing.Size(113, 29);
+            this.estatisticasToolStripMenuItem.Size = new System.Drawing.Size(76, 22);
             this.estatisticasToolStripMenuItem.Text = "Estatisticas";
-            this.estatisticasToolStripMenuItem.Click += new System.EventHandler(this.estisticasToolStripMenuItem_Click);
+            this.estatisticasToolStripMenuItem.Click += new System.EventHandler(this.estatisticasToolStripMenuItem_Click);
             // 
             // oToolStripMenuItem
             // 
             this.oToolStripMenuItem.Name = "oToolStripMenuItem";
-            this.oToolStripMenuItem.Size = new System.Drawing.Size(117, 29);
+            this.oToolStripMenuItem.Size = new System.Drawing.Size(79, 22);
             this.oToolStripMenuItem.Text = "Orçamento";
             this.oToolStripMenuItem.Click += new System.EventHandler(this.OrcamentoToolStripMenuItem_Click);
             // 
             // tiposDeArtigoToolStripMenuItem
             // 
             this.tiposDeArtigoToolStripMenuItem.Name = "tiposDeArtigoToolStripMenuItem";
-            this.tiposDeArtigoToolStripMenuItem.Size = new System.Drawing.Size(151, 29);
+            this.tiposDeArtigoToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.tiposDeArtigoToolStripMenuItem.Text = "Tipos de Artigo";
             this.tiposDeArtigoToolStripMenuItem.Click += new System.EventHandler(this.tiposDeArtigoToolStripMenuItem_Click);
             // 
             // artigosToolStripMenuItem
             // 
             this.artigosToolStripMenuItem.Name = "artigosToolStripMenuItem";
-            this.artigosToolStripMenuItem.Size = new System.Drawing.Size(86, 29);
+            this.artigosToolStripMenuItem.Size = new System.Drawing.Size(57, 22);
             this.artigosToolStripMenuItem.Text = "Artigos";
             this.artigosToolStripMenuItem.Click += new System.EventHandler(this.artigosToolStripMenuItem_Click);
             // 
             // utilizadoresToolStripMenuItem
             // 
             this.utilizadoresToolStripMenuItem.Name = "utilizadoresToolStripMenuItem";
-            this.utilizadoresToolStripMenuItem.Size = new System.Drawing.Size(120, 29);
+            this.utilizadoresToolStripMenuItem.Size = new System.Drawing.Size(80, 22);
             this.utilizadoresToolStripMenuItem.Text = "Utilizadores";
             this.utilizadoresToolStripMenuItem.Click += new System.EventHandler(this.utilizadoresToolStripMenuItem_Click);
             // 
             // modoCompraToolStripMenuItem
             // 
             this.modoCompraToolStripMenuItem.Name = "modoCompraToolStripMenuItem";
-            this.modoCompraToolStripMenuItem.Size = new System.Drawing.Size(146, 29);
+            this.modoCompraToolStripMenuItem.Size = new System.Drawing.Size(97, 22);
             this.modoCompraToolStripMenuItem.Text = "Modo Compra";
             this.modoCompraToolStripMenuItem.Click += new System.EventHandler(this.modoCompraToolStripMenuItem_Click_1);
             // 
@@ -162,10 +162,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(375, 172);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(250, 112);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(138, 29);
+            this.label2.Size = new System.Drawing.Size(92, 20);
             this.label2.TabIndex = 2;
             this.label2.Text = "Orçamento:";
             // 
@@ -173,10 +172,9 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(375, 212);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(250, 167);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(143, 29);
+            this.label3.Size = new System.Drawing.Size(96, 20);
             this.label3.TabIndex = 3;
             this.label3.Text = "Total Gasto:";
             // 
@@ -184,10 +182,9 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(375, 252);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(250, 143);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(132, 29);
+            this.label4.Size = new System.Drawing.Size(85, 20);
             this.label4.TabIndex = 4;
             this.label4.Text = "Disponivel:";
             // 
@@ -195,10 +192,9 @@
             // 
             this.labelOrcamento.AutoSize = true;
             this.labelOrcamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelOrcamento.Location = new System.Drawing.Point(586, 175);
-            this.labelOrcamento.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelOrcamento.Location = new System.Drawing.Point(391, 114);
             this.labelOrcamento.Name = "labelOrcamento";
-            this.labelOrcamento.Size = new System.Drawing.Size(50, 25);
+            this.labelOrcamento.Size = new System.Drawing.Size(36, 17);
             this.labelOrcamento.TabIndex = 5;
             this.labelOrcamento.Text = "0,00";
             // 
@@ -206,10 +202,9 @@
             // 
             this.labelTotalGasto.AutoSize = true;
             this.labelTotalGasto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalGasto.Location = new System.Drawing.Point(586, 257);
-            this.labelTotalGasto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelTotalGasto.Location = new System.Drawing.Point(391, 170);
             this.labelTotalGasto.Name = "labelTotalGasto";
-            this.labelTotalGasto.Size = new System.Drawing.Size(50, 25);
+            this.labelTotalGasto.Size = new System.Drawing.Size(36, 17);
             this.labelTotalGasto.TabIndex = 6;
             this.labelTotalGasto.Text = "0,00";
             // 
@@ -217,10 +212,9 @@
             // 
             this.labelDisponivel.AutoSize = true;
             this.labelDisponivel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDisponivel.Location = new System.Drawing.Point(586, 215);
-            this.labelDisponivel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelDisponivel.Location = new System.Drawing.Point(391, 143);
             this.labelDisponivel.Name = "labelDisponivel";
-            this.labelDisponivel.Size = new System.Drawing.Size(50, 25);
+            this.labelDisponivel.Size = new System.Drawing.Size(36, 17);
             this.labelDisponivel.TabIndex = 7;
             this.labelDisponivel.Text = "0,00";
             // 
@@ -228,19 +222,17 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(21, 361);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(14, 235);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(169, 22);
+            this.label5.Size = new System.Drawing.Size(116, 15);
             this.label5.TabIndex = 8;
             this.label5.Text = "Compras em Aberto";
             // 
             // buttonNovaCompra
             // 
-            this.buttonNovaCompra.Location = new System.Drawing.Point(939, 388);
-            this.buttonNovaCompra.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonNovaCompra.Location = new System.Drawing.Point(626, 252);
             this.buttonNovaCompra.Name = "buttonNovaCompra";
-            this.buttonNovaCompra.Size = new System.Drawing.Size(168, 35);
+            this.buttonNovaCompra.Size = new System.Drawing.Size(112, 23);
             this.buttonNovaCompra.TabIndex = 9;
             this.buttonNovaCompra.Text = "Nova compra";
             this.buttonNovaCompra.UseVisualStyleBackColor = true;
@@ -248,10 +240,9 @@
             // 
             // buttonContinuarCompra
             // 
-            this.buttonContinuarCompra.Location = new System.Drawing.Point(939, 453);
-            this.buttonContinuarCompra.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonContinuarCompra.Location = new System.Drawing.Point(626, 294);
             this.buttonContinuarCompra.Name = "buttonContinuarCompra";
-            this.buttonContinuarCompra.Size = new System.Drawing.Size(168, 35);
+            this.buttonContinuarCompra.Size = new System.Drawing.Size(112, 23);
             this.buttonContinuarCompra.TabIndex = 10;
             this.buttonContinuarCompra.Text = "Continuar a comprar";
             this.buttonContinuarCompra.UseVisualStyleBackColor = true;
@@ -259,10 +250,9 @@
             // 
             // buttonEstatisticas
             // 
-            this.buttonEstatisticas.Location = new System.Drawing.Point(939, 516);
-            this.buttonEstatisticas.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonEstatisticas.Location = new System.Drawing.Point(626, 335);
             this.buttonEstatisticas.Name = "buttonEstatisticas";
-            this.buttonEstatisticas.Size = new System.Drawing.Size(168, 35);
+            this.buttonEstatisticas.Size = new System.Drawing.Size(112, 23);
             this.buttonEstatisticas.TabIndex = 11;
             this.buttonEstatisticas.Text = "Estatisticas";
             this.buttonEstatisticas.UseVisualStyleBackColor = true;
@@ -277,13 +267,12 @@
             this.Nome,
             this.DataCriacao,
             this.IsFechada});
-            this.dataGridViewCompras.Location = new System.Drawing.Point(25, 388);
-            this.dataGridViewCompras.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dataGridViewCompras.Location = new System.Drawing.Point(17, 252);
             this.dataGridViewCompras.Name = "dataGridViewCompras";
             this.dataGridViewCompras.ReadOnly = true;
             this.dataGridViewCompras.RowHeadersWidth = 62;
             this.dataGridViewCompras.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewCompras.Size = new System.Drawing.Size(878, 231);
+            this.dataGridViewCompras.Size = new System.Drawing.Size(585, 150);
             this.dataGridViewCompras.TabIndex = 12;
             // 
             // Id
@@ -329,10 +318,9 @@
             // labelPerfil
             // 
             this.labelPerfil.AutoSize = true;
-            this.labelPerfil.Location = new System.Drawing.Point(900, 63);
-            this.labelPerfil.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelPerfil.Location = new System.Drawing.Point(600, 41);
             this.labelPerfil.Name = "labelPerfil";
-            this.labelPerfil.Size = new System.Drawing.Size(87, 20);
+            this.labelPerfil.Size = new System.Drawing.Size(60, 13);
             this.labelPerfil.TabIndex = 13;
             this.labelPerfil.Text = "Bem vindo,";
             // 
@@ -351,41 +339,40 @@
             // 
             // buttonSair
             // 
-            this.buttonSair.Location = new System.Drawing.Point(939, 570);
-            this.buttonSair.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonSair.Location = new System.Drawing.Point(626, 370);
             this.buttonSair.Name = "buttonSair";
-            this.buttonSair.Size = new System.Drawing.Size(168, 35);
+            this.buttonSair.Size = new System.Drawing.Size(112, 23);
             this.buttonSair.TabIndex = 15;
             this.buttonSair.Text = "Sair";
             this.buttonSair.UseVisualStyleBackColor = true;
+            this.buttonSair.Click += new System.EventHandler(this.buttonSair_Click);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(398, 122);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(265, 79);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(216, 29);
+            this.label6.Size = new System.Drawing.Size(143, 20);
             this.label6.TabIndex = 16;
             this.label6.Text = "Orçamento Mensal";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::CasaPoupanca.Properties.Resources.final_removebg_preview;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 49);
+            this.pictureBox1.Location = new System.Drawing.Point(8, 32);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(118, 100);
+            this.pictureBox1.Size = new System.Drawing.Size(79, 65);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 14;
             this.pictureBox1.TabStop = false;
             // 
             // FormDashboard
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1123, 633);
+            this.ClientSize = new System.Drawing.Size(749, 411);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.buttonSair);
             this.Controls.Add(this.labelPerfil);
@@ -403,7 +390,6 @@
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.pictureBox1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormDashboard";
             this.Text = "Dashboard";
             this.menuStrip1.ResumeLayout(false);

@@ -15,22 +15,16 @@ namespace CasaPoupanca
 
         public FormOrcamento()
         {
-            InitializeComponent();
+            InitializeComponent();  // ← Isto já carrega os eventos do designer
 
-            // Associar eventos dos botões
-            this.buttonAdicionar.Click += new System.EventHandler(this.buttonAdicionar_Click);
-            this.buttonEditar.Click += new System.EventHandler(this.buttonEditar_Click);
-            this.buttonRemover.Click += new System.EventHandler(this.buttonRemover_Click);
-
-            // Associar evento de seleção do DataGridView
-            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
-
+            // Só precisas disto:
             _controller = new OrcamentoController();
             ConfigurarComboBoxes();
             ConfigurarDataGridView();
             CarregarOrcamentos();
             CarregarHistoricoAlteracoes();
 
+            // Este também podes simplificar
             dataGridView1.DataBindingComplete += (s, e) => {
                 dataGridView1.ClearSelection();
                 LimparCampos();
@@ -57,7 +51,6 @@ namespace CasaPoupanca
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.Columns.Clear();
 
-            // Configurar as colunas
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "Id",
@@ -118,7 +111,7 @@ namespace CasaPoupanca
         {
             // Carregar últimas alterações (podes buscar da BD ou usar lista em memória)
             listBoxAlteracoes.Items.Clear();
-            listBoxAlteracoes.Items.Insert(0, $"{DateTime.Now:dd/MM/yyyy HH:mm:ss} - Sistema iniciado");
+            listBoxAlteracoes.Items.Insert(0, $"{DateTime.Now:dd/MM/yyyy HH:mm:ss}");
         }
 
         private decimal CalcularTotalGastoMes(int mes, int ano)
@@ -167,15 +160,46 @@ namespace CasaPoupanca
 
         private void RegistarAlteracao(string mensagem)
         {
-            listBoxAlteracoes.Items.Insert(0, $"{DateTime.Now:dd/MM/yyyy HH:mm:ss} - {mensagem}");
+            listBoxAlteracoes.Items.Insert(0, $"{DateTime.Now:dd/MM/yyyy HH:mm:ss}");
             if (listBoxAlteracoes.Items.Count > 20)
             {
                 listBoxAlteracoes.Items.RemoveAt(listBoxAlteracoes.Items.Count - 1);
             }
         }
 
-        // ==================== EVENTO DO BOTÃO ADICIONAR ====================
-        private void buttonAdicionar_Click(object sender, EventArgs e)
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridView1.CurrentRow != null && dataGridView1.CurrentRow.Cells["MesAno"].Value != null)
+            {
+                _orcamentoEditandoId = (int)dataGridView1.CurrentRow.Cells["Id"].Value;
+
+                string mesAno = dataGridView1.CurrentRow.Cells["MesAno"].Value.ToString();
+                string[] partes = mesAno.Split(' ');
+                string nomeMes = partes[0];
+                int ano = int.Parse(partes[1]);
+                int mes = ObterNumeroMes(nomeMes);
+
+                comboBoxMes.SelectedItem = mes.ToString();
+                comboBoxAno.SelectedItem = ano.ToString();
+                textBoxValor.Text = dataGridView1.CurrentRow.Cells["Valor"].Value?.ToString();
+
+                buttonAdicionar.Enabled = false;
+                buttonEditar.Enabled = true;
+            }
+        }
+
+        private void buttonVoltar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            _controller?.Dispose();
+            base.OnFormClosed(e);
+        }
+
+        private void buttonAdicionar_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -200,41 +224,35 @@ namespace CasaPoupanca
 
                 if (_controller.AddOrcamento(novoOrcamento))
                 {
-                    MessageBox.Show("Orçamento adicionado com sucesso!", "Sucesso",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Orçamento adicionado com sucesso!");
                     LimparCampos();
                     CarregarOrcamentos();
                     RegistarAlteracao($"Adicionado orçamento de {valor:C} para {ObterNomeMes(mes)} {ano}");
                 }
                 else
                 {
-                    MessageBox.Show("Já existe um orçamento para este mês/ano!", "Erro",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Já existe um orçamento para este mês/ano!");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro: {ex.Message}", "Erro",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Erro: {ex.Message}");
             }
         }
 
-        // ==================== EVENTO DO BOTÃO EDITAR ====================
-        private void buttonEditar_Click(object sender, EventArgs e)
+        private void buttonEditar_Click_1(object sender, EventArgs e)
         {
             try
             {
                 if (_orcamentoEditandoId == null)
                 {
-                    MessageBox.Show("Selecione um orçamento para editar.", "Aviso",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Selecione um orçamento para editar.");
                     return;
                 }
 
                 if (!decimal.TryParse(textBoxValor.Text, out decimal valor) || valor <= 0)
                 {
-                    MessageBox.Show("Insira um valor válido!", "Aviso",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Insira um valor válido!");
                     return;
                 }
 
@@ -248,34 +266,29 @@ namespace CasaPoupanca
 
                 if (_controller.UpdateOrcamento(orcamento))
                 {
-                    MessageBox.Show("Orçamento atualizado com sucesso!", "Sucesso",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Orçamento atualizado com sucesso!");
                     LimparCampos();
                     CarregarOrcamentos();
                     RegistarAlteracao($"Editado orçamento para {valor:C}");
                 }
                 else
                 {
-                    MessageBox.Show("Erro ao atualizar orçamento!", "Erro",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Erro ao atualizar orçamento!");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro: {ex.Message}", "Erro",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Erro: {ex.Message}");
             }
         }
 
-        // ==================== EVENTO DO BOTÃO REMOVER ====================
-        private void buttonRemover_Click(object sender, EventArgs e)
+        private void buttonRemover_Click_1(object sender, EventArgs e)
         {
             try
             {
                 if (_orcamentoEditandoId == null && dataGridView1.CurrentRow == null)
                 {
-                    MessageBox.Show("Selecione um orçamento para remover.", "Aviso",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Selecione um orçamento para remover.");
                     return;
                 }
 
@@ -288,64 +301,21 @@ namespace CasaPoupanca
                 {
                     if (_controller.DeleteOrcamento(id))
                     {
-                        MessageBox.Show("Orçamento removido!", "Sucesso",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Orçamento removido!");
                         LimparCampos();
                         CarregarOrcamentos();
                         RegistarAlteracao("Orçamento removido");
                     }
                     else
                     {
-                        MessageBox.Show("Erro ao remover orçamento!", "Erro",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Erro ao remover orçamento!");
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro: {ex.Message}", "Erro",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Erro: {ex.Message}");
             }
-        }
-
-        // ==================== EVENTO DE SELEÇÃO DO DATAGRIDVIEW ====================
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dataGridView1.CurrentRow != null && dataGridView1.CurrentRow.Cells["MesAno"].Value != null)
-            {
-                _orcamentoEditandoId = (int)dataGridView1.CurrentRow.Cells["Id"].Value;
-
-                string mesAno = dataGridView1.CurrentRow.Cells["MesAno"].Value.ToString();
-                string[] partes = mesAno.Split(' ');
-                string nomeMes = partes[0];
-                int ano = int.Parse(partes[1]);
-                int mes = ObterNumeroMes(nomeMes);
-
-                comboBoxMes.SelectedItem = mes.ToString();
-                comboBoxAno.SelectedItem = ano.ToString();
-                textBoxValor.Text = dataGridView1.CurrentRow.Cells["Valor"].Value?.ToString();
-
-                buttonAdicionar.Enabled = false;
-                buttonEditar.Enabled = true;
-            }
-        }
-
-        // ==================== EVENTOS VAZIOS DO DESIGNER ====================
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) { }
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e) { }
-        private void label4_Click(object sender, EventArgs e) { }
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
-
-        // ==================== BOTÃO VOLTAR ====================
-        private void buttonVoltar_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        protected override void OnFormClosed(FormClosedEventArgs e)
-        {
-            _controller?.Dispose();
-            base.OnFormClosed(e);
         }
     }
 }

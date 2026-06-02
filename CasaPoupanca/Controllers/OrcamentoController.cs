@@ -64,6 +64,19 @@ namespace CasaPoupanca.Controllers
             return true;
         }
 
+        public Orcamento GetOrcamentoAtual()
+        {
+            int mesAtual = DateTime.Now.Month;
+            int anoAtual = DateTime.Now.Year;
+            return GetOrcamentoPorMesAno(mesAtual, anoAtual);
+        }
+
+        public decimal GetValorOrcamentoAtual()
+        {
+            var orcamento = GetOrcamentoAtual();
+            return orcamento?.Valor ?? 0;
+        }
+
         public void Dispose()
         {
             _db?.Dispose();

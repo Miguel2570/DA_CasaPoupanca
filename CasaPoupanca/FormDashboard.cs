@@ -1,4 +1,5 @@
-﻿using CasaPoupança.database;
+﻿using CasaPoupanca.Controllers;
+using CasaPoupança.database;
 using CasaPoupanca.Helpers;
 using CasaPoupanca.models;
 using System;
@@ -15,9 +16,13 @@ namespace CasaPoupanca
 {
     public partial class FormDashboard : Form
     {
+        private OrcamentoController _orcamentoController;
+        private CompraController _compraController;
         public FormDashboard()
         {
             InitializeComponent();
+            _orcamentoController = new OrcamentoController();
+            _compraController = new CompraController();
             CarregarDados();
         }
         private void CarregarDados()
@@ -30,54 +35,32 @@ namespace CasaPoupanca
 
         private void CarregarOrcamento()
         {
-            using (var db = new CasaPoupancaDB())
+            int mesAtual = DateTime.Now.Month;
+            int anoAtual = DateTime.Now.Year;
+
+            decimal valorOrcamento = _orcamentoController.GetValorOrcamentoAtual();
+            decimal totalGasto = _compraController.GetTotalGastoComprasFechadas(mesAtual, anoAtual, Session.UtilizadorId);
+            decimal disponivel = valorOrcamento - totalGasto;
+
+            labelOrcamento.Text = valorOrcamento.ToString("C");
+            labelTotalGasto.Text = totalGasto.ToString("C");
+            labelDisponivel.Text = disponivel.ToString("C");
+
+            if (disponivel < 0)
             {
-                int mesAtual = DateTime.Now.Month;
-                int anoAtual = DateTime.Now.Year;
-
-                var orcamento = db.Orcamentos
-                    .FirstOrDefault(o => o.Mes == mesAtual && o.Ano == anoAtual);
-
-                decimal valorOrcamento = orcamento?.Valor ?? 0;
-
-                var comprasFechadas = db.Compras
-                    .Where(c => c.DataCriacao.Month == mesAtual &&
-                                c.DataCriacao.Year == anoAtual &&
-                                c.IsFechada)
-                    .ToList();
-
-                decimal totalGasto = 0;
-                foreach (var compra in comprasFechadas)
-                {
-                    var itens = db.ItensCompra.Where(i => i.CompraId == compra.Id);
-                    totalGasto += itens.Sum(i => i.QuantidadeAdquirida * i.PrecoUnitario);
-                }
-
-                decimal disponivel = valorOrcamento - totalGasto;
-
-                labelOrcamento.Text = valorOrcamento.ToString("C");
-                labelTotalGasto.Text = totalGasto.ToString("C");
-                labelDisponivel.Text = disponivel.ToString("C");
-
-                if (disponivel < 0)
-                {
-                    labelDisponivel.ForeColor = Color.Red;
-                }
+                labelDisponivel.ForeColor = System.Drawing.Color.Red;
+            }
+            else
+            {
+                labelDisponivel.ForeColor = System.Drawing.Color.Green;
             }
         }
 
         private void CarregarComprasAberto()
         {
-            using (var db = new CasaPoupancaDB())
-            {
-                var compras = db.Compras
-                    .Where(c => !c.IsFechada && c.CriadoPorId == Session.UtilizadorId)
-                    .OrderByDescending(c => c.DataCriacao)
-                    .ToList();
-
-                dataGridViewCompras.DataSource = null;
-                dataGridViewCompras.DataSource = compras;
-            }
+            var compras = _compraController.GetComprasAbertoPorUtilizador(Session.UtilizadorId);
+            dataGridViewCompras.DataSource = null;
+            dataGridViewCompras.DataSource = compras;
         }
 
         private void ConfigurarDataGridView()
@@ -86,7 +69,6 @@ namespace CasaPoupanca
             dataGridViewCompras.RowHeadersWidth = 60;
             dataGridViewCompras.Columns.Clear();
 
-            // Coluna ID
             dataGridViewCompras.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "Id",
@@ -95,7 +77,6 @@ namespace CasaPoupanca
                 Width = 50
             });
 
-            // Coluna Nome da Compra
             dataGridViewCompras.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "Nome",
@@ -104,7 +85,6 @@ namespace CasaPoupanca
                 Width = 200
             });
 
-            // Coluna Data Criação
             dataGridViewCompras.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "DataCriacao",
@@ -114,7 +94,6 @@ namespace CasaPoupanca
                 Width = 120
             });
 
-            // Coluna Estado (Aberto/Fechado)
             dataGridViewCompras.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "Estado",
@@ -138,7 +117,7 @@ namespace CasaPoupanca
             CarregarOrcamento();
         }
 
-        private void estisticasToolStripMenuItem_Click(object sender, EventArgs e)
+        private void estatisticasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormEstatisticas estatisticas = new FormEstatisticas();
             estatisticas.ShowDialog();
@@ -218,27 +197,38 @@ namespace CasaPoupanca
 
             var compra = (Compra)dataGridViewCompras.CurrentRow.DataBoundItem;
 
+            if (compra.IsFechada)
+            {
+                MessageBox.Show("Esta compra já está fechada e não pode ser alterada.");
+                return;
+            }
+
             FormModoCompra modoCompra = new FormModoCompra(compra.Id);
             modoCompra.ShowDialog();
         }
 
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        // Botão Exportar CSV (se tiveres um botão no formulário)
         private void btnExportarCSV_Click(object sender, EventArgs e)
         {
             FormExportarCSV exportar = new FormExportarCSV();
             exportar.ShowDialog();
         }
 
-        // Item do menu para Exportar CSV (se tiveres no MenuStrip)
         private void exportarCSVToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormExportarCSV exportar = new FormExportarCSV();
             exportar.ShowDialog();
+        }
+
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            _orcamentoController?.Dispose();
+            _compraController?.Dispose();
+            base.OnFormClosed(e);
+        }
+
+        private void buttonSair_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

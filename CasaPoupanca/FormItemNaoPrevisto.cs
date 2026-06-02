@@ -56,9 +56,12 @@ namespace CasaPoupanca
                 IsPrevisto = false,
                 Observacao = textBoxObservacao.Text.Trim()
             };
-            _controller.AddItemPrevisto(novoItem);
+
+            _controller.AddItemNaoPrevisto(novoItem);
 
             MessageBox.Show("Item não previsto adicionado com sucesso!");
+
+            this.DialogResult = DialogResult.OK;
             this.Close();
         }
 

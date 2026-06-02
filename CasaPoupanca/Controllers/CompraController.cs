@@ -65,6 +65,39 @@ namespace CasaPoupanca.Controllers
             return true;
         }
 
+        public List<Compra> GetComprasFechadasPorMes(int mes, int ano, int utilizadorId)
+        {
+            return _db.Compras
+                .Where(c => c.DataCriacao.Month == mes &&
+                            c.DataCriacao.Year == ano &&
+                            c.IsFechada &&
+                            c.CriadoPorId == utilizadorId)
+                .ToList();
+        }
+
+        public List<Compra> GetComprasAbertoPorUtilizador(int utilizadorId)
+        {
+            return _db.Compras
+                .Where(c => !c.IsFechada && c.CriadoPorId == utilizadorId)
+                .OrderByDescending(c => c.DataCriacao)
+                .ToList();
+        }
+
+        public decimal GetTotalGastoComprasFechadas(int mes, int ano, int utilizadorId)
+        {
+            var comprasFechadas = GetComprasFechadasPorMes(mes, ano, utilizadorId);
+            decimal totalGasto = 0;
+
+            foreach (var compra in comprasFechadas)
+            {
+                totalGasto += _db.ItensCompra
+                    .Where(i => i.CompraId == compra.Id)
+                    .Sum(i => i.QuantidadeAdquirida * i.PrecoUnitario);
+            }
+
+            return totalGasto;
+        }
+
         public void Dispose()
         {
             _db?.Dispose();
