@@ -1,0 +1,26 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build results
+bin/
+obj/
+Debug/
+Release/
+*.dll
+*.exe
+*.pdb
+
+# IDE
+.idea/
+*.swp
+*.swo
+
+# Others
+*.log
+*.cache
+Thumbs.db
+Desktop.ini
