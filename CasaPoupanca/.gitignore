@@ -24,3 +24,12 @@ Release/
 *.cache
 Thumbs.db
 Desktop.ini
+
+# Pastas específicas do projeto (adicionar)
+CasaPoupanca/vs/
+CasaPoupanca/bin/
+CasaPoupanca/obj/
+
+# Ficheiros de cache do Visual Studio (adicionar)
+*.dtbcache.json
+*.vsidx
