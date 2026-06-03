@@ -15,16 +15,16 @@ namespace CasaPoupanca
 
         public FormOrcamento()
         {
-            InitializeComponent();  // ← Isto já carrega os eventos do designer
+            InitializeComponent(); 
 
-            // Só precisas disto:
+           
             _controller = new OrcamentoController();
             ConfigurarComboBoxes();
             ConfigurarDataGridView();
             CarregarOrcamentos();
             CarregarHistoricoAlteracoes();
 
-            // Este também podes simplificar
+          
             dataGridView1.DataBindingComplete += (s, e) => {
                 dataGridView1.ClearSelection();
                 LimparCampos();
@@ -33,7 +33,7 @@ namespace CasaPoupanca
 
         private void ConfigurarComboBoxes()
         {
-            // ComboBox Mês - já tens valores 1 a 12
+           
             if (comboBoxMes.Items.Count > 0)
             {
                 comboBoxMes.SelectedItem = DateTime.Now.Month.ToString();
@@ -109,7 +109,7 @@ namespace CasaPoupanca
 
         private void CarregarHistoricoAlteracoes()
         {
-            // Carregar últimas alterações (podes buscar da BD ou usar lista em memória)
+           
             listBoxAlteracoes.Items.Clear();
             listBoxAlteracoes.Items.Insert(0, $"{DateTime.Now:dd/MM/yyyy HH:mm:ss}");
         }
@@ -316,6 +316,11 @@ namespace CasaPoupanca
             {
                 MessageBox.Show($"Erro: {ex.Message}");
             }
+        }
+
+        private void comboBoxAno_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

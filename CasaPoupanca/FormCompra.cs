@@ -209,5 +209,25 @@ namespace CasaPoupanca
             _controller?.Dispose();
             base.OnFormClosed(e);
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxTipo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxArtigo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxNomeCompra_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

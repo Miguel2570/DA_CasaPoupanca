@@ -98,6 +98,34 @@ namespace CasaPoupanca.Controllers
             return totalGasto;
         }
 
+        // ==================== ITENS PREVISTOS ====================
+
+        public List<ItemCompra> GetItensPrevistos(int compraId)
+        {
+            return _db.ItensCompra
+                .Where(i => i.CompraId == compraId && i.IsPrevisto)
+                .Include("Artigo")
+                .Include("Artigo.TipoArtigo")
+                .ToList();
+        }
+
+        public bool AddItemPrevisto(ItemCompra item)
+        {
+            _db.ItensCompra.Add(item);
+            _db.SaveChanges();
+            return true;
+        }
+
+        public bool RemoveItemPrevisto(int itemId)
+        {
+            var item = _db.ItensCompra.Find(itemId);
+            if (item == null) return false;
+
+            _db.ItensCompra.Remove(item);
+            _db.SaveChanges();
+            return true;
+        }
+
         public void Dispose()
         {
             _db?.Dispose();
