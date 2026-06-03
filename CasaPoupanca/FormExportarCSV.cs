@@ -197,7 +197,7 @@ namespace CasaPoupanca
                     sw.WriteLine("ID;Username;Nome;Email;DataRegisto");
                     foreach (var user in utilizadores)
                     {
-                        sw.WriteLine($"{user.Id};{user.Username};{user.Nome};{user.Email};{user.DataRegisto:yyyy-MM-dd}");
+                        sw.WriteLine($"{user.Id};{user.Username};{user.Email};{user.DataRegisto:yyyy-MM-dd}");
                     }
                 }
             }

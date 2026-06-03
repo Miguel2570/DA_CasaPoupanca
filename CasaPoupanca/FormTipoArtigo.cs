@@ -177,11 +177,5 @@ namespace CasaPoupanca
             dataGridViewTipoArtigo.ClearSelection();
             LimparCampos();
         }
-
-        protected override void OnFormClosed(FormClosedEventArgs e)
-        {
-            _controller?.Dispose();
-            base.OnFormClosed(e);
-        }
     }
 }

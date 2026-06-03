@@ -28,15 +28,17 @@ namespace CasaPoupanca
             string username = textBoxUsernameLogin.Text;
             string password = textBoxPasswordLogin.Text;
 
-            if(string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) )
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Por favor preencha os campos!");
                 return;
             }
 
-            using (var auth = new AuthController())
+            try
             {
+                var auth = new AuthController();
                 var utilizador = auth.Login(username, password);
+
                 if (utilizador != null)
                 {
                     UtilizadorAtual = utilizador.Username;
@@ -52,6 +54,10 @@ namespace CasaPoupanca
                 {
                     MessageBox.Show("Credenciais inválidas. Tente novamente!");
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ocorreu um erro ao tentar fazer login: {ex.Message}");
             }
         }
 

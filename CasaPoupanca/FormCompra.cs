@@ -17,7 +17,6 @@ namespace CasaPoupanca
 {
     public partial class FormCompra : Form
     {
-        private int? _compraEditandoId = null;
         private CompraController _controller;
         public FormCompra()
         {
@@ -30,57 +29,14 @@ namespace CasaPoupanca
             LimparCampos();
         }
 
-        private void DataGridViewCompras_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            dataGridViewCompras.ClearSelection();
             LimparCampos();
         }
 
         private void LimparCampos()
         {
             textBoxNomeCompra.Clear();
-            _compraEditandoId = null;
             buttonAdicionar.Enabled = true;
             buttonEditar.Enabled = false;
-        }
-
-        private void ConfigurarDataGridView()
-        {
-            dataGridViewCompras.AutoGenerateColumns = false;
-            dataGridViewCompras.Columns.Clear();
-
-            dataGridViewCompras.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "Id",
-                HeaderText = "ID",
-                DataPropertyName = "Id",
-                Width = 50
-            });
-
-            dataGridViewCompras.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "Nome",
-                HeaderText = "Nome da Compra",
-                DataPropertyName = "Nome",
-                Width = 200
-            });
-
-            dataGridViewCompras.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "DataCriacao",
-                HeaderText = "Data Criação",
-                DataPropertyName = "DataCriacao",
-                DefaultCellStyle = new DataGridViewCellStyle { Format = "dd/MM/yyyy" },
-                Width = 120
-            });
-
-            dataGridViewCompras.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "IsFechada",
-                HeaderText = "Estado",
-                DataPropertyName = "IsFechada",
-                Width = 80
-            });
         }
 
         private void CarregarCompras()

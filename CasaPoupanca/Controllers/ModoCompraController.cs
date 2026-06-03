@@ -4,137 +4,146 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CasaPoupanca.Controllers
 {
-    public class ModoCompraController : IDisposable
+    public class ModoCompraController
     {
-        private readonly CasaPoupancaDB _db;
-
-        public ModoCompraController()
-        {
-            _db = new CasaPoupancaDB();
-        }
-
         public Compra GetCompraById(int id)
         {
-            return _db.Compras.Find(id);
+            using (var db = new CasaPoupancaDB())
+            {
+                return db.Compras.Find(id);
+            }
         }
 
-        // ==================== ITENS ====================
+        // Items
 
         public List<ItemCompra> GetItensPrevistos(int compraId)
         {
-            return _db.ItensCompra
-                .Where(i => i.CompraId == compraId && i.IsPrevisto)
-                .Include("Artigo")
-                .Include("Artigo.TipoArtigo")
-                .ToList();
+            using (var db = new CasaPoupancaDB())
+            {
+                return db.ItensCompra
+                    .Where(i => i.CompraId == compraId && i.IsPrevisto)
+                    .Include("Artigo")
+                    .Include("Artigo.TipoArtigo")
+                    .ToList();
+            }
         }
 
         public List<ItemCompra> GetItensNaoPrevistos(int compraId)
         {
-            return _db.ItensCompra
-                .Where(i => i.CompraId == compraId && !i.IsPrevisto)
-                .ToList();
+            using (var db = new CasaPoupancaDB())
+            {
+                return db.ItensCompra
+                    .Where(i => i.CompraId == compraId && !i.IsPrevisto)
+                    .ToList();
+            }
         }
 
         public bool AddItemNaoPrevisto(ItemCompra item)
         {
-            _db.ItensCompra.Add(item);
-            _db.SaveChanges();
-            return true;
+            using (var db = new CasaPoupancaDB())
+            {
+                db.ItensCompra.Add(item);
+                db.SaveChanges();
+                return true;
+            }
         }
 
         public bool AdquirirItem(int itemId, int quantidade, decimal precoUnitario)
         {
-            var item = _db.ItensCompra.Find(itemId);
-            if (item == null)
-                return false;
+            using (var db = new CasaPoupancaDB())
+            {
+                var item = db.ItensCompra.Find(itemId);
+                if (item == null)
+                    return false;
 
-            item.QuantidadeAdquirida = quantidade;
-            item.PrecoUnitario = precoUnitario;
-            _db.SaveChanges();
-            return true;
+                item.QuantidadeAdquirida = quantidade;
+                item.PrecoUnitario = precoUnitario;
+                db.SaveChanges();
+                return true;
+            }
         }
 
         public bool RemoverItemNaoPrevisto(int itemId)
         {
-            var item = _db.ItensCompra.Find(itemId);
-            if (item == null)
-                return false;
+            using (var db = new CasaPoupancaDB())
+            {
+                var item = db.ItensCompra.Find(itemId);
+                if (item == null)
+                    return false;
 
-            _db.ItensCompra.Remove(item);
-            _db.SaveChanges();
-            return true;
+                db.ItensCompra.Remove(item);
+                db.SaveChanges();
+                return true;
+            }
         }
 
         public bool AddItemPrevisto(ItemCompra item)
         {
-            _db.ItensCompra.Add(item);
-            _db.SaveChanges();
-            return true;
-        }
-
-        // ==================== ORÇAMENTO ====================
-
-        public decimal GetOrcamentoDisponivel(int utilizadorId, int compraId)
-        {
-            int mesAtual = DateTime.Now.Month;
-            int anoAtual = DateTime.Now.Year;
-
-            var orcamento = _db.Orcamentos
-                .FirstOrDefault(o => o.Mes == mesAtual && o.Ano == anoAtual);
-
-            decimal valorOrcamento = orcamento?.Valor ?? 0;
-
-            var comprasFechadas = _db.Compras
-                .Where(c => c.DataCriacao.Month == mesAtual &&
-                            c.DataCriacao.Year == anoAtual &&
-                            c.IsFechada &&
-                            c.CriadoPorId == utilizadorId)
-                .ToList();
-
-            decimal totalGasto = 0;
-            foreach (var compra in comprasFechadas)
+            using (var db = new CasaPoupancaDB())
             {
-                // CORREÇÃO: Usar (decimal?) para permitir null e ?? 0
-                totalGasto += _db.ItensCompra
-                    .Where(i => i.CompraId == compra.Id)
-                    .Sum(i => (decimal?)i.QuantidadeAdquirida * i.PrecoUnitario) ?? 0;
+                db.ItensCompra.Add(item);
+                db.SaveChanges();
+                return true;
             }
-
-            // CORREÇÃO: Usar (decimal?) para permitir null e ?? 0
-            var gastoAtual = _db.ItensCompra
-                .Where(i => i.CompraId == compraId)
-                .Sum(i => (decimal?)i.QuantidadeAdquirida * i.PrecoUnitario) ?? 0;
-
-            return valorOrcamento - totalGasto - gastoAtual;
         }
 
         public int CountItensNaoAdquiridos(int compraId)
         {
-            return _db.ItensCompra
-                .Count(i => i.CompraId == compraId && i.IsPrevisto && i.QuantidadeAdquirida == 0);
+            using (var db = new CasaPoupancaDB())
+            {
+                return db.ItensCompra
+                    .Count(i => i.CompraId == compraId && i.IsPrevisto && i.QuantidadeAdquirida == 0);
+            }
         }
 
         public void FecharCompra(int compraId, int utilizadorId)
         {
-            var compra = _db.Compras.Find(compraId);
-            if (compra != null)
+            using (var db = new CasaPoupancaDB())
             {
-                compra.IsFechada = true;
-                compra.FechadaPorId = utilizadorId;
-                compra.DataFecho = DateTime.Now;
-                _db.SaveChanges();
+                var compra = db.Compras.Find(compraId);
+                if (compra != null)
+                {
+                    compra.IsFechada = true;
+                    compra.FechadaPorId = utilizadorId;
+                    compra.DataFecho = DateTime.Now;
+                    db.SaveChanges();
+                }
             }
         }
 
-        public void Dispose()
+        public decimal GetOrcamentoDisponivel(int utilizadorId)
         {
-            _db?.Dispose();
+            using (var db = new CasaPoupancaDB())
+            {
+                int mesAtual = DateTime.Now.Month;
+                int anoAtual = DateTime.Now.Year;
+
+                // Busca o orçamento do mês atual
+                var orcamento = db.Orcamentos
+                    .FirstOrDefault(o => o.Mes == mesAtual && o.Ano == anoAtual);
+
+                if (orcamento == null)
+                    return 0;
+
+                // Calcula o total gasto no mês atual (todas as compras fechadas)
+                var comprasFechadas = db.Compras
+                    .Where(c => c.IsFechada && c.DataFecho.HasValue &&
+                                c.DataFecho.Value.Month == mesAtual &&
+                                c.DataFecho.Value.Year == anoAtual)
+                    .ToList();
+
+                decimal totalGasto = 0;
+                foreach (var compra in comprasFechadas)
+                {
+                    var itens = db.ItensCompra.Where(i => i.CompraId == compra.Id);
+                    totalGasto += itens.Sum(i => i.QuantidadeAdquirida * i.PrecoUnitario);
+                }
+
+                return orcamento.Valor - totalGasto;
+            }
         }
     }
 }

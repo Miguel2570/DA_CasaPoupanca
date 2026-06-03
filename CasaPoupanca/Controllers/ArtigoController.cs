@@ -3,25 +3,19 @@ using CasaPoupanca.models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CasaPoupanca.Controllers
 {
-    public class ArtigoController : IDisposable
+    public class ArtigoController
     {
-        private readonly CasaPoupancaDB _db;
-
-        public ArtigoController()
-        {
-            _db = new CasaPoupancaDB();
-        }
-
-        // ==================== TIPOS DE ARTIGO ====================
+        // Tipo de Artigo
 
         public List<TipoArtigo> GetAllTipos()
         {
-            return _db.TiposArtigo.OrderBy(t => t.Nome).ToList();
+            using (var db = new CasaPoupancaDB())
+            {
+                return db.TiposArtigo.OrderBy(t => t.Nome).ToList();
+            }
         }
 
         public List<TipoArtigo> GetTiposComTodos()
@@ -31,116 +25,144 @@ namespace CasaPoupanca.Controllers
             return tipos;
         }
 
-        // ==================== ARTIGOS ====================
+        // ARTIGOS 
 
         public List<Artigo> GetAllArtigos()
         {
-            return _db.Artigos.Include("TipoArtigo").OrderBy(a => a.Nome).ToList();
+            using (var db = new CasaPoupancaDB())
+            {
+                return db.Artigos.Include("TipoArtigo").OrderBy(a => a.Nome).ToList();
+            }
         }
 
         public List<Artigo> GetArtigosFiltrados(int? tipoId = null)
         {
-            var query = _db.Artigos.Include("TipoArtigo").AsQueryable();
-
-            if (tipoId.HasValue && tipoId > 0)
+            using (var db = new CasaPoupancaDB())
             {
-                query = query.Where(a => a.TipoArtigoId == tipoId);
-            }
+                var query = db.Artigos.Include("TipoArtigo").AsQueryable();
 
-            return query.OrderBy(a => a.Nome).ToList();
+                if (tipoId.HasValue && tipoId > 0)
+                {
+                    query = query.Where(a => a.TipoArtigoId == tipoId);
+                }
+
+                return query.OrderBy(a => a.Nome).ToList();
+            }
         }
 
         public Artigo GetArtigoById(int id)
         {
-            return _db.Artigos.Find(id);
+            using (var db = new CasaPoupancaDB())
+            {
+                return db.Artigos.Find(id);
+            }
         }
 
         public bool ArtigoExiste(string nome, int tipoId, int? ignorarId = null)
         {
-            return _db.Artigos.Any(a => a.Nome == nome && a.TipoArtigoId == tipoId && (!ignorarId.HasValue || a.Id != ignorarId.Value));
+            using (var db = new CasaPoupancaDB())
+            {
+                return db.Artigos.Any(a => a.Nome == nome && a.TipoArtigoId == tipoId && (!ignorarId.HasValue || a.Id != ignorarId.Value));
+            }
         }
 
         public bool AddArtigo(Artigo artigo)
         {
-            if (ArtigoExiste(artigo.Nome, artigo.TipoArtigoId))
-                return false;
+            using (var db = new CasaPoupancaDB())
+            {
+                if (ArtigoExiste(artigo.Nome, artigo.TipoArtigoId))
+                    return false;
 
-            _db.Artigos.Add(artigo);
-            _db.SaveChanges();
-            return true;
+                db.Artigos.Add(artigo);
+                db.SaveChanges();
+                return true;
+            }
         }
 
         public bool UpdateArtigo(Artigo artigo)
         {
-            var existing = _db.Artigos.Find(artigo.Id);
-            if (existing == null)
-                return false;
+            using (var db = new CasaPoupancaDB())
+            {
+                var existing = db.Artigos.Find(artigo.Id);
+                if (existing == null)
+                    return false;
 
-            if (ArtigoExiste(artigo.Nome, artigo.TipoArtigoId, artigo.Id))
-                return false;
+                if (ArtigoExiste(artigo.Nome, artigo.TipoArtigoId, artigo.Id))
+                    return false;
 
-            existing.Nome = artigo.Nome;
-            existing.TipoArtigoId = artigo.TipoArtigoId;
-            _db.SaveChanges();
-            return true;
+                existing.Nome = artigo.Nome;
+                existing.TipoArtigoId = artigo.TipoArtigoId;
+                db.SaveChanges();
+                return true;
+            }
         }
 
         public bool DeleteArtigo(int id)
         {
-            var artigo = _db.Artigos.Find(id);
-            if (artigo == null)
-                return false;
+            using (var db = new CasaPoupancaDB())
+            {
+                var artigo = db.Artigos.Find(id);
+                if (artigo == null)
+                    return false;
 
-            _db.Artigos.Remove(artigo);
-            _db.SaveChanges();
-            return true;
+                db.Artigos.Remove(artigo);
+                db.SaveChanges();
+                return true;
+            }
         }
 
         // ==================== TIPOS (CRUD) ====================
 
         public bool TipoExiste(string nome, int? ignorarId = null)
         {
-            return _db.TiposArtigo.Any(t => t.Nome == nome && (!ignorarId.HasValue || t.Id != ignorarId.Value));
+            using (var db = new CasaPoupancaDB())
+            {
+                return db.TiposArtigo.Any(t => t.Nome == nome && (!ignorarId.HasValue || t.Id != ignorarId.Value));
+            }
         }
 
         public bool AddTipo(TipoArtigo tipo)
         {
-            if (TipoExiste(tipo.Nome))
-                return false;
+            using (var db = new CasaPoupancaDB())
+            {
+                if (TipoExiste(tipo.Nome))
+                    return false;
 
-            _db.TiposArtigo.Add(tipo);
-            _db.SaveChanges();
-            return true;
+                db.TiposArtigo.Add(tipo);
+                db.SaveChanges();
+                return true;
+            }
         }
 
         public bool UpdateTipo(TipoArtigo tipo)
         {
-            var existing = _db.TiposArtigo.Find(tipo.Id);
-            if (existing == null)
-                return false;
+            using (var db = new CasaPoupancaDB())
+            {
+                var existing = db.TiposArtigo.Find(tipo.Id);
+                if (existing == null)
+                    return false;
 
-            if (TipoExiste(tipo.Nome, tipo.Id))
-                return false;
+                if (TipoExiste(tipo.Nome, tipo.Id))
+                    return false;
 
-            existing.Nome = tipo.Nome;
-            _db.SaveChanges();
-            return true;
+                existing.Nome = tipo.Nome;
+                db.SaveChanges();
+                return true;
+            }
         }
 
         public bool DeleteTipo(int id)
         {
-            var tipo = _db.TiposArtigo.Find(id);
-            if (tipo == null)
-                return false;
+            using (var db = new CasaPoupancaDB())
+            {
+                var tipo = db.TiposArtigo.Find(id);
+                if (tipo == null)
+                    return false;
 
-            _db.TiposArtigo.Remove(tipo);
-            _db.SaveChanges();
-            return true;
-        }
-
-        public void Dispose()
-        {
-            _db?.Dispose();
+                db.TiposArtigo.Remove(tipo);
+                db.SaveChanges();
+                return true;
+            }
         }
     }
 }

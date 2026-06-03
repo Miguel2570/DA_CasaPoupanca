@@ -193,12 +193,6 @@ namespace CasaPoupanca
             this.Close();
         }
 
-        protected override void OnFormClosed(FormClosedEventArgs e)
-        {
-            _controller?.Dispose();
-            base.OnFormClosed(e);
-        }
-
         private void buttonAdicionar_Click_1(object sender, EventArgs e)
         {
             try

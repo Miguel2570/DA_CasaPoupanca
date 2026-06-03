@@ -219,13 +219,6 @@ namespace CasaPoupanca
             exportar.ShowDialog();
         }
 
-        protected override void OnFormClosed(FormClosedEventArgs e)
-        {
-            _orcamentoController?.Dispose();
-            _compraController?.Dispose();
-            base.OnFormClosed(e);
-        }
-
         private void buttonSair_Click(object sender, EventArgs e)
         {
             Application.Exit();

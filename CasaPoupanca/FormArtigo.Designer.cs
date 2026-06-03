@@ -38,14 +38,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.comboBoxTipo = new System.Windows.Forms.ComboBox();
-            this.dataGridViewArtigos = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TipoArtigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonVoltar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewArtigos)).BeginInit();
+            this.listBoxArtigos = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -142,44 +138,6 @@
             this.comboBoxTipo.Size = new System.Drawing.Size(121, 21);
             this.comboBoxTipo.TabIndex = 11;
             // 
-            // dataGridViewArtigos
-            // 
-            this.dataGridViewArtigos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewArtigos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Id,
-            this.Nome,
-            this.TipoArtigo});
-            this.dataGridViewArtigos.Location = new System.Drawing.Point(33, 248);
-            this.dataGridViewArtigos.Name = "dataGridViewArtigos";
-            this.dataGridViewArtigos.RowHeadersWidth = 62;
-            this.dataGridViewArtigos.Size = new System.Drawing.Size(524, 150);
-            this.dataGridViewArtigos.TabIndex = 12;
-            this.dataGridViewArtigos.SelectionChanged += new System.EventHandler(this.dataGridViewArtigos_SelectionChanged);
-            // 
-            // Id
-            // 
-            this.Id.HeaderText = "Id";
-            this.Id.MinimumWidth = 8;
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Width = 150;
-            // 
-            // Nome
-            // 
-            this.Nome.HeaderText = "Nome";
-            this.Nome.MinimumWidth = 8;
-            this.Nome.Name = "Nome";
-            this.Nome.ReadOnly = true;
-            this.Nome.Width = 150;
-            // 
-            // TipoArtigo
-            // 
-            this.TipoArtigo.HeaderText = "Tipo de Artigo";
-            this.TipoArtigo.MinimumWidth = 8;
-            this.TipoArtigo.Name = "TipoArtigo";
-            this.TipoArtigo.ReadOnly = true;
-            this.TipoArtigo.Width = 150;
-            // 
             // buttonVoltar
             // 
             this.buttonVoltar.Location = new System.Drawing.Point(164, 411);
@@ -194,7 +152,7 @@
             // 
             this.pictureBox1.Image = global::CasaPoupanca.Properties.Resources.final_removebg_preview;
             this.pictureBox1.Location = new System.Drawing.Point(141, 8);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(107, 86);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -211,15 +169,24 @@
             this.label4.TabIndex = 16;
             this.label4.Text = "Artigos";
             // 
+            // listBoxArtigos
+            // 
+            this.listBoxArtigos.FormattingEnabled = true;
+            this.listBoxArtigos.Location = new System.Drawing.Point(26, 270);
+            this.listBoxArtigos.Name = "listBoxArtigos";
+            this.listBoxArtigos.Size = new System.Drawing.Size(384, 121);
+            this.listBoxArtigos.TabIndex = 17;
+            this.listBoxArtigos.SelectedIndexChanged += new System.EventHandler(this.listBoxArtigos_SelectedIndexChanged);
+            // 
             // FormArtigo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 450);
+            this.Controls.Add(this.listBoxArtigos);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.buttonVoltar);
-            this.Controls.Add(this.dataGridViewArtigos);
             this.Controls.Add(this.comboBoxTipo);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.buttonRemover);
@@ -232,7 +199,6 @@
             this.Controls.Add(this.label1);
             this.Name = "FormArtigo";
             this.Text = "FormArtigo";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewArtigos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -251,12 +217,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBoxTipo;
-        private System.Windows.Forms.DataGridView dataGridViewArtigos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TipoArtigo;
         private System.Windows.Forms.Button buttonVoltar;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ListBox listBoxArtigos;
     }
 }

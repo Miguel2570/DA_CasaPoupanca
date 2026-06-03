@@ -15,6 +15,8 @@ namespace CasaPoupanca
 {
     public partial class FormRegister : Form
     {
+        private AuthController _controller;
+
         public FormRegister()
         {
             InitializeComponent();
@@ -34,7 +36,7 @@ namespace CasaPoupanca
                 MessageBox.Show("Por favor preencha todos os campos!");
                 return;
             }
-            if(password.Length < 4)
+            if (password.Length < 4)
             {
                 MessageBox.Show("A password deve conter pelo menos 4 caracteres!");
                 return;
@@ -45,8 +47,9 @@ namespace CasaPoupanca
                 return;
             }
 
-            using (var auth = new AuthController())
+            try
             {
+                var auth = new AuthController();
                 var novoUtilizador = new Utilizador
                 {
                     Username = username,
@@ -63,8 +66,11 @@ namespace CasaPoupanca
                 else
                 {
                     MessageBox.Show("Username já existe!");
-
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ocorreu um erro inesperado: {ex.Message}");
             }
         }
     }

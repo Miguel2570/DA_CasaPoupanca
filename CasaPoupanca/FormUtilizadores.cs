@@ -36,7 +36,6 @@ namespace CasaPoupanca
         {
             textBoxUsername.Clear();
             textBoxPassword.Clear();
-            textBoxNome.Clear();
             textBoxEmail.Clear();
             _utilizadorEditandoId = null;
         }
@@ -62,13 +61,6 @@ namespace CasaPoupanca
                 Width = 120
             });
 
-            dataGridViewUtilizadores.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "Nome",
-                HeaderText = "Nome",
-                DataPropertyName = "Nome",
-                Width = 150
-            });
 
             dataGridViewUtilizadores.Columns.Add(new DataGridViewTextBoxColumn
             {
@@ -145,11 +137,8 @@ namespace CasaPoupanca
             {
                 _utilizadorEditandoId = (int)dataGridViewUtilizadores.CurrentRow.Cells["Id"].Value;
                 textBoxUsername.Text = dataGridViewUtilizadores.CurrentRow.Cells["Username"].Value?.ToString();
-                textBoxNome.Text = dataGridViewUtilizadores.CurrentRow.Cells["Nome"].Value?.ToString();
                 textBoxEmail.Text = dataGridViewUtilizadores.CurrentRow.Cells["Email"].Value?.ToString();
                 textBoxPassword.Clear(); // Password não é carregada por segurança
-
-               
             }
         }
 

@@ -24,128 +24,17 @@ namespace CasaPoupanca
             InitializeComponent();
             _compraId = compraId;
             _controller = new ModoCompraController();
-            ConfigurarDataGridViews();
-            CarregarDadosCompra();
-            CarregarOrcamento();
-            CarregarItensPrevistos();
-            CarregarItensNaoPrevistos();
-        }
 
-        private void ConfigurarDataGridViews()
-        {
-            // ========== DataGridView Itens Previstos ==========
-            dataGridViewItensPrevistos.AutoGenerateColumns = false;
-            dataGridViewItensPrevistos.Columns.Clear();
-
-            dataGridViewItensPrevistos.Columns.Add(new DataGridViewTextBoxColumn
+            try
             {
-                Name = "Id",
-                HeaderText = "ID",
-                DataPropertyName = "Id",
-                Width = 50
-            });
-
-            dataGridViewItensPrevistos.Columns.Add(new DataGridViewTextBoxColumn
+                CarregarDadosCompra();
+                CarregarOrcamento();
+                CarregarItensPrevistos();
+            }
+            catch (Exception ex)
             {
-                Name = "Artigo",
-                HeaderText = "Artigo",
-                DataPropertyName = "Artigo.Nome",
-                Width = 150
-            });
-
-            dataGridViewItensPrevistos.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "QuantidadePrevista",
-                HeaderText = "Quantidade",
-                DataPropertyName = "QuantidadePrevista",
-                Width = 80
-            });
-
-            DataGridViewTextBoxColumn colQtdAdquirir = new DataGridViewTextBoxColumn
-            {
-                Name = "QuantidadeAdquirir",
-                HeaderText = "Adquirir",
-                Width = 80
-            };
-            dataGridViewItensPrevistos.Columns.Add(colQtdAdquirir);
-
-            DataGridViewTextBoxColumn colPreco = new DataGridViewTextBoxColumn
-            {
-                Name = "PrecoUnitario",
-                HeaderText = "Preço (€)",
-                Width = 80
-            };
-            dataGridViewItensPrevistos.Columns.Add(colPreco);
-
-            dataGridViewItensPrevistos.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "Subtotal",
-                HeaderText = "Subtotal (€)",
-                Width = 80,
-                ReadOnly = true
-            });
-
-            dataGridViewItensNaoPrevistos.AutoGenerateColumns = false;
-            dataGridViewItensNaoPrevistos.Columns.Clear();
-
-            dataGridViewItensNaoPrevistos.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "Id",
-                HeaderText = "ID",
-                DataPropertyName = "Id",
-                Width = 50
-            });
-
-            dataGridViewItensNaoPrevistos.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "Artigo",
-                HeaderText = "Artigo",
-                DataPropertyName = "Observacao",
-                Width = 120
-            });
-
-            dataGridViewItensNaoPrevistos.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "Quantidade",
-                HeaderText = "Quantidade",
-                DataPropertyName = "QuantidadeAdquirida",
-                Width = 80
-            });
-
-            dataGridViewItensNaoPrevistos.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "Preco",
-                HeaderText = "Preço (€)",
-                DataPropertyName = "PrecoUnitario",
-                Width = 80
-            });
-
-            dataGridViewItensNaoPrevistos.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "Subtotal",
-                HeaderText = "Subtotal (€)",
-                Width = 80,
-                ReadOnly = true
-            });
-
-            DataGridViewButtonColumn btnRemover = new DataGridViewButtonColumn
-            {
-                Name = "Remover",
-                HeaderText = "Ações",
-                Text = "Remover",
-                UseColumnTextForButtonValue = true,
-                Width = 80
-            };
-            dataGridViewItensNaoPrevistos.Columns.Add(btnRemover);
-
-            dataGridViewItensPrevistos.CellEndEdit += dataGridViewItensPrevistos_CellEndEdit;
-            dataGridViewItensNaoPrevistos.CellClick += dataGridViewItensNaoPrevistos_CellClick;
-        }
-        private void CarregarItensPrevistos()
-        {
-            var itens = _controller.GetItensPrevistos(_compraId);
-            dataGridViewItensPrevistos.DataSource = null;
-            dataGridViewItensPrevistos.DataSource = itens;
+                MessageBox.Show($"Erro ao carregar dados: {ex.Message}");
+            }
         }
 
         private void CarregarDadosCompra()
@@ -159,7 +48,7 @@ namespace CasaPoupanca
 
         private void CarregarOrcamento()
         {
-            _orcamentoDisponivel = _controller.GetOrcamentoDisponivel(Session.UtilizadorId, _compraId);
+            _orcamentoDisponivel = _controller.GetOrcamentoDisponivel(Session.UtilizadorId);
             labelOrcamentoDisponivel.Text = $"Orçamento Disponível: {_orcamentoDisponivel:C}";
 
             if (_orcamentoDisponivel < 0)
@@ -174,28 +63,13 @@ namespace CasaPoupanca
             }
         }
 
-        private void CarregarItensNaoPrevistos()
+        private void CarregarItensPrevistos()
         {
-            var itens = _controller.GetItensNaoPrevistos(_compraId);
-            dataGridViewItensNaoPrevistos.DataSource = null;
-            dataGridViewItensNaoPrevistos.DataSource = itens;
-        }
-        private void AtualizarSubtotaisPrevistos()
-        {
-            foreach (DataGridViewRow row in dataGridViewItensPrevistos.Rows)
-            {
-                if (row.Cells["QuantidadeAdquirir"].Value != null && row.Cells["PrecoUnitario"].Value != null)
-                {
-                    int qtd;
-                    decimal preco;
-                    if (int.TryParse(row.Cells["QuantidadeAdquirir"].Value.ToString(), out qtd) &&
-                        decimal.TryParse(row.Cells["PrecoUnitario"].Value.ToString(), out preco))
-                    {
-                        decimal subtotal = qtd * preco;
-                        row.Cells["Subtotal"].Value = subtotal.ToString("C");
-                    }
-                }
-            }
+            var itens = _controller.GetItensPrevistos(_compraId);
+            listBoxItensPrevistos.DataSource = null;
+            listBoxItensPrevistos.DataSource = itens;
+            listBoxItensPrevistos.DisplayMember = "DisplayText";
+            listBoxItensPrevistos.ValueMember = "Id";
         }
 
         private void buttonVoltar_Click(object sender, EventArgs e)
@@ -205,130 +79,122 @@ namespace CasaPoupanca
 
         private void buttonAddItemNaoPrevisto_Click(object sender, EventArgs e)
         {
-            using (var form = new FormItemNaoPrevisto(_compraId))
-            {
-                if (form.ShowDialog() == DialogResult.OK)
-                {
-                    CarregarOrcamento();
-                    CarregarItensNaoPrevistos();
-                }
-            }
+            FormItemNaoPrevisto itemNaoPrevisto = new FormItemNaoPrevisto(_compraId);
+            itemNaoPrevisto.ShowDialog();
         }
 
         private void buttonFecharCompra_Click(object sender, EventArgs e)
         {
-            int itensNaoAdquiridos = _controller.CountItensNaoAdquiridos(_compraId);
-
-            if (itensNaoAdquiridos > 0)
+            try
             {
-                DialogResult resultado = MessageBox.Show(
-                    $"Ainda existem {itensNaoAdquiridos} itens previstos não adquiridos.\n\nDeseja fechar a compra mesmo assim?");
-                if (resultado != DialogResult.Yes)
-                    return;
+                int itensNaoAdquiridos = _controller.CountItensNaoAdquiridos(_compraId);
+
+                if (itensNaoAdquiridos > 0)
+                {
+                    DialogResult resultado = MessageBox.Show(
+                        $"Ainda existem {itensNaoAdquiridos} itens previstos não adquiridos.\n\nDeseja fechar a compra mesmo assim?",
+                        "Aviso", MessageBoxButtons.YesNo);
+
+                    if (resultado != DialogResult.Yes)
+                        return;
+                }
+
+                DialogResult resultadoFinal = MessageBox.Show(
+                    "Tem certeza que deseja fechar esta compra?\n\nApós fechada, não poderá mais ser alterada!",
+                    "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (resultadoFinal == DialogResult.Yes)
+                {
+                    _controller.FecharCompra(_compraId, Session.UtilizadorId);
+                    MessageBox.Show("Compra fechada com sucesso!");
+                    this.Close();
+                }
             }
-
-            DialogResult resultadoFinal = MessageBox.Show(
-                "Tem certeza que deseja fechar esta compra?\n\nApós fechada, não poderá mais ser alterada!",
-                "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (resultadoFinal == DialogResult.Yes)
+            catch (Exception ex)
             {
-                _controller.FecharCompra(_compraId, Session.UtilizadorId);
-                MessageBox.Show("Compra fechada com sucesso!");
-                this.Close();
+                MessageBox.Show($"Erro ao fechar compra: {ex.Message}");
             }
         }
 
         private void buttonSalvar_Click(object sender, EventArgs e)
         {
-            CarregarOrcamento();
-            CarregarItensPrevistos();
-            CarregarItensNaoPrevistos();
-            MessageBox.Show("Progresso salvo com sucesso!");
+            
         }
 
         private void buttonAdquirirItensPrevistos_Click(object sender, EventArgs e)
         {
-            if (dataGridViewItensPrevistos.CurrentRow == null)
+            if (listBoxItensPrevistos.SelectedItem == null)
             {
                 MessageBox.Show("Selecione um item para adquirir.");
                 return;
             }
 
-            var item = (ItemCompra)dataGridViewItensPrevistos.CurrentRow.DataBoundItem;
-            int rowIndex = dataGridViewItensPrevistos.CurrentRow.Index;
+            if (string.IsNullOrWhiteSpace(textBoxQuantidade.Text))
+            {
+                MessageBox.Show("Insira a quantidade!");
+                return;
+            }
 
-            int quantidadeAdquirir;
-            decimal precoUnitario;
+            if (string.IsNullOrWhiteSpace(textBoxPrecoUnitario.Text))
+            {
+                MessageBox.Show("Insira o preço!");
+                return;
+            }
 
-            if (!int.TryParse(dataGridViewItensPrevistos.Rows[rowIndex].Cells["QuantidadeAdquirir"].Value?.ToString(), out quantidadeAdquirir) || quantidadeAdquirir <= 0)
+            int quantidade;
+            if (!int.TryParse(textBoxQuantidade.Text, out quantidade) || quantidade <= 0)
             {
                 MessageBox.Show("Insira uma quantidade válida!");
                 return;
             }
 
-            if (!decimal.TryParse(dataGridViewItensPrevistos.Rows[rowIndex].Cells["PrecoUnitario"].Value?.ToString(), out precoUnitario) || precoUnitario <= 0)
+            decimal precoUnitario;
+            if (!decimal.TryParse(textBoxPrecoUnitario.Text, out precoUnitario) || precoUnitario <= 0)
             {
                 MessageBox.Show("Insira um preço válido!");
                 return;
             }
 
-            if (quantidadeAdquirir > item.QuantidadePrevista)
+            try
             {
-                DialogResult resultado = MessageBox.Show(
-                    $"A quantidade a adquirir ({quantidadeAdquirir}) é maior que a quantidade prevista ({item.QuantidadePrevista}).\n\nDeseja continuar?",
-                    "Aviso", MessageBoxButtons.YesNo);
-                if (resultado != DialogResult.Yes)
-                    return;
-            }
+                var item = (ItemCompra)listBoxItensPrevistos.SelectedItem;
 
-            decimal subtotal = quantidadeAdquirir * precoUnitario;
-
-            if (subtotal > _orcamentoDisponivel && _orcamentoDisponivel >= 0)
-            {
-                DialogResult resultado = MessageBox.Show(
-                    $"Este item custa {subtotal:C}. Orçamento disponível: {_orcamentoDisponivel:C}\n\nDeseja continuar mesmo assim?",
-                    "Aviso de Orçamento", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (resultado != DialogResult.Yes)
-                    return;
-            }
-
-            _controller.AdquirirItem(item.Id, quantidadeAdquirir, precoUnitario);
-
-            MessageBox.Show($"Item adquirido: {quantidadeAdquirir} x {precoUnitario:C} = {subtotal:C}");
-
-            CarregarOrcamento();
-            CarregarItensPrevistos();
-        }
-
-        private void dataGridViewItensPrevistos_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            AtualizarSubtotaisPrevistos();
-        }
-
-        private void dataGridViewItensNaoPrevistos_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex < 0) return;
-
-            if (dataGridViewItensNaoPrevistos.Columns[e.ColumnIndex].Name == "Remover")
-            {
-                var item = (ItemCompra)dataGridViewItensNaoPrevistos.Rows[e.RowIndex].DataBoundItem;
-
-                DialogResult resultado = MessageBox.Show("Tem certeza que deseja remover este item não previsto?",
-                    "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (resultado == DialogResult.Yes)
+                if (quantidade > item.QuantidadePrevista - item.QuantidadeAdquirida)
                 {
-                    _controller.RemoverItemNaoPrevisto(item.Id);
-                    CarregarOrcamento();
-                    CarregarItensNaoPrevistos();
+                    DialogResult resultado = MessageBox.Show(
+                        $"A quantidade a adquirir ({quantidade}) é maior que a quantidade prevista por adquirir.\n\nDeseja continuar?",
+                        "Aviso", MessageBoxButtons.YesNo);
+
+                    if (resultado != DialogResult.Yes)
+                        return;
                 }
+
+                decimal subtotal = quantidade * precoUnitario;
+
+                if (subtotal > _orcamentoDisponivel && _orcamentoDisponivel >= 0)
+                {
+                    DialogResult resultado = MessageBox.Show(
+                        $"Este item custa {subtotal:C}. Orçamento disponível: {_orcamentoDisponivel:C}\n\nDeseja continuar?",
+                        "Aviso de Orçamento", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                    if (resultado != DialogResult.Yes)
+                        return;
+                }
+
+                _controller.AdquirirItem(item.Id, quantidade, precoUnitario);
+
+                MessageBox.Show($"Item adquirido: {quantidade} x {precoUnitario:C} = {subtotal:C}");
+
+                CarregarOrcamento();
+                CarregarItensPrevistos();
+                textBoxQuantidade.Clear();
+                textBoxPrecoUnitario.Clear();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao adquirir item: {ex.Message}");
             }
         }
-        protected override void OnFormClosed(FormClosedEventArgs e)
-        {
-            _controller?.Dispose();
-            base.OnFormClosed(e);
-        }
+
     }
 }

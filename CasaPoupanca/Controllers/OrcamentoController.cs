@@ -6,62 +6,70 @@ using System.Linq;
 
 namespace CasaPoupanca.Controllers
 {
-    public class OrcamentoController : IDisposable
+    public class OrcamentoController
     {
-        private readonly CasaPoupancaDB _db;
-
-        public OrcamentoController()
-        {
-            _db = new CasaPoupancaDB();
-        }
-
         public List<Orcamento> GetAllOrcamentos()
         {
-            return _db.Orcamentos
-                .OrderByDescending(o => o.Ano)
-                .ThenByDescending(o => o.Mes)
-                .ToList();
+            using (var db = new CasaPoupancaDB())
+            {
+                return db.Orcamentos
+                    .OrderByDescending(o => o.Ano)
+                    .ThenByDescending(o => o.Mes)
+                    .ToList();
+            }
         }
 
         public Orcamento GetOrcamentoPorMesAno(int mes, int ano)
         {
-            return _db.Orcamentos
-                .FirstOrDefault(o => o.Mes == mes && o.Ano == ano);
+            using (var db = new CasaPoupancaDB())
+            {
+                return db.Orcamentos
+                    .FirstOrDefault(o => o.Mes == mes && o.Ano == ano);
+            }
         }
 
         public bool AddOrcamento(Orcamento orcamento)
         {
-            // Verificar se já existe orçamento para este mês/ano
-            if (_db.Orcamentos.Any(o => o.Mes == orcamento.Mes && o.Ano == orcamento.Ano))
-                return false;
+            using (var db = new CasaPoupancaDB())
+            {
+                // Verificar se já existe orçamento para este mês/ano
+                if (db.Orcamentos.Any(o => o.Mes == orcamento.Mes && o.Ano == orcamento.Ano))
+                    return false;
 
-            _db.Orcamentos.Add(orcamento);
-            _db.SaveChanges();
-            return true;
+                db.Orcamentos.Add(orcamento);
+                db.SaveChanges();
+                return true;
+            }
         }
 
         public bool UpdateOrcamento(Orcamento orcamento)
         {
-            var existing = _db.Orcamentos.Find(orcamento.Id);
-            if (existing == null)
-                return false;
+            using (var db = new CasaPoupancaDB())
+            {
+                var existing = db.Orcamentos.Find(orcamento.Id);
+                if (existing == null)
+                    return false;
 
-            existing.Valor = orcamento.Valor;
-            existing.AlteradoPorId = orcamento.AlteradoPorId;
-            existing.DataAlteracao = orcamento.DataAlteracao;
-            _db.SaveChanges();
-            return true;
+                existing.Valor = orcamento.Valor;
+                existing.AlteradoPorId = orcamento.AlteradoPorId;
+                existing.DataAlteracao = orcamento.DataAlteracao;
+                db.SaveChanges();
+                return true;
+            }
         }
 
         public bool DeleteOrcamento(int id)
         {
-            var orcamento = _db.Orcamentos.Find(id);
-            if (orcamento == null)
-                return false;
+            using (var db = new CasaPoupancaDB())
+            {
+                var orcamento = db.Orcamentos.Find(id);
+                if (orcamento == null)
+                    return false;
 
-            _db.Orcamentos.Remove(orcamento);
-            _db.SaveChanges();
-            return true;
+                db.Orcamentos.Remove(orcamento);
+                db.SaveChanges();
+                return true;
+            }
         }
 
         public Orcamento GetOrcamentoAtual()
@@ -75,11 +83,6 @@ namespace CasaPoupanca.Controllers
         {
             var orcamento = GetOrcamentoAtual();
             return orcamento?.Valor ?? 0;
-        }
-
-        public void Dispose()
-        {
-            _db?.Dispose();
         }
     }
 }
