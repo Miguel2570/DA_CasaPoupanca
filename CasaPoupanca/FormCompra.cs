@@ -22,12 +22,14 @@ namespace CasaPoupanca
         {
             InitializeComponent();
             _controller = new CompraController();
-            ConfigurarDataGridView();
-            CarregarCompras();
-
-            dataGridViewCompras.DataBindingComplete += DataGridViewCompras_DataBindingComplete;
-            LimparCampos();
-        }
+            try
+            {
+                CarregarCompras();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar compras: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
             LimparCampos();
         }
@@ -42,8 +44,10 @@ namespace CasaPoupanca
         private void CarregarCompras()
         {
             var compras = _controller.GetComprasByUtilizador(Session.UtilizadorId);
-            dataGridViewCompras.DataSource = null;
-            dataGridViewCompras.DataSource = compras;
+            listBoxCompras.DataSource = null;
+            listBoxCompras.DataSource = compras;
+            listBoxCompras.DisplayMember = "Nome";
+            listBoxCompras.ValueMember = "Id";
         }
 
         private void buttonAdicionar_Click(object sender, EventArgs e)
@@ -56,24 +60,30 @@ namespace CasaPoupanca
                 return;
             }
 
-            var novaCompra = new Compra
+            try
             {
-                Nome = nomeCompra,
-                DataCriacao = DateTime.Now,
-                CriadoPorId = Session.UtilizadorId,
-                IsFechada = false
-            };
+                var novaCompra = new Compra
+                {
+                    Nome = nomeCompra,
+                    DataCriacao = DateTime.Now,
+                    CriadoPorId = Session.UtilizadorId,
+                    IsFechada = false
+                };
 
-            _controller.AddCompra(novaCompra);
-            MessageBox.Show("Compra adicionada com sucesso!");
-
-            CarregarCompras();
-            LimparCampos();
+                _controller.AddCompra(novaCompra);
+                MessageBox.Show("Compra adicionada com sucesso!");
+                CarregarCompras();
+                LimparCampos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao adicionar compra: {ex.Message}");
+            }
         }
 
         private void buttonEditar_Click(object sender, EventArgs e)
         {
-            if (_compraEditandoId == null)
+            if (listBoxCompras.SelectedItem == null)
             {
                 MessageBox.Show("Nenhuma compra selecionada para edição.");
                 return;
@@ -87,52 +97,21 @@ namespace CasaPoupanca
                 return;
             }
 
-            var compra = new Compra
+            try
             {
-                Id = _compraEditandoId.Value,
-                Nome = nomeCompra,
-                AlteradoPorId = Session.UtilizadorId,
-                DataAlteracao = DateTime.Now
-            };
+                var compraSelecionada = (Compra)listBoxCompras.SelectedItem;
 
-            if (_controller.UpdateCompra(compra))
-            {
-                MessageBox.Show("Compra editada com sucesso!");
-                CarregarCompras();
-                LimparCampos();
-            }
-            else
-            {
-                MessageBox.Show("Compra não encontrada.");
-            }
-        }
-
-        private void buttonRemover_Click(object sender, EventArgs e)
-        {
-            if (_compraEditandoId == null && dataGridViewCompras.CurrentRow == null)
-            {
-                MessageBox.Show("Selecione uma compra para remover.");
-                return;
-            }
-
-            int id = _compraEditandoId ?? (int)dataGridViewCompras.CurrentRow.Cells["Id"].Value;
-
-            // Verificar se está fechada
-            var compra = _controller.GetCompraById(id);
-            if (compra != null && compra.IsFechada)
-            {
-                MessageBox.Show("Não pode remover uma compra já fechada.");
-                return;
-            }
-
-            DialogResult resultado = MessageBox.Show("Tem certeza que deseja remover esta compra?",
-                "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (resultado == DialogResult.Yes)
-            {
-                if (_controller.DeleteCompra(id))
+                var compra = new Compra
                 {
-                    MessageBox.Show("Compra removida com sucesso!");
+                    Id = compraSelecionada.Id,
+                    Nome = nomeCompra,
+                    AlteradoPorId = Session.UtilizadorId,
+                    DataAlteracao = DateTime.Now
+                };
+
+                if (_controller.UpdateCompra(compra))
+                {
+                    MessageBox.Show("Compra editada com sucesso!");
                     CarregarCompras();
                     LimparCampos();
                 }
@@ -141,17 +120,50 @@ namespace CasaPoupanca
                     MessageBox.Show("Compra não encontrada.");
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao editar compra: {ex.Message}");
+            }
         }
 
-        private void dataGridViewCompras_SelectionChanged(object sender, EventArgs e)
+        private void buttonRemover_Click(object sender, EventArgs e)
         {
-            if (dataGridViewCompras.CurrentRow != null)
+            if (listBoxCompras.SelectedItem == null)
             {
-                _compraEditandoId = (int)dataGridViewCompras.CurrentRow.Cells["Id"].Value;
-                textBoxNomeCompra.Text = dataGridViewCompras.CurrentRow.Cells["Nome"].Value?.ToString();
+                MessageBox.Show("Selecione uma compra para remover.");
+                return;
+            }
 
-                buttonAdicionar.Enabled = false;
-                buttonEditar.Enabled = true;
+            try
+            {
+                var compraSelecionada = (Compra)listBoxCompras.SelectedItem;
+
+                if (compraSelecionada.IsFechada)
+                {
+                    MessageBox.Show("Não pode remover uma compra já fechada.");
+                    return;
+                }
+
+                DialogResult resultado = MessageBox.Show("Tem certeza que deseja remover esta compra?",
+                    "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (resultado == DialogResult.Yes)
+                {
+                    if (_controller.DeleteCompra(compraSelecionada.Id))
+                    {
+                        MessageBox.Show("Compra removida com sucesso!");
+                        CarregarCompras();
+                        LimparCampos();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Compra não encontrada.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao remover compra: {ex.Message}");
             }
         }
 
@@ -160,10 +172,14 @@ namespace CasaPoupanca
             this.Close();
         }
 
-        protected override void OnFormClosed(FormClosedEventArgs e)
+        private void listBoxCompras_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _controller?.Dispose();
-            base.OnFormClosed(e);
+            if (listBoxCompras.SelectedItem is Compra compra)
+            {
+                textBoxNomeCompra.Text = compra.Nome;
+                buttonAdicionar.Enabled = false;
+                buttonEditar.Enabled = true;
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
