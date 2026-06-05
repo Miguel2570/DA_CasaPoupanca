@@ -51,9 +51,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(9, 122);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 17);
+            this.label1.Size = new System.Drawing.Size(96, 17);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Filtrar por tipo:";
+            this.label1.Text = "Filtrar por tipo";
             // 
             // comboBoxFiltrar
             // 
@@ -65,7 +65,7 @@
             // 
             // buttonSearch
             // 
-            this.buttonSearch.Location = new System.Drawing.Point(314, 120);
+            this.buttonSearch.Location = new System.Drawing.Point(316, 120);
             this.buttonSearch.Name = "buttonSearch";
             this.buttonSearch.Size = new System.Drawing.Size(75, 21);
             this.buttonSearch.TabIndex = 2;
@@ -75,7 +75,7 @@
             // 
             // buttonRemover
             // 
-            this.buttonRemover.Location = new System.Drawing.Point(193, 212);
+            this.buttonRemover.Location = new System.Drawing.Point(268, 212);
             this.buttonRemover.Name = "buttonRemover";
             this.buttonRemover.Size = new System.Drawing.Size(75, 23);
             this.buttonRemover.TabIndex = 9;
@@ -85,7 +85,7 @@
             // 
             // buttonEditar
             // 
-            this.buttonEditar.Location = new System.Drawing.Point(113, 212);
+            this.buttonEditar.Location = new System.Drawing.Point(165, 212);
             this.buttonEditar.Name = "buttonEditar";
             this.buttonEditar.Size = new System.Drawing.Size(75, 23);
             this.buttonEditar.TabIndex = 8;
@@ -95,7 +95,7 @@
             // 
             // buttonAdicionar
             // 
-            this.buttonAdicionar.Location = new System.Drawing.Point(33, 212);
+            this.buttonAdicionar.Location = new System.Drawing.Point(65, 212);
             this.buttonAdicionar.Name = "buttonAdicionar";
             this.buttonAdicionar.Size = new System.Drawing.Size(75, 23);
             this.buttonAdicionar.TabIndex = 7;
@@ -105,42 +105,42 @@
             // 
             // textBoxNome
             // 
-            this.textBoxNome.Location = new System.Drawing.Point(75, 148);
+            this.textBoxNome.Location = new System.Drawing.Point(104, 147);
             this.textBoxNome.Name = "textBoxNome";
-            this.textBoxNome.Size = new System.Drawing.Size(121, 20);
+            this.textBoxNome.Size = new System.Drawing.Size(206, 20);
             this.textBoxNome.TabIndex = 6;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(30, 148);
+            this.label2.Location = new System.Drawing.Point(53, 148);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 17);
+            this.label2.Size = new System.Drawing.Size(45, 17);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Nome:";
+            this.label2.Text = "Nome";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(30, 179);
+            this.label3.Location = new System.Drawing.Point(62, 179);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(40, 17);
+            this.label3.Size = new System.Drawing.Size(36, 17);
             this.label3.TabIndex = 10;
-            this.label3.Text = "Tipo:";
+            this.label3.Text = "Tipo";
             // 
             // comboBoxTipo
             // 
             this.comboBoxTipo.FormattingEnabled = true;
-            this.comboBoxTipo.Location = new System.Drawing.Point(75, 179);
+            this.comboBoxTipo.Location = new System.Drawing.Point(104, 178);
             this.comboBoxTipo.Name = "comboBoxTipo";
-            this.comboBoxTipo.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxTipo.Size = new System.Drawing.Size(206, 21);
             this.comboBoxTipo.TabIndex = 11;
             // 
             // buttonVoltar
             // 
-            this.buttonVoltar.Location = new System.Drawing.Point(164, 411);
+            this.buttonVoltar.Location = new System.Drawing.Point(165, 409);
             this.buttonVoltar.Name = "buttonVoltar";
             this.buttonVoltar.Size = new System.Drawing.Size(75, 23);
             this.buttonVoltar.TabIndex = 13;
@@ -172,9 +172,9 @@
             // listBoxArtigos
             // 
             this.listBoxArtigos.FormattingEnabled = true;
-            this.listBoxArtigos.Location = new System.Drawing.Point(26, 270);
+            this.listBoxArtigos.Location = new System.Drawing.Point(12, 272);
             this.listBoxArtigos.Name = "listBoxArtigos";
-            this.listBoxArtigos.Size = new System.Drawing.Size(384, 121);
+            this.listBoxArtigos.Size = new System.Drawing.Size(379, 121);
             this.listBoxArtigos.TabIndex = 17;
             this.listBoxArtigos.SelectedIndexChanged += new System.EventHandler(this.listBoxArtigos_SelectedIndexChanged);
             // 
@@ -182,7 +182,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 450);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(448, 450);
             this.Controls.Add(this.listBoxArtigos);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.pictureBox1);

@@ -69,7 +69,7 @@
             // textBoxPasswordRegister
             // 
             this.textBoxPasswordRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxPasswordRegister.Location = new System.Drawing.Point(194, 209);
+            this.textBoxPasswordRegister.Location = new System.Drawing.Point(230, 212);
             this.textBoxPasswordRegister.Name = "textBoxPasswordRegister";
             this.textBoxPasswordRegister.Size = new System.Drawing.Size(148, 22);
             this.textBoxPasswordRegister.TabIndex = 12;
@@ -77,7 +77,7 @@
             // textBoxUsernameRegister
             // 
             this.textBoxUsernameRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxUsernameRegister.Location = new System.Drawing.Point(194, 178);
+            this.textBoxUsernameRegister.Location = new System.Drawing.Point(230, 181);
             this.textBoxUsernameRegister.Name = "textBoxUsernameRegister";
             this.textBoxUsernameRegister.Size = new System.Drawing.Size(148, 22);
             this.textBoxUsernameRegister.TabIndex = 11;
@@ -86,7 +86,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(59, 212);
+            this.label2.Location = new System.Drawing.Point(76, 215);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 16);
             this.label2.TabIndex = 10;
@@ -96,7 +96,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(59, 181);
+            this.label1.Location = new System.Drawing.Point(76, 184);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 17);
             this.label1.TabIndex = 9;
@@ -126,7 +126,7 @@
             // textBoxConfirmarPassword
             // 
             this.textBoxConfirmarPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxConfirmarPassword.Location = new System.Drawing.Point(194, 235);
+            this.textBoxConfirmarPassword.Location = new System.Drawing.Point(230, 238);
             this.textBoxConfirmarPassword.Name = "textBoxConfirmarPassword";
             this.textBoxConfirmarPassword.Size = new System.Drawing.Size(148, 22);
             this.textBoxConfirmarPassword.TabIndex = 16;
@@ -135,7 +135,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(59, 238);
+            this.label5.Location = new System.Drawing.Point(76, 241);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(127, 16);
             this.label5.TabIndex = 15;
@@ -145,7 +145,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(59, 264);
+            this.label6.Location = new System.Drawing.Point(76, 267);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(41, 16);
             this.label6.TabIndex = 17;
@@ -154,7 +154,7 @@
             // textBoxEmailRegister
             // 
             this.textBoxEmailRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxEmailRegister.Location = new System.Drawing.Point(194, 261);
+            this.textBoxEmailRegister.Location = new System.Drawing.Point(230, 264);
             this.textBoxEmailRegister.Name = "textBoxEmailRegister";
             this.textBoxEmailRegister.Size = new System.Drawing.Size(148, 22);
             this.textBoxEmailRegister.TabIndex = 18;
@@ -183,7 +183,7 @@
             // 
             this.pictureBox7.Image = global::CasaPoupanca.Properties.Resources.info;
             this.pictureBox7.Location = new System.Drawing.Point(55, 330);
-            this.pictureBox7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox7.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(21, 14);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -194,7 +194,7 @@
             // 
             this.pictureBox6.Image = global::CasaPoupanca.Properties.Resources.info;
             this.pictureBox6.Location = new System.Drawing.Point(55, 305);
-            this.pictureBox6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox6.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(21, 14);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -204,8 +204,8 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = global::CasaPoupanca.Properties.Resources.email;
-            this.pictureBox5.Location = new System.Drawing.Point(38, 261);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox5.Location = new System.Drawing.Point(55, 264);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(21, 20);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -215,8 +215,8 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = global::CasaPoupanca.Properties.Resources.padlock;
-            this.pictureBox4.Location = new System.Drawing.Point(38, 235);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox4.Location = new System.Drawing.Point(55, 238);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(21, 20);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -226,8 +226,8 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::CasaPoupanca.Properties.Resources.padlock;
-            this.pictureBox2.Location = new System.Drawing.Point(38, 209);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox2.Location = new System.Drawing.Point(55, 212);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(21, 20);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -237,8 +237,8 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::CasaPoupanca.Properties.Resources.user;
-            this.pictureBox1.Location = new System.Drawing.Point(38, 179);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Location = new System.Drawing.Point(55, 182);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(21, 20);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -249,7 +249,7 @@
             // 
             this.pictureBox3.Image = global::CasaPoupanca.Properties.Resources.final_removebg_preview;
             this.pictureBox3.Location = new System.Drawing.Point(109, 31);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(175, 125);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -260,6 +260,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(406, 417);
             this.Controls.Add(this.pictureBox7);
             this.Controls.Add(this.pictureBox6);

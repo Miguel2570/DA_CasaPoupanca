@@ -74,7 +74,7 @@ namespace CasaPoupanca
                 Name = "Id",
                 HeaderText = "ID",
                 DataPropertyName = "Id",
-                Width = 50
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
             });
 
             dataGridViewCompras.Columns.Add(new DataGridViewTextBoxColumn
@@ -82,7 +82,7 @@ namespace CasaPoupanca
                 Name = "Nome",
                 HeaderText = "Nome da Compra",
                 DataPropertyName = "Nome",
-                Width = 200
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             });
 
             dataGridViewCompras.Columns.Add(new DataGridViewTextBoxColumn
@@ -91,7 +91,7 @@ namespace CasaPoupanca
                 HeaderText = "Data Criação",
                 DataPropertyName = "DataCriacao",
                 DefaultCellStyle = new DataGridViewCellStyle { Format = "dd/MM/yyyy" },
-                Width = 120
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
             });
 
             dataGridViewCompras.Columns.Add(new DataGridViewTextBoxColumn
@@ -99,7 +99,7 @@ namespace CasaPoupanca
                 Name = "Estado",
                 HeaderText = "Estado",
                 DataPropertyName = "IsFechada",
-                Width = 80
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
             });
         }
 
@@ -213,26 +213,21 @@ namespace CasaPoupanca
             exportar.ShowDialog();
         }
 
-        private void exportarCSVToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormExportarCSV exportar = new FormExportarCSV();
-            exportar.ShowDialog();
-        }
-
         private void buttonSair_Click(object sender, EventArgs e)
         {
             Application.Exit();
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void perfilToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormProfile profile = new FormProfile();
             profile.ShowDialog();
+        }
+
+        private void converterEmCSVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormExportarCSV exportar = new FormExportarCSV();
+            exportar.ShowDialog();
         }
     }
 }

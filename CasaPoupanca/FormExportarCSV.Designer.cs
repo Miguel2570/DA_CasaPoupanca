@@ -172,7 +172,7 @@
             // 
             // FormExportarCSV
             // 
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(478, 504);
             this.Controls.Add(this.pictureBoxLogo);
             this.Controls.Add(this.labelTitulo);

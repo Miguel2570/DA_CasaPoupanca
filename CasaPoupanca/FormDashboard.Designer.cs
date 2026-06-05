@@ -29,18 +29,21 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDashboard));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.ficheiroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.converterEmCSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.comprasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modoCompraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.estatisticasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.oToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tiposDeArtigoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.artigosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.utilizadoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.modoCompraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.perfilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -52,18 +55,12 @@
             this.buttonContinuarCompra = new System.Windows.Forms.Button();
             this.buttonEstatisticas = new System.Windows.Forms.Button();
             this.dataGridViewCompras = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataAlteracao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataCriacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IsFechada = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labelPerfil = new System.Windows.Forms.Label();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.buttonSair = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.perfilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCompras)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -84,8 +81,8 @@
             this.perfilToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(999, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(749, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -95,79 +92,86 @@
             this.sairToolStripMenuItem,
             this.converterEmCSVToolStripMenuItem});
             this.ficheiroToolStripMenuItem.Name = "ficheiroToolStripMenuItem";
-            this.ficheiroToolStripMenuItem.Size = new System.Drawing.Size(75, 24);
+            this.ficheiroToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.ficheiroToolStripMenuItem.Text = "Ficheiro";
             // 
             // sairToolStripMenuItem
             // 
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            this.sairToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
+            this.sairToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.sairToolStripMenuItem.Text = "Sair";
             this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
             // 
             // converterEmCSVToolStripMenuItem
             // 
             this.converterEmCSVToolStripMenuItem.Name = "converterEmCSVToolStripMenuItem";
-            this.converterEmCSVToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
+            this.converterEmCSVToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.converterEmCSVToolStripMenuItem.Text = "Converter em CSV";
+            this.converterEmCSVToolStripMenuItem.Click += new System.EventHandler(this.converterEmCSVToolStripMenuItem_Click);
             // 
             // comprasToolStripMenuItem
             // 
             this.comprasToolStripMenuItem.Name = "comprasToolStripMenuItem";
-            this.comprasToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
+            this.comprasToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
             this.comprasToolStripMenuItem.Text = "Compras";
             this.comprasToolStripMenuItem.Click += new System.EventHandler(this.comprasToolStripMenuItem_Click);
+            // 
+            // modoCompraToolStripMenuItem
+            // 
+            this.modoCompraToolStripMenuItem.Name = "modoCompraToolStripMenuItem";
+            this.modoCompraToolStripMenuItem.Size = new System.Drawing.Size(97, 20);
+            this.modoCompraToolStripMenuItem.Text = "Modo Compra";
+            this.modoCompraToolStripMenuItem.Click += new System.EventHandler(this.modoCompraToolStripMenuItem_Click_1);
             // 
             // estatisticasToolStripMenuItem
             // 
             this.estatisticasToolStripMenuItem.Name = "estatisticasToolStripMenuItem";
-            this.estatisticasToolStripMenuItem.Size = new System.Drawing.Size(95, 24);
+            this.estatisticasToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
             this.estatisticasToolStripMenuItem.Text = "Estatisticas";
             this.estatisticasToolStripMenuItem.Click += new System.EventHandler(this.estatisticasToolStripMenuItem_Click);
             // 
             // oToolStripMenuItem
             // 
             this.oToolStripMenuItem.Name = "oToolStripMenuItem";
-            this.oToolStripMenuItem.Size = new System.Drawing.Size(97, 24);
+            this.oToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
             this.oToolStripMenuItem.Text = "Orçamento";
             this.oToolStripMenuItem.Click += new System.EventHandler(this.OrcamentoToolStripMenuItem_Click);
             // 
             // tiposDeArtigoToolStripMenuItem
             // 
             this.tiposDeArtigoToolStripMenuItem.Name = "tiposDeArtigoToolStripMenuItem";
-            this.tiposDeArtigoToolStripMenuItem.Size = new System.Drawing.Size(126, 24);
+            this.tiposDeArtigoToolStripMenuItem.Size = new System.Drawing.Size(100, 20);
             this.tiposDeArtigoToolStripMenuItem.Text = "Tipos de Artigo";
             this.tiposDeArtigoToolStripMenuItem.Click += new System.EventHandler(this.tiposDeArtigoToolStripMenuItem_Click);
             // 
             // artigosToolStripMenuItem
             // 
             this.artigosToolStripMenuItem.Name = "artigosToolStripMenuItem";
-            this.artigosToolStripMenuItem.Size = new System.Drawing.Size(71, 24);
+            this.artigosToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.artigosToolStripMenuItem.Text = "Artigos";
             this.artigosToolStripMenuItem.Click += new System.EventHandler(this.artigosToolStripMenuItem_Click);
             // 
             // utilizadoresToolStripMenuItem
             // 
             this.utilizadoresToolStripMenuItem.Name = "utilizadoresToolStripMenuItem";
-            this.utilizadoresToolStripMenuItem.Size = new System.Drawing.Size(102, 24);
+            this.utilizadoresToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
             this.utilizadoresToolStripMenuItem.Text = "Utilizadores";
             this.utilizadoresToolStripMenuItem.Click += new System.EventHandler(this.utilizadoresToolStripMenuItem_Click);
             // 
-            // modoCompraToolStripMenuItem
+            // perfilToolStripMenuItem
             // 
-            this.modoCompraToolStripMenuItem.Name = "modoCompraToolStripMenuItem";
-            this.modoCompraToolStripMenuItem.Size = new System.Drawing.Size(120, 24);
-            this.modoCompraToolStripMenuItem.Text = "Modo Compra";
-            this.modoCompraToolStripMenuItem.Click += new System.EventHandler(this.modoCompraToolStripMenuItem_Click_1);
+            this.perfilToolStripMenuItem.Name = "perfilToolStripMenuItem";
+            this.perfilToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.perfilToolStripMenuItem.Text = "Perfil";
+            this.perfilToolStripMenuItem.Click += new System.EventHandler(this.perfilToolStripMenuItem_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(333, 138);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(250, 112);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(115, 25);
+            this.label2.Size = new System.Drawing.Size(92, 20);
             this.label2.TabIndex = 2;
             this.label2.Text = "Orçamento:";
             // 
@@ -175,10 +179,9 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(333, 206);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(250, 167);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(119, 25);
+            this.label3.Size = new System.Drawing.Size(96, 20);
             this.label3.TabIndex = 3;
             this.label3.Text = "Total Gasto:";
             // 
@@ -186,10 +189,9 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(333, 176);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(250, 143);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(108, 25);
+            this.label4.Size = new System.Drawing.Size(85, 20);
             this.label4.TabIndex = 4;
             this.label4.Text = "Disponivel:";
             // 
@@ -197,10 +199,9 @@
             // 
             this.labelOrcamento.AutoSize = true;
             this.labelOrcamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelOrcamento.Location = new System.Drawing.Point(521, 140);
-            this.labelOrcamento.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelOrcamento.Location = new System.Drawing.Point(391, 114);
             this.labelOrcamento.Name = "labelOrcamento";
-            this.labelOrcamento.Size = new System.Drawing.Size(40, 20);
+            this.labelOrcamento.Size = new System.Drawing.Size(36, 17);
             this.labelOrcamento.TabIndex = 5;
             this.labelOrcamento.Text = "0,00";
             // 
@@ -208,10 +209,9 @@
             // 
             this.labelTotalGasto.AutoSize = true;
             this.labelTotalGasto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalGasto.Location = new System.Drawing.Point(521, 210);
-            this.labelTotalGasto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelTotalGasto.Location = new System.Drawing.Point(391, 171);
             this.labelTotalGasto.Name = "labelTotalGasto";
-            this.labelTotalGasto.Size = new System.Drawing.Size(40, 20);
+            this.labelTotalGasto.Size = new System.Drawing.Size(36, 17);
             this.labelTotalGasto.TabIndex = 6;
             this.labelTotalGasto.Text = "0,00";
             // 
@@ -219,10 +219,9 @@
             // 
             this.labelDisponivel.AutoSize = true;
             this.labelDisponivel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDisponivel.Location = new System.Drawing.Point(521, 176);
-            this.labelDisponivel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelDisponivel.Location = new System.Drawing.Point(391, 143);
             this.labelDisponivel.Name = "labelDisponivel";
-            this.labelDisponivel.Size = new System.Drawing.Size(40, 20);
+            this.labelDisponivel.Size = new System.Drawing.Size(36, 17);
             this.labelDisponivel.TabIndex = 7;
             this.labelDisponivel.Text = "0,00";
             // 
@@ -230,19 +229,18 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(19, 290);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(14, 236);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(142, 18);
+            this.label5.Size = new System.Drawing.Size(116, 15);
             this.label5.TabIndex = 8;
             this.label5.Text = "Compras em Aberto";
             // 
             // buttonNovaCompra
             // 
-            this.buttonNovaCompra.Location = new System.Drawing.Point(835, 310);
-            this.buttonNovaCompra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonNovaCompra.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonNovaCompra.Location = new System.Drawing.Point(626, 252);
             this.buttonNovaCompra.Name = "buttonNovaCompra";
-            this.buttonNovaCompra.Size = new System.Drawing.Size(149, 28);
+            this.buttonNovaCompra.Size = new System.Drawing.Size(112, 23);
             this.buttonNovaCompra.TabIndex = 9;
             this.buttonNovaCompra.Text = "Nova compra";
             this.buttonNovaCompra.UseVisualStyleBackColor = true;
@@ -250,10 +248,10 @@
             // 
             // buttonContinuarCompra
             // 
-            this.buttonContinuarCompra.Location = new System.Drawing.Point(835, 362);
-            this.buttonContinuarCompra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonContinuarCompra.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonContinuarCompra.Location = new System.Drawing.Point(626, 294);
             this.buttonContinuarCompra.Name = "buttonContinuarCompra";
-            this.buttonContinuarCompra.Size = new System.Drawing.Size(149, 28);
+            this.buttonContinuarCompra.Size = new System.Drawing.Size(112, 23);
             this.buttonContinuarCompra.TabIndex = 10;
             this.buttonContinuarCompra.Text = "Continuar a comprar";
             this.buttonContinuarCompra.UseVisualStyleBackColor = true;
@@ -261,10 +259,10 @@
             // 
             // buttonEstatisticas
             // 
-            this.buttonEstatisticas.Location = new System.Drawing.Point(835, 412);
-            this.buttonEstatisticas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonEstatisticas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonEstatisticas.Location = new System.Drawing.Point(626, 335);
             this.buttonEstatisticas.Name = "buttonEstatisticas";
-            this.buttonEstatisticas.Size = new System.Drawing.Size(149, 28);
+            this.buttonEstatisticas.Size = new System.Drawing.Size(112, 23);
             this.buttonEstatisticas.TabIndex = 11;
             this.buttonEstatisticas.Text = "Estatisticas";
             this.buttonEstatisticas.UseVisualStyleBackColor = true;
@@ -272,69 +270,45 @@
             // 
             // dataGridViewCompras
             // 
+            this.dataGridViewCompras.AllowUserToAddRows = false;
+            this.dataGridViewCompras.AllowUserToDeleteRows = false;
+            this.dataGridViewCompras.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridViewCompras.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridViewCompras.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewCompras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewCompras.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Id,
-            this.dataAlteracao,
-            this.Nome,
-            this.DataCriacao,
-            this.IsFechada});
-            this.dataGridViewCompras.Location = new System.Drawing.Point(23, 310);
-            this.dataGridViewCompras.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewCompras.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridViewCompras.Location = new System.Drawing.Point(8, 252);
             this.dataGridViewCompras.Name = "dataGridViewCompras";
             this.dataGridViewCompras.ReadOnly = true;
+            this.dataGridViewCompras.RowHeadersVisible = false;
             this.dataGridViewCompras.RowHeadersWidth = 62;
             this.dataGridViewCompras.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewCompras.Size = new System.Drawing.Size(780, 185);
+            this.dataGridViewCompras.Size = new System.Drawing.Size(594, 141);
             this.dataGridViewCompras.TabIndex = 12;
-            // 
-            // Id
-            // 
-            this.Id.HeaderText = "Id";
-            this.Id.MinimumWidth = 8;
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Width = 197;
-            // 
-            // dataAlteracao
-            // 
-            this.dataAlteracao.HeaderText = "Data de alteração";
-            this.dataAlteracao.MinimumWidth = 8;
-            this.dataAlteracao.Name = "dataAlteracao";
-            this.dataAlteracao.ReadOnly = true;
-            this.dataAlteracao.Width = 150;
-            // 
-            // Nome
-            // 
-            this.Nome.HeaderText = "Nome da Compra";
-            this.Nome.MinimumWidth = 8;
-            this.Nome.Name = "Nome";
-            this.Nome.ReadOnly = true;
-            this.Nome.Width = 150;
-            // 
-            // DataCriacao
-            // 
-            this.DataCriacao.HeaderText = "Data Criação";
-            this.DataCriacao.MinimumWidth = 8;
-            this.DataCriacao.Name = "DataCriacao";
-            this.DataCriacao.ReadOnly = true;
-            this.DataCriacao.Width = 150;
-            // 
-            // IsFechada
-            // 
-            this.IsFechada.HeaderText = "Estado";
-            this.IsFechada.MinimumWidth = 8;
-            this.IsFechada.Name = "IsFechada";
-            this.IsFechada.ReadOnly = true;
-            this.IsFechada.Width = 150;
             // 
             // labelPerfil
             // 
             this.labelPerfil.AutoSize = true;
-            this.labelPerfil.Location = new System.Drawing.Point(800, 50);
-            this.labelPerfil.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelPerfil.Location = new System.Drawing.Point(600, 41);
             this.labelPerfil.Name = "labelPerfil";
-            this.labelPerfil.Size = new System.Drawing.Size(74, 16);
+            this.labelPerfil.Size = new System.Drawing.Size(60, 13);
             this.labelPerfil.TabIndex = 13;
             this.labelPerfil.Text = "Bem vindo,";
             // 
@@ -353,10 +327,10 @@
             // 
             // buttonSair
             // 
-            this.buttonSair.Location = new System.Drawing.Point(835, 455);
-            this.buttonSair.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonSair.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSair.Location = new System.Drawing.Point(626, 370);
             this.buttonSair.Name = "buttonSair";
-            this.buttonSair.Size = new System.Drawing.Size(149, 28);
+            this.buttonSair.Size = new System.Drawing.Size(112, 23);
             this.buttonSair.TabIndex = 15;
             this.buttonSair.Text = "Sair";
             this.buttonSair.UseVisualStyleBackColor = true;
@@ -366,37 +340,29 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(354, 98);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(266, 80);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(178, 25);
+            this.label6.Size = new System.Drawing.Size(143, 20);
             this.label6.TabIndex = 16;
             this.label6.Text = "Orçamento Mensal";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::CasaPoupanca.Properties.Resources.final_removebg_preview;
-            this.pictureBox1.Location = new System.Drawing.Point(11, 39);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox1.Location = new System.Drawing.Point(8, 41);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(105, 80);
+            this.pictureBox1.Size = new System.Drawing.Size(79, 56);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 14;
             this.pictureBox1.TabStop = false;
             // 
-            // perfilToolStripMenuItem
-            // 
-            this.perfilToolStripMenuItem.Name = "perfilToolStripMenuItem";
-            this.perfilToolStripMenuItem.Size = new System.Drawing.Size(56, 24);
-            this.perfilToolStripMenuItem.Text = "Perfil";
-            this.perfilToolStripMenuItem.Click += new System.EventHandler(this.perfilToolStripMenuItem_Click);
-            // 
             // FormDashboard
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(999, 506);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(749, 411);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.buttonSair);
             this.Controls.Add(this.labelPerfil);
@@ -414,7 +380,6 @@
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.pictureBox1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormDashboard";
             this.Text = "Dashboard";
             this.menuStrip1.ResumeLayout(false);
@@ -453,11 +418,6 @@
         private System.Windows.Forms.ImageList imageList2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button buttonSair;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataAlteracao;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DataCriacao;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IsFechada;
         private System.Windows.Forms.ToolStripMenuItem converterEmCSVToolStripMenuItem;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ToolStripMenuItem modoCompraToolStripMenuItem;

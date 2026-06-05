@@ -72,7 +72,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(18, 173);
+            this.label3.Location = new System.Drawing.Point(79, 173);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(28, 13);
             this.label3.TabIndex = 20;
@@ -81,7 +81,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(18, 210);
+            this.label4.Location = new System.Drawing.Point(73, 210);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(34, 13);
             this.label4.TabIndex = 21;
@@ -90,7 +90,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(17, 247);
+            this.label5.Location = new System.Drawing.Point(45, 252);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(62, 13);
             this.label5.TabIndex = 22;
@@ -172,7 +172,7 @@
             // 
             // buttonVoltar
             // 
-            this.buttonVoltar.Location = new System.Drawing.Point(8, 348);
+            this.buttonVoltar.Location = new System.Drawing.Point(299, 318);
             this.buttonVoltar.Name = "buttonVoltar";
             this.buttonVoltar.Size = new System.Drawing.Size(75, 23);
             this.buttonVoltar.TabIndex = 33;
@@ -184,7 +184,7 @@
             // 
             this.listBoxCompras.FormattingEnabled = true;
             this.listBoxCompras.Location = new System.Drawing.Point(299, 133);
-            this.listBoxCompras.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listBoxCompras.Margin = new System.Windows.Forms.Padding(2);
             this.listBoxCompras.Name = "listBoxCompras";
             this.listBoxCompras.Size = new System.Drawing.Size(289, 121);
             this.listBoxCompras.TabIndex = 34;
@@ -205,7 +205,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(653, 567);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(653, 373);
             this.Controls.Add(this.listBoxCompras);
             this.Controls.Add(this.buttonVoltar);
             this.Controls.Add(this.buttonEditar);
@@ -222,7 +223,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormCompra";
             this.Text = "FormCompra";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantidade)).EndInit();

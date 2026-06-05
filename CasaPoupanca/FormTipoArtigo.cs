@@ -46,7 +46,7 @@ namespace CasaPoupanca
                 Name = "Id",
                 HeaderText = "ID",
                 DataPropertyName = "Id",
-                Width = 50
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
             });
 
             dataGridViewTipoArtigo.Columns.Add(new DataGridViewTextBoxColumn
@@ -54,7 +54,7 @@ namespace CasaPoupanca
                 Name = "Nome",
                 HeaderText = "Nome do Tipo",
                 DataPropertyName = "Nome",
-                Width = 250
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
             });
         }
 

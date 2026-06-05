@@ -55,10 +55,10 @@
             // 
             this.tabResumoMensal.BackColor = System.Drawing.Color.White;
             this.tabResumoMensal.Controls.Add(this.dataGridViewResumo);
-            this.tabResumoMensal.Location = new System.Drawing.Point(4, 39);
+            this.tabResumoMensal.Location = new System.Drawing.Point(4, 29);
             this.tabResumoMensal.Name = "tabResumoMensal";
             this.tabResumoMensal.Padding = new System.Windows.Forms.Padding(10);
-            this.tabResumoMensal.Size = new System.Drawing.Size(942, 387);
+            this.tabResumoMensal.Size = new System.Drawing.Size(942, 397);
             this.tabResumoMensal.TabIndex = 0;
             this.tabResumoMensal.Text = "📅 Resumo Mensal";
             // 
@@ -76,7 +76,7 @@
             this.dataGridViewResumo.ReadOnly = true;
             this.dataGridViewResumo.RowHeadersWidth = 40;
             this.dataGridViewResumo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewResumo.Size = new System.Drawing.Size(922, 367);
+            this.dataGridViewResumo.Size = new System.Drawing.Size(922, 377);
             this.dataGridViewResumo.TabIndex = 0;
             this.dataGridViewResumo.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewResumo_CellContentClick);
             // 
@@ -84,10 +84,10 @@
             // 
             this.tabCompras.BackColor = System.Drawing.Color.White;
             this.tabCompras.Controls.Add(this.dataGridViewCompras);
-            this.tabCompras.Location = new System.Drawing.Point(4, 39);
+            this.tabCompras.Location = new System.Drawing.Point(4, 29);
             this.tabCompras.Name = "tabCompras";
             this.tabCompras.Padding = new System.Windows.Forms.Padding(10);
-            this.tabCompras.Size = new System.Drawing.Size(942, 387);
+            this.tabCompras.Size = new System.Drawing.Size(942, 397);
             this.tabCompras.TabIndex = 1;
             this.tabCompras.Text = "📋 % de Compras";
             // 
@@ -105,7 +105,7 @@
             this.dataGridViewCompras.ReadOnly = true;
             this.dataGridViewCompras.RowHeadersWidth = 40;
             this.dataGridViewCompras.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewCompras.Size = new System.Drawing.Size(922, 367);
+            this.dataGridViewCompras.Size = new System.Drawing.Size(922, 377);
             this.dataGridViewCompras.TabIndex = 0;
             // 
             // tabSugestoes
@@ -113,10 +113,10 @@
             this.tabSugestoes.BackColor = System.Drawing.Color.White;
             this.tabSugestoes.Controls.Add(this.lblSugestaoOrcamento);
             this.tabSugestoes.Controls.Add(this.lstSugestaoCompras);
-            this.tabSugestoes.Location = new System.Drawing.Point(4, 39);
+            this.tabSugestoes.Location = new System.Drawing.Point(4, 29);
             this.tabSugestoes.Name = "tabSugestoes";
             this.tabSugestoes.Padding = new System.Windows.Forms.Padding(15);
-            this.tabSugestoes.Size = new System.Drawing.Size(942, 387);
+            this.tabSugestoes.Size = new System.Drawing.Size(942, 397);
             this.tabSugestoes.TabIndex = 2;
             this.tabSugestoes.Text = "💡 Sugestões";
             // 
@@ -134,10 +134,10 @@
             // 
             this.lstSugestaoCompras.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
             this.lstSugestaoCompras.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.lstSugestaoCompras.ItemHeight = 30;
+            this.lstSugestaoCompras.ItemHeight = 20;
             this.lstSugestaoCompras.Location = new System.Drawing.Point(15, 80);
             this.lstSugestaoCompras.Name = "lstSugestaoCompras";
-            this.lstSugestaoCompras.Size = new System.Drawing.Size(550, 274);
+            this.lstSugestaoCompras.Size = new System.Drawing.Size(550, 264);
             this.lstSugestaoCompras.TabIndex = 1;
             // 
             // btnAtualizar
@@ -219,7 +219,7 @@
             // 
             // FormEstatisticas
             // 
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(978, 594);
             this.Controls.Add(this.pictureBoxLogo);
             this.Controls.Add(this.labelTitulo);

@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxNome = new System.Windows.Forms.TextBox();
             this.buttonAdicionar = new System.Windows.Forms.Button();
             this.buttonEditar = new System.Windows.Forms.Button();
             this.buttonRemover = new System.Windows.Forms.Button();
             this.dataGridViewTipoArtigo = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonVoltar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -46,27 +46,24 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(38, 195);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(25, 127);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 20);
+            this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Nome:";
             // 
             // textBoxNome
             // 
-            this.textBoxNome.Location = new System.Drawing.Point(100, 189);
-            this.textBoxNome.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxNome.Location = new System.Drawing.Point(67, 123);
             this.textBoxNome.Name = "textBoxNome";
-            this.textBoxNome.Size = new System.Drawing.Size(301, 26);
+            this.textBoxNome.Size = new System.Drawing.Size(189, 20);
             this.textBoxNome.TabIndex = 1;
             // 
             // buttonAdicionar
             // 
-            this.buttonAdicionar.Location = new System.Drawing.Point(32, 242);
-            this.buttonAdicionar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonAdicionar.Location = new System.Drawing.Point(21, 157);
             this.buttonAdicionar.Name = "buttonAdicionar";
-            this.buttonAdicionar.Size = new System.Drawing.Size(112, 35);
+            this.buttonAdicionar.Size = new System.Drawing.Size(75, 23);
             this.buttonAdicionar.TabIndex = 2;
             this.buttonAdicionar.Text = "Adicionar";
             this.buttonAdicionar.UseVisualStyleBackColor = true;
@@ -74,10 +71,9 @@
             // 
             // buttonEditar
             // 
-            this.buttonEditar.Location = new System.Drawing.Point(152, 242);
-            this.buttonEditar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonEditar.Location = new System.Drawing.Point(101, 157);
             this.buttonEditar.Name = "buttonEditar";
-            this.buttonEditar.Size = new System.Drawing.Size(112, 35);
+            this.buttonEditar.Size = new System.Drawing.Size(75, 23);
             this.buttonEditar.TabIndex = 3;
             this.buttonEditar.Text = "Editar";
             this.buttonEditar.UseVisualStyleBackColor = true;
@@ -85,10 +81,9 @@
             // 
             // buttonRemover
             // 
-            this.buttonRemover.Location = new System.Drawing.Point(272, 242);
-            this.buttonRemover.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonRemover.Location = new System.Drawing.Point(181, 157);
             this.buttonRemover.Name = "buttonRemover";
-            this.buttonRemover.Size = new System.Drawing.Size(112, 35);
+            this.buttonRemover.Size = new System.Drawing.Size(75, 23);
             this.buttonRemover.TabIndex = 4;
             this.buttonRemover.Text = "Remover";
             this.buttonRemover.UseVisualStyleBackColor = true;
@@ -96,39 +91,47 @@
             // 
             // dataGridViewTipoArtigo
             // 
+            this.dataGridViewTipoArtigo.AllowUserToAddRows = false;
+            this.dataGridViewTipoArtigo.AllowUserToDeleteRows = false;
+            this.dataGridViewTipoArtigo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridViewTipoArtigo.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridViewTipoArtigo.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTipoArtigo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewTipoArtigo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewTipoArtigo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Id,
-            this.Nome});
-            this.dataGridViewTipoArtigo.Location = new System.Drawing.Point(32, 298);
-            this.dataGridViewTipoArtigo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTipoArtigo.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridViewTipoArtigo.GridColor = System.Drawing.Color.White;
+            this.dataGridViewTipoArtigo.Location = new System.Drawing.Point(21, 194);
             this.dataGridViewTipoArtigo.Name = "dataGridViewTipoArtigo";
+            this.dataGridViewTipoArtigo.ReadOnly = true;
+            this.dataGridViewTipoArtigo.RowHeadersVisible = false;
             this.dataGridViewTipoArtigo.RowHeadersWidth = 62;
-            this.dataGridViewTipoArtigo.Size = new System.Drawing.Size(566, 231);
+            this.dataGridViewTipoArtigo.Size = new System.Drawing.Size(351, 246);
             this.dataGridViewTipoArtigo.TabIndex = 5;
             this.dataGridViewTipoArtigo.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridViewTipoArtigo_DataBindingComplete);
             this.dataGridViewTipoArtigo.SelectionChanged += new System.EventHandler(this.dataGridViewTipoArtigo_SelectionChanged);
             // 
-            // Id
-            // 
-            this.Id.HeaderText = "Id";
-            this.Id.MinimumWidth = 8;
-            this.Id.Name = "Id";
-            this.Id.Width = 150;
-            // 
-            // Nome
-            // 
-            this.Nome.HeaderText = "Nome do tipo";
-            this.Nome.MinimumWidth = 8;
-            this.Nome.Name = "Nome";
-            this.Nome.Width = 150;
-            // 
             // buttonVoltar
             // 
-            this.buttonVoltar.Location = new System.Drawing.Point(152, 540);
-            this.buttonVoltar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonVoltar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.buttonVoltar.Location = new System.Drawing.Point(159, 456);
             this.buttonVoltar.Name = "buttonVoltar";
-            this.buttonVoltar.Size = new System.Drawing.Size(112, 35);
+            this.buttonVoltar.Size = new System.Drawing.Size(70, 23);
             this.buttonVoltar.TabIndex = 6;
             this.buttonVoltar.Text = "Voltar";
             this.buttonVoltar.UseVisualStyleBackColor = true;
@@ -137,9 +140,10 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::CasaPoupanca.Properties.Resources.final_removebg_preview;
-            this.pictureBox1.Location = new System.Drawing.Point(241, 25);
+            this.pictureBox1.Location = new System.Drawing.Point(28, 11);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(160, 132);
+            this.pictureBox1.Size = new System.Drawing.Size(107, 86);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 15;
             this.pictureBox1.TabStop = false;
@@ -148,18 +152,18 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(261, 139);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(41, 85);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(126, 29);
+            this.label4.Size = new System.Drawing.Size(86, 20);
             this.label4.TabIndex = 16;
             this.label4.Text = "T. Artigos";
             // 
             // FormTipoArtigo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(633, 608);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(396, 491);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.buttonVoltar);
@@ -169,7 +173,6 @@
             this.Controls.Add(this.buttonAdicionar);
             this.Controls.Add(this.textBoxNome);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormTipoArtigo";
             this.Text = "FormTipoArtigo";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTipoArtigo)).EndInit();
@@ -188,8 +191,6 @@
         private System.Windows.Forms.Button buttonRemover;
         private System.Windows.Forms.DataGridView dataGridViewTipoArtigo;
         private System.Windows.Forms.Button buttonVoltar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label4;
     }

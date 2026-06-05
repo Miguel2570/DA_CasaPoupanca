@@ -56,14 +56,14 @@ namespace CasaPoupanca
                 Name = "Id",
                 HeaderText = "ID",
                 DataPropertyName = "Id",
-                Width = 50
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             });
 
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "MesAno",
                 HeaderText = "Mês/Ano",
-                Width = 120
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
             });
 
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
@@ -72,21 +72,21 @@ namespace CasaPoupanca
                 HeaderText = "Orçamento (€)",
                 DataPropertyName = "Valor",
                 DefaultCellStyle = new DataGridViewCellStyle { Format = "C" },
-                Width = 120
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             });
 
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "TotalGasto",
                 HeaderText = "Total Gasto (€)",
-                Width = 120
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             });
 
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "Saldo",
                 HeaderText = "Saldo (€)",
-                Width = 120
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             });
         }
 
@@ -101,7 +101,7 @@ namespace CasaPoupanca
                 o.Valor,
                 TotalGasto = CalcularTotalGastoMes(o.Mes, o.Ano),
                 Saldo = o.Valor - CalcularTotalGastoMes(o.Mes, o.Ano)
-            }).ToList();
+            }).OrderBy(I=>I.Id).ToList();
 
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = orcamentosComDados;
@@ -202,8 +202,7 @@ namespace CasaPoupanca
 
                 if (!decimal.TryParse(textBoxValor.Text, out decimal valor) || valor <= 0)
                 {
-                    MessageBox.Show("Insira um valor válido!", "Aviso",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Insira um valor válido!");
                     return;
                 }
 
