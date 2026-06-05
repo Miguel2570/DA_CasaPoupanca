@@ -15,122 +15,203 @@ namespace CasaPoupanca
 
         public FormOrcamento()
         {
-            InitializeComponent(); 
+            try
+            {
+                InitializeComponent();
+                _controller = new OrcamentoController();
+                ConfigurarComboBoxes();
+                ConfigurarDataGridView();
+                CarregarOrcamentos();
+                CarregarHistoricoAlteracoes();
 
-           
-            _controller = new OrcamentoController();
-            ConfigurarComboBoxes();
-            ConfigurarDataGridView();
-            CarregarOrcamentos();
-            CarregarHistoricoAlteracoes();
-
-          
-            dataGridView1.DataBindingComplete += (s, e) => {
-                dataGridView1.ClearSelection();
-                LimparCampos();
-            };
+                // Evento para quando o DataGridView terminar de carregar
+                dataGridView1.DataBindingComplete += (s, e) => {
+                    dataGridView1.ClearSelection();
+                    LimparCampos();
+                };
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao inicializar formulário: {ex.Message}\n\n{ex.StackTrace}");
+            }
         }
 
         private void ConfigurarComboBoxes()
         {
-           
-            if (comboBoxMes.Items.Count > 0)
+            try
             {
-                comboBoxMes.SelectedItem = DateTime.Now.Month.ToString();
-            }
+                // Preencher meses (1 a 12)
+                comboBoxMes.Items.Clear();
+                for (int i = 1; i <= 12; i++)
+                {
+                    comboBoxMes.Items.Add(i);
+                }
 
-            // ComboBox Ano
-            if (comboBoxAno.Items.Count > 0)
+                // Preencher anos (ano atual -5 até ano atual +5)
+                comboBoxAno.Items.Clear();
+                int anoAtual = DateTime.Now.Year;
+                for (int i = anoAtual - 5; i <= anoAtual + 5; i++)
+                {
+                    comboBoxAno.Items.Add(i);
+                }
+
+                if (comboBoxMes.Items.Count > 0)
+                {
+                    comboBoxMes.SelectedItem = DateTime.Now.Month;
+                }
+
+                if (comboBoxAno.Items.Count > 0)
+                {
+                    comboBoxAno.SelectedItem = DateTime.Now.Year;
+                }
+            }
+            catch (Exception ex)
             {
-                comboBoxAno.SelectedItem = DateTime.Now.Year.ToString();
+                MessageBox.Show($"Erro ao configurar ComboBoxes: {ex.Message}");
             }
         }
 
         private void ConfigurarDataGridView()
         {
-            dataGridView1.AutoGenerateColumns = false;
-            dataGridView1.Columns.Clear();
-
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+            try
             {
-                Name = "Id",
-                HeaderText = "ID",
-                DataPropertyName = "Id",
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-            });
+                dataGridView1.AutoGenerateColumns = false;
+                dataGridView1.Columns.Clear();
 
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "MesAno",
-                HeaderText = "Mês/Ano",
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
-            });
+                // Coluna ID
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    Name = "Id",
+                    HeaderText = "ID",
+                    DataPropertyName = "Id",
+                    Width = 50,
+                    ReadOnly = true
+                });
 
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "Valor",
-                HeaderText = "Orçamento (€)",
-                DataPropertyName = "Valor",
-                DefaultCellStyle = new DataGridViewCellStyle { Format = "C" },
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-            });
+                // Coluna Mês
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    Name = "Mes",
+                    HeaderText = "Mês",
+                    DataPropertyName = "Mes",
+                    Width = 60,
+                    ReadOnly = true
+                });
 
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "TotalGasto",
-                HeaderText = "Total Gasto (€)",
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-            });
+                // Coluna Ano
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    Name = "Ano",
+                    HeaderText = "Ano",
+                    DataPropertyName = "Ano",
+                    Width = 60,
+                    ReadOnly = true
+                });
 
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+                // Coluna Valor do Orçamento
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    Name = "Valor",
+                    HeaderText = "Orçamento (€)",
+                    DataPropertyName = "Valor",
+                    DefaultCellStyle = new DataGridViewCellStyle { Format = "N2" },
+                    Width = 120,
+                    ReadOnly = true
+                });
+
+                // Coluna Total Gasto
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    Name = "TotalGasto",
+                    HeaderText = "Total Gasto (€)",
+                    DataPropertyName = "TotalGasto",
+                    DefaultCellStyle = new DataGridViewCellStyle { Format = "N2" },
+                    Width = 120,
+                    ReadOnly = true
+                });
+
+                // Coluna Saldo
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    Name = "Saldo",
+                    HeaderText = "Saldo (€)",
+                    DataPropertyName = "Saldo",
+                    DefaultCellStyle = new DataGridViewCellStyle { Format = "N2" },
+                    Width = 120,
+                    ReadOnly = true
+                });
+            }
+            catch (Exception ex)
             {
-                Name = "Saldo",
-                HeaderText = "Saldo (€)",
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-            });
+                MessageBox.Show($"Erro ao configurar DataGridView: {ex.Message}");
+            }
         }
 
         private void CarregarOrcamentos()
         {
-            var orcamentos = _controller.GetAllOrcamentos();
-
-            var orcamentosComDados = orcamentos.Select(o => new
+            try
             {
-                o.Id,
-                MesAno = $"{ObterNomeMes(o.Mes)} {o.Ano}",
-                o.Valor,
-                TotalGasto = CalcularTotalGastoMes(o.Mes, o.Ano),
-                Saldo = o.Valor - CalcularTotalGastoMes(o.Mes, o.Ano)
-            }).OrderBy(I=>I.Id).ToList();
+                var orcamentos = _controller.GetAllOrcamentos();
 
-            dataGridView1.DataSource = null;
-            dataGridView1.DataSource = orcamentosComDados;
+                var orcamentosComDados = orcamentos.Select(o => new
+                {
+                    o.Id,
+                    o.Mes,
+                    o.Ano,
+                    o.Valor,
+                    TotalGasto = CalcularTotalGastoMes(o.Mes, o.Ano),
+                    Saldo = o.Valor - CalcularTotalGastoMes(o.Mes, o.Ano)
+                }).OrderByDescending(o => o.Ano).ThenByDescending(o => o.Mes).ToList();
+
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = orcamentosComDados;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar orçamentos: {ex.Message}\n\n{ex.StackTrace}");
+            }
         }
 
         private void CarregarHistoricoAlteracoes()
         {
-           
-            listBoxAlteracoes.Items.Clear();
-            listBoxAlteracoes.Items.Insert(0, $"{DateTime.Now:dd/MM/yyyy HH:mm:ss}");
+            try
+            {
+                listBoxAlteracoes.Items.Clear();
+                listBoxAlteracoes.Items.Insert(0, $"{DateTime.Now:dd/MM/yyyy HH:mm:ss} - Formulário aberto");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar histórico: {ex.Message}");
+            }
         }
 
         private decimal CalcularTotalGastoMes(int mes, int ano)
         {
-            using (var db = new CasaPoupancaDB())
+            try
             {
-                var comprasFechadas = db.Compras
-                    .Where(c => c.DataCriacao.Month == mes &&
-                                c.DataCriacao.Year == ano &&
-                                c.IsFechada)
-                    .ToList();
-
-                decimal totalGasto = 0;
-                foreach (var compra in comprasFechadas)
+                using (var db = new CasaPoupancaDB())
                 {
-                    var itens = db.ItensCompra.Where(i => i.CompraId == compra.Id);
-                    totalGasto += itens.Sum(i => i.QuantidadeAdquirida * i.PrecoUnitario);
+                    var comprasFechadas = db.Compras
+                        .Where(c => c.DataCriacao.Month == mes &&
+                                    c.DataCriacao.Year == ano &&
+                                    c.IsFechada)
+                        .ToList();
+
+                    decimal totalGasto = 0;
+                    foreach (var compra in comprasFechadas)
+                    {
+                        var totalCompra = db.ItensCompra
+                            .Where(i => i.CompraId == compra.Id)
+                            .Sum(i => i.QuantidadeAdquirida * i.PrecoUnitario);
+                        totalGasto += totalCompra;
+                    }
+                    return totalGasto;
                 }
-                return totalGasto;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao calcular total gasto: {ex.Message}");
+                return 0;
             }
         }
 
@@ -141,68 +222,132 @@ namespace CasaPoupanca
             return meses[mes - 1];
         }
 
-        private int ObterNumeroMes(string nomeMes)
-        {
-            string[] meses = { "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
-                               "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" };
-            return Array.IndexOf(meses, nomeMes) + 1;
-        }
-
         private void LimparCampos()
         {
-            comboBoxMes.SelectedItem = DateTime.Now.Month.ToString();
-            comboBoxAno.SelectedItem = DateTime.Now.Year.ToString();
-            textBoxValor.Clear();
-            _orcamentoEditandoId = null;
-            buttonAdicionar.Enabled = true;
-            buttonEditar.Enabled = false;
+            try
+            {
+                comboBoxMes.SelectedItem = DateTime.Now.Month;
+                comboBoxAno.SelectedItem = DateTime.Now.Year;
+                textBoxValor.Clear();
+                _orcamentoEditandoId = null;
+
+                // IMPORTANTE: Desativar botões de editar e remover
+                buttonAdicionar.Enabled = true;
+                buttonEditar.Enabled = false;
+                buttonRemover.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao limpar campos: {ex.Message}");
+            }
         }
 
         private void RegistarAlteracao(string mensagem)
         {
-            listBoxAlteracoes.Items.Insert(0, $"{DateTime.Now:dd/MM/yyyy HH:mm:ss}");
-            if (listBoxAlteracoes.Items.Count > 20)
+            try
             {
-                listBoxAlteracoes.Items.RemoveAt(listBoxAlteracoes.Items.Count - 1);
+                listBoxAlteracoes.Items.Insert(0, $"{DateTime.Now:dd/MM/yyyy HH:mm:ss} - {mensagem}");
+                if (listBoxAlteracoes.Items.Count > 20)
+                {
+                    listBoxAlteracoes.Items.RemoveAt(listBoxAlteracoes.Items.Count - 1);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao registar alteração: {ex.Message}");
             }
         }
 
+        // EVENTO PRINCIPAL: Quando selecionar uma linha no DataGridView
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-            if (dataGridView1.CurrentRow != null && dataGridView1.CurrentRow.Cells["MesAno"].Value != null)
+            try
             {
-                _orcamentoEditandoId = (int)dataGridView1.CurrentRow.Cells["Id"].Value;
+                // Verificar se há uma linha selecionada
+                if (dataGridView1.SelectedRows.Count > 0)
+                {
+                    var row = dataGridView1.SelectedRows[0];
 
-                string mesAno = dataGridView1.CurrentRow.Cells["MesAno"].Value.ToString();
-                string[] partes = mesAno.Split(' ');
-                string nomeMes = partes[0];
-                int ano = int.Parse(partes[1]);
-                int mes = ObterNumeroMes(nomeMes);
+                    if (row.Cells["Id"].Value != null)
+                    {
+                        // Obter os valores da linha selecionada
+                        _orcamentoEditandoId = Convert.ToInt32(row.Cells["Id"].Value);
+                        int mes = Convert.ToInt32(row.Cells["Mes"].Value);
+                        int ano = Convert.ToInt32(row.Cells["Ano"].Value);
+                        decimal valor = Convert.ToDecimal(row.Cells["Valor"].Value);
 
-                comboBoxMes.SelectedItem = mes.ToString();
-                comboBoxAno.SelectedItem = ano.ToString();
-                textBoxValor.Text = dataGridView1.CurrentRow.Cells["Valor"].Value?.ToString();
+                        // Preencher os campos com os valores selecionados
+                        comboBoxMes.SelectedItem = mes;
+                        comboBoxAno.SelectedItem = ano;
+                        textBoxValor.Text = valor.ToString("F2");
 
-                buttonAdicionar.Enabled = false;
-                buttonEditar.Enabled = true;
+                        // ATIVAR os botões de editar e remover
+                        buttonAdicionar.Enabled = false;
+                        buttonEditar.Enabled = true;
+                        buttonRemover.Enabled = true;
+                    }
+                }
+                else
+                {
+                    // Se nenhuma linha estiver selecionada, desativar os botões
+                    buttonAdicionar.Enabled = true;
+                    buttonEditar.Enabled = false;
+                    buttonRemover.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao selecionar orçamento: {ex.Message}\n\n{ex.StackTrace}");
+            }
+        }
+
+        // Também adicionar evento de clique na célula como alternativa
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex >= 0)
+                {
+                    dataGridView1.ClearSelection();
+                    dataGridView1.Rows[e.RowIndex].Selected = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao clicar na célula: {ex.Message}");
             }
         }
 
         private void buttonVoltar_Click(object sender, EventArgs e)
         {
-            this.Close();
+            try
+            {
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao fechar formulário: {ex.Message}");
+            }
         }
 
         private void buttonAdicionar_Click_1(object sender, EventArgs e)
         {
             try
             {
-                int mes = int.Parse(comboBoxMes.SelectedItem.ToString());
-                int ano = int.Parse(comboBoxAno.SelectedItem.ToString());
+                if (comboBoxMes.SelectedItem == null || comboBoxAno.SelectedItem == null)
+                {
+                    MessageBox.Show("Selecione o mês e ano!", "Aviso",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int mes = (int)comboBoxMes.SelectedItem;
+                int ano = (int)comboBoxAno.SelectedItem;
 
                 if (!decimal.TryParse(textBoxValor.Text, out decimal valor) || valor <= 0)
                 {
-                    MessageBox.Show("Insira um valor válido!");
+                    MessageBox.Show("Insira um valor válido (maior que zero)!", "Aviso",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -217,19 +362,22 @@ namespace CasaPoupanca
 
                 if (_controller.AddOrcamento(novoOrcamento))
                 {
-                    MessageBox.Show("Orçamento adicionado com sucesso!");
+                    MessageBox.Show("Orçamento adicionado com sucesso!", "Sucesso",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LimparCampos();
                     CarregarOrcamentos();
                     RegistarAlteracao($"Adicionado orçamento de {valor:C} para {ObterNomeMes(mes)} {ano}");
                 }
                 else
                 {
-                    MessageBox.Show("Já existe um orçamento para este mês/ano!");
+                    MessageBox.Show("Já existe um orçamento para este mês/ano!", "Erro",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro: {ex.Message}");
+                MessageBox.Show($"Erro ao adicionar orçamento: {ex.Message}\n\n{ex.StackTrace}",
+                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -237,41 +385,80 @@ namespace CasaPoupanca
         {
             try
             {
+                // Verificar se existe um orçamento selecionado
                 if (_orcamentoEditandoId == null)
                 {
-                    MessageBox.Show("Selecione um orçamento para editar.");
+                    MessageBox.Show("Por favor, selecione um orçamento na tabela para editar.",
+                        "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
+                // Verificar se os ComboBoxes têm valores selecionados
+                if (comboBoxMes.SelectedItem == null || comboBoxAno.SelectedItem == null)
+                {
+                    MessageBox.Show("Por favor, selecione o mês e ano.",
+                        "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int mes = (int)comboBoxMes.SelectedItem;
+                int ano = (int)comboBoxAno.SelectedItem;
+
+                // Verificar se o valor é válido
                 if (!decimal.TryParse(textBoxValor.Text, out decimal valor) || valor <= 0)
                 {
-                    MessageBox.Show("Insira um valor válido!");
+                    MessageBox.Show("Por favor, insira um valor válido (maior que zero).",
+                        "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
+                // Confirmar com o usuário
+                DialogResult confirmar = MessageBox.Show(
+                    $"Deseja atualizar o orçamento para:\n\n" +
+                    $"ID: {_orcamentoEditandoId}\n" +
+                    $"Mês: {mes} ({ObterNomeMes(mes)})\n" +
+                    $"Ano: {ano}\n" +
+                    $"Valor: {valor:C}\n\n" +
+                    $"Confirmar atualização?",
+                    "Confirmar Edição",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (confirmar != DialogResult.Yes)
+                    return;
+
+                // Criar objeto com os dados atualizados
                 var orcamento = new Orcamento
                 {
                     Id = _orcamentoEditandoId.Value,
+                    Mes = mes,
+                    Ano = ano,
                     Valor = valor,
                     AlteradoPorId = Session.UtilizadorId,
                     DataAlteracao = DateTime.Now
                 };
 
-                if (_controller.UpdateOrcamento(orcamento))
+                // Tentar atualizar
+                bool resultado = _controller.UpdateOrcamento(orcamento);
+
+                if (resultado)
                 {
-                    MessageBox.Show("Orçamento atualizado com sucesso!");
+                    MessageBox.Show("Orçamento atualizado com sucesso!",
+                        "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LimparCampos();
                     CarregarOrcamentos();
-                    RegistarAlteracao($"Editado orçamento para {valor:C}");
+                    RegistarAlteracao($"Editado orçamento para {valor:C} ({ObterNomeMes(mes)} {ano})");
                 }
                 else
                 {
-                    MessageBox.Show("Erro ao atualizar orçamento!");
+                    MessageBox.Show("Falha ao atualizar orçamento. Verifique se já não existe um orçamento para este mês/ano.",
+                        "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro: {ex.Message}");
+                MessageBox.Show($"Erro crítico ao editar orçamento:\n\n{ex.Message}\n\n{ex.StackTrace}",
+                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -279,41 +466,38 @@ namespace CasaPoupanca
         {
             try
             {
-                if (_orcamentoEditandoId == null && dataGridView1.CurrentRow == null)
+                if (_orcamentoEditandoId == null)
                 {
-                    MessageBox.Show("Selecione um orçamento para remover.");
+                    MessageBox.Show("Selecione um orçamento para remover.",
+                        "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-
-                int id = _orcamentoEditandoId ?? (int)dataGridView1.CurrentRow.Cells["Id"].Value;
 
                 DialogResult resultado = MessageBox.Show("Tem certeza que deseja remover este orçamento?",
                     "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (resultado == DialogResult.Yes)
                 {
-                    if (_controller.DeleteOrcamento(id))
+                    if (_controller.DeleteOrcamento(_orcamentoEditandoId.Value))
                     {
-                        MessageBox.Show("Orçamento removido!");
+                        MessageBox.Show("Orçamento removido com sucesso!",
+                            "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         LimparCampos();
                         CarregarOrcamentos();
                         RegistarAlteracao("Orçamento removido");
                     }
                     else
                     {
-                        MessageBox.Show("Erro ao remover orçamento!");
+                        MessageBox.Show("Erro ao remover orçamento!",
+                            "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro: {ex.Message}");
+                MessageBox.Show($"Erro ao remover orçamento: {ex.Message}\n\n{ex.StackTrace}",
+                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void comboBoxAno_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

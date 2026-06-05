@@ -3,6 +3,7 @@ using CasaPoupança.database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace CasaPoupanca.Controllers
 {
@@ -10,79 +11,159 @@ namespace CasaPoupanca.Controllers
     {
         public List<Orcamento> GetAllOrcamentos()
         {
-            using (var db = new CasaPoupancaDB())
+            try
             {
-                return db.Orcamentos
-                    .OrderByDescending(o => o.Ano)
-                    .ThenByDescending(o => o.Mes)
-                    .ToList();
+                using (var db = new CasaPoupancaDB())
+                {
+                    return db.Orcamentos
+                        .OrderByDescending(o => o.Ano)
+                        .ThenByDescending(o => o.Mes)
+                        .ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao buscar orçamentos: {ex.Message}");
+                return new List<Orcamento>();
             }
         }
 
         public Orcamento GetOrcamentoPorMesAno(int mes, int ano)
         {
-            using (var db = new CasaPoupancaDB())
+            try
             {
-                return db.Orcamentos
-                    .FirstOrDefault(o => o.Mes == mes && o.Ano == ano);
+                using (var db = new CasaPoupancaDB())
+                {
+                    return db.Orcamentos
+                        .FirstOrDefault(o => o.Mes == mes && o.Ano == ano);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao buscar orçamento: {ex.Message}");
+                return null;
             }
         }
 
         public bool AddOrcamento(Orcamento orcamento)
         {
-            using (var db = new CasaPoupancaDB())
+            try
             {
-                // Verificar se já existe orçamento para este mês/ano
-                if (db.Orcamentos.Any(o => o.Mes == orcamento.Mes && o.Ano == orcamento.Ano))
-                    return false;
+                using (var db = new CasaPoupancaDB())
+                {
+                    // Verificar se já existe orçamento para este mês/ano
+                    if (db.Orcamentos.Any(o => o.Mes == orcamento.Mes && o.Ano == orcamento.Ano))
+                    {
+                        MessageBox.Show($"Já existe um orçamento para {orcamento.Mes}/{orcamento.Ano}");
+                        return false;
+                    }
 
-                db.Orcamentos.Add(orcamento);
-                db.SaveChanges();
-                return true;
+                    db.Orcamentos.Add(orcamento);
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao adicionar orçamento: {ex.Message}");
+                return false;
             }
         }
 
         public bool UpdateOrcamento(Orcamento orcamento)
         {
-            using (var db = new CasaPoupancaDB())
+            try
             {
-                var existing = db.Orcamentos.Find(orcamento.Id);
-                if (existing == null)
-                    return false;
+                using (var db = new CasaPoupancaDB())
+                {
+                    var existing = db.Orcamentos.Find(orcamento.Id);
+                    if (existing == null)
+                    {
+                        MessageBox.Show($"Orçamento com ID {orcamento.Id} não encontrado!");
+                        return false;
+                    }
 
-                existing.Valor = orcamento.Valor;
-                existing.AlteradoPorId = orcamento.AlteradoPorId;
-                existing.DataAlteracao = orcamento.DataAlteracao;
-                db.SaveChanges();
-                return true;
+                    // Verificar se já existe outro orçamento com o mesmo mês/ano (exceto o atual)
+                    var outroOrcamento = db.Orcamentos
+                        .FirstOrDefault(o => o.Mes == orcamento.Mes &&
+                                             o.Ano == orcamento.Ano &&
+                                             o.Id != orcamento.Id);
+
+                    if (outroOrcamento != null)
+                    {
+                        MessageBox.Show($"Já existe um orçamento para {orcamento.Mes}/{orcamento.Ano} (ID: {outroOrcamento.Id})");
+                        return false;
+                    }
+
+                    existing.Mes = orcamento.Mes;
+                    existing.Ano = orcamento.Ano;
+                    existing.Valor = orcamento.Valor;
+                    existing.AlteradoPorId = orcamento.AlteradoPorId;
+                    existing.DataAlteracao = orcamento.DataAlteracao;
+
+                    int salvos = db.SaveChanges();
+                    return salvos > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro detalhado ao atualizar orçamento: {ex.Message}\n\nStack Trace: {ex.StackTrace}");
+                return false;
             }
         }
 
         public bool DeleteOrcamento(int id)
         {
-            using (var db = new CasaPoupancaDB())
+            try
             {
-                var orcamento = db.Orcamentos.Find(id);
-                if (orcamento == null)
-                    return false;
+                using (var db = new CasaPoupancaDB())
+                {
+                    var orcamento = db.Orcamentos.Find(id);
+                    if (orcamento == null)
+                    {
+                        MessageBox.Show($"Orçamento com ID {id} não encontrado!");
+                        return false;
+                    }
 
-                db.Orcamentos.Remove(orcamento);
-                db.SaveChanges();
-                return true;
+                    db.Orcamentos.Remove(orcamento);
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao remover orçamento: {ex.Message}");
+                return false;
             }
         }
 
         public Orcamento GetOrcamentoAtual()
         {
-            int mesAtual = DateTime.Now.Month;
-            int anoAtual = DateTime.Now.Year;
-            return GetOrcamentoPorMesAno(mesAtual, anoAtual);
+            try
+            {
+                int mesAtual = DateTime.Now.Month;
+                int anoAtual = DateTime.Now.Year;
+                return GetOrcamentoPorMesAno(mesAtual, anoAtual);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao buscar orçamento atual: {ex.Message}");
+                return null;
+            }
         }
 
         public decimal GetValorOrcamentoAtual()
         {
-            var orcamento = GetOrcamentoAtual();
-            return orcamento?.Valor ?? 0;
+            try
+            {
+                var orcamento = GetOrcamentoAtual();
+                return orcamento?.Valor ?? 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao buscar valor do orçamento atual: {ex.Message}");
+                return 0;
+            }
         }
     }
 }

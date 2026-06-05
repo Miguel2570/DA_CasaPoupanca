@@ -18,18 +18,64 @@ namespace CasaPoupanca
         public FormUtilizadores()
         {
             InitializeComponent();
-            ConfigurarDataGridView();
+            ConfigurarListBox();
             CarregarUtilizadores();
-
-            dataGridViewUtilizadores.DataBindingComplete += DataGridViewUtilizadores_DataBindingComplete;
 
             LimparCampos();
         }
 
-        private void DataGridViewUtilizadores_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        private void ConfigurarListBox()
         {
-            dataGridViewUtilizadores.ClearSelection();
-            LimparCampos();
+            // Configurar o ListBox para mostrar os utilizadores formatados
+            listBoxUtilizadores.DisplayMember = "DisplayText";
+            listBoxUtilizadores.ValueMember = "Id";
+            listBoxUtilizadores.DrawMode = DrawMode.OwnerDrawFixed;
+            listBoxUtilizadores.DrawItem += ListBoxUtilizadores_DrawItem;
+        }
+
+        private void ListBoxUtilizadores_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0) return;
+
+            e.DrawBackground();
+
+            if (listBoxUtilizadores.Items[e.Index] is UtilizadorDisplay item)
+            {
+                // Formatar o texto com ID, Username, Email e Data de Registo
+                string texto = $"{item.Id} - {item.Username} | Email: {item.Email} | Registo: {item.DataRegisto:dd/MM/yyyy}";
+
+                using (var brush = new SolidBrush(e.ForeColor))
+                {
+                    e.Graphics.DrawString(texto, e.Font, brush, e.Bounds);
+                }
+            }
+
+            e.DrawFocusRectangle();
+        }
+
+        private void CarregarUtilizadores()
+        {
+            using (var db = new CasaPoupancaDB())
+            {
+                var utilizadores = db.Utilizadores
+                    .OrderBy(u => u.Username)
+                    .Select(u => new UtilizadorDisplay
+                    {
+                        Id = u.Id,
+                        Username = u.Username,
+                        Email = u.Email,
+                        DataRegisto = u.DataRegisto
+                    })
+                    .ToList();
+
+                listBoxUtilizadores.DataSource = null;
+                listBoxUtilizadores.DataSource = utilizadores;
+
+                if (utilizadores.Any())
+                {
+                    listBoxUtilizadores.SelectedIndex = -1; // Nenhum selecionado inicialmente
+                }
+            }
         }
 
         private void LimparCampos()
@@ -38,68 +84,22 @@ namespace CasaPoupanca
             textBoxPassword.Clear();
             textBoxEmail.Clear();
             _utilizadorEditandoId = null;
-        }
 
-        private void ConfigurarDataGridView()
-        {
-            dataGridViewUtilizadores.AutoGenerateColumns = false;
-            dataGridViewUtilizadores.Columns.Clear();
-
-            dataGridViewUtilizadores.Columns.Add(new DataGridViewTextBoxColumn
+            if (listBoxUtilizadores.SelectedIndex != -1)
             {
-                Name = "Id",
-                HeaderText = "ID",
-                DataPropertyName = "Id",
-                Width = 50
-            });
-
-            dataGridViewUtilizadores.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "Username",
-                HeaderText = "Username",
-                DataPropertyName = "Username",
-                Width = 120
-            });
-
-
-            dataGridViewUtilizadores.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "Email",
-                HeaderText = "Email",
-                DataPropertyName = "Email",
-                Width = 150
-            });
-
-            dataGridViewUtilizadores.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "DataRegisto",
-                HeaderText = "Data Registo",
-                DataPropertyName = "DataRegisto",
-                DefaultCellStyle = new DataGridViewCellStyle { Format = "dd/MM/yyyy" },
-                Width = 100
-            });
-        }
-
-        private void CarregarUtilizadores()
-        {
-            using (var db = new CasaPoupancaDB())
-            {
-                var utilizadores = db.Utilizadores.OrderBy(u => u.Username).ToList();
-                dataGridViewUtilizadores.DataSource = null;
-                dataGridViewUtilizadores.DataSource = utilizadores;
+                listBoxUtilizadores.SelectedIndex = -1;
             }
         }
 
-
         private void buttonRemover_Click(object sender, EventArgs e)
         {
-            if (_utilizadorEditandoId == null && dataGridViewUtilizadores.CurrentRow == null)
+            if (_utilizadorEditandoId == null && listBoxUtilizadores.SelectedItem == null)
             {
                 MessageBox.Show("Selecione um utilizador para remover.");
                 return;
             }
 
-            int id = _utilizadorEditandoId ?? (int)dataGridViewUtilizadores.CurrentRow.Cells["Id"].Value;
+            int id = _utilizadorEditandoId ?? ((UtilizadorDisplay)listBoxUtilizadores.SelectedItem).Id;
 
             if (id == Session.UtilizadorId)
             {
@@ -131,14 +131,19 @@ namespace CasaPoupanca
             }
         }
 
-        private void dataGridViewUtilizadores_SelectionChanged(object sender, EventArgs e)
+        private void listBoxUtilizadores_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (dataGridViewUtilizadores.CurrentRow != null)
+            if (listBoxUtilizadores.SelectedItem != null)
             {
-                _utilizadorEditandoId = (int)dataGridViewUtilizadores.CurrentRow.Cells["Id"].Value;
-                textBoxUsername.Text = dataGridViewUtilizadores.CurrentRow.Cells["Username"].Value?.ToString();
-                textBoxEmail.Text = dataGridViewUtilizadores.CurrentRow.Cells["Email"].Value?.ToString();
+                var utilizadorSelecionado = (UtilizadorDisplay)listBoxUtilizadores.SelectedItem;
+                _utilizadorEditandoId = utilizadorSelecionado.Id;
+                textBoxUsername.Text = utilizadorSelecionado.Username;
+                textBoxEmail.Text = utilizadorSelecionado.Email;
                 textBoxPassword.Clear(); // Password não é carregada por segurança
+            }
+            else
+            {
+                LimparCampos();
             }
         }
 
@@ -146,5 +151,17 @@ namespace CasaPoupanca
         {
             this.Close();
         }
+    }
+
+    // Classe auxiliar para formatar a exibição no ListBox
+    public class UtilizadorDisplay
+    {
+        public int Id { get; set; }
+        public string Username { get; set; }
+        public string Email { get; set; }
+        public DateTime DataRegisto { get; set; }
+
+        // Propriedade para exibição formatada
+        public string DisplayText => $"{Id} - {Username} | Email: {Email} | Registo: {DataRegisto:dd/MM/yyyy}";
     }
 }
