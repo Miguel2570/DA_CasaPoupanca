@@ -228,5 +228,11 @@ namespace CasaPoupanca
         {
 
         }
+
+        private void perfilToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormProfile profile = new FormProfile();
+            profile.ShowDialog();
+        }
     }
 }

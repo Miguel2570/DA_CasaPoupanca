@@ -177,6 +177,9 @@
     <EmbeddedResource Include="FormOrcamento.resx">
       <DependentUpon>FormOrcamento.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormProfile.resx">
+      <DependentUpon>FormProfile.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormRegister.resx">
       <DependentUpon>FormRegister.cs</DependentUpon>
     </EmbeddedResource>
