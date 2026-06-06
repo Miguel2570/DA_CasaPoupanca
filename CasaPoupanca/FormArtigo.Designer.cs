@@ -44,38 +44,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(14, 188);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(129, 25);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Filtrar por tipo";
-            // 
-            // comboBoxFiltrar
-            // 
-            this.comboBoxFiltrar.FormattingEnabled = true;
-            this.comboBoxFiltrar.Location = new System.Drawing.Point(156, 185);
-            this.comboBoxFiltrar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.comboBoxFiltrar.Name = "comboBoxFiltrar";
-            this.comboBoxFiltrar.Size = new System.Drawing.Size(307, 28);
-            this.comboBoxFiltrar.TabIndex = 1;
-            this.comboBoxFiltrar.SelectedIndexChanged += new System.EventHandler(this.comboBoxFiltrar_SelectedIndexChanged);
-            // 
-            // buttonSearch
-            // 
-            this.buttonSearch.Location = new System.Drawing.Point(474, 185);
-            this.buttonSearch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.buttonSearch.Name = "buttonSearch";
-            this.buttonSearch.Size = new System.Drawing.Size(112, 32);
-            this.buttonSearch.TabIndex = 2;
-            this.buttonSearch.Text = "Search";
-            this.buttonSearch.UseVisualStyleBackColor = true;
-            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
-            // 
             // buttonRemover
             // 
             this.buttonRemover.Location = new System.Drawing.Point(402, 326);
@@ -227,9 +195,6 @@
             this.Controls.Add(this.buttonAdicionar);
             this.Controls.Add(this.textBoxNome);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.buttonSearch);
-            this.Controls.Add(this.comboBoxFiltrar);
-            this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormArtigo";
             this.Text = "FormArtigo";
