@@ -86,7 +86,7 @@
     <Compile Include="FormDashboard.Designer.cs">
       <DependentUpon>FormDashboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="database\ConfigDB.cs" />
+    <Compile Include="model\ConfigDB.cs" />
     <Compile Include="FormEstatisticas.cs">
       <SubType>Form</SubType>
     </Compile>

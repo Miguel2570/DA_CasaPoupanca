@@ -191,5 +191,10 @@ namespace CasaPoupanca
                 buttonEditar.Enabled = true;
             }
         }
+
+        private void comboBoxFiltrar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

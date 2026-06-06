@@ -18,17 +18,27 @@ namespace CasaPoupanca
     public partial class FormCompra : Form
     {
         private CompraController _controller;
+        private ArtigoController _artigoController;
+
         public FormCompra()
         {
             InitializeComponent();
+
             _controller = new CompraController();
+            _artigoController = new ArtigoController();
+
             try
             {
+                CarregarTiposArtigo();
                 CarregarCompras();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao carregar compras: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    $"Erro ao carregar compras: {ex.Message}",
+                    "Erro",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
 
             LimparCampos();
@@ -182,6 +192,24 @@ namespace CasaPoupanca
             }
         }
 
+        private void CarregarTiposArtigo()
+        {
+            var tipos = _artigoController.GetAllTipos();
+
+            comboBoxTipo.DataSource = tipos;
+            comboBoxTipo.DisplayMember = "Nome";
+            comboBoxTipo.ValueMember = "Id";
+        }
+
+        private void CarregarArtigosPorTipo(int tipoId)
+        {
+            var artigos = _artigoController.GetArtigosFiltrados(tipoId);
+
+            comboBoxArtigo.DataSource = artigos;
+            comboBoxArtigo.DisplayMember = "Nome";
+            comboBoxArtigo.ValueMember = "Id";
+        }
+
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -189,7 +217,13 @@ namespace CasaPoupanca
 
         private void comboBoxTipo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (comboBoxTipo.SelectedValue == null)
+                return;
 
+            if (int.TryParse(comboBoxTipo.SelectedValue.ToString(), out int tipoId))
+            {
+                CarregarArtigosPorTipo(tipoId);
+            }
         }
 
         private void comboBoxArtigo_SelectedIndexChanged(object sender, EventArgs e)
@@ -198,6 +232,11 @@ namespace CasaPoupanca
         }
 
         private void textBoxNomeCompra_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FormCompra_Load(object sender, EventArgs e)
         {
 
         }
