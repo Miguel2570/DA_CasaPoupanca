@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBoxFiltrar = new System.Windows.Forms.ComboBox();
-            this.buttonSearch = new System.Windows.Forms.Button();
             this.buttonRemover = new System.Windows.Forms.Button();
             this.buttonEditar = new System.Windows.Forms.Button();
             this.buttonAdicionar = new System.Windows.Forms.Button();
@@ -42,6 +39,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.listBoxArtigos = new System.Windows.Forms.ListBox();
+            this.labelPreco = new System.Windows.Forms.Label();
+            this.textBoxPreco = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -192,6 +191,25 @@
             this.listBoxArtigos.TabIndex = 17;
             this.listBoxArtigos.SelectedIndexChanged += new System.EventHandler(this.listBoxArtigos_SelectedIndexChanged);
             // 
+            // labelPreco
+            // 
+            this.labelPreco.AutoSize = true;
+            this.labelPreco.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPreco.Location = new System.Drawing.Point(90, 226);
+            this.labelPreco.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelPreco.Name = "labelPreco";
+            this.labelPreco.Size = new System.Drawing.Size(53, 20);
+            this.labelPreco.TabIndex = 18;
+            this.labelPreco.Text = "Preço";
+            // 
+            // textBoxPreco
+            // 
+            this.textBoxPreco.Location = new System.Drawing.Point(151, 226);
+            this.textBoxPreco.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxPreco.Name = "textBoxPreco";
+            this.textBoxPreco.Size = new System.Drawing.Size(67, 22);
+            this.textBoxPreco.TabIndex = 19;
+            // 
             // FormArtigo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -222,10 +240,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBoxFiltrar;
-        private System.Windows.Forms.Button buttonSearch;
         private System.Windows.Forms.Button buttonRemover;
         private System.Windows.Forms.Button buttonEditar;
         private System.Windows.Forms.Button buttonAdicionar;
@@ -237,5 +251,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ListBox listBoxArtigos;
+        private System.Windows.Forms.Label labelPreco;
+        private System.Windows.Forms.TextBox textBoxPreco;
     }
 }
