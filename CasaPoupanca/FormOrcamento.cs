@@ -172,19 +172,6 @@ namespace CasaPoupanca
             }
         }
 
-        private void CarregarHistoricoAlteracoes()
-        {
-            try
-            {
-                listBoxAlteracoes.Items.Clear();
-                listBoxAlteracoes.Items.Insert(0, $"{DateTime.Now:dd/MM/yyyy HH:mm:ss} - Formulário aberto");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao carregar histórico: {ex.Message}");
-            }
-        }
-
         private decimal CalcularTotalGastoMes(int mes, int ano)
         {
             try
@@ -239,22 +226,6 @@ namespace CasaPoupanca
             catch (Exception ex)
             {
                 MessageBox.Show($"Erro ao limpar campos: {ex.Message}");
-            }
-        }
-
-        private void RegistarAlteracao(string mensagem)
-        {
-            try
-            {
-                listBoxAlteracoes.Items.Insert(0, $"{DateTime.Now:dd/MM/yyyy HH:mm:ss} - {mensagem}");
-                if (listBoxAlteracoes.Items.Count > 20)
-                {
-                    listBoxAlteracoes.Items.RemoveAt(listBoxAlteracoes.Items.Count - 1);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao registar alteração: {ex.Message}");
             }
         }
 
@@ -363,7 +334,6 @@ namespace CasaPoupanca
                     MessageBox.Show("Orçamento adicionado com sucesso!");
                     LimparCampos();
                     CarregarOrcamentos();
-                    RegistarAlteracao($"Adicionado orçamento de {valor:C} para {ObterNomeMes(mes)} {ano}");
                 }
                 else
                 {
@@ -439,7 +409,6 @@ namespace CasaPoupanca
                         "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LimparCampos();
                     CarregarOrcamentos();
-                    RegistarAlteracao($"Editado orçamento para {valor:C} ({ObterNomeMes(mes)} {ano})");
                 }
                 else
                 {
@@ -473,7 +442,6 @@ namespace CasaPoupanca
                         MessageBox.Show("Orçamento removido com sucesso!");
                         LimparCampos();
                         CarregarOrcamentos();
-                        RegistarAlteracao("Orçamento removido");
                     }
                     else
                     {
@@ -528,6 +496,11 @@ namespace CasaPoupanca
             {
                 MessageBox.Show($"Erro ao selecionar orçamento: {ex.Message}\n\n{ex.StackTrace}");
             }
+        }
+
+        private void buttonVoltar_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

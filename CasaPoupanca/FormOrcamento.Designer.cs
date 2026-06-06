@@ -37,13 +37,12 @@
             this.comboBoxAno = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxValor = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.dataGridViewOrcamento = new System.Windows.Forms.DataGridView();
             this.buttonRemover = new System.Windows.Forms.Button();
             this.buttonEditar = new System.Windows.Forms.Button();
             this.buttonAdicionar = new System.Windows.Forms.Button();
-            this.listBoxAlteracoes = new System.Windows.Forms.ListBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.buttonVoltar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrcamento)).BeginInit();
             this.SuspendLayout();
@@ -63,7 +62,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(83, 120);
+            this.label1.Location = new System.Drawing.Point(51, 119);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(34, 17);
@@ -86,17 +85,17 @@
             "10",
             "11",
             "12"});
-            this.comboBoxMes.Location = new System.Drawing.Point(121, 118);
+            this.comboBoxMes.Location = new System.Drawing.Point(98, 118);
             this.comboBoxMes.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxMes.Name = "comboBoxMes";
-            this.comboBoxMes.Size = new System.Drawing.Size(82, 21);
+            this.comboBoxMes.Size = new System.Drawing.Size(142, 21);
             this.comboBoxMes.TabIndex = 18;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(217, 120);
+            this.label2.Location = new System.Drawing.Point(51, 158);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(33, 17);
@@ -111,41 +110,30 @@
             "2026",
             "2027",
             "2028"});
-            this.comboBoxAno.Location = new System.Drawing.Point(253, 118);
+            this.comboBoxAno.Location = new System.Drawing.Point(98, 158);
             this.comboBoxAno.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxAno.Name = "comboBoxAno";
-            this.comboBoxAno.Size = new System.Drawing.Size(82, 21);
+            this.comboBoxAno.Size = new System.Drawing.Size(142, 21);
             this.comboBoxAno.TabIndex = 20;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(84, 157);
+            this.label3.Location = new System.Drawing.Point(7, 198);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(132, 17);
+            this.label3.Size = new System.Drawing.Size(78, 17);
             this.label3.TabIndex = 21;
-            this.label3.Text = "Valor do orçamento";
+            this.label3.Text = "Orçamento";
             // 
             // textBoxValor
             // 
-            this.textBoxValor.Location = new System.Drawing.Point(220, 157);
+            this.textBoxValor.Location = new System.Drawing.Point(98, 198);
             this.textBoxValor.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxValor.Name = "textBoxValor";
             this.textBoxValor.Size = new System.Drawing.Size(142, 20);
             this.textBoxValor.TabIndex = 22;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(151, 44);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(170, 24);
-            this.label4.TabIndex = 23;
-            this.label4.Text = "Orçamento mensal";
             // 
             // dataGridViewOrcamento
             // 
@@ -172,7 +160,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewOrcamento.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridViewOrcamento.Location = new System.Drawing.Point(11, 265);
+            this.dataGridViewOrcamento.Location = new System.Drawing.Point(425, 118);
             this.dataGridViewOrcamento.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewOrcamento.Name = "dataGridViewOrcamento";
             this.dataGridViewOrcamento.ReadOnly = true;
@@ -180,16 +168,16 @@
             this.dataGridViewOrcamento.RowHeadersWidth = 62;
             this.dataGridViewOrcamento.RowTemplate.Height = 28;
             this.dataGridViewOrcamento.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewOrcamento.Size = new System.Drawing.Size(777, 176);
+            this.dataGridViewOrcamento.Size = new System.Drawing.Size(349, 313);
             this.dataGridViewOrcamento.TabIndex = 24;
             this.dataGridViewOrcamento.SelectionChanged += new System.EventHandler(this.dataGridViewOrcamento_SelectionChanged);
             // 
             // buttonRemover
             // 
             this.buttonRemover.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRemover.Location = new System.Drawing.Point(275, 192);
+            this.buttonRemover.Location = new System.Drawing.Point(215, 247);
             this.buttonRemover.Name = "buttonRemover";
-            this.buttonRemover.Size = new System.Drawing.Size(75, 23);
+            this.buttonRemover.Size = new System.Drawing.Size(75, 32);
             this.buttonRemover.TabIndex = 27;
             this.buttonRemover.Text = "Remover";
             this.buttonRemover.UseVisualStyleBackColor = true;
@@ -198,9 +186,9 @@
             // buttonEditar
             // 
             this.buttonEditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonEditar.Location = new System.Drawing.Point(183, 192);
+            this.buttonEditar.Location = new System.Drawing.Point(109, 247);
             this.buttonEditar.Name = "buttonEditar";
-            this.buttonEditar.Size = new System.Drawing.Size(75, 23);
+            this.buttonEditar.Size = new System.Drawing.Size(75, 32);
             this.buttonEditar.TabIndex = 26;
             this.buttonEditar.Text = "Editar";
             this.buttonEditar.UseVisualStyleBackColor = true;
@@ -209,33 +197,35 @@
             // buttonAdicionar
             // 
             this.buttonAdicionar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAdicionar.Location = new System.Drawing.Point(87, 192);
+            this.buttonAdicionar.Location = new System.Drawing.Point(11, 247);
             this.buttonAdicionar.Name = "buttonAdicionar";
-            this.buttonAdicionar.Size = new System.Drawing.Size(75, 23);
+            this.buttonAdicionar.Size = new System.Drawing.Size(75, 32);
             this.buttonAdicionar.TabIndex = 25;
             this.buttonAdicionar.Text = "Adicionar";
             this.buttonAdicionar.UseVisualStyleBackColor = true;
             this.buttonAdicionar.Click += new System.EventHandler(this.buttonAdicionar_Click_1);
             // 
-            // listBoxAlteracoes
-            // 
-            this.listBoxAlteracoes.FormattingEnabled = true;
-            this.listBoxAlteracoes.Location = new System.Drawing.Point(448, 44);
-            this.listBoxAlteracoes.Margin = new System.Windows.Forms.Padding(2);
-            this.listBoxAlteracoes.Name = "listBoxAlteracoes";
-            this.listBoxAlteracoes.Size = new System.Drawing.Size(340, 186);
-            this.listBoxAlteracoes.TabIndex = 29;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(445, 25);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(421, 74);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(124, 17);
-            this.label5.TabIndex = 30;
-            this.label5.Text = "Ultimas alterações";
+            this.label5.Size = new System.Drawing.Size(156, 20);
+            this.label5.TabIndex = 28;
+            this.label5.Text = "Lista de Orçamentos";
+            // 
+            // buttonVoltar
+            // 
+            this.buttonVoltar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonVoltar.Location = new System.Drawing.Point(9, 401);
+            this.buttonVoltar.Name = "buttonVoltar";
+            this.buttonVoltar.Size = new System.Drawing.Size(75, 30);
+            this.buttonVoltar.TabIndex = 29;
+            this.buttonVoltar.Text = "Voltar";
+            this.buttonVoltar.UseVisualStyleBackColor = true;
+            this.buttonVoltar.Click += new System.EventHandler(this.buttonVoltar_Click_1);
             // 
             // FormOrcamento
             // 
@@ -243,13 +233,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(799, 454);
+            this.Controls.Add(this.buttonVoltar);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.listBoxAlteracoes);
             this.Controls.Add(this.buttonRemover);
             this.Controls.Add(this.buttonEditar);
             this.Controls.Add(this.buttonAdicionar);
             this.Controls.Add(this.dataGridViewOrcamento);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.textBoxValor);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.comboBoxAno);
@@ -276,12 +265,11 @@
         private System.Windows.Forms.ComboBox comboBoxAno;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxValor;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridView dataGridViewOrcamento;
         private System.Windows.Forms.Button buttonRemover;
         private System.Windows.Forms.Button buttonEditar;
         private System.Windows.Forms.Button buttonAdicionar;
-        private System.Windows.Forms.ListBox listBoxAlteracoes;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button buttonVoltar;
     }
 }
