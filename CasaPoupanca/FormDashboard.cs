@@ -27,7 +27,6 @@ namespace CasaPoupanca
         }
         private void CarregarDados()
         {
-            labelPerfil.Text = $"Perfil {Session.Username}";
             CarregarOrcamento();
             CarregarComprasAberto();
             ConfigurarDataGridView();
@@ -38,22 +37,6 @@ namespace CasaPoupanca
             int mesAtual = DateTime.Now.Month;
             int anoAtual = DateTime.Now.Year;
 
-            decimal valorOrcamento = _orcamentoController.GetValorOrcamentoAtual();
-            decimal totalGasto = _compraController.GetTotalGastoComprasFechadas(mesAtual, anoAtual, Session.UtilizadorId);
-            decimal disponivel = valorOrcamento - totalGasto;
-
-            labelOrcamento.Text = valorOrcamento.ToString("C");
-            labelTotalGasto.Text = totalGasto.ToString("C");
-            labelDisponivel.Text = disponivel.ToString("C");
-
-            if (disponivel < 0)
-            {
-                labelDisponivel.ForeColor = System.Drawing.Color.Red;
-            }
-            else
-            {
-                labelDisponivel.ForeColor = System.Drawing.Color.Green;
-            }
         }
 
         private void CarregarComprasAberto()
@@ -108,21 +91,6 @@ namespace CasaPoupanca
             Application.Exit();
         }
 
-        private void comprasToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormCompra compras = new FormCompra();
-            compras.ShowDialog();
-
-            CarregarComprasAberto();
-            CarregarOrcamento();
-        }
-
-        private void estatisticasToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormEstatisticas estatisticas = new FormEstatisticas();
-            estatisticas.ShowDialog();
-        }
-
         private void buttonNovaCompra_Click(object sender, EventArgs e)
         {
             FormCompra compra = new FormCompra();
@@ -155,39 +123,18 @@ namespace CasaPoupanca
             CarregarOrcamento();
         }
 
-        private void buttonEstatisticas_Click(object sender, EventArgs e)
+        private void btnExportarCSV_Click(object sender, EventArgs e)
         {
-            FormEstatisticas estatisticas = new FormEstatisticas();
-            estatisticas.ShowDialog();
+            FormExportarCSV exportar = new FormExportarCSV();
+            exportar.ShowDialog();
         }
 
-        private void OrcamentoToolStripMenuItem_Click(object sender, EventArgs e)
+        private void buttonSair_Click(object sender, EventArgs e)
         {
-            FormOrcamento orcamento = new FormOrcamento();
-            orcamento.ShowDialog();
-
-            CarregarOrcamento();
+            Application.Exit();
         }
 
-        private void tiposDeArtigoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormTipoArtigo tipoArtigo = new FormTipoArtigo();
-            tipoArtigo.ShowDialog();
-        }
-
-        private void artigosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormArtigo artigo = new FormArtigo();
-            artigo.ShowDialog();
-        }
-
-        private void utilizadoresToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormUtilizadores utilizadores = new FormUtilizadores();
-            utilizadores.ShowDialog();
-        }
-
-        private void modoCompraToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void buttonModoCompra_Click(object sender, EventArgs e)
         {
             if (dataGridViewCompras.CurrentRow == null)
             {
@@ -207,27 +154,59 @@ namespace CasaPoupanca
             modoCompra.ShowDialog();
         }
 
-        private void btnExportarCSV_Click(object sender, EventArgs e)
+        private void buttonOrcamento_Click(object sender, EventArgs e)
         {
-            FormExportarCSV exportar = new FormExportarCSV();
-            exportar.ShowDialog();
+            FormOrcamento orcamento = new FormOrcamento();
+            orcamento.ShowDialog();
+
+            CarregarOrcamento();
         }
 
-        private void buttonSair_Click(object sender, EventArgs e)
+        private void buttonGerirUtilizadores_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            FormUtilizadores utilizadores = new FormUtilizadores();
+            utilizadores.ShowDialog();
         }
 
-        private void perfilToolStripMenuItem_Click(object sender, EventArgs e)
+        private void buttonPerfil_Click(object sender, EventArgs e)
         {
             FormProfile profile = new FormProfile();
             profile.ShowDialog();
         }
 
-        private void converterEmCSVToolStripMenuItem_Click(object sender, EventArgs e)
+        private void buttonGerirTipoArtigo_Click(object sender, EventArgs e)
+        {
+            FormTipoArtigo tipoArtigo = new FormTipoArtigo();
+            tipoArtigo.ShowDialog();
+        }
+
+        private void buttonArtigo_Click(object sender, EventArgs e)
+        {
+            FormArtigo artigo = new FormArtigo();
+            artigo.ShowDialog();
+        }
+
+        private void buttonExportarCSV_Click(object sender, EventArgs e)
         {
             FormExportarCSV exportar = new FormExportarCSV();
             exportar.ShowDialog();
+        }
+
+        private void buttonEstatisticas_Click(object sender, EventArgs e)
+        {
+            FormEstatisticas estatisticas = new FormEstatisticas();
+            estatisticas.ShowDialog();
+        }
+
+        private void buttonLogout_Click(object sender, EventArgs e)
+        {
+            Session.UtilizadorId = 0;
+            Session.Username = null;
+
+            this.Close();
+
+            FormLogin login = new FormLogin();
+            login.ShowDialog();
         }
     }
 }
