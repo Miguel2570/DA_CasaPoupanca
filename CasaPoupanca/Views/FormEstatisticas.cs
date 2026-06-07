@@ -1,5 +1,6 @@
 ﻿using CasaPoupanca.Controllers;
 using CasaPoupanca.models;
+using CasaPoupança.database;
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -21,9 +22,25 @@ namespace CasaPoupanca
         private void ConfigurarTabControl()
         {
             tabControl.TabPages.Clear();
-            tabControl.TabPages.Add("📅 Resumo Mensal");
-            tabControl.TabPages.Add("📋 % de Compras");
-            tabControl.TabPages.Add("💡 Sugestões");
+
+            var tabResumoMensal = new TabPage("📅 Resumo Mensal");
+            tabResumoMensal.Controls.Add(dataGridViewResumo);
+            dataGridViewResumo.Dock = DockStyle.Fill;
+            tabControl.TabPages.Add(tabResumoMensal);
+
+            var tabCompras = new TabPage("📋 % de Compras");
+            tabCompras.Controls.Add(dataGridViewCompras);
+            dataGridViewCompras.Dock = DockStyle.Fill;
+            tabControl.TabPages.Add(tabCompras);
+
+            var tabSugestoes = new TabPage("💡 Sugestões");
+            var panelSugestoes = new Panel { Dock = DockStyle.Fill };
+            lblSugestaoOrcamento.Dock = DockStyle.Top;
+            lstSugestaoCompras.Dock = DockStyle.Fill;
+            panelSugestoes.Controls.Add(lblSugestaoOrcamento);
+            panelSugestoes.Controls.Add(lstSugestaoCompras);
+            tabSugestoes.Controls.Add(panelSugestoes);
+            tabControl.TabPages.Add(tabSugestoes);
         }
 
         private void CarregarDados()
