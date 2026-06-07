@@ -95,6 +95,20 @@ namespace CasaPoupanca.Controllers
             }
         }
 
+<<<<<<< HEAD
+=======
+        public List<Compra> GetComprasAbertasPorUtilizador(int utilizadorId)
+        {
+            using (var db = new CasaPoupancaDB())
+            {
+                return db.Compras
+                    .Where(c => !c.IsFechada && c.CriadoPorId == utilizadorId)
+                    .OrderByDescending(c => c.DataCriacao)
+                    .ToList();
+            }
+        }
+
+>>>>>>> 6661d48645dea74ace03eaed696ce6e339b2207e
         public decimal GetTotalGastoComprasFechadas(int mes, int ano, int utilizadorId)
         {
             using (var db = new CasaPoupancaDB())
