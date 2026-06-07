@@ -37,6 +37,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.numericUpDownMes = new System.Windows.Forms.NumericUpDown();
             this.buttonGuardar = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantidade)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMes)).BeginInit();
@@ -54,6 +55,7 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Image = global::CasaPoupanca.Properties.Resources.final_removebg_preview;
             this.pictureBox1.Location = new System.Drawing.Point(12, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(160, 132);
@@ -106,7 +108,7 @@
             // 
             // buttonVoltar
             // 
-            this.buttonVoltar.Location = new System.Drawing.Point(926, 625);
+            this.buttonVoltar.Location = new System.Drawing.Point(926, 639);
             this.buttonVoltar.Name = "buttonVoltar";
             this.buttonVoltar.Size = new System.Drawing.Size(112, 35);
             this.buttonVoltar.TabIndex = 33;
@@ -117,7 +119,7 @@
             // 
             this.listBoxListaDeArtigos.FormattingEnabled = true;
             this.listBoxListaDeArtigos.ItemHeight = 20;
-            this.listBoxListaDeArtigos.Location = new System.Drawing.Point(43, 433);
+            this.listBoxListaDeArtigos.Location = new System.Drawing.Point(43, 456);
             this.listBoxListaDeArtigos.Name = "listBoxListaDeArtigos";
             this.listBoxListaDeArtigos.Size = new System.Drawing.Size(266, 204);
             this.listBoxListaDeArtigos.TabIndex = 34;
@@ -171,7 +173,7 @@
             // 
             // buttonCriarLista
             // 
-            this.buttonCriarLista.Location = new System.Drawing.Point(433, 390);
+            this.buttonCriarLista.Location = new System.Drawing.Point(681, 278);
             this.buttonCriarLista.Name = "buttonCriarLista";
             this.buttonCriarLista.Size = new System.Drawing.Size(112, 35);
             this.buttonCriarLista.TabIndex = 41;
@@ -180,7 +182,7 @@
             // 
             // buttonApagarLista
             // 
-            this.buttonApagarLista.Location = new System.Drawing.Point(563, 390);
+            this.buttonApagarLista.Location = new System.Drawing.Point(681, 319);
             this.buttonApagarLista.Name = "buttonApagarLista";
             this.buttonApagarLista.Size = new System.Drawing.Size(112, 35);
             this.buttonApagarLista.TabIndex = 42;
@@ -230,12 +232,21 @@
             // 
             // buttonGuardar
             // 
-            this.buttonGuardar.Location = new System.Drawing.Point(686, 590);
+            this.buttonGuardar.Location = new System.Drawing.Point(799, 278);
             this.buttonGuardar.Name = "buttonGuardar";
-            this.buttonGuardar.Size = new System.Drawing.Size(352, 35);
+            this.buttonGuardar.Size = new System.Drawing.Size(211, 76);
             this.buttonGuardar.TabIndex = 48;
             this.buttonGuardar.Text = "Guardar Compra";
             this.buttonGuardar.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(39, 433);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(119, 20);
+            this.label5.TabIndex = 49;
+            this.label5.Text = "Lista de Artigos";
             // 
             // FormCompra
             // 
@@ -243,6 +254,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1062, 686);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.buttonGuardar);
             this.Controls.Add(this.numericUpDownMes);
             this.Controls.Add(this.label4);
@@ -272,6 +284,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         private System.Windows.Forms.Label label1;
@@ -296,5 +309,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown numericUpDownMes;
         private System.Windows.Forms.Button buttonGuardar;
+        private System.Windows.Forms.Label label5;
     }
 }
