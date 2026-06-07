@@ -110,9 +110,10 @@ namespace CasaPoupanca.Controllers
 
                 foreach (var compra in comprasFechadas)
                 {
-                    totalGasto += db.ItensCompra
+                    var soma = db.ItensCompra
                         .Where(i => i.CompraId == compra.Id)
-                        .Sum(i => i.QuantidadeAdquirida * i.PrecoUnitario);
+                        .Sum(i => (decimal?)i.QuantidadeAdquirida * i.PrecoUnitario) ?? 0;
+                    totalGasto += soma;
                 }
 
                 return totalGasto;
@@ -127,8 +128,8 @@ namespace CasaPoupanca.Controllers
             {
                 return db.ItensCompra
                     .Where(i => i.CompraId == compraId && i.IsPrevisto)
-                    .Include("Artigo")
-                    .Include("Artigo.TipoArtigo")
+                    .Include(i => i.Artigo)
+                    .Include(i => i.Artigo.TipoArtigo)
                     .ToList();
             }
         }
@@ -143,12 +144,29 @@ namespace CasaPoupanca.Controllers
             }
         }
 
+        public bool UpdateItemPrevisto(ItemCompra item)
+        {
+            using (var db = new CasaPoupancaDB())
+            {
+                var existing = db.ItensCompra.Find(item.Id);
+                if (existing == null)
+                    return false;
+
+                existing.QuantidadeAdquirida = item.QuantidadeAdquirida;
+                existing.PrecoUnitario = item.PrecoUnitario;
+                existing.Observacao = item.Observacao;
+                db.SaveChanges();
+                return true;
+            }
+        }
+
         public bool RemoveItemPrevisto(int itemId)
         {
             using (var db = new CasaPoupancaDB())
             {
                 var item = db.ItensCompra.Find(itemId);
-                if (item == null) return false;
+                if (item == null)
+                    return false;
 
                 db.ItensCompra.Remove(item);
                 db.SaveChanges();

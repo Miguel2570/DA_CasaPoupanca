@@ -22,7 +22,6 @@ namespace CasaPoupanca
                 ConfigurarComboBoxes();
                 ConfigurarDataGridView();
                 CarregarOrcamentos();
-                CarregarHistoricoAlteracoes();
 
                 // Evento para quando o DataGridView terminar de carregar
                 dataGridViewOrcamento.DataBindingComplete += (s, e) => {

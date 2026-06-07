@@ -41,7 +41,8 @@ namespace CasaPoupanca
 
         private void CarregarComprasAberto()
         {
-            var compras = _compraController.GetComprasAbertoPorUtilizador(Session.UtilizadorId);
+            // CORRIGIDO: GetComprasAbertasPorUtilizador (com 'as' e 's' no final)
+            var compras = _compraController.GetComprasAbertasPorUtilizador(Session.UtilizadorId);
             dataGridViewCompras.DataSource = null;
             dataGridViewCompras.DataSource = compras;
         }

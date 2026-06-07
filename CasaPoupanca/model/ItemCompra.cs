@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CasaPoupanca.models
 {
@@ -21,5 +17,17 @@ namespace CasaPoupanca.models
 
         public virtual Compra Compra { get; set; }
         public virtual Artigo Artigo { get; set; }
+
+        [NotMapped]
+        public string DisplayName
+        {
+            get
+            {
+                if (Artigo == null)
+                    return $"{QuantidadeAdquirida} x €{PrecoUnitario:F2} = €{QuantidadeAdquirida * PrecoUnitario:F2}";
+
+                return $"{Artigo.Nome} - {QuantidadeAdquirida} x €{PrecoUnitario:F2} = €{QuantidadeAdquirida * PrecoUnitario:F2}";
+            }
+        }
     }
-}
+}  // ← Certifique-se que não há nada depois desta chave
