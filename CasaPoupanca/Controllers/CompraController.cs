@@ -99,27 +99,17 @@ namespace CasaPoupanca.Controllers
         {
             using (var db = new CasaPoupancaDB())
             {
-                var comprasFechadas = db.Compras
+                var totalGasto = db.Compras
                     .Where(c => c.DataCriacao.Month == mes &&
                                 c.DataCriacao.Year == ano &&
                                 c.IsFechada &&
                                 c.CriadoPorId == utilizadorId)
-                    .ToList();
-
-                decimal totalGasto = 0;
-
-                foreach (var compra in comprasFechadas)
-                {
-                    var soma = db.ItensCompra
-                        .Where(i => i.CompraId == compra.Id)
-                        .Sum(i => (decimal?)i.QuantidadeAdquirida * i.PrecoUnitario) ?? 0;
-                    totalGasto += soma;
-                }
+                    .SelectMany(c => db.ItensCompra.Where(i => i.CompraId == c.Id))
+                    .Sum(i => (decimal?)i.QuantidadeAdquirida * i.PrecoUnitario) ?? 0;
 
                 return totalGasto;
             }
         }
-
         // Itens Previstos
 
         public List<ItemCompra> GetItensPrevistos(int compraId)

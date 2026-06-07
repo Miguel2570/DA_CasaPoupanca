@@ -92,19 +92,8 @@ namespace CasaPoupanca
             var itens = _controller.GetItensPrevistos(_compraId);
             listBoxItensPrevistos.DataSource = null;
             listBoxItensPrevistos.DataSource = itens;
-
-            listBoxItensPrevistos.Format -= ListBoxItensPrevistos_Format;
-            listBoxItensPrevistos.Format += ListBoxItensPrevistos_Format;
-        }
-
-        private void ListBoxItensPrevistos_Format(object sender, ListControlConvertEventArgs e)
-        {
-            if (e.ListItem is ItemCompra item)
-            {
-                string artigoNome = item.Artigo?.Nome ?? $"Artigo #{item.ArtigoId}";
-                decimal totalPrevisto = item.QuantidadePrevista * item.PrecoUnitario;
-                e.Value = $"{artigoNome} | Qtd: {item.QuantidadePrevista} x €{item.PrecoUnitario:F2} = €{totalPrevisto:F2}";
-            }
+            listBoxItensPrevistos.DisplayMember = "DisplayName";
+            listBoxItensPrevistos.ValueMember = "Id";
         }
 
         private void CarregarItensNaoPrevistos()
@@ -112,19 +101,8 @@ namespace CasaPoupanca
             var itens = _controller.GetItensNaoPrevistos(_compraId);
             listBoxItensNaoPrevistos.DataSource = null;
             listBoxItensNaoPrevistos.DataSource = itens;
-
-            listBoxItensNaoPrevistos.Format -= ListBoxItensNaoPrevistos_Format;
-            listBoxItensNaoPrevistos.Format += ListBoxItensNaoPrevistos_Format;
-        }
-
-        private void ListBoxItensNaoPrevistos_Format(object sender, ListControlConvertEventArgs e)
-        {
-            if (e.ListItem is ItemCompra item)
-            {
-                string artigoNome = item.Artigo?.Nome ?? $"Item #{item.Id}";
-                decimal totalAdquirido = item.QuantidadeAdquirida * item.PrecoUnitario;
-                e.Value = $"{artigoNome} | Qtd: {item.QuantidadeAdquirida} x €{item.PrecoUnitario:F2} = €{totalAdquirido:F2}";
-            }
+            listBoxItensNaoPrevistos.DisplayMember = "DisplayName";
+            listBoxItensNaoPrevistos.ValueMember = "Id";
         }
 
         private void LimparCamposAdquirir()
