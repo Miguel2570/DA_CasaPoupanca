@@ -3,12 +3,7 @@ using CasaPoupança.database;
 using CasaPoupanca.models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CasaPoupanca
@@ -18,6 +13,7 @@ namespace CasaPoupanca
         private int _compraId;
         private decimal _orcamentoDisponivel;
         private ModoCompraController _controller;
+
         public FormModoCompra(int compraId)
         {
             InitializeComponent();
@@ -68,8 +64,20 @@ namespace CasaPoupanca
             var itens = _controller.GetItensPrevistos(_compraId);
             listBoxItensPrevistos.DataSource = null;
             listBoxItensPrevistos.DataSource = itens;
-            listBoxItensPrevistos.DisplayMember = "DisplayText";
-            listBoxItensPrevistos.ValueMember = "Id";
+
+            // Usar evento Format para mostrar texto personalizado
+            listBoxItensPrevistos.Format -= ListBoxItensPrevistos_Format;
+            listBoxItensPrevistos.Format += ListBoxItensPrevistos_Format;
+        }
+
+        private void ListBoxItensPrevistos_Format(object sender, ListControlConvertEventArgs e)
+        {
+            if (e.ListItem is ItemCompra item)
+            {
+                // Ajusta estas propriedades conforme o teu modelo
+                string artigoNome = item.Artigo?.Nome ?? $"Artigo #{item.ArtigoId}";
+                e.Value = $"{artigoNome} | Previsto: {item.QuantidadePrevista} x €{item.PrecoUnitario:F2} = €{(item.QuantidadePrevista * item.PrecoUnitario):F2}";
+            }
         }
 
         private void CarregarItensNaoPrevistos()
@@ -77,8 +85,18 @@ namespace CasaPoupanca
             var itens = _controller.GetItensNaoPrevistos(_compraId);
             listBoxItensNaoPrevistos.DataSource = null;
             listBoxItensNaoPrevistos.DataSource = itens;
-            listBoxItensNaoPrevistos.DisplayMember = "DisplayText";
-            listBoxItensNaoPrevistos.ValueMember = "Id";
+
+            listBoxItensNaoPrevistos.Format -= ListBoxItensNaoPrevistos_Format;
+            listBoxItensNaoPrevistos.Format += ListBoxItensNaoPrevistos_Format;
+        }
+
+        private void ListBoxItensNaoPrevistos_Format(object sender, ListControlConvertEventArgs e)
+        {
+            if (e.ListItem is ItemCompra item)
+            {
+                string artigoNome = item.Artigo?.Nome ?? $"Artigo #{item.ArtigoId}";
+                e.Value = $"{artigoNome} | Adquirido: {item.QuantidadeAdquirida} x €{item.PrecoUnitario:F2} = €{(item.QuantidadeAdquirida * item.PrecoUnitario):F2}";
+            }
         }
 
         private void buttonVoltar_Click(object sender, EventArgs e)
@@ -90,6 +108,9 @@ namespace CasaPoupanca
         {
             FormItemNaoPrevisto itemNaoPrevisto = new FormItemNaoPrevisto(_compraId);
             itemNaoPrevisto.ShowDialog();
+            // Recarregar após adicionar
+            CarregarItensNaoPrevistos();
+            CarregarOrcamento();
         }
 
         private void buttonFecharCompra_Click(object sender, EventArgs e)
@@ -127,11 +148,12 @@ namespace CasaPoupanca
 
         private void buttonAdquirirItemPrevisto_Click(object sender, EventArgs e)
         {
-            if(listBoxItensPrevistos.SelectedItems == null)
+            if (listBoxItensPrevistos.SelectedItem == null)
             {
-                MessageBox.Show("Selecione umm item previsto para adquirir");
+                MessageBox.Show("Selecione um item previsto para adquirir");
                 return;
             }
+
             int quantidade = (int)numericUpDownQuantidadeAdquirir.Value;
             decimal precoUnitario = numericUpDownPrecoUnitarioAdquirir.Value;
 
@@ -141,9 +163,9 @@ namespace CasaPoupanca
                 return;
             }
 
-            if(precoUnitario <= 0)
+            if (precoUnitario <= 0)
             {
-                MessageBox.Show("O prçeço unitario deve ser maioir que zero");
+                MessageBox.Show("O preço unitário deve ser maior que zero");
                 return;
             }
 
@@ -154,12 +176,17 @@ namespace CasaPoupanca
                 if (quantidade > item.QuantidadePrevista)
                 {
                     DialogResult result = MessageBox.Show(
-                    $"A quantidade a adquirir ({quantidade}) é maior que a prevista ({item.QuantidadePrevista}).\n\nDeseja continuar?",
-                    "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        $"A quantidade a adquirir ({quantidade}) é maior que a prevista ({item.QuantidadePrevista}).\n\nDeseja continuar?",
+                        "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (result != DialogResult.Yes)
                         return;
                 }
+
+                _controller.AdquirirItemPrevisto(item.Id, quantidade, precoUnitario);
+
+                MessageBox.Show("Item adquirido com sucesso!", "Sucesso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 CarregarOrcamento();
                 CarregarItensPrevistos();
@@ -167,20 +194,15 @@ namespace CasaPoupanca
 
                 numericUpDownQuantidadeAdquirir.Value = 1;
                 numericUpDownPrecoUnitarioAdquirir.Value = 0;
-
-                _controller.AdquirirItemPrevisto(item.Id, quantidade, precoUnitario);
             }
             catch (ArgumentException ex)
             {
-                {
-                    MessageBox.Show($"Erro ao adquirir item: {ex.Message}");
-                }
+                MessageBox.Show($"Erro ao adquirir item: {ex.Message}");
             }
         }
 
         private void buttonAdquirirItemNaoPrevisto_Click(object sender, EventArgs e)
         {
-            // Verifica se há um item não previsto selecionado
             if (listBoxItensNaoPrevistos.SelectedItem == null)
             {
                 MessageBox.Show("Selecione um item não previsto para adquirir.", "Aviso",
@@ -216,6 +238,7 @@ namespace CasaPoupanca
 
                 CarregarOrcamento();
                 CarregarItensNaoPrevistos();
+                CarregarItensPrevistos(); // Recarregar também por precaução
 
                 numericUpDownQuantidadeAdquirir.Value = 1;
                 numericUpDownPrecoUnitarioAdquirir.Value = 0;
