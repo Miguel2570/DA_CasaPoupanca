@@ -41,18 +41,18 @@ namespace CasaPoupanca
 
         private void ConfigurarEventos()
         {
-            buttonAdicionar.Click += ButtonAdicionar_Click;
-            buttonEditar.Click += ButtonEditar_Click;
-            buttonRemover.Click += ButtonRemover_Click;
+            buttonAdicionar.Click += buttonAdicionar_Click;
+            buttonEditar.Click += buttonEditar_Click;
+            buttonRemover.Click += buttonRemover_Click;
             buttonVoltar.Click += ButtonVoltar_Click;
-            buttonCriarLista.Click += ButtonCriarLista_Click;
-            buttonApagarLista.Click += ButtonApagarLista_Click;
-            buttonGuardar.Click += ButtonGuardar_Click;
+            buttonCriarLista.Click += buttonCriarLista_Click;
+            buttonApagarLista.Click += buttonApagarLista_Click;
+            buttonGuardar.Click += buttonGuardar_Click;
             listBoxListaDeCompras.SelectedIndexChanged += ListBoxListaDeCompras_SelectedIndexChanged;
             listBoxArtigosDisponiveis.SelectedIndexChanged += ListBoxArtigosDisponiveis_SelectedIndexChanged;
             listBoxListaDeArtigos.SelectedIndexChanged += ListBoxListaDeArtigos_SelectedIndexChanged;
-            numericUpDownMes.ValueChanged += NumericUpDownMes_ValueChanged;
-            numericUpDownQuantidade.ValueChanged += NumericUpDownQuantidade_ValueChanged;
+            numericUpDownMes.ValueChanged += numericUpDownMes_ValueChanged;
+            numericUpDownQuantidade.ValueChanged += numericUpDownMes_ValueChanged;
         }
 
         private void CarregarListasDeCompras()
@@ -104,58 +104,6 @@ namespace CasaPoupanca
 
             var totalGasto = _compraController.GetTotalGastoComprasFechadas(mes, ano, utilizadorId);
             labelTotal.Text = $"Total: €{totalGasto:F2}";
-        }
-
-        private void ButtonAdicionar_Click(object sender, EventArgs e)
-        {
-            // Se há uma compra selecionada e um artigo selecionado, adiciona à compra
-            if (listBoxArtigosDisponiveis.SelectedItem != null && _compraSelecionadaId.HasValue && !_isReadOnly)
-            {
-                AdicionarItemCompra();
-                return;
-            }
-
-            // Caso contrário, cria nova compra (apenas nome, sem itens)
-            string nome = textBoxNomeCompra.Text.Trim();
-            if (string.IsNullOrEmpty(nome))
-            {
-                MessageBox.Show("Por favor, insira o nome da compra.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            try
-            {
-                var novaCompra = new Compra
-                {
-                    Nome = nome,
-                    DataCriacao = DateTime.Now,
-                    CriadoPorId = Session.UtilizadorId,
-                    IsFechada = false
-                };
-
-                _compraController.AddCompra(novaCompra);
-                MessageBox.Show("Compra criada com sucesso! Adicione itens e clique em Guardar.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                CarregarListasDeCompras();
-
-                // Selecionar a nova compra automaticamente
-                var compras = _compraController.GetComprasAbertasPorUtilizador(Session.UtilizadorId);
-                var ultimaCompra = compras.FirstOrDefault();
-                if (ultimaCompra != null)
-                {
-                    _compraSelecionadaId = ultimaCompra.Id;
-                    textBoxNomeCompra.Text = ultimaCompra.Nome;
-                    buttonGuardar.Enabled = true;
-                    buttonAdicionar.Enabled = true;
-                    buttonEditar.Enabled = true;
-                    buttonRemover.Enabled = true;
-                }
-
-                LimparCamposCompra();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao criar compra: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void AdicionarItemCompra()
@@ -216,90 +164,6 @@ namespace CasaPoupanca
             }
         }
 
-        private void ButtonGuardar_Click(object sender, EventArgs e)
-        {
-            if (!_compraSelecionadaId.HasValue)
-            {
-                MessageBox.Show("Nenhuma compra para guardar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            var itens = _compraController.GetItensPrevistos(_compraSelecionadaId.Value);
-            if (!itens.Any())
-            {
-                MessageBox.Show("A compra não tem itens. Adicione itens antes de guardar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            try
-            {
-                var compra = _compraController.GetCompraById(_compraSelecionadaId.Value);
-                if (compra != null && !compra.IsFechada)
-                {
-                    MessageBox.Show($"Compra '{compra.Nome}' guardada com sucesso!\n\nTotal de itens: {itens.Count}",
-                        "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    // Recarregar a lista de compras
-                    CarregarListasDeCompras();
-                    buttonGuardar.Enabled = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao guardar compra: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void ButtonEditar_Click(object sender, EventArgs e)
-        {
-            // Se há um item selecionado na lista de artigos da compra, edita a quantidade
-            if (listBoxListaDeArtigos.SelectedItem != null && _compraSelecionadaId.HasValue && !_isReadOnly)
-            {
-                EditarItemCompra();
-                return;
-            }
-
-            // Caso contrário, edita o nome da compra
-            if (!_compraSelecionadaId.HasValue)
-            {
-                MessageBox.Show("Nenhuma compra selecionada.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            string nome = textBoxNomeCompra.Text.Trim();
-            if (string.IsNullOrEmpty(nome))
-            {
-                MessageBox.Show("Por favor, insira o nome da compra.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            try
-            {
-                var compra = new Compra
-                {
-                    Id = _compraSelecionadaId.Value,
-                    Nome = nome,
-                    AlteradoPorId = Session.UtilizadorId,
-                    DataAlteracao = DateTime.Now
-                };
-
-                if (_compraController.UpdateCompra(compra))
-                {
-                    MessageBox.Show("Compra editada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    CarregarListasDeCompras();
-                    LimparCamposCompra();
-                }
-                else
-                {
-                    MessageBox.Show("Compra não encontrada.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao editar compra: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         private void EditarItemCompra()
         {
             var item = listBoxListaDeArtigos.SelectedItem as ItemCompra;
@@ -323,52 +187,6 @@ namespace CasaPoupanca
             catch (Exception ex)
             {
                 MessageBox.Show($"Erro ao editar item: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void ButtonRemover_Click(object sender, EventArgs e)
-        {
-            // Se há um item selecionado na lista de artigos da compra, remove o item
-            if (listBoxListaDeArtigos.SelectedItem != null && _compraSelecionadaId.HasValue && !_isReadOnly)
-            {
-                RemoverItemCompra();
-                return;
-            }
-
-            // Caso contrário, remove a compra
-            if (!_compraSelecionadaId.HasValue)
-            {
-                MessageBox.Show("Selecione uma compra para remover.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            try
-            {
-                var compra = _compraController.GetCompraById(_compraSelecionadaId.Value);
-                if (compra.IsFechada)
-                {
-                    MessageBox.Show("Não pode remover uma compra já fechada.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                DialogResult resultado = MessageBox.Show("Tem certeza que deseja remover esta compra?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (resultado == DialogResult.Yes)
-                {
-                    if (_compraController.DeleteCompra(compra.Id))
-                    {
-                        MessageBox.Show("Compra removida com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        CarregarListasDeCompras();
-                        LimparCamposCompra();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Compra não encontrada.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao remover compra: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -398,27 +216,6 @@ namespace CasaPoupanca
                     MessageBox.Show($"Erro ao remover item: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-        }
-
-        private void ButtonCriarLista_Click(object sender, EventArgs e)
-        {
-            string nome = textBoxNomeCompra.Text.Trim();
-            if (string.IsNullOrEmpty(nome))
-            {
-                MessageBox.Show("Por favor, insira o nome da compra antes de criar a lista.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (!_compraSelecionadaId.HasValue)
-            {
-                ButtonAdicionar_Click(sender, e);
-                CarregarListasDeCompras();
-            }
-        }
-
-        private void ButtonApagarLista_Click(object sender, EventArgs e)
-        {
-            ButtonRemover_Click(sender, e);
         }
 
         private void ListBoxListaDeCompras_SelectedIndexChanged(object sender, EventArgs e)
@@ -471,23 +268,216 @@ namespace CasaPoupanca
             }
         }
 
-        private void NumericUpDownMes_ValueChanged(object sender, EventArgs e)
+        private void buttonAdicionar_Click(object sender, EventArgs e)
+        {
+            if (listBoxArtigosDisponiveis.SelectedItem != null && _compraSelecionadaId.HasValue && !_isReadOnly)
+            {
+                AdicionarItemCompra();
+                return;
+            }
+
+            // Caso contrário, cria nova compra (apenas nome, sem itens)
+            string nome = textBoxNomeCompra.Text.Trim();
+            if (string.IsNullOrEmpty(nome))
+            {
+                MessageBox.Show("Por favor, insira o nome da compra.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                var novaCompra = new Compra
+                {
+                    Nome = nome,
+                    DataCriacao = DateTime.Now,
+                    CriadoPorId = Session.UtilizadorId,
+                    IsFechada = false
+                };
+
+                _compraController.AddCompra(novaCompra);
+                MessageBox.Show("Compra criada com sucesso! Adicione itens e clique em Guardar.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CarregarListasDeCompras();
+
+                // Selecionar a nova compra automaticamente
+                var compras = _compraController.GetComprasAbertasPorUtilizador(Session.UtilizadorId);
+                var ultimaCompra = compras.FirstOrDefault();
+                if (ultimaCompra != null)
+                {
+                    _compraSelecionadaId = ultimaCompra.Id;
+                    textBoxNomeCompra.Text = ultimaCompra.Nome;
+                    buttonGuardar.Enabled = true;
+                    buttonAdicionar.Enabled = true;
+                    buttonEditar.Enabled = true;
+                    buttonRemover.Enabled = true;
+                }
+
+                LimparCamposCompra();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao criar compra: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void buttonRemover_Click(object sender, EventArgs e)
+        {
+            // Se há um item selecionado na lista de artigos da compra, remove o item
+            if (listBoxListaDeArtigos.SelectedItem != null && _compraSelecionadaId.HasValue && !_isReadOnly)
+            {
+                RemoverItemCompra();
+                return;
+            }
+
+            // Caso contrário, remove a compra
+            if (!_compraSelecionadaId.HasValue)
+            {
+                MessageBox.Show("Selecione uma compra para remover.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                var compra = _compraController.GetCompraById(_compraSelecionadaId.Value);
+                if (compra.IsFechada)
+                {
+                    MessageBox.Show("Não pode remover uma compra já fechada.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                DialogResult resultado = MessageBox.Show("Tem certeza que deseja remover esta compra?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (resultado == DialogResult.Yes)
+                {
+                    if (_compraController.DeleteCompra(compra.Id))
+                    {
+                        MessageBox.Show("Compra removida com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        CarregarListasDeCompras();
+                        LimparCamposCompra();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Compra não encontrada.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao remover compra: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void buttonEditar_Click(object sender, EventArgs e)
+        {
+            // Se há um item selecionado na lista de artigos da compra, edita a quantidade
+            if (listBoxListaDeArtigos.SelectedItem != null && _compraSelecionadaId.HasValue && !_isReadOnly)
+            {
+                EditarItemCompra();
+                return;
+            }
+
+            // Caso contrário, edita o nome da compra
+            if (!_compraSelecionadaId.HasValue)
+            {
+                MessageBox.Show("Nenhuma compra selecionada.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string nome = textBoxNomeCompra.Text.Trim();
+            if (string.IsNullOrEmpty(nome))
+            {
+                MessageBox.Show("Por favor, insira o nome da compra.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                var compra = new Compra
+                {
+                    Id = _compraSelecionadaId.Value,
+                    Nome = nome,
+                    AlteradoPorId = Session.UtilizadorId,
+                    DataAlteracao = DateTime.Now
+                };
+
+                if (_compraController.UpdateCompra(compra))
+                {
+                    MessageBox.Show("Compra editada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    CarregarListasDeCompras();
+                    LimparCamposCompra();
+                }
+                else
+                {
+                    MessageBox.Show("Compra não encontrada.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao editar compra: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void buttonGuardar_Click(object sender, EventArgs e)
+        {
+            if (!_compraSelecionadaId.HasValue)
+            {
+                MessageBox.Show("Nenhuma compra para guardar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var itens = _compraController.GetItensPrevistos(_compraSelecionadaId.Value);
+            if (!itens.Any())
+            {
+                MessageBox.Show("A compra não tem itens. Adicione itens antes de guardar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                var compra = _compraController.GetCompraById(_compraSelecionadaId.Value);
+                if (compra != null && !compra.IsFechada)
+                {
+                    MessageBox.Show($"Compra '{compra.Nome}' guardada com sucesso!\n\nTotal de itens: {itens.Count}",
+                        "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Recarregar a lista de compras
+                    CarregarListasDeCompras();
+                    buttonGuardar.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao guardar compra: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void buttonCriarLista_Click(object sender, EventArgs e)
+        {
+            string nome = textBoxNomeCompra.Text.Trim();
+            if (string.IsNullOrEmpty(nome))
+            {
+                MessageBox.Show("Por favor, insira o nome da compra antes de criar a lista.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!_compraSelecionadaId.HasValue)
+            {
+                buttonAdicionar_Click(sender, e);
+                CarregarListasDeCompras();
+            }
+        }
+
+        private void buttonApagarLista_Click(object sender, EventArgs e)
+        {
+            buttonRemover_Click(sender, e);
+        }
+
+        private void numericUpDownMes_ValueChanged(object sender, EventArgs e)
         {
             AtualizarOrcamento();
         }
 
-        private void NumericUpDownQuantidade_ValueChanged(object sender, EventArgs e)
-        {
-            // Evento opcional
-        }
-
-        private void ButtonVoltar_Click(object sender, EventArgs e)
+        private void buttonVoltar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
-        private void label1_Click(object sender, EventArgs e) { }
-        private void textBoxNomeCompra_TextChanged(object sender, EventArgs e) { }
-        private void FormCompra_Load(object sender, EventArgs e) { }
     }
 }
