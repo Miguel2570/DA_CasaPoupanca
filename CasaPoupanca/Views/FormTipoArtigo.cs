@@ -61,8 +61,12 @@ namespace CasaPoupanca
         private void CarregarTiposArtigo()
         {
             var tipos = _controller.GetAllTipos();
+
+            // Ordenar por ID antes de atribuir ao DataGridView
+            var tiposOrdenados = tipos.OrderBy(t => t.Id).ToList();
+
             dataGridViewTipoArtigo.DataSource = null;
-            dataGridViewTipoArtigo.DataSource = tipos;
+            dataGridViewTipoArtigo.DataSource = tiposOrdenados;
         }
 
         private void buttonAdicionar_Click(object sender, EventArgs e)

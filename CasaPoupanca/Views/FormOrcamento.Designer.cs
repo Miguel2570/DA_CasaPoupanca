@@ -50,10 +50,10 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::CasaPoupanca.Properties.Resources.final_removebg_preview;
-            this.pictureBox1.Location = new System.Drawing.Point(11, 11);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Location = new System.Drawing.Point(15, 14);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(106, 83);
+            this.pictureBox1.Size = new System.Drawing.Size(141, 102);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 16;
             this.pictureBox1.TabStop = false;
@@ -62,10 +62,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(51, 119);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(68, 146);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(34, 17);
+            this.label1.Size = new System.Drawing.Size(41, 20);
             this.label1.TabIndex = 17;
             this.label1.Text = "Mês";
             // 
@@ -85,20 +84,19 @@
             "10",
             "11",
             "12"});
-            this.comboBoxMes.Location = new System.Drawing.Point(98, 118);
-            this.comboBoxMes.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBoxMes.Location = new System.Drawing.Point(131, 145);
+            this.comboBoxMes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBoxMes.Name = "comboBoxMes";
-            this.comboBoxMes.Size = new System.Drawing.Size(142, 21);
+            this.comboBoxMes.Size = new System.Drawing.Size(188, 24);
             this.comboBoxMes.TabIndex = 18;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(51, 158);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(68, 194);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(33, 17);
+            this.label2.Size = new System.Drawing.Size(38, 20);
             this.label2.TabIndex = 19;
             this.label2.Text = "Ano";
             // 
@@ -110,29 +108,28 @@
             "2026",
             "2027",
             "2028"});
-            this.comboBoxAno.Location = new System.Drawing.Point(98, 158);
-            this.comboBoxAno.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBoxAno.Location = new System.Drawing.Point(131, 194);
+            this.comboBoxAno.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBoxAno.Name = "comboBoxAno";
-            this.comboBoxAno.Size = new System.Drawing.Size(142, 21);
+            this.comboBoxAno.Size = new System.Drawing.Size(188, 24);
             this.comboBoxAno.TabIndex = 20;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(7, 198);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(9, 244);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(78, 17);
+            this.label3.Size = new System.Drawing.Size(92, 20);
             this.label3.TabIndex = 21;
             this.label3.Text = "Orçamento";
             // 
             // textBoxValor
             // 
-            this.textBoxValor.Location = new System.Drawing.Point(98, 198);
-            this.textBoxValor.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxValor.Location = new System.Drawing.Point(131, 244);
+            this.textBoxValor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxValor.Name = "textBoxValor";
-            this.textBoxValor.Size = new System.Drawing.Size(142, 20);
+            this.textBoxValor.Size = new System.Drawing.Size(188, 22);
             this.textBoxValor.TabIndex = 22;
             // 
             // dataGridViewOrcamento
@@ -160,24 +157,25 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewOrcamento.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridViewOrcamento.Location = new System.Drawing.Point(425, 118);
-            this.dataGridViewOrcamento.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridViewOrcamento.Location = new System.Drawing.Point(507, 146);
+            this.dataGridViewOrcamento.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridViewOrcamento.Name = "dataGridViewOrcamento";
             this.dataGridViewOrcamento.ReadOnly = true;
             this.dataGridViewOrcamento.RowHeadersVisible = false;
             this.dataGridViewOrcamento.RowHeadersWidth = 62;
             this.dataGridViewOrcamento.RowTemplate.Height = 28;
             this.dataGridViewOrcamento.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewOrcamento.Size = new System.Drawing.Size(349, 313);
+            this.dataGridViewOrcamento.Size = new System.Drawing.Size(707, 385);
             this.dataGridViewOrcamento.TabIndex = 24;
             this.dataGridViewOrcamento.SelectionChanged += new System.EventHandler(this.dataGridViewOrcamento_SelectionChanged);
             // 
             // buttonRemover
             // 
             this.buttonRemover.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRemover.Location = new System.Drawing.Point(215, 247);
+            this.buttonRemover.Location = new System.Drawing.Point(287, 304);
+            this.buttonRemover.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonRemover.Name = "buttonRemover";
-            this.buttonRemover.Size = new System.Drawing.Size(75, 32);
+            this.buttonRemover.Size = new System.Drawing.Size(100, 39);
             this.buttonRemover.TabIndex = 27;
             this.buttonRemover.Text = "Remover";
             this.buttonRemover.UseVisualStyleBackColor = true;
@@ -186,9 +184,10 @@
             // buttonEditar
             // 
             this.buttonEditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonEditar.Location = new System.Drawing.Point(109, 247);
+            this.buttonEditar.Location = new System.Drawing.Point(145, 304);
+            this.buttonEditar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonEditar.Name = "buttonEditar";
-            this.buttonEditar.Size = new System.Drawing.Size(75, 32);
+            this.buttonEditar.Size = new System.Drawing.Size(100, 39);
             this.buttonEditar.TabIndex = 26;
             this.buttonEditar.Text = "Editar";
             this.buttonEditar.UseVisualStyleBackColor = true;
@@ -197,9 +196,10 @@
             // buttonAdicionar
             // 
             this.buttonAdicionar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAdicionar.Location = new System.Drawing.Point(11, 247);
+            this.buttonAdicionar.Location = new System.Drawing.Point(15, 304);
+            this.buttonAdicionar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonAdicionar.Name = "buttonAdicionar";
-            this.buttonAdicionar.Size = new System.Drawing.Size(75, 32);
+            this.buttonAdicionar.Size = new System.Drawing.Size(100, 39);
             this.buttonAdicionar.TabIndex = 25;
             this.buttonAdicionar.Text = "Adicionar";
             this.buttonAdicionar.UseVisualStyleBackColor = true;
@@ -209,19 +209,19 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(421, 74);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(502, 91);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(156, 20);
+            this.label5.Size = new System.Drawing.Size(192, 25);
             this.label5.TabIndex = 28;
             this.label5.Text = "Lista de Orçamentos";
             // 
             // buttonVoltar
             // 
             this.buttonVoltar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonVoltar.Location = new System.Drawing.Point(9, 401);
+            this.buttonVoltar.Location = new System.Drawing.Point(12, 494);
+            this.buttonVoltar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonVoltar.Name = "buttonVoltar";
-            this.buttonVoltar.Size = new System.Drawing.Size(75, 30);
+            this.buttonVoltar.Size = new System.Drawing.Size(100, 37);
             this.buttonVoltar.TabIndex = 29;
             this.buttonVoltar.Text = "Voltar";
             this.buttonVoltar.UseVisualStyleBackColor = true;
@@ -229,10 +229,10 @@
             // 
             // FormOrcamento
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(799, 454);
+            this.ClientSize = new System.Drawing.Size(1226, 559);
             this.Controls.Add(this.buttonVoltar);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.buttonRemover);
@@ -246,7 +246,7 @@
             this.Controls.Add(this.comboBoxMes);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormOrcamento";
             this.Text = "FormOrcamento";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
