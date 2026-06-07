@@ -34,9 +34,7 @@
             this.buttonRemover = new System.Windows.Forms.Button();
             this.buttonVoltar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.textBoxUsername = new System.Windows.Forms.TextBox();
-            this.textBoxEmail = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.listBoxUtilizadores = new System.Windows.Forms.ListBox();
@@ -56,7 +54,7 @@
             // 
             this.pictureBox1.Image = global::CasaPoupanca.Properties.Resources.final_removebg_preview;
             this.pictureBox1.Location = new System.Drawing.Point(11, 11);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(125, 86);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -102,28 +100,12 @@
             this.label2.TabIndex = 23;
             this.label2.Text = "Username";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(47, 208);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(32, 13);
-            this.label6.TabIndex = 26;
-            this.label6.Text = "Email";
-            // 
             // textBoxUsername
             // 
             this.textBoxUsername.Location = new System.Drawing.Point(100, 129);
             this.textBoxUsername.Name = "textBoxUsername";
             this.textBoxUsername.Size = new System.Drawing.Size(100, 20);
             this.textBoxUsername.TabIndex = 27;
-            // 
-            // textBoxEmail
-            // 
-            this.textBoxEmail.Location = new System.Drawing.Point(100, 205);
-            this.textBoxEmail.Name = "textBoxEmail";
-            this.textBoxEmail.Size = new System.Drawing.Size(100, 20);
-            this.textBoxEmail.TabIndex = 30;
             // 
             // label3
             // 
@@ -145,7 +127,7 @@
             // 
             this.listBoxUtilizadores.FormattingEnabled = true;
             this.listBoxUtilizadores.Location = new System.Drawing.Point(300, 129);
-            this.listBoxUtilizadores.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listBoxUtilizadores.Margin = new System.Windows.Forms.Padding(2);
             this.listBoxUtilizadores.Name = "listBoxUtilizadores";
             this.listBoxUtilizadores.Size = new System.Drawing.Size(401, 160);
             this.listBoxUtilizadores.TabIndex = 31;
@@ -157,10 +139,8 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1115, 515);
             this.Controls.Add(this.listBoxUtilizadores);
-            this.Controls.Add(this.textBoxEmail);
             this.Controls.Add(this.textBoxPassword);
             this.Controls.Add(this.textBoxUsername);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.buttonVoltar);
@@ -168,7 +148,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormUtilizadores";
             this.Text = "FormUtilizadores";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -184,9 +164,7 @@
         private System.Windows.Forms.Button buttonRemover;
         private System.Windows.Forms.Button buttonVoltar;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBoxUsername;
-        private System.Windows.Forms.TextBox textBoxEmail;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxPassword;
         private System.Windows.Forms.ListBox listBoxUtilizadores;

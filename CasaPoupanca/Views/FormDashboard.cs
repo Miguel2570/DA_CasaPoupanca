@@ -1,6 +1,5 @@
 ﻿using CasaPoupanca.Controllers;
 using CasaPoupança.database;
-using CasaPoupanca.Helpers;
 using CasaPoupanca.models;
 using System;
 using System.Collections.Generic;
@@ -203,10 +202,12 @@ namespace CasaPoupanca
             Session.UtilizadorId = 0;
             Session.Username = null;
 
-            this.Close();
+            this.Hide();
 
             FormLogin login = new FormLogin();
             login.ShowDialog();
+
+            this.Close();
         }
     }
 }

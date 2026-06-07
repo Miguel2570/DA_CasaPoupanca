@@ -1,7 +1,6 @@
 ﻿using CasaPoupanca.Controllers;
 using CasaPoupança.database;
 using CasaPoupanca.models;
-using CasaPoupanca.Helpers;
 using System;
 using System.Linq;
 using System.Text;
@@ -194,10 +193,10 @@ namespace CasaPoupanca
 
                 using (StreamWriter sw = new StreamWriter(caminho, false, Encoding.UTF8))
                 {
-                    sw.WriteLine("ID;Username;Nome;Email;DataRegisto");
+                    sw.WriteLine("ID;Username;Nome;DataRegisto");
                     foreach (var user in utilizadores)
                     {
-                        sw.WriteLine($"{user.Id};{user.Username};{user.Email};{user.DataRegisto:yyyy-MM-dd}");
+                        sw.WriteLine($"{user.Id};{user.Username};{user.DataRegisto:yyyy-MM-dd}");
                     }
                 }
             }

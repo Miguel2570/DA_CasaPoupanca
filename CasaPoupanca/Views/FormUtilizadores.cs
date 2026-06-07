@@ -1,5 +1,5 @@
 ﻿using CasaPoupança.database;
-using CasaPoupanca.Helpers;
+using CasaPoupanca.models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -41,8 +41,8 @@ namespace CasaPoupanca
 
             if (listBoxUtilizadores.Items[e.Index] is UtilizadorDisplay item)
             {
-                // Formatar o texto com ID, Username, Email e Data de Registo
-                string texto = $"{item.Id} - {item.Username} | Email: {item.Email} | Registo: {item.DataRegisto:dd/MM/yyyy}";
+                // Formatar o texto com ID, Username e Data de Registo
+                string texto = $"{item.Id} - {item.Username} | Registo: {item.DataRegisto:dd/MM/yyyy}";
 
                 using (var brush = new SolidBrush(e.ForeColor))
                 {
@@ -63,7 +63,6 @@ namespace CasaPoupanca
                     {
                         Id = u.Id,
                         Username = u.Username,
-                        Email = u.Email,
                         DataRegisto = u.DataRegisto
                     })
                     .ToList();
@@ -82,7 +81,6 @@ namespace CasaPoupanca
         {
             textBoxUsername.Clear();
             textBoxPassword.Clear();
-            textBoxEmail.Clear();
             _utilizadorEditandoId = null;
 
             if (listBoxUtilizadores.SelectedIndex != -1)
@@ -138,7 +136,6 @@ namespace CasaPoupanca
                 var utilizadorSelecionado = (UtilizadorDisplay)listBoxUtilizadores.SelectedItem;
                 _utilizadorEditandoId = utilizadorSelecionado.Id;
                 textBoxUsername.Text = utilizadorSelecionado.Username;
-                textBoxEmail.Text = utilizadorSelecionado.Email;
                 textBoxPassword.Clear(); // Password não é carregada por segurança
             }
             else
@@ -151,17 +148,5 @@ namespace CasaPoupanca
         {
             this.Close();
         }
-    }
-
-    // Classe auxiliar para formatar a exibição no ListBox
-    public class UtilizadorDisplay
-    {
-        public int Id { get; set; }
-        public string Username { get; set; }
-        public string Email { get; set; }
-        public DateTime DataRegisto { get; set; }
-
-        // Propriedade para exibição formatada
-        public string DisplayText => $"{Id} - {Username} | Email: {Email} | Registo: {DataRegisto:dd/MM/yyyy}";
     }
 }

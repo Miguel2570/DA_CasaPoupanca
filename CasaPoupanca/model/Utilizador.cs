@@ -14,8 +14,17 @@ namespace CasaPoupanca.models
         [MaxLength(20)]
         public string Username { get; set; }
         public string Password { get; set; }
-        public string Email { get; set; }
         public DateTime DataRegisto { get; set; }
         public DateTime? DataUltimoLogin { get; set; }
+    }
+
+    public class UtilizadorDisplay
+    {
+        public int Id { get; set; }
+        public string Username { get; set; }
+        public DateTime DataRegisto { get; set; }
+
+        // Propriedade para exibir no ListBox
+        public string DisplayText => $"{Id} - {Username} | Registo: {DataRegisto:dd/MM/yyyy}";
     }
 }

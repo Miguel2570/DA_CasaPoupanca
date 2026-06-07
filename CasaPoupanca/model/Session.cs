@@ -4,14 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CasaPoupanca.Helpers
+namespace CasaPoupanca.models
 {
     public class Session
     {
         public static int UtilizadorId { get; set; }
         public static string Username { get; set; }
-        public static string Email { get; set; }
-
 
         public static void SetUser(int id, string username)
         {
