@@ -51,21 +51,6 @@ namespace CasaPoupanca.Controllers
             }
         }
 
-        public bool AdquirirItem(int itemId, int quantidade, decimal precoUnitario)
-        {
-            using (var db = new CasaPoupancaDB())
-            {
-                var item = db.ItensCompra.Find(itemId);
-                if (item == null)
-                    return false;
-
-                item.QuantidadeAdquirida = quantidade;
-                item.PrecoUnitario = precoUnitario;
-                db.SaveChanges();
-                return true;
-            }
-        }
-
         public bool RemoverItemNaoPrevisto(int itemId)
         {
             using (var db = new CasaPoupancaDB())
@@ -80,13 +65,39 @@ namespace CasaPoupanca.Controllers
             }
         }
 
-        public bool AddItemPrevisto(ItemCompra item)
+        public void AdquirirItemPrevisto(int itemId, int quantidade, decimal precoUnitario)
         {
             using (var db = new CasaPoupancaDB())
             {
-                db.ItensCompra.Add(item);
+                var item = db.ItensCompra.Find(itemId);
+                if (item == null)
+                    throw new Exception("Item não encontrado.");
+
+                if (!item.IsPrevisto)
+                    throw new Exception("Este não é um item previsto.");
+
+                item.QuantidadeAdquirida = quantidade;
+                item.PrecoUnitario = precoUnitario;
                 db.SaveChanges();
-                return true;
+            }
+        }
+
+        public void AdquirirItemNaoPrevisto(int itemId, int quantidade, decimal precoUnitario)
+        {
+            using (var db = new CasaPoupancaDB())
+            {
+                var item = db.ItensCompra.Find(itemId);
+                if (item == null)
+                    throw new Exception("Item não encontrado.");
+
+                if (item.IsPrevisto)
+                    throw new Exception("Este método é apenas para itens não previstos.");
+
+                // Atualiza quantidade e preço
+                item.QuantidadeAdquirida = quantidade;
+                item.PrecoUnitario = precoUnitario;
+
+                db.SaveChanges();
             }
         }
 
