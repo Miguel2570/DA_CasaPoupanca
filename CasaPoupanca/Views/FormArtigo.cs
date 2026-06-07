@@ -12,6 +12,7 @@ namespace CasaPoupanca
     {
         private ArtigoController _controller;
         private List<Artigo> _artigos;
+        private bool _isLoading = false;
 
         public FormArtigo()
         {
@@ -20,12 +21,13 @@ namespace CasaPoupanca
 
             try
             {
-                // CONFIGURAÇÃO DO NUMERICUPDOWN - IMPORTANTE!
                 ConfigurarNumericUpDown();
-
                 CarregarTiposComboBox();
-                CarregarArtigos();
+
                 comboBoxTipo.SelectedIndexChanged += ComboBoxTipo_SelectedIndexChanged;
+                listBoxArtigos.Format += ListBoxArtigos_Format;
+
+                CarregarArtigos();
             }
             catch (Exception ex)
             {
@@ -37,7 +39,7 @@ namespace CasaPoupanca
         {
             // Permite valores de 0.01 até 1.000.000
             numericUpDownPreco.Minimum = 0.01M;
-            numericUpDownPreco.Maximum = 1000000M;  // <-- AUMENTA O MÁXIMO AQUI
+            numericUpDownPreco.Maximum = 1000000M;
             numericUpDownPreco.DecimalPlaces = 2;
             numericUpDownPreco.ThousandsSeparator = true;
 
@@ -48,6 +50,7 @@ namespace CasaPoupanca
         private void CarregarTiposComboBox()
         {
             var tipos = _controller.GetTiposComTodos();
+            comboBoxTipo.DataSource = null;
             comboBoxTipo.DataSource = tipos;
             comboBoxTipo.DisplayMember = "Nome";
             comboBoxTipo.ValueMember = "Id";
@@ -55,40 +58,76 @@ namespace CasaPoupanca
 
         private void CarregarArtigos()
         {
-            if (comboBoxTipo.SelectedValue == null)
+            try
             {
-                MessageBox.Show("Selecione um tipo");
-                return;
+                _isLoading = true;
+
+                // Mostra feedback visual
+                Cursor = Cursors.WaitCursor;
+                listBoxArtigos.Enabled = false;
+
+                int? filtroId = null;
+                if (comboBoxTipo.SelectedValue != null && comboBoxTipo.SelectedValue is int)
+                {
+                    int id = (int)comboBoxTipo.SelectedValue;
+                    if (id > 0)
+                    {
+                        filtroId = id;
+                    }
+                }
+
+                _artigos = _controller.GetArtigosFiltrados(filtroId).ToList();
+
+                listBoxArtigos.DataSource = null;
+                listBoxArtigos.DataSource = _artigos;
+
             }
-            
-
-            int filtroId = (int)comboBoxTipo.SelectedValue;
-
-            _artigos = _controller.GetArtigosFiltrados(filtroId > 0 ? filtroId : (int?)null).ToList();
-
-            listBoxArtigos.DataSource = null;
-            listBoxArtigos.DataSource = _artigos;
-
-            listBoxArtigos.Format -= ListBoxArtigos_Format;
-            listBoxArtigos.Format += ListBoxArtigos_Format;
-
-            comboBoxTipo.SelectedValue = filtroId;
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar artigos: {ex.Message}",
+                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                listBoxArtigos.Enabled = true;
+                Cursor = Cursors.Default;
+                _isLoading = false;
+            }
         }
 
         private void ListBoxArtigos_Format(object sender, ListControlConvertEventArgs e)
         {
             if (e.ListItem is Artigo artigo)
             {
-                if (artigo.PrecoUnitario > 0)
-                    e.Value = $"{artigo.Nome} - €{artigo.PrecoUnitario:F2}";
-                else
+                try
+                {
+                    // Verifica se TipoArtigo está carregado
+                    string tipoNome = artigo.TipoArtigo?.Nome ?? "";
+
+                    if (!string.IsNullOrEmpty(tipoNome))
+                    {
+                        tipoNome = $" [{tipoNome}]";
+                    }
+
+                    if (artigo.PrecoUnitario > 0)
+                    {
+                        e.Value = $"{artigo.Nome} - €{artigo.PrecoUnitario:F2}";
+                    }
+                    else
+                    {
+                        e.Value = $"{artigo.Nome} - Sem preço";
+                    }
+                }
+                catch
+                {
                     e.Value = artigo.Nome;
+                }
             }
         }
 
         private void ComboBoxTipo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxTipo.SelectedValue != null)
+            if (!_isLoading && comboBoxTipo.SelectedValue != null)
             {
                 CarregarArtigos();
                 LimparCampos();
@@ -98,9 +137,10 @@ namespace CasaPoupanca
         private void LimparCampos()
         {
             textBoxNome.Clear();
-            numericUpDownPreco.Value = 0.01M;  // Valor padrão 0.01
+            numericUpDownPreco.Value = 0.01M;
             buttonAdicionar.Enabled = true;
             buttonEditar.Enabled = false;
+            listBoxArtigos.ClearSelected();
         }
 
         private void buttonAdicionar_Click(object sender, EventArgs e)
