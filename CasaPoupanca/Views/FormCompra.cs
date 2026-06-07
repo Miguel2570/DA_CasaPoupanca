@@ -1,5 +1,6 @@
 ﻿using CasaPoupanca.Controllers;
 using CasaPoupanca.models;
+using CasaPoupanca.models;
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -46,6 +47,7 @@ namespace CasaPoupanca
             buttonVoltar.Click += ButtonVoltar_Click;
             buttonCriarLista.Click += ButtonCriarLista_Click;
             buttonApagarLista.Click += ButtonApagarLista_Click;
+            buttonGuardar.Click += ButtonGuardar_Click;
             listBoxListaDeCompras.SelectedIndexChanged += ListBoxListaDeCompras_SelectedIndexChanged;
             listBoxArtigosDisponiveis.SelectedIndexChanged += ListBoxArtigosDisponiveis_SelectedIndexChanged;
             listBoxListaDeArtigos.SelectedIndexChanged += ListBoxListaDeArtigos_SelectedIndexChanged;
@@ -89,6 +91,7 @@ namespace CasaPoupanca
             buttonRemover.Enabled = false;
             buttonCriarLista.Enabled = true;
             buttonApagarLista.Enabled = false;
+            buttonGuardar.Enabled = false;
             numericUpDownQuantidade.Value = 1;
             listBoxListaDeArtigos.DataSource = null;
         }
@@ -105,14 +108,14 @@ namespace CasaPoupanca
 
         private void ButtonAdicionar_Click(object sender, EventArgs e)
         {
-            // Se há um artigo selecionado, adiciona à compra
+            // Se há uma compra selecionada e um artigo selecionado, adiciona à compra
             if (listBoxArtigosDisponiveis.SelectedItem != null && _compraSelecionadaId.HasValue && !_isReadOnly)
             {
                 AdicionarItemCompra();
                 return;
             }
 
-            // Caso contrário, cria nova compra
+            // Caso contrário, cria nova compra (apenas nome, sem itens)
             string nome = textBoxNomeCompra.Text.Trim();
             if (string.IsNullOrEmpty(nome))
             {
@@ -131,13 +134,27 @@ namespace CasaPoupanca
                 };
 
                 _compraController.AddCompra(novaCompra);
-                MessageBox.Show("Compra adicionada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Compra criada com sucesso! Adicione itens e clique em Guardar.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CarregarListasDeCompras();
+
+                // Selecionar a nova compra automaticamente
+                var compras = _compraController.GetComprasAbertasPorUtilizador(Session.UtilizadorId);
+                var ultimaCompra = compras.FirstOrDefault();
+                if (ultimaCompra != null)
+                {
+                    _compraSelecionadaId = ultimaCompra.Id;
+                    textBoxNomeCompra.Text = ultimaCompra.Nome;
+                    buttonGuardar.Enabled = true;
+                    buttonAdicionar.Enabled = true;
+                    buttonEditar.Enabled = true;
+                    buttonRemover.Enabled = true;
+                }
+
                 LimparCamposCompra();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao adicionar compra: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Erro ao criar compra: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -186,15 +203,50 @@ namespace CasaPoupanca
                         IsPrevisto = true
                     };
                     _compraController.AddItemPrevisto(novoItem);
-                    MessageBox.Show("Item adicionado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Item adicionado à compra com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
                 CarregarItensDaCompra(_compraSelecionadaId.Value);
                 numericUpDownQuantidade.Value = 1;
+                buttonGuardar.Enabled = true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Erro ao adicionar item: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ButtonGuardar_Click(object sender, EventArgs e)
+        {
+            if (!_compraSelecionadaId.HasValue)
+            {
+                MessageBox.Show("Nenhuma compra para guardar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var itens = _compraController.GetItensPrevistos(_compraSelecionadaId.Value);
+            if (!itens.Any())
+            {
+                MessageBox.Show("A compra não tem itens. Adicione itens antes de guardar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                var compra = _compraController.GetCompraById(_compraSelecionadaId.Value);
+                if (compra != null && !compra.IsFechada)
+                {
+                    MessageBox.Show($"Compra '{compra.Nome}' guardada com sucesso!\n\nTotal de itens: {itens.Count}",
+                        "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Recarregar a lista de compras
+                    CarregarListasDeCompras();
+                    buttonGuardar.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao guardar compra: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -266,6 +318,7 @@ namespace CasaPoupanca
                 _compraController.UpdateItemPrevisto(item);
                 MessageBox.Show("Item editado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CarregarItensDaCompra(_compraSelecionadaId.Value);
+                buttonGuardar.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -332,6 +385,13 @@ namespace CasaPoupanca
                     _compraController.RemoveItemPrevisto(item.Id);
                     MessageBox.Show("Item removido com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     CarregarItensDaCompra(_compraSelecionadaId.Value);
+
+                    // Verificar se ainda há itens
+                    var itens = _compraController.GetItensPrevistos(_compraSelecionadaId.Value);
+                    if (!itens.Any())
+                    {
+                        buttonGuardar.Enabled = false;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -377,6 +437,7 @@ namespace CasaPoupanca
                     buttonRemover.Enabled = false;
                     buttonCriarLista.Enabled = false;
                     buttonApagarLista.Enabled = false;
+                    buttonGuardar.Enabled = false;
                     MessageBox.Show("Esta compra está fechada e está apenas em modo de leitura.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
@@ -387,6 +448,10 @@ namespace CasaPoupanca
                     buttonRemover.Enabled = true;
                     buttonCriarLista.Enabled = true;
                     buttonApagarLista.Enabled = true;
+
+                    // Verificar se tem itens para ativar o botão Guardar
+                    var itens = _compraController.GetItensPrevistos(compra.Id);
+                    buttonGuardar.Enabled = itens.Any();
                 }
 
                 CarregarItensDaCompra(compra.Id);

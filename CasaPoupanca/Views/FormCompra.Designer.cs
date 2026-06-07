@@ -36,8 +36,7 @@
             this.numericUpDownQuantidade = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.numericUpDownMes = new System.Windows.Forms.NumericUpDown();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
+            this.buttonGuardar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantidade)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMes)).BeginInit();
@@ -55,7 +54,6 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::CasaPoupanca.Properties.Resources.final_removebg_preview;
             this.pictureBox1.Location = new System.Drawing.Point(12, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(160, 132);
@@ -74,11 +72,11 @@
             // 
             // buttonAdicionar
             // 
-            this.buttonAdicionar.Location = new System.Drawing.Point(825, 274);
+            this.buttonAdicionar.Location = new System.Drawing.Point(686, 541);
             this.buttonAdicionar.Name = "buttonAdicionar";
-            this.buttonAdicionar.Size = new System.Drawing.Size(156, 76);
+            this.buttonAdicionar.Size = new System.Drawing.Size(112, 35);
             this.buttonAdicionar.TabIndex = 23;
-            this.buttonAdicionar.Text = "Guardar Compra";
+            this.buttonAdicionar.Text = "Adicionar";
             this.buttonAdicionar.UseVisualStyleBackColor = true;
             // 
             // buttonRemover
@@ -173,7 +171,7 @@
             // 
             // buttonCriarLista
             // 
-            this.buttonCriarLista.Location = new System.Drawing.Point(696, 274);
+            this.buttonCriarLista.Location = new System.Drawing.Point(433, 390);
             this.buttonCriarLista.Name = "buttonCriarLista";
             this.buttonCriarLista.Size = new System.Drawing.Size(112, 35);
             this.buttonCriarLista.TabIndex = 41;
@@ -182,7 +180,7 @@
             // 
             // buttonApagarLista
             // 
-            this.buttonApagarLista.Location = new System.Drawing.Point(696, 315);
+            this.buttonApagarLista.Location = new System.Drawing.Point(563, 390);
             this.buttonApagarLista.Name = "buttonApagarLista";
             this.buttonApagarLista.Size = new System.Drawing.Size(112, 35);
             this.buttonApagarLista.TabIndex = 42;
@@ -192,7 +190,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(380, 410);
+            this.label3.Location = new System.Drawing.Point(380, 433);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(140, 20);
             this.label3.TabIndex = 43;
@@ -202,7 +200,7 @@
             // 
             this.listBoxArtigosDisponiveis.FormattingEnabled = true;
             this.listBoxArtigosDisponiveis.ItemHeight = 20;
-            this.listBoxArtigosDisponiveis.Location = new System.Drawing.Point(384, 433);
+            this.listBoxArtigosDisponiveis.Location = new System.Drawing.Point(384, 456);
             this.listBoxArtigosDisponiveis.Name = "listBoxArtigosDisponiveis";
             this.listBoxArtigosDisponiveis.Size = new System.Drawing.Size(266, 204);
             this.listBoxArtigosDisponiveis.TabIndex = 44;
@@ -230,23 +228,14 @@
             this.numericUpDownMes.Size = new System.Drawing.Size(152, 26);
             this.numericUpDownMes.TabIndex = 47;
             // 
-            // button1
+            // buttonGuardar
             // 
-            this.button1.Location = new System.Drawing.Point(686, 541);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(112, 35);
-            this.button1.TabIndex = 48;
-            this.button1.Text = "Adicionar";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(39, 410);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(119, 20);
-            this.label5.TabIndex = 49;
-            this.label5.Text = "Lista de Artigos";
+            this.buttonGuardar.Location = new System.Drawing.Point(686, 590);
+            this.buttonGuardar.Name = "buttonGuardar";
+            this.buttonGuardar.Size = new System.Drawing.Size(352, 35);
+            this.buttonGuardar.TabIndex = 48;
+            this.buttonGuardar.Text = "Guardar Compra";
+            this.buttonGuardar.UseVisualStyleBackColor = true;
             // 
             // FormCompra
             // 
@@ -254,8 +243,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1062, 686);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonGuardar);
             this.Controls.Add(this.numericUpDownMes);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.numericUpDownQuantidade);
@@ -284,7 +272,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         private System.Windows.Forms.Label label1;
@@ -308,7 +295,6 @@
         private System.Windows.Forms.NumericUpDown numericUpDownQuantidade;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown numericUpDownMes;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button buttonGuardar;
     }
 }
