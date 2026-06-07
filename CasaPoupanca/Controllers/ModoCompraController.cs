@@ -44,9 +44,11 @@ namespace CasaPoupanca.Controllers
         {
             using (var db = new CasaPoupancaDB())
             {
-                return db.ItensCompra
+                var total = db.ItensCompra
                     .Where(i => i.CompraId == compraId)
-                    .Sum(i => i.QuantidadeAdquirida * i.PrecoUnitario);
+                    .Sum(i => (decimal?)i.QuantidadeAdquirida * i.PrecoUnitario);
+
+                return total ?? 0;
             }
         }
 
@@ -152,9 +154,9 @@ namespace CasaPoupanca.Controllers
                                      && c.IsFechada
                                      && c.DataCriacao.Year == hoje.Year
                                      && c.DataCriacao.Month == hoje.Month
-                                  select i.QuantidadeAdquirida * i.PrecoUnitario)
+                                  select (decimal?)i.QuantidadeAdquirida * i.PrecoUnitario)
                                   .DefaultIfEmpty(0)
-                                  .Sum();
+                                  .Sum() ?? 0;
 
                 return orcamento.Valor - totalGasto;
             }
