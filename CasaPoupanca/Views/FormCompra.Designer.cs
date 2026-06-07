@@ -36,6 +36,8 @@
             this.numericUpDownQuantidade = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.numericUpDownMes = new System.Windows.Forms.NumericUpDown();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantidade)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMes)).BeginInit();
@@ -72,11 +74,11 @@
             // 
             // buttonAdicionar
             // 
-            this.buttonAdicionar.Location = new System.Drawing.Point(686, 541);
+            this.buttonAdicionar.Location = new System.Drawing.Point(825, 274);
             this.buttonAdicionar.Name = "buttonAdicionar";
-            this.buttonAdicionar.Size = new System.Drawing.Size(112, 35);
+            this.buttonAdicionar.Size = new System.Drawing.Size(156, 76);
             this.buttonAdicionar.TabIndex = 23;
-            this.buttonAdicionar.Text = "Adicionar";
+            this.buttonAdicionar.Text = "Guardar Compra";
             this.buttonAdicionar.UseVisualStyleBackColor = true;
             // 
             // buttonRemover
@@ -228,12 +230,32 @@
             this.numericUpDownMes.Size = new System.Drawing.Size(152, 26);
             this.numericUpDownMes.TabIndex = 47;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(686, 541);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(112, 35);
+            this.button1.TabIndex = 48;
+            this.button1.Text = "Adicionar";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(39, 410);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(119, 20);
+            this.label5.TabIndex = 49;
+            this.label5.Text = "Lista de Artigos";
+            // 
             // FormCompra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1062, 686);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.numericUpDownMes);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.numericUpDownQuantidade);
@@ -286,5 +308,7 @@
         private System.Windows.Forms.NumericUpDown numericUpDownQuantidade;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown numericUpDownMes;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label5;
     }
 }
