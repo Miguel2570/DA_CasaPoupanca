@@ -84,7 +84,7 @@ namespace CasaPoupanca.Controllers
             }
         }
 
-        public List<Compra> GetComprasAbertoPorUtilizador(int utilizadorId)
+        public List<Compra> GetComprasAbertasPorUtilizador(int utilizadorId)
         {
             using (var db = new CasaPoupancaDB())
             {
