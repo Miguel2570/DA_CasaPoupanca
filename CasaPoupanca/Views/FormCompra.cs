@@ -44,7 +44,7 @@ namespace CasaPoupanca
             buttonAdicionar.Click += buttonAdicionar_Click;
             buttonEditar.Click += buttonEditar_Click;
             buttonRemover.Click += buttonRemover_Click;
-            buttonVoltar.Click += ButtonVoltar_Click;
+            buttonVoltar.Click += buttonVoltar_Click;
             buttonCriarLista.Click += buttonCriarLista_Click;
             buttonApagarLista.Click += buttonApagarLista_Click;
             buttonGuardar.Click += buttonGuardar_Click;
