@@ -101,7 +101,6 @@ namespace CasaPoupanca
             {
                 try
                 {
-                    // Verifica se TipoArtigo está carregado
                     string tipoNome = artigo.TipoArtigo?.Nome ?? "";
 
                     if (!string.IsNullOrEmpty(tipoNome))

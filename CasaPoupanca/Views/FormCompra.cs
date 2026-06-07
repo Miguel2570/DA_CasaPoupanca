@@ -1,6 +1,5 @@
 ﻿using CasaPoupanca.Controllers;
 using CasaPoupanca.models;
-using CasaPoupanca.models;
 using System;
 using System.Linq;
 using System.Windows.Forms;

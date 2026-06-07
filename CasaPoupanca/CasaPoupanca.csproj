@@ -69,13 +69,11 @@
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CompraController.cs" />
     <Compile Include="Controllers\ModoCompraController.cs" />
-    <Compile Include="..\..\..\..\..\Downloads\FormArtigo.cs">
+    <Compile Include="Views\FormArtigo.cs">
       <SubType>Form</SubType>
-      <Link>Views\FormArtigo.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\..\..\Downloads\FormArtigo.Designer.cs">
+    <Compile Include="Views\FormArtigo.Designer.cs">
       <DependentUpon>FormArtigo.cs</DependentUpon>
-      <Link>Views\FormArtigo.Designer.cs</Link>
     </Compile>
     <Compile Include="Views\FormCompra.cs">
       <SubType>Form</SubType>
@@ -153,9 +151,8 @@
     <Compile Include="Views\FormExportarCSV.Designer.cs">
       <DependentUpon>FormExportarCSV.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="..\..\..\..\..\Downloads\FormArtigo.resx">
+    <EmbeddedResource Include="Views\FormArtigo.resx">
       <DependentUpon>FormArtigo.cs</DependentUpon>
-      <Link>Views\FormArtigo.resx</Link>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\FormCompra.resx">
       <DependentUpon>FormCompra.cs</DependentUpon>
