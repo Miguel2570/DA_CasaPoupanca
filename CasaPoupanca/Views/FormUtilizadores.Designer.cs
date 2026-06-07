@@ -38,6 +38,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.listBoxUtilizadores = new System.Windows.Forms.ListBox();
+            this.textBoxNome = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,7 +96,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(26, 132);
+            this.label2.Location = new System.Drawing.Point(33, 166);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(55, 13);
             this.label2.TabIndex = 23;
@@ -102,7 +104,7 @@
             // 
             // textBoxUsername
             // 
-            this.textBoxUsername.Location = new System.Drawing.Point(100, 129);
+            this.textBoxUsername.Location = new System.Drawing.Point(107, 163);
             this.textBoxUsername.Name = "textBoxUsername";
             this.textBoxUsername.Size = new System.Drawing.Size(100, 20);
             this.textBoxUsername.TabIndex = 27;
@@ -110,7 +112,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(26, 166);
+            this.label3.Location = new System.Drawing.Point(35, 203);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 13);
             this.label3.TabIndex = 24;
@@ -118,7 +120,7 @@
             // 
             // textBoxPassword
             // 
-            this.textBoxPassword.Location = new System.Drawing.Point(100, 166);
+            this.textBoxPassword.Location = new System.Drawing.Point(107, 200);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.Size = new System.Drawing.Size(100, 20);
             this.textBoxPassword.TabIndex = 28;
@@ -132,12 +134,30 @@
             this.listBoxUtilizadores.Size = new System.Drawing.Size(401, 160);
             this.listBoxUtilizadores.TabIndex = 31;
             // 
+            // textBoxNome
+            // 
+            this.textBoxNome.Location = new System.Drawing.Point(107, 129);
+            this.textBoxNome.Name = "textBoxNome";
+            this.textBoxNome.Size = new System.Drawing.Size(100, 20);
+            this.textBoxNome.TabIndex = 34;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(33, 132);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(35, 13);
+            this.label6.TabIndex = 32;
+            this.label6.Text = "Nome";
+            // 
             // FormUtilizadores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1115, 515);
+            this.Controls.Add(this.textBoxNome);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.listBoxUtilizadores);
             this.Controls.Add(this.textBoxPassword);
             this.Controls.Add(this.textBoxUsername);
@@ -168,5 +188,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxPassword;
         private System.Windows.Forms.ListBox listBoxUtilizadores;
+        private System.Windows.Forms.TextBox textBoxNome;
+        private System.Windows.Forms.Label label6;
     }
 }

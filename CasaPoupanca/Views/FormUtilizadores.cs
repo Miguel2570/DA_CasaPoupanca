@@ -42,7 +42,7 @@ namespace CasaPoupanca
             if (listBoxUtilizadores.Items[e.Index] is UtilizadorDisplay item)
             {
                 // Formatar o texto com ID, Username e Data de Registo
-                string texto = $"{item.Id} - {item.Username} | Registo: {item.DataRegisto:dd/MM/yyyy}";
+                string texto = $"{item.Id} - {item.Nome} - {item.Username} | Registo: {item.DataRegisto:dd/MM/yyyy}";
 
                 using (var brush = new SolidBrush(e.ForeColor))
                 {
@@ -79,6 +79,7 @@ namespace CasaPoupanca
 
         private void LimparCampos()
         {
+            textBoxNome.Clear();
             textBoxUsername.Clear();
             textBoxPassword.Clear();
             _utilizadorEditandoId = null;
@@ -135,6 +136,7 @@ namespace CasaPoupanca
             {
                 var utilizadorSelecionado = (UtilizadorDisplay)listBoxUtilizadores.SelectedItem;
                 _utilizadorEditandoId = utilizadorSelecionado.Id;
+                textBoxNome.Text = utilizadorSelecionado.Nome;
                 textBoxUsername.Text = utilizadorSelecionado.Username;
                 textBoxPassword.Clear(); // Password não é carregada por segurança
             }
