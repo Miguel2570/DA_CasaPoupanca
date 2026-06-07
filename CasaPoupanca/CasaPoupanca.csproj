@@ -60,6 +60,7 @@
     <Compile Include="Controllers\OrcamentoController.cs" />
     <Compile Include="model\Artigo.cs" />
     <Compile Include="model\Compra.cs" />
+    <Compile Include="model\Estatisticas.cs" />
     <Compile Include="model\ItemCompra.cs" />
     <Compile Include="model\Orcamento.cs" />
     <Compile Include="model\TipoArtigo.cs" />

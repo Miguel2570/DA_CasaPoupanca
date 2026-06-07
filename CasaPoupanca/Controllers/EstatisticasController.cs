@@ -1,5 +1,5 @@
 ﻿using CasaPoupança.database;
-using CasaPoupanca.models;
+using CasaPoupanca.model;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -16,16 +16,15 @@ namespace CasaPoupanca.Controllers
             _db = new CasaPoupancaDB();
         }
 
-        // ==================== 20a. Listagem de meses ====================
-        public List<ResumoMensal> GetResumoMensal()
+        public List<Estatisticas.ResumoMensal> GetResumoMensal()
         {
             var orcamentos = _db.Orcamentos.ToList();
-            var resultado = new List<ResumoMensal>();
+            var resultado = new List<Estatisticas.ResumoMensal>();
 
             foreach (var orcamento in orcamentos)
             {
                 decimal totalGasto = CalcularTotalGastoMes(orcamento.Mes, orcamento.Ano);
-                resultado.Add(new ResumoMensal
+                resultado.Add(new Estatisticas.ResumoMensal
                 {
                     Mes = orcamento.Mes,
                     Ano = orcamento.Ano,
@@ -42,8 +41,9 @@ namespace CasaPoupanca.Controllers
         private decimal CalcularTotalGastoMes(int mes, int ano)
         {
             var comprasFechadas = _db.Compras
-                .Where(c => c.DataCriacao.Month == mes &&
-                            c.DataCriacao.Year == ano &&
+                .Where(c => c.DataFecho.HasValue &&
+                            c.DataFecho.Value.Month == mes &&
+                            c.DataFecho.Value.Year == ano &&
                             c.IsFechada)
                 .ToList();
 
@@ -57,11 +57,10 @@ namespace CasaPoupanca.Controllers
             return totalGasto;
         }
 
-        // ==================== 20b. % de artigos previstos/não previstos ====================
-        public List<ResumoCompra> GetResumoComprasFechadas()
+        public List<Estatisticas.ResumoCompra> GetResumoComprasFechadas()
         {
             var comprasFechadas = _db.Compras.Where(c => c.IsFechada).ToList();
-            var resultado = new List<ResumoCompra>();
+            var resultado = new List<Estatisticas.ResumoCompra>();
 
             foreach (var compra in comprasFechadas)
             {
@@ -72,7 +71,7 @@ namespace CasaPoupanca.Controllers
                 decimal percentagemPrevistos = totalItens > 0 ? (decimal)itensPrevistos / totalItens * 100 : 0;
                 decimal percentagemNaoPrevistos = totalItens > 0 ? (decimal)itensNaoPrevistos / totalItens * 100 : 0;
 
-                resultado.Add(new ResumoCompra
+                resultado.Add(new Estatisticas.ResumoCompra
                 {
                     CompraId = compra.Id,
                     NomeCompra = compra.Nome,
@@ -89,7 +88,6 @@ namespace CasaPoupanca.Controllers
             return resultado.OrderByDescending(r => r.DataFecho).ToList();
         }
 
-        // ==================== 20c. Sugestão de orçamento ====================
         public decimal SugerirOrcamentoProximoMes()
         {
             int mesAtual = DateTime.Now.Month;
@@ -109,18 +107,17 @@ namespace CasaPoupanca.Controllers
             return Math.Round(orcamentosAnteriores.Average(o => o.Valor), 2);
         }
 
-        // ==================== 20c. Sugestão de lista de compras ====================
-        public List<SugestaoItem> SugerirListaCompras()
+        public List<Estatisticas.SugestaoItem> SugerirListaCompras()
         {
             // Determinar a semana atual do mês (1ª, 2ª, 3ª ou 4ª)
             int dia = DateTime.Now.Day;
-            int semanaAtual = (dia - 1) / 7 + 1;
+            int semanaAtual = (int)Math.Ceiling(dia / 7.0);
 
             // Buscar compras fechadas dos meses anteriores na mesma semana
             var comprasMesmoPeriodo = _db.Compras
                 .Where(c => c.IsFechada &&
-                            c.DataCriacao.Day / 7 + 1 == semanaAtual &&
-                            c.DataCriacao < DateTime.Now)
+                            c.DataCriacao < DateTime.Now &&
+                            (int)Math.Ceiling(c.DataCriacao.Day / 7.0) == semanaAtual)
                 .ToList();
 
             // Agrupar por artigo e somar quantidades
@@ -147,7 +144,7 @@ namespace CasaPoupanca.Controllers
             return itensAgrupados
                 .OrderByDescending(i => i.Value)
                 .Take(5)
-                .Select(i => new SugestaoItem { NomeArtigo = i.Key, Quantidade = i.Value })
+                .Select(i => new Estatisticas.SugestaoItem { NomeArtigo = i.Key, Quantidade = i.Value })
                 .ToList();
         }
 
@@ -162,35 +159,5 @@ namespace CasaPoupanca.Controllers
         {
             _db?.Dispose();
         }
-    }
-
-    // Classes auxiliares para os resultados
-    public class ResumoMensal
-    {
-        public int Mes { get; set; }
-        public int Ano { get; set; }
-        public string MesAno { get; set; }
-        public decimal Orcamento { get; set; }
-        public decimal TotalGasto { get; set; }
-        public decimal Diferenca { get; set; }
-    }
-
-    public class ResumoCompra
-    {
-        public int CompraId { get; set; }
-        public string NomeCompra { get; set; }
-        public DateTime DataCriacao { get; set; }
-        public DateTime DataFecho { get; set; }
-        public int TotalItens { get; set; }
-        public int ItensPrevistos { get; set; }
-        public int ItensNaoPrevistos { get; set; }
-        public decimal PercentagemPrevistos { get; set; }
-        public decimal PercentagemNaoPrevistos { get; set; }
-    }
-
-    public class SugestaoItem
-    {
-        public string NomeArtigo { get; set; }
-        public int Quantidade { get; set; }
     }
 }
