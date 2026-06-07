@@ -41,7 +41,7 @@ namespace CasaPoupanca
 
             if (listBoxUtilizadores.Items[e.Index] is UtilizadorDisplay item)
             {
-                // Formatar o texto com ID, Username e Data de Registo
+                // Formatar o texto com ID,Nome, Username e Data de Registo
                 string texto = $"{item.Id} - {item.Nome} - {item.Username} | Registo: {item.DataRegisto:dd/MM/yyyy}";
 
                 using (var brush = new SolidBrush(e.ForeColor))
@@ -58,10 +58,11 @@ namespace CasaPoupanca
             using (var db = new CasaPoupancaDB())
             {
                 var utilizadores = db.Utilizadores
-                    .OrderBy(u => u.Username)
+                    .OrderBy(u => u.Id)
                     .Select(u => new UtilizadorDisplay
                     {
                         Id = u.Id,
+                        Nome = u.Nome,
                         Username = u.Username,
                         DataRegisto = u.DataRegisto
                     })
