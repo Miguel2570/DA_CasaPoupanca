@@ -26,11 +26,12 @@ namespace CasaPoupanca
 
         private void buttonRegister_Click(object sender, EventArgs e)
         {
+            string name = textBoxNomeRegister.Text;
             string username = textBoxUsernameRegister.Text;
             string password = textBoxPasswordRegister.Text;
             string cofirmarPassword = textBoxConfirmarPassword.Text;
             
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(cofirmarPassword))
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(cofirmarPassword))
             {
                 MessageBox.Show("Por favor preencha todos os campos!");
                 return;
@@ -51,6 +52,7 @@ namespace CasaPoupanca
                 var auth = new AuthController();
                 var novoUtilizador = new Utilizador
                 {
+                    Nome = name,
                     Username = username,
                     Password = password,
                     DataRegisto = DateTime.Now,

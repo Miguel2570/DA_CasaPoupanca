@@ -23,11 +23,17 @@ namespace CasaPoupanca
             _orcamentoController = new OrcamentoController();
             _compraController = new CompraController();
             CarregarDados();
+
+            this.Activated += (s, e) =>
+            {
+                CarregarTodasCompras();
+                CarregarOrcamento();
+            };
         }
         private void CarregarDados()
         {
             CarregarOrcamento();
-            CarregarComprasAberto();
+            CarregarTodasCompras();
             ConfigurarDataGridView();
         }
 
@@ -38,9 +44,9 @@ namespace CasaPoupanca
 
         }
 
-        private void CarregarComprasAberto()
+        private void CarregarTodasCompras()
         {
-            var compras = _compraController.GetComprasAbertasPorUtilizador(Session.UtilizadorId);
+            var compras = _compraController.GetComprasPorUtilizador(Session.UtilizadorId);
             dataGridViewCompras.DataSource = null;
             dataGridViewCompras.DataSource = compras;
         }
@@ -80,9 +86,21 @@ namespace CasaPoupanca
             {
                 Name = "Estado",
                 HeaderText = "Estado",
-                DataPropertyName = "IsFechada",
+                DataPropertyName = "IsFechada",  // Vai buscar o boolean
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
             });
+
+            dataGridViewCompras.CellFormatting += (sender, e) =>
+            {
+                if (e.ColumnIndex == dataGridViewCompras.Columns["Estado"].Index && e.RowIndex >= 0)
+                {
+                    if (e.Value is bool isFechada)
+                    {
+                        e.Value = isFechada ? "Fechada" : "Aberta";
+                        e.FormattingApplied = true;
+                    }
+                }
+            };
         }
 
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)
@@ -95,7 +113,7 @@ namespace CasaPoupanca
             FormCompra compra = new FormCompra();
             compra.ShowDialog();
 
-            CarregarComprasAberto();
+            CarregarTodasCompras();
             CarregarOrcamento();
         }
 
@@ -111,14 +129,15 @@ namespace CasaPoupanca
 
             if (compra.IsFechada)
             {
-                MessageBox.Show("Esta compra já está fechada e não pode ser alterada.");
+                MessageBox.Show("⚠️ Esta compra já está FECHADA e não pode ser alterada. Apenas para consulta.",
+                    "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             FormModoCompra modocompra = new FormModoCompra(compra.Id);
             modocompra.ShowDialog();
 
-            CarregarComprasAberto();
+            CarregarTodasCompras();
             CarregarOrcamento();
         }
 

@@ -20,12 +20,12 @@ namespace CasaPoupanca.Controllers
             }
         }
 
-        public List<Compra> GetComprasAbertasPorUtilizador(int utilizadorId)
+        public List<Compra> GetComprasPorUtilizador(int utilizadorId)
         {
             using (var db = new CasaPoupancaDB())
             {
                 return db.Compras
-                    .Where(c => !c.IsFechada && c.CriadoPorId == utilizadorId)
+                    .Where(c => c.CriadoPorId == utilizadorId)
                     .OrderByDescending(c => c.DataCriacao)
                     .ToList();
             }

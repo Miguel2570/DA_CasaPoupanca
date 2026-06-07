@@ -57,7 +57,7 @@ namespace CasaPoupanca
 
         private void CarregarListasDeCompras()
         {
-            var compras = _compraController.GetComprasAbertasPorUtilizador(Session.UtilizadorId);
+            var compras = _compraController.GetComprasPorUtilizador(Session.UtilizadorId);
             listBoxListaDeCompras.DataSource = null;
             listBoxListaDeCompras.DataSource = compras;
             listBoxListaDeCompras.DisplayMember = "Nome";
@@ -299,7 +299,7 @@ namespace CasaPoupanca
                 CarregarListasDeCompras();
 
                 // Selecionar a nova compra automaticamente
-                var compras = _compraController.GetComprasAbertasPorUtilizador(Session.UtilizadorId);
+                var compras = _compraController.GetComprasPorUtilizador(Session.UtilizadorId);
                 var ultimaCompra = compras.FirstOrDefault();
                 if (ultimaCompra != null)
                 {

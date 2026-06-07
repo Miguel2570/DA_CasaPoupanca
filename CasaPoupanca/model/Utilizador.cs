@@ -12,6 +12,7 @@ namespace CasaPoupanca.models
         [Key]
         public int Id { get; set; }
         [MaxLength(20)]
+        public string Nome { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public DateTime DataRegisto { get; set; }
@@ -21,6 +22,7 @@ namespace CasaPoupanca.models
     public class UtilizadorDisplay
     {
         public int Id { get; set; }
+        public string Nome { get; set; }
         public string Username { get; set; }
         public DateTime DataRegisto { get; set; }
 
