@@ -28,9 +28,8 @@ namespace CasaPoupanca
                 var utilizador = db.Utilizadores.Find(Session.UtilizadorId);
                 if (utilizador != null)
                 {
-                    labelUsername.Text = utilizador.Username;
-                    labelEmail.Text = utilizador.Email;
-
+                    label1.Text = utilizador.Username;
+                    
                     // Estatísticas
                     labelDataRegistoValor.Text = utilizador.DataRegisto.ToString("dd/MM/yyyy");
 

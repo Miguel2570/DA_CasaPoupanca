@@ -29,9 +29,8 @@ namespace CasaPoupanca
             string username = textBoxUsernameRegister.Text;
             string password = textBoxPasswordRegister.Text;
             string cofirmarPassword = textBoxConfirmarPassword.Text;
-            string email = textBoxEmailRegister.Text;
-
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(cofirmarPassword) || string.IsNullOrEmpty(email))
+            
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(cofirmarPassword))
             {
                 MessageBox.Show("Por favor preencha todos os campos!");
                 return;
@@ -54,7 +53,6 @@ namespace CasaPoupanca
                 {
                     Username = username,
                     Password = password,
-                    Email = email,
                     DataRegisto = DateTime.Now,
                 };
 

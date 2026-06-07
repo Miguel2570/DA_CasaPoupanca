@@ -18,7 +18,6 @@ namespace CasaPoupanca
         private void InitializeComponent()
         {
             this.groupBoxInfo = new System.Windows.Forms.GroupBox();
-            this.labelEmail = new System.Windows.Forms.Label();
             this.labelUsername = new System.Windows.Forms.Label();
             this.groupBoxStats = new System.Windows.Forms.GroupBox();
             this.labelUltimaCompraValor = new System.Windows.Forms.Label();
@@ -32,6 +31,7 @@ namespace CasaPoupanca
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.buttonVoltar = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBoxInfo.SuspendLayout();
             this.groupBoxStats.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -40,24 +40,15 @@ namespace CasaPoupanca
             // 
             // groupBoxInfo
             // 
-            this.groupBoxInfo.Controls.Add(this.labelEmail);
+            this.groupBoxInfo.Controls.Add(this.label1);
             this.groupBoxInfo.Controls.Add(this.labelUsername);
             this.groupBoxInfo.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.groupBoxInfo.Location = new System.Drawing.Point(84, 107);
             this.groupBoxInfo.Name = "groupBoxInfo";
-            this.groupBoxInfo.Size = new System.Drawing.Size(400, 123);
+            this.groupBoxInfo.Size = new System.Drawing.Size(400, 83);
             this.groupBoxInfo.TabIndex = 1;
             this.groupBoxInfo.TabStop = false;
             this.groupBoxInfo.Text = "Informações Pessoais";
-            // 
-            // labelEmail
-            // 
-            this.labelEmail.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.labelEmail.Location = new System.Drawing.Point(15, 80);
-            this.labelEmail.Name = "labelEmail";
-            this.labelEmail.Size = new System.Drawing.Size(54, 20);
-            this.labelEmail.TabIndex = 4;
-            this.labelEmail.Text = "Email:";
             // 
             // labelUsername
             // 
@@ -191,9 +182,18 @@ namespace CasaPoupanca
             this.pictureBox2.TabIndex = 15;
             this.pictureBox2.TabStop = false;
             // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.label1.Location = new System.Drawing.Point(102, 41);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(81, 20);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "label1";
+            // 
             // FormProfile
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(550, 480);
@@ -229,7 +229,6 @@ namespace CasaPoupanca
 
         // Controlos
         private System.Windows.Forms.GroupBox groupBoxInfo;
-        private System.Windows.Forms.Label labelEmail;
         private System.Windows.Forms.Label labelUsername;
         private System.Windows.Forms.GroupBox groupBoxStats;
         private System.Windows.Forms.Label labelUltimaCompraValor;
@@ -243,5 +242,6 @@ namespace CasaPoupanca
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button buttonVoltar;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label label1;
     }
 }
