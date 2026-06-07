@@ -16,6 +16,8 @@ namespace CasaPoupanca.Controllers
                 return db.Compras
                     .Where(c => c.CriadoPorId == utilizadorId)
                     .OrderByDescending(c => c.DataCriacao)
+                    .Include(c => c.Itens)
+                    .Include(c => c.Itens.Select(i => i.Artigo))
                     .ToList();
             }
         }
@@ -35,7 +37,11 @@ namespace CasaPoupanca.Controllers
         {
             using (var db = new CasaPoupancaDB())
             {
-                return db.Compras.Find(id);
+                return db.Compras
+                    .Include(c => c.Itens)
+                    .Include(c => c.Itens.Select(i => i.Artigo))
+                    .Include(c => c.Itens.Select(i => i.Artigo.TipoArtigo))
+                    .FirstOrDefault(c => c.Id == id);
             }
         }
 

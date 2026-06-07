@@ -37,6 +37,8 @@ namespace CasaPoupanca.Controllers
             {
                 return db.ItensCompra
                     .Where(i => i.CompraId == compraId && !i.IsPrevisto)
+                    .Include(i => i.Artigo)
+                    .Include(i => i.Artigo.TipoArtigo)
                     .ToList();
             }
         }

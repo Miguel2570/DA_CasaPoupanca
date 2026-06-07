@@ -47,7 +47,7 @@
             // 
             // buttonRemover
             // 
-            this.buttonRemover.Location = new System.Drawing.Point(255, 218);
+            this.buttonRemover.Location = new System.Drawing.Point(247, 218);
             this.buttonRemover.Name = "buttonRemover";
             this.buttonRemover.Size = new System.Drawing.Size(75, 23);
             this.buttonRemover.TabIndex = 9;
@@ -57,7 +57,7 @@
             // 
             // buttonEditar
             // 
-            this.buttonEditar.Location = new System.Drawing.Point(174, 218);
+            this.buttonEditar.Location = new System.Drawing.Point(164, 218);
             this.buttonEditar.Name = "buttonEditar";
             this.buttonEditar.Size = new System.Drawing.Size(75, 23);
             this.buttonEditar.TabIndex = 8;
@@ -67,7 +67,7 @@
             // 
             // buttonAdicionar
             // 
-            this.buttonAdicionar.Location = new System.Drawing.Point(82, 218);
+            this.buttonAdicionar.Location = new System.Drawing.Point(73, 218);
             this.buttonAdicionar.Name = "buttonAdicionar";
             this.buttonAdicionar.Size = new System.Drawing.Size(75, 23);
             this.buttonAdicionar.TabIndex = 7;
@@ -124,7 +124,7 @@
             // 
             this.pictureBox1.Image = global::CasaPoupanca.Properties.Resources.final_removebg_preview;
             this.pictureBox1.Location = new System.Drawing.Point(153, 10);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(107, 86);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -163,7 +163,7 @@
             // numericUpDownPreco
             // 
             this.numericUpDownPreco.Location = new System.Drawing.Point(116, 178);
-            this.numericUpDownPreco.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numericUpDownPreco.Margin = new System.Windows.Forms.Padding(2);
             this.numericUpDownPreco.Name = "numericUpDownPreco";
             this.numericUpDownPreco.Size = new System.Drawing.Size(90, 20);
             this.numericUpDownPreco.TabIndex = 19;
