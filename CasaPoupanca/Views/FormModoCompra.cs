@@ -1,8 +1,6 @@
 ﻿using CasaPoupanca.Controllers;
-using CasaPoupança.database;
 using CasaPoupanca.models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -13,12 +11,15 @@ namespace CasaPoupanca
         private int _compraId;
         private decimal _orcamentoDisponivel;
         private ModoCompraController _controller;
+        private Compra _compraAtual;
 
         public FormModoCompra(int compraId)
         {
             InitializeComponent();
             _compraId = compraId;
             _controller = new ModoCompraController();
+
+            ConfigurarControles();
 
             try
             {
@@ -29,16 +30,31 @@ namespace CasaPoupanca
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao carregar dados: {ex.Message}");
+                MessageBox.Show($"Erro ao carregar dados: {ex.Message}", "Erro",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void ConfigurarControles()
+        {
+            numericUpDownQuantidadeAdquirir.Minimum = 1;
+            numericUpDownQuantidadeAdquirir.Maximum = 999999;
+            numericUpDownQuantidadeAdquirir.Value = 1;
+
+            numericUpDownPrecoUnitarioAdquirir.Minimum = 0.01M;
+            numericUpDownPrecoUnitarioAdquirir.Maximum = 1000000M;
+            numericUpDownPrecoUnitarioAdquirir.DecimalPlaces = 2;
+            numericUpDownPrecoUnitarioAdquirir.Value = 0.01M;
         }
 
         private void CarregarDadosCompra()
         {
-            var compra = _controller.GetCompraById(_compraId);
-            if (compra != null)
+            _compraAtual = _controller.GetCompraById(_compraId);
+            if (_compraAtual != null)
             {
-                this.Text = $"Modo Compra - {compra.Nome}";
+                this.Text = $"Modo Compra - {_compraAtual.Nome}";
+                if (labelNomeCompra != null)
+                    labelNomeCompra.Text = _compraAtual.Nome;
             }
         }
 
@@ -47,15 +63,27 @@ namespace CasaPoupanca
             _orcamentoDisponivel = _controller.GetOrcamentoDisponivel(Session.UtilizadorId);
             labelOrcamentoDisponivel.Text = $"Orçamento Disponível: {_orcamentoDisponivel:C}";
 
-            if (_orcamentoDisponivel < 0)
+            decimal totalGasto = _controller.GetTotalGastoCompra(_compraId);
+            decimal restante = _orcamentoDisponivel - totalGasto;
+
+            if (restante < 0)
             {
                 labelOrcamentoDisponivel.ForeColor = System.Drawing.Color.Red;
                 labelAviso.Text = "ATENÇÃO: Orçamento ultrapassado!";
+                labelAviso.ForeColor = System.Drawing.Color.Red;
+                labelAviso.Visible = true;
+            }
+            else if (restante < (_orcamentoDisponivel * 0.1M) && _orcamentoDisponivel > 0)
+            {
+                labelOrcamentoDisponivel.ForeColor = System.Drawing.Color.Orange;
+                labelAviso.Text = "ATENÇÃO: Orçamento a terminar!";
+                labelAviso.ForeColor = System.Drawing.Color.Orange;
+                labelAviso.Visible = true;
             }
             else
             {
                 labelOrcamentoDisponivel.ForeColor = System.Drawing.Color.Green;
-                labelAviso.Text = "";
+                labelAviso.Visible = false;
             }
         }
 
@@ -65,7 +93,6 @@ namespace CasaPoupanca
             listBoxItensPrevistos.DataSource = null;
             listBoxItensPrevistos.DataSource = itens;
 
-            // Usar evento Format para mostrar texto personalizado
             listBoxItensPrevistos.Format -= ListBoxItensPrevistos_Format;
             listBoxItensPrevistos.Format += ListBoxItensPrevistos_Format;
         }
@@ -74,9 +101,9 @@ namespace CasaPoupanca
         {
             if (e.ListItem is ItemCompra item)
             {
-                // Ajusta estas propriedades conforme o teu modelo
                 string artigoNome = item.Artigo?.Nome ?? $"Artigo #{item.ArtigoId}";
-                e.Value = $"{artigoNome} | Previsto: {item.QuantidadePrevista} x €{item.PrecoUnitario:F2} = €{(item.QuantidadePrevista * item.PrecoUnitario):F2}";
+                decimal totalPrevisto = item.QuantidadePrevista * item.PrecoUnitario;
+                e.Value = $"{artigoNome} | Qtd: {item.QuantidadePrevista} x €{item.PrecoUnitario:F2} = €{totalPrevisto:F2}";
             }
         }
 
@@ -94,79 +121,55 @@ namespace CasaPoupanca
         {
             if (e.ListItem is ItemCompra item)
             {
-                string artigoNome = item.Artigo?.Nome ?? $"Artigo #{item.ArtigoId}";
-                e.Value = $"{artigoNome} | Adquirido: {item.QuantidadeAdquirida} x €{item.PrecoUnitario:F2} = €{(item.QuantidadeAdquirida * item.PrecoUnitario):F2}";
+                string artigoNome = item.Artigo?.Nome ?? $"Item #{item.Id}";
+                decimal totalAdquirido = item.QuantidadeAdquirida * item.PrecoUnitario;
+                e.Value = $"{artigoNome} | Qtd: {item.QuantidadeAdquirida} x €{item.PrecoUnitario:F2} = €{totalAdquirido:F2}";
             }
         }
 
-        private void buttonVoltar_Click(object sender, EventArgs e)
+        private void LimparCamposAdquirir()
         {
-            this.Close();
-        }
-
-        private void buttonAddItemNaoPrevisto_Click(object sender, EventArgs e)
-        {
-            FormItemNaoPrevisto itemNaoPrevisto = new FormItemNaoPrevisto(_compraId);
-            itemNaoPrevisto.ShowDialog();
-            // Recarregar após adicionar
-            CarregarItensNaoPrevistos();
-            CarregarOrcamento();
-        }
-
-        private void buttonFecharCompra_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                int itensNaoAdquiridos = _controller.CountItensNaoAdquiridos(_compraId);
-
-                if (itensNaoAdquiridos > 0)
-                {
-                    DialogResult resultado = MessageBox.Show(
-                        $"Ainda existem {itensNaoAdquiridos} itens previstos não adquiridos.\n\nDeseja fechar a compra mesmo assim?",
-                        "Aviso", MessageBoxButtons.YesNo);
-
-                    if (resultado != DialogResult.Yes)
-                        return;
-                }
-
-                DialogResult resultadoFinal = MessageBox.Show(
-                    "Tem certeza que deseja fechar esta compra?\n\nApós fechada, não poderá mais ser alterada!",
-                    "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (resultadoFinal == DialogResult.Yes)
-                {
-                    _controller.FecharCompra(_compraId, Session.UtilizadorId);
-                    MessageBox.Show("Compra fechada com sucesso!");
-                    this.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao fechar compra: {ex.Message}");
-            }
+            numericUpDownQuantidadeAdquirir.Value = 1;
+            numericUpDownPrecoUnitarioAdquirir.Value = 0.01M;
+            listBoxItensPrevistos.ClearSelected();
         }
 
         private void buttonAdquirirItemPrevisto_Click(object sender, EventArgs e)
         {
             if (listBoxItensPrevistos.SelectedItem == null)
             {
-                MessageBox.Show("Selecione um item previsto para adquirir");
+                MessageBox.Show("Selecione um item previsto para adquirir!", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             int quantidade = (int)numericUpDownQuantidadeAdquirir.Value;
-            decimal precoUnitario = numericUpDownPrecoUnitarioAdquirir.Value;
-
             if (quantidade <= 0)
             {
-                MessageBox.Show("A quantidade deve ser maior que zero");
+                MessageBox.Show("A quantidade deve ser maior que zero!", "Validação",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
+            decimal precoUnitario = numericUpDownPrecoUnitarioAdquirir.Value;
             if (precoUnitario <= 0)
             {
-                MessageBox.Show("O preço unitário deve ser maior que zero");
+                MessageBox.Show("O preço unitário deve ser maior que zero!", "Validação",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
+            }
+
+            decimal totalCompra = quantidade * precoUnitario;
+            decimal totalGastoAposCompra = _controller.GetTotalGastoCompra(_compraId) + totalCompra;
+
+            if (totalGastoAposCompra > _orcamentoDisponivel && _orcamentoDisponivel > 0)
+            {
+                DialogResult result = MessageBox.Show(
+                    $"Esta compra vai custar {totalCompra:C}. Isso fará ultrapassar o orçamento disponível ({_orcamentoDisponivel:C}).\n\nDeseja continuar?",
+                    "Aviso de Orçamento", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result != DialogResult.Yes)
+                    return;
             }
 
             try
@@ -185,19 +188,18 @@ namespace CasaPoupanca
 
                 _controller.AdquirirItemPrevisto(item.Id, quantidade, precoUnitario);
 
-                MessageBox.Show("Item adquirido com sucesso!", "Sucesso",
+                MessageBox.Show($"Item adquirido com sucesso!\n\nTotal: {totalCompra:C}", "Sucesso",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 CarregarOrcamento();
                 CarregarItensPrevistos();
                 CarregarItensNaoPrevistos();
-
-                numericUpDownQuantidadeAdquirir.Value = 1;
-                numericUpDownPrecoUnitarioAdquirir.Value = 0;
+                LimparCamposAdquirir();
             }
-            catch (ArgumentException ex)
+            catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao adquirir item: {ex.Message}");
+                MessageBox.Show($"Erro ao adquirir item: {ex.Message}", "Erro",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -227,26 +229,104 @@ namespace CasaPoupanca
                 return;
             }
 
+            decimal totalCompra = quantidade * precoUnitario;
+            decimal totalGastoAposCompra = _controller.GetTotalGastoCompra(_compraId) + totalCompra;
+
+            if (totalGastoAposCompra > _orcamentoDisponivel && _orcamentoDisponivel > 0)
+            {
+                DialogResult result = MessageBox.Show(
+                    $"Este item vai custar {totalCompra:C}. Isso fará ultrapassar o orçamento disponível ({_orcamentoDisponivel:C}).\n\nDeseja continuar?",
+                    "Aviso de Orçamento", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result != DialogResult.Yes)
+                    return;
+            }
+
             try
             {
                 var item = (ItemCompra)listBoxItensNaoPrevistos.SelectedItem;
 
                 _controller.AdquirirItemNaoPrevisto(item.Id, quantidade, precoUnitario);
 
-                MessageBox.Show("Item não previsto adquirido com sucesso!", "Sucesso",
+                MessageBox.Show($"Item não previsto adquirido com sucesso!\n\nTotal: {totalCompra:C}", "Sucesso",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 CarregarOrcamento();
                 CarregarItensNaoPrevistos();
-                CarregarItensPrevistos(); // Recarregar também por precaução
+                CarregarItensPrevistos();
 
                 numericUpDownQuantidadeAdquirir.Value = 1;
-                numericUpDownPrecoUnitarioAdquirir.Value = 0;
+                numericUpDownPrecoUnitarioAdquirir.Value = 0.01M;
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Erro ao adquirir item: {ex.Message}", "Erro",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void buttonAddItemNaoPrevisto_Click(object sender, EventArgs e)
+        {
+            FormItemNaoPrevisto formItemNaoPrevisto = new FormItemNaoPrevisto(_compraId);
+            formItemNaoPrevisto.ShowDialog();
+
+            CarregarItensNaoPrevistos();
+            CarregarOrcamento();
+        }
+
+        private void buttonFecharCompra_Click(object sender, EventArgs e)
+        {
+            int itensNaoAdquiridos = _controller.CountItensNaoAdquiridos(_compraId);
+
+            if (itensNaoAdquiridos > 0)
+            {
+                DialogResult resultado = MessageBox.Show(
+                    $"Ainda existem {itensNaoAdquiridos} itens previstos não adquiridos.\n\nDeseja fechar a compra mesmo assim?",
+                    "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (resultado != DialogResult.Yes)
+                    return;
+            }
+
+            DialogResult resultadoFinal = MessageBox.Show(
+                "Tem certeza que deseja fechar esta compra?\n\nApós fechada, não poderá mais ser alterada!",
+                "Confirmar Fecho", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (resultadoFinal == DialogResult.Yes)
+            {
+                try
+                {
+                    _controller.FecharCompra(_compraId, Session.UtilizadorId);
+
+                    MessageBox.Show("Compra fechada com sucesso!", "Sucesso",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Erro ao fechar compra: {ex.Message}", "Erro",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void buttonVoltar_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Deseja sair? As alterações não salvas serão perdidas.",
+                "Sair", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
+
+        private void listBoxItensPrevistos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBoxItensPrevistos.SelectedItem is ItemCompra item)
+            {
+                numericUpDownQuantidadeAdquirir.Value = Math.Min(item.QuantidadePrevista, 1);
+                numericUpDownPrecoUnitarioAdquirir.Value = item.PrecoUnitario;
             }
         }
     }

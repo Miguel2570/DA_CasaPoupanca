@@ -40,6 +40,25 @@ namespace CasaPoupanca.Controllers
                     .ToList();
             }
         }
+        public decimal GetTotalGastoCompra(int compraId)
+        {
+            using (var db = new CasaPoupancaDB())
+            {
+                return db.ItensCompra
+                    .Where(i => i.CompraId == compraId)
+                    .Sum(i => i.QuantidadeAdquirida * i.PrecoUnitario);
+            }
+        }
+
+        public int CountItensNaoAdquiridos(int compraId)
+        {
+            using (var db = new CasaPoupancaDB())
+            {
+                return db.ItensCompra
+                    .Where(i => i.CompraId == compraId && i.QuantidadeAdquirida < i.QuantidadePrevista)
+                    .Count();
+            }
+        }
 
         public bool AddItemNaoPrevisto(ItemCompra item)
         {
@@ -101,15 +120,6 @@ namespace CasaPoupanca.Controllers
             }
         }
 
-        public int CountItensNaoAdquiridos(int compraId)
-        {
-            using (var db = new CasaPoupancaDB())
-            {
-                return db.ItensCompra
-                    .Count(i => i.CompraId == compraId && i.IsPrevisto && i.QuantidadeAdquirida == 0);
-            }
-        }
-
         public void FecharCompra(int compraId, int utilizadorId)
         {
             using (var db = new CasaPoupancaDB())
@@ -129,29 +139,22 @@ namespace CasaPoupanca.Controllers
         {
             using (var db = new CasaPoupancaDB())
             {
-                int mesAtual = DateTime.Now.Month;
-                int anoAtual = DateTime.Now.Year;
+                var hoje = DateTime.Now;
 
-                // Busca o orçamento do mês atual
                 var orcamento = db.Orcamentos
-                    .FirstOrDefault(o => o.Mes == mesAtual && o.Ano == anoAtual);
+                    .FirstOrDefault(o => o.CriadoPorId == utilizadorId && o.Mes == hoje.Month && o.Ano == hoje.Year);
 
-                if (orcamento == null)
-                    return 0;
+                if (orcamento == null) return 0;
 
-                // Calcula o total gasto no mês atual (todas as compras fechadas)
-                var comprasFechadas = db.Compras
-                    .Where(c => c.IsFechada && c.DataFecho.HasValue &&
-                                c.DataFecho.Value.Month == mesAtual &&
-                                c.DataFecho.Value.Year == anoAtual)
-                    .ToList();
-
-                decimal totalGasto = 0;
-                foreach (var compra in comprasFechadas)
-                {
-                    var itens = db.ItensCompra.Where(i => i.CompraId == compra.Id);
-                    totalGasto += itens.Sum(i => i.QuantidadeAdquirida * i.PrecoUnitario);
-                }
+                var totalGasto = (from c in db.Compras
+                                  join i in db.ItensCompra on c.Id equals i.CompraId
+                                  where c.CriadoPorId == utilizadorId
+                                     && c.IsFechada
+                                     && c.DataCriacao.Year == hoje.Year
+                                     && c.DataCriacao.Month == hoje.Month
+                                  select i.QuantidadeAdquirida * i.PrecoUnitario)
+                                  .DefaultIfEmpty(0)
+                                  .Sum();
 
                 return orcamento.Valor - totalGasto;
             }
