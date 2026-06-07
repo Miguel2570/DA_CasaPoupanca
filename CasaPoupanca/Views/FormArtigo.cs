@@ -55,7 +55,15 @@ namespace CasaPoupanca
 
         private void CarregarArtigos()
         {
+            if (comboBoxTipo.SelectedValue == null)
+            {
+                MessageBox.Show("Selecione um tipo");
+                return;
+            }
+            
+
             int filtroId = (int)comboBoxTipo.SelectedValue;
+
             _artigos = _controller.GetArtigosFiltrados(filtroId > 0 ? filtroId : (int?)null).ToList();
 
             listBoxArtigos.DataSource = null;
@@ -63,6 +71,8 @@ namespace CasaPoupanca
 
             listBoxArtigos.Format -= ListBoxArtigos_Format;
             listBoxArtigos.Format += ListBoxArtigos_Format;
+
+            comboBoxTipo.SelectedValue = filtroId;
         }
 
         private void ListBoxArtigos_Format(object sender, ListControlConvertEventArgs e)
