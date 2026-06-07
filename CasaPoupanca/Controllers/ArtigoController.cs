@@ -92,6 +92,7 @@ namespace CasaPoupanca.Controllers
 
                 existing.Nome = artigo.Nome;
                 existing.TipoArtigoId = artigo.TipoArtigoId;
+                existing.PrecoUnitario = artigo.PrecoUnitario;
                 db.SaveChanges();
                 return true;
             }
