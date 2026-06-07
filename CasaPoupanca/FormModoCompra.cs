@@ -30,6 +30,7 @@ namespace CasaPoupanca
                 CarregarDadosCompra();
                 CarregarOrcamento();
                 CarregarItensPrevistos();
+                CarregarItensNaoPrevistos();
             }
             catch (Exception ex)
             {
@@ -70,6 +71,15 @@ namespace CasaPoupanca
             listBoxItensPrevistos.DataSource = itens;
             listBoxItensPrevistos.DisplayMember = "DisplayText";
             listBoxItensPrevistos.ValueMember = "Id";
+        }
+
+        private void CarregarItensNaoPrevistos()
+        {
+            var itens = _controller.GetItensNaoPrevistos(_compraId);
+            listBoxItensNaoPrevistos.DataSource = null;
+            listBoxItensNaoPrevistos.DataSource = itens;
+            listBoxItensNaoPrevistos.DisplayMember = "DisplayText";
+            listBoxItensNaoPrevistos.ValueMember = "Id";
         }
 
         private void buttonVoltar_Click(object sender, EventArgs e)
@@ -116,42 +126,25 @@ namespace CasaPoupanca
             }
         }
 
-        private void buttonSalvar_Click(object sender, EventArgs e)
+        private void buttonAdquirirItemPrevisto_Click(object sender, EventArgs e)
         {
-            
-        }
-
-        private void buttonAdquirirItensPrevistos_Click(object sender, EventArgs e)
-        {
-            if (listBoxItensPrevistos.SelectedItem == null)
+            if(listBoxItensPrevistos.SelectedItems == null)
             {
-                MessageBox.Show("Selecione um item para adquirir.");
+                MessageBox.Show("Selecione umm item previsto para adquirir");
+                return;
+            }
+            int quantidade = (int)numericUpDownQuantidadeAdquirir.Value;
+            decimal precoUnitario = numericUpDownPrecoUnitarioAdquirir.Value;
+
+            if (quantidade <= 0)
+            {
+                MessageBox.Show("A quantidade deve ser maior que zero");
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(textBoxQuantidade.Text))
+            if(precoUnitario <= 0)
             {
-                MessageBox.Show("Insira a quantidade!");
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(textBoxPrecoUnitario.Text))
-            {
-                MessageBox.Show("Insira o preço!");
-                return;
-            }
-
-            int quantidade;
-            if (!int.TryParse(textBoxQuantidade.Text, out quantidade) || quantidade <= 0)
-            {
-                MessageBox.Show("Insira uma quantidade válida!");
-                return;
-            }
-
-            decimal precoUnitario;
-            if (!decimal.TryParse(textBoxPrecoUnitario.Text, out precoUnitario) || precoUnitario <= 0)
-            {
-                MessageBox.Show("Insira um preço válido!");
+                MessageBox.Show("O prçeço unitario deve ser maioir que zero");
                 return;
             }
 
@@ -159,42 +152,80 @@ namespace CasaPoupanca
             {
                 var item = (ItemCompra)listBoxItensPrevistos.SelectedItem;
 
-                if (quantidade > item.QuantidadePrevista - item.QuantidadeAdquirida)
+                if (quantidade > item.QuantidadePrevista)
                 {
-                    DialogResult resultado = MessageBox.Show(
-                        $"A quantidade a adquirir ({quantidade}) é maior que a quantidade prevista por adquirir.\n\nDeseja continuar?",
-                        "Aviso", MessageBoxButtons.YesNo);
+                    DialogResult result = MessageBox.Show(
+                    $"A quantidade a adquirir ({quantidade}) é maior que a prevista ({item.QuantidadePrevista}).\n\nDeseja continuar?",
+                    "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                    if (resultado != DialogResult.Yes)
+                    if (result != DialogResult.Yes)
                         return;
                 }
-
-                decimal subtotal = quantidade * precoUnitario;
-
-                if (subtotal > _orcamentoDisponivel && _orcamentoDisponivel >= 0)
-                {
-                    DialogResult resultado = MessageBox.Show(
-                        $"Este item custa {subtotal:C}. Orçamento disponível: {_orcamentoDisponivel:C}\n\nDeseja continuar?",
-                        "Aviso de Orçamento", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-                    if (resultado != DialogResult.Yes)
-                        return;
-                }
-
-                _controller.AdquirirItem(item.Id, quantidade, precoUnitario);
-
-                MessageBox.Show($"Item adquirido: {quantidade} x {precoUnitario:C} = {subtotal:C}");
 
                 CarregarOrcamento();
                 CarregarItensPrevistos();
-                textBoxQuantidade.Clear();
-                textBoxPrecoUnitario.Clear();
+                CarregarItensNaoPrevistos();
+
+                numericUpDownQuantidadeAdquirir.Value = 1;
+                numericUpDownPrecoUnitarioAdquirir.Value = 0;
+
+                _controller.AdquirirItemPrevisto(item.Id, quantidade, precoUnitario);
             }
-            catch (Exception ex)
+            catch (ArgumentException ex)
             {
-                MessageBox.Show($"Erro ao adquirir item: {ex.Message}");
+                {
+                    MessageBox.Show($"Erro ao adquirir item: {ex.Message}");
+                }
             }
         }
 
+        private void buttonAdquirirItemNaoPrevisto_Click(object sender, EventArgs e)
+        {
+            // Verifica se há um item não previsto selecionado
+            if (listBoxItensNaoPrevistos.SelectedItem == null)
+            {
+                MessageBox.Show("Selecione um item não previsto para adquirir.", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int quantidade = (int)numericUpDownQuantidadeAdquirir.Value;
+            decimal precoUnitario = numericUpDownPrecoUnitarioAdquirir.Value;
+
+            if (quantidade <= 0)
+            {
+                MessageBox.Show("A quantidade deve ser maior que zero.", "Validação",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (precoUnitario <= 0)
+            {
+                MessageBox.Show("O preço unitário deve ser maior que zero.", "Validação",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                var item = (ItemCompra)listBoxItensNaoPrevistos.SelectedItem;
+
+                _controller.AdquirirItemNaoPrevisto(item.Id, quantidade, precoUnitario);
+
+                MessageBox.Show("Item não previsto adquirido com sucesso!", "Sucesso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                CarregarOrcamento();
+                CarregarItensNaoPrevistos();
+
+                numericUpDownQuantidadeAdquirir.Value = 1;
+                numericUpDownPrecoUnitarioAdquirir.Value = 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao adquirir item: {ex.Message}", "Erro",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

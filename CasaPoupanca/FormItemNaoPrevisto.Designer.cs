@@ -57,9 +57,9 @@
             this.label.Location = new System.Drawing.Point(160, 39);
             this.label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label.Name = "label";
-            this.label.Size = new System.Drawing.Size(128, 24);
+            this.label.Size = new System.Drawing.Size(237, 24);
             this.label.TabIndex = 20;
-            this.label.Text = "Modo compra";
+            this.label.Text = "Adicionar Item não previsto";
             // 
             // pictureBox1
             // 
