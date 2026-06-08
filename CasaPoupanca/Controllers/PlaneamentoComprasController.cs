@@ -36,9 +36,9 @@ namespace CasaPoupanca.Controllers
             return compras.Where(c => c.IsFechada).ToList();
         }
 
-        public decimal GetTotalGasto(int compraId)
+        public decimal GetTotalGasto(int compraId, int ano, int utilizadorId)
         {
-            return _modoCompraController.GetTotalGastoCompra(compraId);
+            return _modoCompraController.GetTotalGastoCompra(compraId, ano, utilizadorId);
         }
 
         public Compra GetCompraDetalhes(int compraId)

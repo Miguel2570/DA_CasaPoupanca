@@ -93,7 +93,7 @@ namespace CasaPoupanca.Views
             if (compra.DataFecho.HasValue)
                 listBoxDetalhesCompra.Items.Add($"Data Fecho: {compra.DataFecho:dd/MM/yyyy HH:mm}");
 
-            listBoxDetalhesCompra.Items.Add($"Total Gasto: {_controller.GetTotalGasto(compra.Id):C}");
+            listBoxDetalhesCompra.Items.Add($"Total Gasto: {_controller.GetTotalGasto(compra.Id, compra.DataCriacao.Year, _utilizadorId):C}");
 
             // Mostrar itens detalhados
             var compraDetalhes = _controller.GetCompraDetalhes(compra.Id);

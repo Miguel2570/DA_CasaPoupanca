@@ -61,12 +61,23 @@ namespace CasaPoupanca
 
         private void CarregarOrcamento()
         {
-            _orcamentoDisponivel = _controller.GetOrcamentoDisponivel(Session.UtilizadorId);
-            labelOrcamentoDisponivel.Text = $"Orçamento Disponível: {_orcamentoDisponivel:C}";
+            if (_compraAtual == null)
+            {
+                _orcamentoDisponivel = _controller.GetOrcamentoDisponivel(Session.UtilizadorId, DateTime.Now.Month, DateTime.Now.Year);
+                labelOrcamentoDisponivel.Text = $"Orçamento Disponível: {_orcamentoDisponivel:C}";
+                return;
+            }
 
-            decimal totalGasto = _controller.GetTotalGastoCompra(_compraId);
+            // Usar mês/ano da compra para calcular orçamento relevante
+            int mes = _compraAtual.DataCriacao.Month;
+            int ano = _compraAtual.DataCriacao.Year;
+
+            _orcamentoDisponivel = _controller.GetOrcamentoDisponivel(Session.UtilizadorId, mes, ano);
+
+            decimal totalGasto = _controller.GetTotalGastoCompra(_compraId, ano, Session.UtilizadorId);
             decimal restante = _orcamentoDisponivel - totalGasto;
 
+            labelOrcamentoDisponivel.Text = $"Orçamento Disponível: {restante:C}";
             if (restante < 0)
             {
                 labelOrcamentoDisponivel.ForeColor = System.Drawing.Color.Red;

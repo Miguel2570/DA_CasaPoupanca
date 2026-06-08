@@ -42,7 +42,7 @@ namespace CasaPoupanca.Controllers
                     .ToList();
             }
         }
-        public decimal GetTotalGastoCompra(int compraId)
+        public decimal GetTotalGastoCompra(int compraId, int ano, int utilizadorId)
         {
             using (var db = new CasaPoupancaDB())
             {
@@ -139,23 +139,23 @@ namespace CasaPoupanca.Controllers
             }
         }
 
-        public decimal GetOrcamentoDisponivel(int utilizadorId)
+        // Agora aceita mês/ano e considera itens já adquiridos mesmo em compras não fechadas
+        public decimal GetOrcamentoDisponivel(int utilizadorId, int mes, int ano)
         {
             using (var db = new CasaPoupancaDB())
             {
-                var hoje = DateTime.Now;
-
                 var orcamento = db.Orcamentos
-                    .FirstOrDefault(o => o.CriadoPorId == utilizadorId && o.Mes == hoje.Month && o.Ano == hoje.Year);
+                    .FirstOrDefault(o => o.CriadoPorId == utilizadorId && o.Mes == mes && o.Ano == ano);
 
                 if (orcamento == null) return 0;
 
                 var totalGasto = (from c in db.Compras
                                   join i in db.ItensCompra on c.Id equals i.CompraId
                                   where c.CriadoPorId == utilizadorId
-                                     && c.IsFechada
-                                     && c.DataCriacao.Year == hoje.Year
-                                     && c.DataCriacao.Month == hoje.Month
+                                        && c.DataCriacao.Year == ano
+                                        && c.DataCriacao.Month == mes
+                                        // incluir gastos de compras fechadas OU itens já adquiridos em compras abertas
+                                        && (c.IsFechada || i.QuantidadeAdquirida > 0)
                                   select (decimal?)i.QuantidadeAdquirida * i.PrecoUnitario)
                                   .DefaultIfEmpty(0)
                                   .Sum() ?? 0;

@@ -106,7 +106,8 @@ namespace CasaPoupanca
 
         private void CarregarOrcamento()
         {
-            _orcamentoDisponivel = _controller.GetOrcamentoDisponivel(Session.UtilizadorId);
+            var dataAtual = DateTime.Now;
+            _orcamentoDisponivel = _controller.GetOrcamentoDisponivel(Session.UtilizadorId, dataAtual.Month, dataAtual.Year);
             labelOrcamentoDisponivel.Text = $"Orçamento Disponível: {_orcamentoDisponivel:C2}";
 
             if (_orcamentoDisponivel < 0)
@@ -176,7 +177,8 @@ namespace CasaPoupanca
                     CompraId = _compraId,
                     ArtigoId = artigo.Id,
                     QuantidadePrevista = 0,
-                    QuantidadeAdquirida = quantidade,
+                    // Não marcar como adquirido ao adicionar — evita deduzir do orçamento imediatamente
+                    QuantidadeAdquirida = 0,
                     PrecoUnitario = precoUnitario,
                     IsPrevisto = false,
                     Observacao = string.IsNullOrWhiteSpace(textBoxObservacao.Text) ? artigo.Nome : textBoxObservacao.Text.Trim()
