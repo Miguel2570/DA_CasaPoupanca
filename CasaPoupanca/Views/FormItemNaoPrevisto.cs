@@ -90,7 +90,7 @@ namespace CasaPoupanca
             if (comboBoxArtigo.SelectedItem is Artigo artigo)
             {
                 numericUpDownPrecoUnitario.Value = artigo.PrecoUnitario;
-                textBoxObservacao.Text = artigo.Nome;
+                textBoxObservacao.Clear();
                 numericUpDownQuantidade.Focus();
             }
         }
@@ -180,7 +180,7 @@ namespace CasaPoupanca
                     QuantidadeAdquirida = 0,
                     PrecoUnitario = precoUnitario,
                     IsPrevisto = false,
-                    Observacao = string.IsNullOrWhiteSpace(textBoxObservacao.Text) ? artigo.Nome : textBoxObservacao.Text.Trim()
+                    Observacao = textBoxObservacao.Text.Trim()
                 };
 
                 _controller.AddItemNaoPrevisto(novoItem);
