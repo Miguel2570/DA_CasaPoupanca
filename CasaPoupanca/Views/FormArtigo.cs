@@ -12,6 +12,7 @@ namespace CasaPoupanca
     {
         private ArtigoController _controller;
         private List<Artigo> _artigos;
+        private List<Artigo> _artigosFiltrados;
         private bool _isLoading = false;
 
         public FormArtigo()
@@ -37,12 +38,10 @@ namespace CasaPoupanca
 
         private void ConfigurarNumericUpDown()
         {
-            // Permite valores de 0.01 até 1.000.000
             numericUpDownPreco.Minimum = 0.01M;
             numericUpDownPreco.Maximum = 1000000M;
             numericUpDownPreco.DecimalPlaces = 2;
             numericUpDownPreco.ThousandsSeparator = true;
-
             numericUpDownPreco.Increment = 0.01M;
         }
 
@@ -68,9 +67,9 @@ namespace CasaPoupanca
                     filtroId = id;
 
                 _artigos = _controller.GetArtigosFiltrados(filtroId).ToList();
+                _artigosFiltrados = new List<Artigo>(_artigos);
 
-                listBoxArtigos.DataSource = null;
-                listBoxArtigos.DataSource = _artigos;
+                AtualizarListBox();
             }
             finally
             {
@@ -80,26 +79,25 @@ namespace CasaPoupanca
             }
         }
 
+        private void AtualizarListBox()
+        {
+            listBoxArtigos.DataSource = null;
+            listBoxArtigos.DataSource = _artigosFiltrados;
+        }
+
         private void ListBoxArtigos_Format(object sender, ListControlConvertEventArgs e)
         {
             if (e.ListItem is Artigo artigo)
             {
                 try
                 {
-                    string tipoNome = artigo.TipoArtigo?.Nome ?? "";
-
-                    if (!string.IsNullOrEmpty(tipoNome))
-                    {
-                        tipoNome = $" [{tipoNome}]";
-                    }
-
                     if (artigo.PrecoUnitario > 0)
                     {
-                        e.Value = $"{artigo.Nome} - €{artigo.PrecoUnitario:F2}";
+                        e.Value = $"ID:{artigo.Id} | {artigo.Nome} - €{artigo.PrecoUnitario:F2}";
                     }
                     else
                     {
-                        e.Value = $"{artigo.Nome} - Sem preço";
+                        e.Value = $"ID:{artigo.Id} | {artigo.Nome} - Sem preço";
                     }
                 }
                 catch
@@ -115,6 +113,8 @@ namespace CasaPoupanca
             {
                 CarregarArtigos();
                 LimparCampos();
+                if (textBoxId != null)
+                    textBoxId.Clear();
             }
         }
 
@@ -125,11 +125,52 @@ namespace CasaPoupanca
             buttonAdicionar.Enabled = true;
             buttonEditar.Enabled = false;
             listBoxArtigos.ClearSelected();
+
+            // Adicionar esta linha para limpar o textBoxId também
+            if (textBoxId != null)
+                textBoxId.Clear();
+        }
+
+        private void buttonProcurar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBoxId.Text))
+            {
+                _artigosFiltrados = new List<Artigo>(_artigos);
+                AtualizarListBox();
+                return;
+            }
+
+            if (int.TryParse(textBoxId.Text, out int idProcurado))
+            {
+                var artigoEncontrado = _artigos.FirstOrDefault(a => a.Id == idProcurado);
+
+                if (artigoEncontrado != null)
+                {
+                    _artigosFiltrados = new List<Artigo> { artigoEncontrado };
+                    AtualizarListBox();
+                    listBoxArtigos.SelectedItem = artigoEncontrado;
+                    MessageBox.Show($"Artigo encontrado: {artigoEncontrado.Nome}", "Sucesso",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show($"Nenhum artigo encontrado com o ID {idProcurado}", "Não encontrado",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    _artigosFiltrados = new List<Artigo>(_artigos);
+                    AtualizarListBox();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Digite um ID válido (número inteiro)!", "Erro",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBoxId.Clear();
+                textBoxId.Focus();
+            }
         }
 
         private void buttonAdicionar_Click_1(object sender, EventArgs e)
         {
-            // VALIDAÇÕES
             if (string.IsNullOrWhiteSpace(textBoxNome.Text))
             {
                 MessageBox.Show("Preencha o nome!");
@@ -144,7 +185,6 @@ namespace CasaPoupanca
                 return;
             }
 
-            // VALIDAÇÃO DO PREÇO
             decimal preco = numericUpDownPreco.Value;
 
             if (preco <= 0)
@@ -154,7 +194,6 @@ namespace CasaPoupanca
                 return;
             }
 
-            // CRIA O ARTIGO
             var novoArtigo = new Artigo
             {
                 Nome = textBoxNome.Text.Trim(),
@@ -162,7 +201,6 @@ namespace CasaPoupanca
                 PrecoUnitario = preco
             };
 
-            // TENTA ADICIONAR
             try
             {
                 bool resultado = _controller.AddArtigo(novoArtigo);
@@ -172,6 +210,8 @@ namespace CasaPoupanca
                     MessageBox.Show("Adicionado com sucesso!");
                     CarregarArtigos();
                     LimparCampos();
+                    if (textBoxId != null)
+                        textBoxId.Clear();
                 }
                 else
                 {
@@ -183,6 +223,7 @@ namespace CasaPoupanca
                 MessageBox.Show($"ERRO: {ex.Message}");
             }
         }
+
         private void buttonEditar_Click(object sender, EventArgs e)
         {
             if (listBoxArtigos.SelectedItem == null)
@@ -225,6 +266,8 @@ namespace CasaPoupanca
                 MessageBox.Show("Atualizado com sucesso!");
                 CarregarArtigos();
                 LimparCampos();
+                if (textBoxId != null)
+                    textBoxId.Clear();
             }
             catch (Exception ex)
             {
@@ -250,6 +293,8 @@ namespace CasaPoupanca
                     MessageBox.Show("Removido com sucesso!");
                     CarregarArtigos();
                     LimparCampos();
+                    if (textBoxId != null)
+                        textBoxId.Clear();
                 }
                 catch (Exception ex)
                 {
@@ -262,10 +307,13 @@ namespace CasaPoupanca
         {
             if (_isLoading) return;
 
-                if (listBoxArtigos.SelectedItem is Artigo artigo)
+            if (listBoxArtigos.SelectedItem is Artigo artigo)
             {
                 textBoxNome.Text = artigo.Nome;
                 numericUpDownPreco.Value = artigo.PrecoUnitario;
+
+                if (textBoxId != null)
+                    textBoxId.Text = artigo.Id.ToString();
 
                 if (!string.IsNullOrEmpty(comboBoxTipo.ValueMember))
                     comboBoxTipo.SelectedValue = artigo.TipoArtigoId;
@@ -289,6 +337,16 @@ namespace CasaPoupanca
         private void buttonVoltar_Click_1(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void buttonLimpar_Click(object sender, EventArgs e)
+        {
+            if (textBoxId != null)
+                textBoxId.Clear();
+
+            _artigosFiltrados = new List<Artigo>(_artigos);
+            AtualizarListBox();
+            LimparCampos();
         }
     }
 }
