@@ -169,5 +169,16 @@ namespace CasaPoupanca.Controllers
                 return true;
             }
         }
+
+        public List<Compra> GetComprasAbertasPorUtilizador(int utilizadorId)
+        {
+            using (var db = new CasaPoupancaDB())
+            {
+                return db.Compras
+                    .Where(c => !c.IsFechada && c.CriadoPorId == utilizadorId)
+                    .OrderByDescending(c => c.DataCriacao)
+                    .ToList();
+            }
+        }
     }
 }

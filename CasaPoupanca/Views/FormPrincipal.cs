@@ -121,7 +121,7 @@ namespace CasaPoupanca
 
             _compraController.AddCompra(novaCompra);
 
-            var formCompra = new FormCompra(novaCompra.Id);
+            var formCompra = new FormCompra();
             formCompra.ShowDialog();
 
             CarregarComprasAbertas();

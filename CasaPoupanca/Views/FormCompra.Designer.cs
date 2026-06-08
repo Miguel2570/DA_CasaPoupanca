@@ -175,7 +175,6 @@
             this.listBoxListaDeCompras.Size = new System.Drawing.Size(632, 124);
             this.listBoxListaDeCompras.TabIndex = 40;
             this.listBoxListaDeCompras.SelectedIndexChanged += new System.EventHandler(this.listBoxListaDeCompras_SelectedIndexChanged_1);
-            // 
             // buttonCriarLista
             // 
             this.buttonCriarLista.Location = new System.Drawing.Point(681, 278);
