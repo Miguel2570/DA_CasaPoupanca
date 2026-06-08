@@ -40,6 +40,7 @@
             this.buttonAdicionar = new System.Windows.Forms.Button();
             this.buttonEditar = new System.Windows.Forms.Button();
             this.buttonRemover = new System.Windows.Forms.Button();
+            this.buttonVoltar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPreco)).BeginInit();
             this.SuspendLayout();
@@ -47,9 +48,10 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = global::CasaPoupanca.Properties.Resources.final_removebg_preview;
-            this.pictureBox3.Location = new System.Drawing.Point(156, 27);
+            this.pictureBox3.Location = new System.Drawing.Point(139, 22);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(262, 192);
+            this.pictureBox3.Size = new System.Drawing.Size(233, 154);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 22;
             this.pictureBox3.TabStop = false;
@@ -58,21 +60,21 @@
             // 
             this.labelArtigos.AutoSize = true;
             this.labelArtigos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelArtigos.Location = new System.Drawing.Point(234, 202);
+            this.labelArtigos.Location = new System.Drawing.Point(208, 162);
             this.labelArtigos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelArtigos.Name = "labelArtigos";
-            this.labelArtigos.Size = new System.Drawing.Size(95, 29);
+            this.labelArtigos.Size = new System.Drawing.Size(80, 25);
             this.labelArtigos.TabIndex = 23;
             this.labelArtigos.Text = "Artigos";
             // 
             // listBoxArtigos
             // 
             this.listBoxArtigos.FormattingEnabled = true;
-            this.listBoxArtigos.ItemHeight = 20;
-            this.listBoxArtigos.Location = new System.Drawing.Point(31, 536);
-            this.listBoxArtigos.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.listBoxArtigos.ItemHeight = 16;
+            this.listBoxArtigos.Location = new System.Drawing.Point(28, 429);
+            this.listBoxArtigos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.listBoxArtigos.Name = "listBoxArtigos";
-            this.listBoxArtigos.Size = new System.Drawing.Size(498, 284);
+            this.listBoxArtigos.Size = new System.Drawing.Size(443, 228);
             this.listBoxArtigos.TabIndex = 24;
             this.listBoxArtigos.SelectedIndexChanged += new System.EventHandler(this.listBoxArtigos_SelectedIndexChanged);
             // 
@@ -80,10 +82,10 @@
             // 
             this.labelTipo.AutoSize = true;
             this.labelTipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTipo.Location = new System.Drawing.Point(124, 289);
+            this.labelTipo.Location = new System.Drawing.Point(110, 231);
             this.labelTipo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTipo.Name = "labelTipo";
-            this.labelTipo.Size = new System.Drawing.Size(51, 25);
+            this.labelTipo.Size = new System.Drawing.Size(41, 20);
             this.labelTipo.TabIndex = 29;
             this.labelTipo.Text = "Tipo";
             // 
@@ -91,56 +93,56 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(112, 340);
+            this.label6.Location = new System.Drawing.Point(100, 272);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(64, 25);
+            this.label6.Size = new System.Drawing.Size(53, 20);
             this.label6.TabIndex = 30;
             this.label6.Text = "Nome";
             // 
             // comboBoxTipo
             // 
             this.comboBoxTipo.FormattingEnabled = true;
-            this.comboBoxTipo.Location = new System.Drawing.Point(229, 290);
-            this.comboBoxTipo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.comboBoxTipo.Location = new System.Drawing.Point(204, 232);
+            this.comboBoxTipo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBoxTipo.Name = "comboBoxTipo";
-            this.comboBoxTipo.Size = new System.Drawing.Size(248, 28);
+            this.comboBoxTipo.Size = new System.Drawing.Size(221, 24);
             this.comboBoxTipo.TabIndex = 31;
             this.comboBoxTipo.SelectedIndexChanged += new System.EventHandler(this.comboBoxTipo_SelectedIndexChanged_1);
             // 
             // textBoxNome
             // 
-            this.textBoxNome.Location = new System.Drawing.Point(229, 341);
-            this.textBoxNome.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxNome.Location = new System.Drawing.Point(204, 273);
+            this.textBoxNome.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxNome.Name = "textBoxNome";
-            this.textBoxNome.Size = new System.Drawing.Size(248, 26);
+            this.textBoxNome.Size = new System.Drawing.Size(221, 22);
             this.textBoxNome.TabIndex = 32;
             // 
             // labelPreco
             // 
             this.labelPreco.AutoSize = true;
             this.labelPreco.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPreco.Location = new System.Drawing.Point(112, 395);
+            this.labelPreco.Location = new System.Drawing.Point(100, 316);
             this.labelPreco.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPreco.Name = "labelPreco";
-            this.labelPreco.Size = new System.Drawing.Size(63, 25);
+            this.labelPreco.Size = new System.Drawing.Size(53, 20);
             this.labelPreco.TabIndex = 33;
             this.labelPreco.Text = "Preço";
             // 
             // numericUpDownPreco
             // 
-            this.numericUpDownPreco.Location = new System.Drawing.Point(229, 394);
-            this.numericUpDownPreco.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.numericUpDownPreco.Location = new System.Drawing.Point(204, 315);
+            this.numericUpDownPreco.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.numericUpDownPreco.Name = "numericUpDownPreco";
-            this.numericUpDownPreco.Size = new System.Drawing.Size(250, 26);
+            this.numericUpDownPreco.Size = new System.Drawing.Size(222, 22);
             this.numericUpDownPreco.TabIndex = 34;
             // 
             // buttonAdicionar
             // 
-            this.buttonAdicionar.Location = new System.Drawing.Point(94, 465);
-            this.buttonAdicionar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonAdicionar.Location = new System.Drawing.Point(84, 372);
+            this.buttonAdicionar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonAdicionar.Name = "buttonAdicionar";
-            this.buttonAdicionar.Size = new System.Drawing.Size(112, 35);
+            this.buttonAdicionar.Size = new System.Drawing.Size(100, 28);
             this.buttonAdicionar.TabIndex = 35;
             this.buttonAdicionar.Text = "Adicionar";
             this.buttonAdicionar.UseVisualStyleBackColor = true;
@@ -148,10 +150,10 @@
             // 
             // buttonEditar
             // 
-            this.buttonEditar.Location = new System.Drawing.Point(231, 465);
-            this.buttonEditar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonEditar.Location = new System.Drawing.Point(205, 372);
+            this.buttonEditar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonEditar.Name = "buttonEditar";
-            this.buttonEditar.Size = new System.Drawing.Size(112, 35);
+            this.buttonEditar.Size = new System.Drawing.Size(100, 28);
             this.buttonEditar.TabIndex = 36;
             this.buttonEditar.Text = "Editar";
             this.buttonEditar.UseVisualStyleBackColor = true;
@@ -159,20 +161,31 @@
             // 
             // buttonRemover
             // 
-            this.buttonRemover.Location = new System.Drawing.Point(367, 465);
-            this.buttonRemover.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonRemover.Location = new System.Drawing.Point(326, 372);
+            this.buttonRemover.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonRemover.Name = "buttonRemover";
-            this.buttonRemover.Size = new System.Drawing.Size(112, 35);
+            this.buttonRemover.Size = new System.Drawing.Size(100, 28);
             this.buttonRemover.TabIndex = 37;
             this.buttonRemover.Text = "Remover";
             this.buttonRemover.UseVisualStyleBackColor = true;
             this.buttonRemover.Click += new System.EventHandler(this.buttonRemover_Click_1);
             // 
+            // buttonVoltar
+            // 
+            this.buttonVoltar.Location = new System.Drawing.Point(213, 681);
+            this.buttonVoltar.Name = "buttonVoltar";
+            this.buttonVoltar.Size = new System.Drawing.Size(75, 23);
+            this.buttonVoltar.TabIndex = 38;
+            this.buttonVoltar.Text = "Voltar";
+            this.buttonVoltar.UseVisualStyleBackColor = true;
+            this.buttonVoltar.Click += new System.EventHandler(this.buttonVoltar_Click_1);
+            // 
             // FormArtigo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(577, 834);
+            this.ClientSize = new System.Drawing.Size(513, 736);
+            this.Controls.Add(this.buttonVoltar);
             this.Controls.Add(this.buttonRemover);
             this.Controls.Add(this.buttonEditar);
             this.Controls.Add(this.buttonAdicionar);
@@ -185,7 +198,7 @@
             this.Controls.Add(this.listBoxArtigos);
             this.Controls.Add(this.labelArtigos);
             this.Controls.Add(this.pictureBox3);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormArtigo";
             this.Text = "FormArtigo";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -209,5 +222,6 @@
         private System.Windows.Forms.Button buttonAdicionar;
         private System.Windows.Forms.Button buttonEditar;
         private System.Windows.Forms.Button buttonRemover;
+        private System.Windows.Forms.Button buttonVoltar;
     }
 }

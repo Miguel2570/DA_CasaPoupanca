@@ -186,5 +186,10 @@ namespace CasaPoupanca.Views
         {
             FiltrarCompras();
         }
+
+        private void buttonVoltar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
