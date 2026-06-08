@@ -311,24 +311,27 @@ namespace CasaPoupanca
                 {
                     _controller.FecharCompra(_compraId, Session.UtilizadorId);
 
-                    MessageBox.Show("✅ Compra fechada com sucesso!", "Sucesso",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Compra fechada com sucesso!");
                     this.Close();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Erro ao fechar compra: {ex.Message}", "Erro",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Erro ao fechar compra: {ex.Message}");
                 }
             }
         }
 
         private void buttonVoltar_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Deseja sair? As alterações não salvas serão perdidas.",
-                "Sair", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("Deseja guardar antes de sair?", "Sair",
+        MessageBoxButtons.YesNoCancel);
 
             if (result == DialogResult.Yes)
+            {
+                buttonSalvar_Click(sender, e);
+                this.Close();
+            }
+            else if (result == DialogResult.No)
             {
                 this.Close();
             }
@@ -391,20 +394,34 @@ namespace CasaPoupanca
                 {
                     item.Id,
                     IsPrevisto = false,
-                    Display = $"✅ {item.Artigo?.Nome ?? item.Observacao} - {item.QuantidadeAdquirida} x €{item.PrecoUnitario:F2} = €{item.QuantidadeAdquirida * item.PrecoUnitario:F2}"
+                    Display = $"🛒 {item.Artigo?.Nome ?? item.Observacao} - {item.QuantidadeAdquirida} x €{item.PrecoUnitario:F2} = €{item.QuantidadeAdquirida * item.PrecoUnitario:F2}"
                 });
             }
 
             listBoxListaFinal.DataSource = null;
-            listBoxListaFinal.DataSource = todosAdquiridos;
-            listBoxListaFinal.DisplayMember = "Display";
-            listBoxListaFinal.ValueMember = "Id";
+            listBoxListaFinal.Items.Clear();
+
+            if (todosAdquiridos.Count > 0)
+            {
+                listBoxListaFinal.DisplayMember = "Display";
+                listBoxListaFinal.ValueMember = "Id";
+                listBoxListaFinal.DataSource = todosAdquiridos;
+            }
         }
 
         private void buttonSalvar_Click(object sender, EventArgs e)
         {
             try
             {
+                if (_compraAtual != null)
+                {
+                    _compraAtual.DataAlteracao = DateTime.Now;
+                    _compraAtual.AlteradoPorId = Session.UtilizadorId;
+
+                    var compraController = new CompraController();
+                    compraController.UpdateCompra(_compraAtual);
+                }
+
                 MessageBox.Show("Compra guardada com sucesso!");
                 CarregarOrcamento();
                 CarregarItensPrevistos();

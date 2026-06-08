@@ -33,12 +33,12 @@
             this.buttonRemoverItemPrevisto = new System.Windows.Forms.Button();
             this.groupBoxPrevistos = new System.Windows.Forms.GroupBox();
             this.groupBoxNaoPrevistos = new System.Windows.Forms.GroupBox();
+            this.buttonAdquirirItemNaoPrevisto = new System.Windows.Forms.Button();
             this.groupBoxAdquirir = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.listBoxListaFinal = new System.Windows.Forms.ListBox();
             this.buttonSalvar = new System.Windows.Forms.Button();
             this.buttonRemoverItemListaFinal = new System.Windows.Forms.Button();
-            this.buttonAdquirirItemNaoPrevisto = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantidadeAdquirir)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPrecoUnitarioAdquirir)).BeginInit();
@@ -154,9 +154,9 @@
             this.buttonAddItemNaoPrevisto.Location = new System.Drawing.Point(146, 214);
             this.buttonAddItemNaoPrevisto.Margin = new System.Windows.Forms.Padding(2);
             this.buttonAddItemNaoPrevisto.Name = "buttonAddItemNaoPrevisto";
-            this.buttonAddItemNaoPrevisto.Size = new System.Drawing.Size(107, 32);
+            this.buttonAddItemNaoPrevisto.Size = new System.Drawing.Size(177, 32);
             this.buttonAddItemNaoPrevisto.TabIndex = 38;
-            this.buttonAddItemNaoPrevisto.Text = "Adicionar Item";
+            this.buttonAddItemNaoPrevisto.Text = "Adicionar Item Não Previsto";
             this.buttonAddItemNaoPrevisto.UseVisualStyleBackColor = false;
             this.buttonAddItemNaoPrevisto.Click += new System.EventHandler(this.buttonAddItemNaoPrevisto_Click);
             // 
@@ -166,7 +166,7 @@
             this.listBoxItensNaoPrevistos.Location = new System.Drawing.Point(7, 20);
             this.listBoxItensNaoPrevistos.Margin = new System.Windows.Forms.Padding(2);
             this.listBoxItensNaoPrevistos.Name = "listBoxItensNaoPrevistos";
-            this.listBoxItensNaoPrevistos.Size = new System.Drawing.Size(357, 186);
+            this.listBoxItensNaoPrevistos.Size = new System.Drawing.Size(427, 186);
             this.listBoxItensNaoPrevistos.TabIndex = 50;
             this.listBoxItensNaoPrevistos.SelectedIndexChanged += new System.EventHandler(this.listBoxItensNaoPrevistos_SelectedIndexChanged);
             // 
@@ -211,7 +211,7 @@
             // 
             this.buttonRemoverItemNaoPrevisto.BackColor = System.Drawing.Color.LightCoral;
             this.buttonRemoverItemNaoPrevisto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonRemoverItemNaoPrevisto.Location = new System.Drawing.Point(257, 214);
+            this.buttonRemoverItemNaoPrevisto.Location = new System.Drawing.Point(327, 214);
             this.buttonRemoverItemNaoPrevisto.Margin = new System.Windows.Forms.Padding(2);
             this.buttonRemoverItemNaoPrevisto.Name = "buttonRemoverItemNaoPrevisto";
             this.buttonRemoverItemNaoPrevisto.Size = new System.Drawing.Size(107, 32);
@@ -270,10 +270,23 @@
             this.groupBoxNaoPrevistos.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxNaoPrevistos.Name = "groupBoxNaoPrevistos";
             this.groupBoxNaoPrevistos.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxNaoPrevistos.Size = new System.Drawing.Size(373, 260);
+            this.groupBoxNaoPrevistos.Size = new System.Drawing.Size(438, 260);
             this.groupBoxNaoPrevistos.TabIndex = 37;
             this.groupBoxNaoPrevistos.TabStop = false;
             this.groupBoxNaoPrevistos.Text = "Itens Não Previstos";
+            // 
+            // buttonAdquirirItemNaoPrevisto
+            // 
+            this.buttonAdquirirItemNaoPrevisto.BackColor = System.Drawing.Color.LightGreen;
+            this.buttonAdquirirItemNaoPrevisto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAdquirirItemNaoPrevisto.Location = new System.Drawing.Point(7, 214);
+            this.buttonAdquirirItemNaoPrevisto.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonAdquirirItemNaoPrevisto.Name = "buttonAdquirirItemNaoPrevisto";
+            this.buttonAdquirirItemNaoPrevisto.Size = new System.Drawing.Size(135, 32);
+            this.buttonAdquirirItemNaoPrevisto.TabIndex = 55;
+            this.buttonAdquirirItemNaoPrevisto.Text = "Aquirir Item Não Previsto";
+            this.buttonAdquirirItemNaoPrevisto.UseVisualStyleBackColor = false;
+            this.buttonAdquirirItemNaoPrevisto.Click += new System.EventHandler(this.buttonAdquirirItemNaoPrevisto_Click);
             // 
             // groupBoxAdquirir
             // 
@@ -295,7 +308,7 @@
             this.groupBox1.Controls.Add(this.listBoxListaFinal);
             this.groupBox1.Controls.Add(this.buttonSalvar);
             this.groupBox1.Controls.Add(this.buttonRemoverItemListaFinal);
-            this.groupBox1.Location = new System.Drawing.Point(630, 84);
+            this.groupBox1.Location = new System.Drawing.Point(695, 84);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
@@ -339,25 +352,12 @@
             this.buttonRemoverItemListaFinal.UseVisualStyleBackColor = false;
             this.buttonRemoverItemListaFinal.Click += new System.EventHandler(this.buttonRemoverItemListaFinal_Click);
             // 
-            // buttonAdquirirItemNaoPrevisto
-            // 
-            this.buttonAdquirirItemNaoPrevisto.BackColor = System.Drawing.Color.LightGreen;
-            this.buttonAdquirirItemNaoPrevisto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonAdquirirItemNaoPrevisto.Location = new System.Drawing.Point(7, 214);
-            this.buttonAdquirirItemNaoPrevisto.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonAdquirirItemNaoPrevisto.Name = "buttonAdquirirItemNaoPrevisto";
-            this.buttonAdquirirItemNaoPrevisto.Size = new System.Drawing.Size(135, 32);
-            this.buttonAdquirirItemNaoPrevisto.TabIndex = 55;
-            this.buttonAdquirirItemNaoPrevisto.Text = "Aquirir Item Não Previsto";
-            this.buttonAdquirirItemNaoPrevisto.UseVisualStyleBackColor = false;
-            this.buttonAdquirirItemNaoPrevisto.Click += new System.EventHandler(this.buttonAdquirirItemNaoPrevisto_Click);
-            // 
             // FormModoCompra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(873, 455);
+            this.ClientSize = new System.Drawing.Size(939, 455);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBoxAdquirir);
             this.Controls.Add(this.groupBoxNaoPrevistos);

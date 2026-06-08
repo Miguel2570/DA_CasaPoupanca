@@ -14,7 +14,6 @@ namespace CasaPoupanca.models
         public decimal PrecoUnitario { get; set; }
         public bool IsPrevisto { get; set; }
         public string Observacao { get; set; }
-
         public virtual Compra Compra { get; set; }
         public virtual Artigo Artigo { get; set; }
 

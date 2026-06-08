@@ -228,7 +228,7 @@ namespace CasaPoupanca
                     {
                         CompraId = _compraSelecionadaId.Value,
                         ArtigoId = artigo.Id,
-                        QuantidadeAdquirida = quantidade,
+                        QuantidadeAdquirida = 0,
                         QuantidadePrevista = quantidade,
                         PrecoUnitario = artigo.PrecoUnitario,
                         IsPrevisto = true
