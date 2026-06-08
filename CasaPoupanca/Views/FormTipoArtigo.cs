@@ -142,7 +142,7 @@ namespace CasaPoupanca
 
             DialogResult resultado = MessageBox.Show(
                 "Tem certeza que deseja remover este tipo de artigo?\n\nOs artigos associados também serão removidos.",
-                "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                "Confirmar", MessageBoxButtons.YesNo);
 
             if (resultado == DialogResult.Yes)
             {

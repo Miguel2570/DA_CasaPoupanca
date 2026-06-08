@@ -31,6 +31,7 @@ namespace CasaPoupanca.Views
 
         private void ConfigurarFormulario()
         {
+            listBoxListaCompras.DisplayMember = "Nome";
             listBoxListaCompras.ValueMember = "Id";
 
             comboBoxEstado.Items.AddRange(new[] { "Todas", "Aberta", "Fechada" });
@@ -56,28 +57,23 @@ namespace CasaPoupanca.Views
 
         private void FiltrarCompras()
         {
-            if (comboBoxEstado == null || listBoxListaCompras == null || _todasCompras == null)
+            try
             {
-                return;
+                string filtro = comboBoxEstado.SelectedItem?.ToString();
+
+                var comprasFiltradas = _controller.FiltrarCompras(_utilizadorId, filtro);
+
+                listBoxListaCompras.DataSource = null;
+                listBoxListaCompras.DisplayMember = "Nome";
+                listBoxListaCompras.ValueMember = "Id";
+                listBoxListaCompras.DataSource = comprasFiltradas;
+                labelTotalCompras.Text = $"Total: {comprasFiltradas.Count} compras";
+
+                listBoxDetalhesCompra.Items.Clear();
             }
-
-            var comprasFiltradas = _controller.FiltrarCompras(_todasCompras, comboBoxEstado.SelectedItem?.ToString());
-
-            if (comprasFiltradas == null)
+            catch (Exception ex)
             {
-                comprasFiltradas = new List<Compra>();
-            }
-
-            listBoxListaCompras.DataSource = null;
-
-            listBoxListaCompras.DisplayMember = "";
-            listBoxListaCompras.ValueMember = "Id";
-
-            listBoxListaCompras.DataSource = comprasFiltradas;
-
-            if (labelTotalCompras != null)
-            {
-                labelTotalCompras.Text = $"Total: {comprasFiltradas.Count} compras encontradas";
+                MessageBox.Show($"Erro ao filtrar compras: {ex.Message}");
             }
         }
 
@@ -88,7 +84,7 @@ namespace CasaPoupanca.Views
 
             listBoxDetalhesCompra.Items.Clear();
 
-            // Informações básicas
+            // Informações
             listBoxDetalhesCompra.Items.Add($"ID: {compra.Id}");
             listBoxDetalhesCompra.Items.Add($"Nome: {compra.Nome}");
             listBoxDetalhesCompra.Items.Add($"Data: {compra.DataCriacao:dd/MM/yyyy HH:mm}");
@@ -170,18 +166,18 @@ namespace CasaPoupanca.Views
         {
             if (!(listBoxListaCompras.SelectedItem is Compra compra))
             {
-                MessageBox.Show("Selecione uma compra.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Selecione uma compra.");
                 return;
             }
 
             if (compra.IsFechada)
             {
-                MessageBox.Show("Compra fechada não pode ser alterada.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Compra fechada não pode ser alterada.");
                 return;
             }
 
-            var formModoCompra = new FormModoCompra(compra.Id);
-            formModoCompra.ShowDialog();
+            var formCompra = new FormCompra(compra.Id);
+            formCompra.ShowDialog();
 
             CarregarCompras();
         }

@@ -23,7 +23,6 @@ namespace CasaPoupanca.Controllers
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao buscar orçamentos: {ex.Message}");
                 return new List<Orcamento>();
             }
         }
@@ -40,7 +39,6 @@ namespace CasaPoupanca.Controllers
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao buscar orçamento: {ex.Message}");
                 return null;
             }
         }
@@ -54,7 +52,6 @@ namespace CasaPoupanca.Controllers
                     // Verificar se já existe orçamento para este mês/ano
                     if (db.Orcamentos.Any(o => o.Mes == orcamento.Mes && o.Ano == orcamento.Ano))
                     {
-                        MessageBox.Show($"Já existe um orçamento para {orcamento.Mes}/{orcamento.Ano}");
                         return false;
                     }
 
@@ -65,7 +62,6 @@ namespace CasaPoupanca.Controllers
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao adicionar orçamento: {ex.Message}");
                 return false;
             }
         }
@@ -79,7 +75,6 @@ namespace CasaPoupanca.Controllers
                     var existing = db.Orcamentos.Find(orcamento.Id);
                     if (existing == null)
                     {
-                        MessageBox.Show($"Orçamento com ID {orcamento.Id} não encontrado!");
                         return false;
                     }
 
@@ -91,7 +86,6 @@ namespace CasaPoupanca.Controllers
 
                     if (outroOrcamento != null)
                     {
-                        MessageBox.Show($"Já existe um orçamento para {orcamento.Mes}/{orcamento.Ano} (ID: {outroOrcamento.Id})");
                         return false;
                     }
 
@@ -107,7 +101,6 @@ namespace CasaPoupanca.Controllers
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro detalhado ao atualizar orçamento: {ex.Message}\n\nStack Trace: {ex.StackTrace}");
                 return false;
             }
         }
@@ -121,7 +114,6 @@ namespace CasaPoupanca.Controllers
                     var orcamento = db.Orcamentos.Find(id);
                     if (orcamento == null)
                     {
-                        MessageBox.Show($"Orçamento com ID {id} não encontrado!");
                         return false;
                     }
 
@@ -132,7 +124,6 @@ namespace CasaPoupanca.Controllers
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao remover orçamento: {ex.Message}");
                 return false;
             }
         }
@@ -147,7 +138,6 @@ namespace CasaPoupanca.Controllers
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao buscar orçamento atual: {ex.Message}");
                 return null;
             }
         }
@@ -161,7 +151,34 @@ namespace CasaPoupanca.Controllers
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao buscar valor do orçamento atual: {ex.Message}");
+                return 0;
+            }
+        }
+
+        public decimal CalcularTotalGastoMes(int mes, int ano)
+        {
+            try
+            {
+                using (var db = new CasaPoupancaDB())
+                {
+                    var comprasFechadas = db.Compras
+                        .Where(c => c.DataCriacao.Month == mes &&
+                                    c.DataCriacao.Year == ano &&
+                                    c.IsFechada)
+                        .ToList();
+
+                    decimal totalGasto = 0;
+                    foreach (var compra in comprasFechadas)
+                    {
+                        totalGasto += db.ItensCompra
+                            .Where(i => i.CompraId == compra.Id)
+                            .Sum(i => i.QuantidadeAdquirida * i.PrecoUnitario);
+                    }
+                    return totalGasto;
+                }
+            }
+            catch
+            {
                 return 0;
             }
         }

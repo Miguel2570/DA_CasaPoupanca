@@ -23,8 +23,10 @@ namespace CasaPoupanca.Controllers
             return _compraController.GetComprasByUtilizador(utilizadorId);
         }
 
-        public List<Compra> FiltrarCompras(List<Compra> compras, string filtro)
+        public List<Compra> FiltrarCompras(int utilizadorId, string filtro)
         {
+            var compras = GetComprasByUtilizador(utilizadorId);
+
             if (string.IsNullOrEmpty(filtro) || filtro == "Todas")
                 return compras;
 

@@ -32,7 +32,6 @@ namespace CasaPoupanca.models
         public string Username { get; set; }
         public DateTime DataRegisto { get; set; }
 
-        // Propriedade para exibir no ListBox
         public string DisplayText => $"{Id} - {Username} | Registo: {DataRegisto:dd/MM/yyyy}";
     }
 }

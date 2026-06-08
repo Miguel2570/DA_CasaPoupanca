@@ -1,98 +1,397 @@
-# DA_CasaPoupanca
+# 🏠 CasaPoupança
 
-Descrição do Projeto
+Sistema de gestão doméstica desenvolvido em **C# Windows Forms**, utilizando arquitetura **MVC**, para controlo de orçamentos, planeamento de compras e análise de despesas.
 
-Este projeto consiste no desenvolvimento de um protótipo em C# com Windows Forms, com o objetivo de validar o conceito de uma aplicação de gestão de compras domésticas. A solução pretende apoiar a gestão do orçamento familiar, o planeamento de compras e o controlo detalhado dos artigos adquiridos, previstos e não previstos.
+---
 
-A aplicação será utilizada por membros de um agregado familiar, permitindo que vários utilizadores acedam ao sistema através de autenticação com username e password. Cada utilizador possui acesso apenas aos seus próprios dados, sendo todas as operações registadas e associadas ao utilizador autenticado no momento.
+# 📋 Índice
 
------------------------------------------------------------------------------------------------------------------------------
+- Sobre o Projeto
+- Credenciais de Acesso
+- Funcionalidades
+- Estrutura do Projeto
+- Formulários da Aplicação
+- Base de Dados
+- Regras de Negócio
+- Proteções Implementadas
+- Tecnologias Utilizadas
+- Instalação e Execução
+- Autores
+- Licença
 
-Gestão de Utilizadores
+---
 
-O sistema inclui gestão completa de utilizadores (CRUD), sendo obrigatório que o campo username seja único. Todos os utilizadores possuem o mesmo nível de permissões dentro da aplicação.
+# 📖 Sobre o Projeto
 
------------------------------------------------------------------------------------------------------------------------------
+O **CasaPoupança** é uma aplicação desktop que permite gerir:
 
-Gestão de Artigos
+- Utilizadores
+- Tipos de Artigo
+- Artigos
+- Orçamentos Mensais
+- Planeamento de Compras
+- Execução de Compras
+- Estatísticas
+- Exportação de Dados CSV
 
-A aplicação permite a gestão de:
- - Tipos de artigo (CRUD), utilizados para organizar os produtos;
- - Artigos (CRUD), associados a um tipo de artigo específico.
-Na criação ou seleção de artigos, o utilizador deve primeiro escolher o tipo de artigo, de forma a facilitar a filtragem dos dados.
+O sistema segue o padrão **MVC (Model-View-Controller)** garantindo uma separação clara entre interface, lógica de negócio e acesso a dados.
 
-----------------------------------------------------------------------------------------------------------------------------
+---
 
-Orçamento
+# 🔑 Credenciais de Acesso
 
-Existe um orçamento mensal único que define o valor máximo disponível para despesas do mês. Este orçamento regista quem o criou e quem o alterou, bem como as respetivas datas de modificação.
-Durante a utilização da aplicação, o orçamento disponível vai sendo atualizado em tempo real à medida que os artigos são adicionados ou adquiridos.
-Caso o orçamento seja ultrapassado, o sistema apresenta um alerta visível ao utilizador.
+No primeiro acesso não existem utilizadores registados.
 
-----------------------------------------------------------------------------------------------------------------------------
+## Primeiro Login
 
-Gestão de Compras
+1. Abrir a aplicação.
+2. Clicar em **Registar**.
+3. Criar um utilizador com um username único.
+4. Efetuar login com as credenciais criadas.
 
-Cada utilizador pode criar listas de compras, sendo registada a data de criação, alteração e o utilizador responsável por cada ação.
-Cada compra pode conter:
- - Itens previstos (artigos planeados com quantidade estimada);
- - Itens não previstos (artigos adicionados durante a compra).
-Durante a execução de uma compra, o utilizador deve indicar a quantidade adquirida e o preço unitário de cada artigo.
-As compras podem ser alteradas apenas enquanto não estiverem fechadas.
-Quando um item não previsto é adicionado, este é automaticamente considerado como adquirido.
+---
 
-----------------------------------------------------------------------------------------------------------------------------
+# 🚀 Funcionalidades
 
-Finalização de Compras
+## 👤 Gestão de Utilizadores
 
-Após a conclusão, o utilizador pode fechar a compra, sendo registada a data, hora e utilizador responsável pelo fecho. A partir desse momento, a compra deixa de poder ser alterada.
+- CRUD completo de utilizadores
+- Username único obrigatório
+- Password encriptada com SHA256
+- Todos os utilizadores possuem o mesmo nível de permissões
 
-----------------------------------------------------------------------------------------------------------------------------
+---
 
-Estatísticas
+## 📦 Gestão de Tipos de Artigo
 
-A aplicação inclui um módulo de estatísticas com múltiplas análises, nomeadamente:
+- CRUD de tipos de artigo
+- Listagem de todos os tipos
+- Validação de nomes duplicados
 
- - Comparação mensal entre orçamento definido, total de compras e diferença entre ambos;
- - Percentagem de artigos previstos e não previstos em compras fechadas;
- - Sugestão de orçamento para o mês seguinte com base em meses anteriores;
- - Sugestão de listas de compras com base em padrões de consumo por semana do mês.
+---
 
-----------------------------------------------------------------------------------------------------------------------------
+## 🛒 Gestão de Artigos
 
-Exportação de Dados
+- CRUD de artigos
+- Associação a um tipo de artigo
+- Filtro por tipo de artigo
+- Registo de preço unitário
 
-O sistema permite exportar todas as compras fechadas para ficheiro CSV, com separador ponto e vírgula. O ficheiro inclui cabeçalho e os seguintes campos:
-Nome da compra, data de criação, data de fecho, nome do artigo, se é previsto ou não previsto, quantidade prevista, quantidade adquirida e preço unitário.
+---
 
-----------------------------------------------------------------------------------------------------------------------------
+## 💰 Orçamento Mensal
 
-Persistência de Dados
+- Um único orçamento por mês/ano
+- CRUD de orçamentos
+- Registo do utilizador criador
+- Registo do utilizador que alterou
+- Cálculo automático do total gasto
 
-Toda a informação da aplicação é armazenada numa base de dados relacional SQL Server, garantindo a integridade dos dados. O acesso à base de dados é realizado através do Entity Framework.
+### Estados do Orçamento
 
-----------------------------------------------------------------------------------------------------------------------------
+| Estado | Cor |
+|----------|----------|
+| Orçamento disponível | 🟢 Verde |
+| Orçamento ultrapassado | 🔴 Vermelho |
 
-Formulários da Aplicação
+---
 
-A aplicação é composta pelos seguintes formulários obrigatórios:
+## 📋 Planeamento de Compras
 
- - Login
- - Menu principal
- - Gestão de tipos de artigo (CRUD)
- - Gestão de artigos (CRUD)
- - Gestão de orçamento (CRUD)
- - Planeamento de compras
- - Criação/edição de compra
- - Modo de compra (execução da compra)
- - Estatísticas
+- Criação de listas de compras
+- Adição de itens previstos
+- Definição de quantidades previstas
+- Filtro por estado:
+  - Todas
+  - Abertas
+  - Fechadas
+- Visualização detalhada das compras
+- Separação entre itens previstos e não previstos
 
-----------------------------------------------------------------------------------------------------------------------------
+---
 
-Objetivo Final
+## 🏪 Modo Compra (Execução)
 
-O objetivo do sistema é permitir uma gestão eficiente das finanças domésticas, fornecendo ferramentas de planeamento, controlo e análise de gastos, de forma a melhorar a organização do orçamento familiar.
+- Visualização dos itens previstos
+- Registo da quantidade adquirida
+- Registo do preço unitário real
+- Adição de itens não previstos
+- Atualização automática dos gastos
+- Consulta do orçamento disponível em tempo real
+- Alerta visual quando o orçamento é ultrapassado
+- Registo automático da data de fecho
+- Registo do utilizador responsável
 
-----------------------------------------------------------------------------------------------------------------------------
+---
 
+## 📊 Estatísticas
 
+### Resumo Mensal
+
+- Orçamento definido
+- Total gasto
+- Diferença entre orçamento e despesa
+
+### Compras Fechadas
+
+- Percentagem de itens previstos
+- Percentagem de itens não previstos
+
+### Sugestões
+
+#### Sugestão de Orçamento
+
+Calculada pela média dos últimos 3 meses.
+
+#### Sugestão de Lista de Compras
+
+Baseada nas compras efetuadas na mesma semana dos meses anteriores.
+
+---
+
+## 📄 Exportação CSV
+
+Permite exportar:
+
+- Compras fechadas
+- Resumo mensal
+- Estatísticas
+- Listas de compras
+- Utilizadores
+- Artigos
+- Orçamentos
+
+Características:
+
+- Separador `;`
+- Cabeçalhos incluídos
+- Compatível com Microsoft Excel
+
+---
+
+# 🏗️ Estrutura do Projeto
+
+```text
+CasaPoupanca/
+│
+├── Controllers/
+│   ├── AuthController.cs
+│   ├── ArtigoController.cs
+│   ├── CompraController.cs
+│   ├── ModoCompraController.cs
+│   ├── OrcamentoController.cs
+│   ├── PlaneamentoComprasController.cs
+│   └── EstatisticasController.cs
+│
+├── Models/
+│   ├── Artigo.cs
+│   ├── Compra.cs
+│   ├── ConfigDB.cs
+│   ├── Estatisticas.cs
+│   ├── ItemCompra.cs
+│   ├── Orcamento.cs
+│   ├── Session.cs
+│   ├── TipoArtigo.cs
+│   └── Utilizador.cs
+│
+├── Views /
+│   ├── FormLogin.cs
+│   ├── FormPrincipal.cs
+│   ├── FormTipoArtigo.cs
+│   ├── FormArtigo.cs
+│   ├── FormOrcamento.cs
+│   ├── FormCompra.cs
+│   ├── FormModoCompra.cs
+│   ├── FormPlaneamentoCompras.cs
+│   ├── FormEstatisticas.cs
+│   ├── FormExportarCSV.cs
+│   ├── FormUtilizadores.cs
+│   ├── FormProfile.cs
+│   └── FormItemNaoPrevisto.cs
+│
+├── .gitignore
+├── App.config
+└── Program.cs
+```
+
+---
+
+# 🖥️ Formulários da Aplicação
+
+| Código | Formulário | Ficheiro | Descrição |
+|----------|----------|----------|----------|
+| a | Register | FormRegister.cs | Autenticação |
+| b | Login | FormLogin.cs | Autenticação |
+| c | Principal | FormPrincipal.cs | Menu principal |
+| d | Tipos de Artigo | FormTipoArtigo.cs | CRUD tipos de artigo |
+| e | Artigos | FormArtigo.cs | CRUD artigos |
+| f | Orçamentos | FormOrcamento.cs | CRUD orçamentos |
+| g | Planeamento | FormPlaneamentoCompras.cs | Listagem de compras |
+| h | Criar/Editar Compra | FormCompra.cs | Planeamento |
+| i | Modo Compra | FormModoCompra.cs | Execução |
+| j | Estatísticas | FormEstatisticas.cs | Estatísticas |
+| k | Exportar CSV | FormExportarCSV.cs | Exportação |
+| l | Utilizadores | FormUtilizadores.cs | Gestão utilizadores |
+| m | Perfil | FormProfile.cs | Perfil |
+| n | Item Não Previsto | FormItemNaoPrevisto.cs | Artigos extra |
+
+---
+
+# 🗄️ Base de Dados
+
+## Tabelas
+
+### Utilizadores
+
+- Id
+- Username
+- Nome
+- Password (SHA256)
+- DataRegisto
+
+### TiposArtigo
+
+- Id
+- Nome
+
+### Artigos
+
+- Id
+- Nome
+- TipoArtigoId
+- PrecoUnitario
+
+### Orcamentos
+
+- Id
+- Mes
+- Ano
+- Valor
+- CriadoPorId
+- AlteradoPorId
+- DataCriacao
+- DataAlteracao
+
+### Compras
+
+- Id
+- Nome
+- DataCriacao
+- DataAlteracao
+- IsFechada
+- DataFecho
+- CriadoPorId
+- AlteradoPorId
+- FechadaPorId
+
+### ItensCompra
+
+- Id
+- CompraId
+- ArtigoId
+- QuantidadePrevista
+- QuantidadeAdquirida
+- PrecoUnitario
+- IsPrevisto
+- Observacao
+
+---
+
+## Relações
+
+- Artigo → TipoArtigo (N:1)
+- ItemCompra → Compra (N:1)
+- ItemCompra → Artigo (N:1)
+- Compra → Utilizador (N:1)
+- Orcamento → Utilizador (N:1)
+
+---
+
+# 📐 Regras de Negócio
+
+- Cada utilizador visualiza apenas os seus dados.
+- Compras fechadas não podem ser alteradas.
+- Existe apenas um orçamento por mês e ano.
+- Username único no sistema.
+- Itens não previstos entram automaticamente como adquiridos.
+- Passwords armazenadas utilizando SHA256.
+- Todas as operações registam utilizador e data.
+
+---
+
+# 🛡️ Proteções Implementadas
+
+- Validação de campos obrigatórios
+- Tratamento de exceções com try-catch
+- Mensagens de erro informativas
+- Confirmação antes de eliminar registos
+- Verificação de duplicados
+- Proteção contra edição de compras fechadas
+- Alertas visuais de orçamento
+- Controlo de integridade dos dados
+
+---
+
+# 🛠️ Tecnologias Utilizadas
+
+- C#
+- .NET Framework
+- Windows Forms
+- Entity Framework
+- SQL Server / LocalDB
+- MVC
+- SHA256
+
+---
+
+# ▶️ Instalação e Execução
+
+## Requisitos
+
+- Visual Studio 2022 ou superior
+- SQL Server LocalDB
+- .NET Framework compatível com o projeto
+
+## Execução
+
+```bash
+git clone https://github.com/Miguel2570/DA_CasaPoupanca
+```
+
+1. Abrir a solução no Visual Studio.
+2. Configurar a Connection String no `App.config`.
+3. Executar o projeto.
+
+---
+
+# 👨‍🎓 Autores
+
+**[Miguel da Costa Tobias]** — Nº [2241574]
+
+**[Nome Completo Estudante 2]** — Nº [XXXXXX]
+
+**[Nome Completo Estudante 3]** — Nº [XXXXXX]
+
+**Curso:** Técnico Superior Profissional de Programação de Sistemas de Informação
+
+**Unidade Curricular:** Desenvolvimento de Aplicações
+
+**Ano Letivo:** 2025/2026
+
+**Data de Entrega:** 09 de Junho de 2026
+
+---
+
+# 📜 Licença
+
+Projeto desenvolvido exclusivamente para fins académicos no âmbito da Unidade Curricular de Desenvolvimento de Aplicações.
+
+---
+
+# 📝 Observações
+
+- Implementação baseada no padrão MVC.
+- Os Controllers são responsáveis pela lógica de negócio e acesso a dados.
+- As Views comunicam apenas com os Controllers.
+- A sessão do utilizador mantém-se ativa durante toda a execução da aplicação.
+- O sistema foi desenvolvido com foco na gestão doméstica e controlo orçamental.

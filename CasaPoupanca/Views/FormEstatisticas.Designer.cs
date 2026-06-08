@@ -78,7 +78,6 @@
             this.dataGridViewResumo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewResumo.Size = new System.Drawing.Size(922, 377);
             this.dataGridViewResumo.TabIndex = 0;
-            this.dataGridViewResumo.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewResumo_CellContentClick);
             // 
             // tabCompras
             // 

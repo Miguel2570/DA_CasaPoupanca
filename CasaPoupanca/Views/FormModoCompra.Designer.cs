@@ -41,9 +41,10 @@
             this.buttonAddItemNaoPrevisto = new System.Windows.Forms.Button();
             this.listBoxItensNaoPrevistos = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.buttonAdquirirItemPrevisto = new System.Windows.Forms.Button();
             this.numericUpDownQuantidadeAdquirir = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownPrecoUnitarioAdquirir = new System.Windows.Forms.NumericUpDown();
+            this.buttonRemoverItemNaoPrevisto = new System.Windows.Forms.Button();
+            this.buttonAdquirirItemPrevisto = new System.Windows.Forms.Button();
             this.buttonAdquirirItemNaoPrevisto = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantidadeAdquirir)).BeginInit();
@@ -85,7 +86,7 @@
             // 
             // buttonFecharCompra
             // 
-            this.buttonFecharCompra.Location = new System.Drawing.Point(41, 547);
+            this.buttonFecharCompra.Location = new System.Drawing.Point(38, 312);
             this.buttonFecharCompra.Name = "buttonFecharCompra";
             this.buttonFecharCompra.Size = new System.Drawing.Size(154, 37);
             this.buttonFecharCompra.TabIndex = 39;
@@ -132,6 +133,7 @@
             this.listBoxItensPrevistos.Name = "listBoxItensPrevistos";
             this.listBoxItensPrevistos.Size = new System.Drawing.Size(476, 199);
             this.listBoxItensPrevistos.TabIndex = 43;
+            this.listBoxItensPrevistos.SelectedIndexChanged += new System.EventHandler(this.listBoxItensPrevistos_SelectedIndexChanged_1);
             // 
             // label1
             // 
@@ -153,7 +155,7 @@
             // 
             // buttonAddItemNaoPrevisto
             // 
-            this.buttonAddItemNaoPrevisto.Location = new System.Drawing.Point(41, 426);
+            this.buttonAddItemNaoPrevisto.Location = new System.Drawing.Point(35, 442);
             this.buttonAddItemNaoPrevisto.Name = "buttonAddItemNaoPrevisto";
             this.buttonAddItemNaoPrevisto.Size = new System.Drawing.Size(157, 37);
             this.buttonAddItemNaoPrevisto.TabIndex = 38;
@@ -168,6 +170,7 @@
             this.listBoxItensNaoPrevistos.Name = "listBoxItensNaoPrevistos";
             this.listBoxItensNaoPrevistos.Size = new System.Drawing.Size(476, 199);
             this.listBoxItensNaoPrevistos.TabIndex = 50;
+            this.listBoxItensNaoPrevistos.SelectedIndexChanged += new System.EventHandler(this.listBoxItensNaoPrevistos_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -179,16 +182,6 @@
             this.label3.Size = new System.Drawing.Size(146, 20);
             this.label3.TabIndex = 49;
             this.label3.Text = "Itens Não Previstos";
-            // 
-            // buttonAdquirirItemPrevisto
-            // 
-            this.buttonAdquirirItemPrevisto.Location = new System.Drawing.Point(35, 258);
-            this.buttonAdquirirItemPrevisto.Name = "buttonAdquirirItemPrevisto";
-            this.buttonAdquirirItemPrevisto.Size = new System.Drawing.Size(157, 37);
-            this.buttonAdquirirItemPrevisto.TabIndex = 51;
-            this.buttonAdquirirItemPrevisto.Text = "Adquirir Item previsto";
-            this.buttonAdquirirItemPrevisto.UseVisualStyleBackColor = true;
-            this.buttonAdquirirItemPrevisto.Click += new System.EventHandler(this.buttonAdquirirItemPrevisto_Click);
             // 
             // numericUpDownQuantidadeAdquirir
             // 
@@ -204,13 +197,33 @@
             this.numericUpDownPrecoUnitarioAdquirir.Size = new System.Drawing.Size(120, 20);
             this.numericUpDownPrecoUnitarioAdquirir.TabIndex = 53;
             // 
+            // buttonRemoverItemNaoPrevisto
+            // 
+            this.buttonRemoverItemNaoPrevisto.Location = new System.Drawing.Point(38, 533);
+            this.buttonRemoverItemNaoPrevisto.Name = "buttonRemoverItemNaoPrevisto";
+            this.buttonRemoverItemNaoPrevisto.Size = new System.Drawing.Size(154, 37);
+            this.buttonRemoverItemNaoPrevisto.TabIndex = 54;
+            this.buttonRemoverItemNaoPrevisto.Text = "Remover Item Não Previsto";
+            this.buttonRemoverItemNaoPrevisto.UseVisualStyleBackColor = true;
+            this.buttonRemoverItemNaoPrevisto.Click += new System.EventHandler(this.buttonRemoverItemNaoPrevisto_Click);
+            // 
+            // buttonAdquirirItemPrevisto
+            // 
+            this.buttonAdquirirItemPrevisto.Location = new System.Drawing.Point(38, 269);
+            this.buttonAdquirirItemPrevisto.Name = "buttonAdquirirItemPrevisto";
+            this.buttonAdquirirItemPrevisto.Size = new System.Drawing.Size(154, 37);
+            this.buttonAdquirirItemPrevisto.TabIndex = 55;
+            this.buttonAdquirirItemPrevisto.Text = "Adquirir Item Previsto";
+            this.buttonAdquirirItemPrevisto.UseVisualStyleBackColor = true;
+            this.buttonAdquirirItemPrevisto.Click += new System.EventHandler(this.buttonAdquirirItemPrevisto_Click);
+            // 
             // buttonAdquirirItemNaoPrevisto
             // 
-            this.buttonAdquirirItemNaoPrevisto.Location = new System.Drawing.Point(41, 486);
+            this.buttonAdquirirItemNaoPrevisto.Location = new System.Drawing.Point(38, 490);
             this.buttonAdquirirItemNaoPrevisto.Name = "buttonAdquirirItemNaoPrevisto";
-            this.buttonAdquirirItemNaoPrevisto.Size = new System.Drawing.Size(157, 37);
-            this.buttonAdquirirItemNaoPrevisto.TabIndex = 54;
-            this.buttonAdquirirItemNaoPrevisto.Text = "Adquirir Item não previsto";
+            this.buttonAdquirirItemNaoPrevisto.Size = new System.Drawing.Size(154, 37);
+            this.buttonAdquirirItemNaoPrevisto.TabIndex = 56;
+            this.buttonAdquirirItemNaoPrevisto.Text = "Adquirir Item Não Previsto";
             this.buttonAdquirirItemNaoPrevisto.UseVisualStyleBackColor = true;
             this.buttonAdquirirItemNaoPrevisto.Click += new System.EventHandler(this.buttonAdquirirItemNaoPrevisto_Click);
             // 
@@ -221,9 +234,10 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 677);
             this.Controls.Add(this.buttonAdquirirItemNaoPrevisto);
+            this.Controls.Add(this.buttonAdquirirItemPrevisto);
+            this.Controls.Add(this.buttonRemoverItemNaoPrevisto);
             this.Controls.Add(this.numericUpDownPrecoUnitarioAdquirir);
             this.Controls.Add(this.numericUpDownQuantidadeAdquirir);
-            this.Controls.Add(this.buttonAdquirirItemPrevisto);
             this.Controls.Add(this.listBoxItensNaoPrevistos);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -262,9 +276,10 @@
         private System.Windows.Forms.Button buttonAddItemNaoPrevisto;
         private System.Windows.Forms.ListBox listBoxItensNaoPrevistos;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button buttonAdquirirItemPrevisto;
         private System.Windows.Forms.NumericUpDown numericUpDownQuantidadeAdquirir;
         private System.Windows.Forms.NumericUpDown numericUpDownPrecoUnitarioAdquirir;
+        private System.Windows.Forms.Button buttonRemoverItemNaoPrevisto;
+        private System.Windows.Forms.Button buttonAdquirirItemPrevisto;
         private System.Windows.Forms.Button buttonAdquirirItemNaoPrevisto;
     }
 }

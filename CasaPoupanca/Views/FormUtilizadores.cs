@@ -108,7 +108,7 @@ namespace CasaPoupanca
             }
 
             DialogResult resultado = MessageBox.Show("Tem certeza que deseja remover este utilizador?",
-                "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                "Confirmar", MessageBoxButtons.YesNo);
 
             if (resultado == DialogResult.Yes)
             {

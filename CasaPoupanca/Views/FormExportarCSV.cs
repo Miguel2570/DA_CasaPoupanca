@@ -81,12 +81,11 @@ namespace CasaPoupanca
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao exportar: {ex.Message}", "Erro",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Erro ao exportar: {ex.Message}");
             }
         }
 
-        // ==================== 1. Resumo Mensal ====================
+        // Resumo Mensal
         private void ExportarResumoMensal(string caminho)
         {
             var resumo = _controller.GetResumoMensal();
@@ -101,7 +100,7 @@ namespace CasaPoupanca
             }
         }
 
-        // ==================== 2. Compras Fechadas (detalhe de itens) ====================
+        // Compras Fechadas (detalhe de itens)
         private void ExportarComprasFechadas(string caminho)
         {
             using (var db = new CasaPoupancaDB())
@@ -110,7 +109,7 @@ namespace CasaPoupanca
 
                 using (StreamWriter sw = new StreamWriter(caminho, false, Encoding.UTF8))
                 {
-                    sw.WriteLine("NomeCompra;DataCriacao;DataFechada;NomeArtigo;ArtigoPrevisto;QuantidadePrevista;QuantidadeAdquirida;PrecoUnitario");
+                    sw.WriteLine("NomeCompra;DataCriacao;DataFechada;NomeArtigo;ArtigoPrevisto;ArtigoNaoPrevisto;QuantidadePrevista;QuantidadeAdquirida;PrecoUnitario");
 
                     foreach (var compra in comprasFechadas)
                     {
@@ -119,15 +118,17 @@ namespace CasaPoupanca
                         foreach (var item in itens)
                         {
                             string artigoPrevisto = item.IsPrevisto ? "Sim" : "Não";
+                            string artigoNaoPrevisto = item.IsPrevisto ? "Não" : "Sim";
                             string nomeArtigo = item.Artigo?.Nome ?? "N/A";
-                            sw.WriteLine($"{compra.Nome};{compra.DataCriacao:yyyy-MM-dd};{compra.DataFecho:yyyy-MM-dd};{nomeArtigo};{artigoPrevisto};{item.QuantidadePrevista};{item.QuantidadeAdquirida};{item.PrecoUnitario:F2}");
+
+                            sw.WriteLine($"{compra.Nome};{compra.DataCriacao:yyyy-MM-dd};{compra.DataFecho:yyyy-MM-dd};{nomeArtigo};{artigoPrevisto};{artigoNaoPrevisto};{item.QuantidadePrevista};{item.QuantidadeAdquirida};{item.PrecoUnitario:F2}");
                         }
                     }
                 }
             }
         }
 
-        // ==================== 3. Estatísticas Completas ====================
+        // Estatísticas Completas
         private void ExportarEstatisticasCompletas(string caminho)
         {
             using (StreamWriter sw = new StreamWriter(caminho, false, Encoding.UTF8))
@@ -162,7 +163,7 @@ namespace CasaPoupanca
             }
         }
 
-        // ==================== 4. Lista de Compras ====================
+        // Lista de Compras
         private void ExportarListaCompras(string caminho)
         {
             using (var db = new CasaPoupancaDB())
@@ -184,7 +185,7 @@ namespace CasaPoupanca
             }
         }
 
-        // ==================== 5. Utilizadores ====================
+        // Utilizadores
         private void ExportarUtilizadores(string caminho)
         {
             using (var db = new CasaPoupancaDB())
@@ -202,7 +203,7 @@ namespace CasaPoupanca
             }
         }
 
-        // ==================== 6. Artigos ====================
+        // Artigos
         private void ExportarArtigos(string caminho)
         {
             using (var db = new CasaPoupancaDB())
@@ -220,7 +221,7 @@ namespace CasaPoupanca
             }
         }
 
-        // ==================== 7. Orçamentos ====================
+        // Orçamentos
         private void ExportarOrcamentos(string caminho)
         {
             using (var db = new CasaPoupancaDB())

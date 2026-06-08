@@ -43,11 +43,9 @@ namespace CasaPoupanca
             numericUpDownPreco.DecimalPlaces = 2;
             numericUpDownPreco.ThousandsSeparator = true;
 
-            // Opcional: Permitir que o utilizador use setas para aumentar/diminuir de 0.01 em 0.01
             numericUpDownPreco.Increment = 0.01M;
         }
 
-        // Ao carregar tipos: configure membros antes do DataSource
         private void CarregarTiposComboBox()
         {
             var tipos = _controller.GetTiposComTodos();
@@ -57,7 +55,6 @@ namespace CasaPoupanca
             comboBoxTipo.DataSource = tipos;
         }
 
-        // Ao preencher artigos: proteger o SelectedIndexChanged do listbox
         private void CarregarArtigos()
         {
             try
@@ -135,16 +132,14 @@ namespace CasaPoupanca
             // VALIDAÇÕES
             if (string.IsNullOrWhiteSpace(textBoxNome.Text))
             {
-                MessageBox.Show("Preencha o nome!", "Campo Obrigatório",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Preencha o nome!");
                 textBoxNome.Focus();
                 return;
             }
 
             if (comboBoxTipo.SelectedValue == null || (int)comboBoxTipo.SelectedValue == 0)
             {
-                MessageBox.Show("Selecione um tipo!", "Campo Obrigatório",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Selecione um tipo!");
                 comboBoxTipo.Focus();
                 return;
             }
@@ -154,8 +149,7 @@ namespace CasaPoupanca
 
             if (preco <= 0)
             {
-                MessageBox.Show("O preço deve ser maior que zero (0)!", "Valor Inválido",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("O preço deve ser maior que zero (0)!");
                 numericUpDownPreco.Focus();
                 return;
             }
@@ -175,44 +169,38 @@ namespace CasaPoupanca
 
                 if (resultado)
                 {
-                    MessageBox.Show("Adicionado com sucesso!", "Sucesso",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Adicionado com sucesso!");
                     CarregarArtigos();
                     LimparCampos();
                 }
                 else
                 {
-                    MessageBox.Show("Erro: Não foi possível adicionar.", "Erro",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Erro: Não foi possível adicionar.");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"ERRO: {ex.Message}", "Erro",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"ERRO: {ex.Message}");
             }
         }
         private void buttonEditar_Click(object sender, EventArgs e)
         {
             if (listBoxArtigos.SelectedItem == null)
             {
-                MessageBox.Show("Selecione um artigo!", "Aviso",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Selecione um artigo!");
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(textBoxNome.Text))
             {
-                MessageBox.Show("Preencha o nome!", "Campo Obrigatório",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Preencha o nome!");
                 textBoxNome.Focus();
                 return;
             }
 
             if (comboBoxTipo.SelectedValue == null || (int)comboBoxTipo.SelectedValue == 0)
             {
-                MessageBox.Show("Selecione um tipo!", "Campo Obrigatório",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Selecione um tipo!");
                 comboBoxTipo.Focus();
                 return;
             }
@@ -221,8 +209,7 @@ namespace CasaPoupanca
 
             if (preco <= 0)
             {
-                MessageBox.Show("O preço deve ser maior que zero (0)!", "Valor Inválido",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("O preço deve ser maior que zero (0)!");
                 numericUpDownPreco.Focus();
                 return;
             }
@@ -235,15 +222,13 @@ namespace CasaPoupanca
                 artigo.PrecoUnitario = preco;
 
                 _controller.UpdateArtigo(artigo);
-                MessageBox.Show("Atualizado com sucesso!", "Sucesso",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Atualizado com sucesso!");
                 CarregarArtigos();
                 LimparCampos();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"ERRO: {ex.Message}", "Erro",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"ERRO: {ex.Message}");
             }
         }
 
@@ -251,8 +236,7 @@ namespace CasaPoupanca
         {
             if (listBoxArtigos.SelectedItem == null)
             {
-                MessageBox.Show("Selecione um artigo!", "Aviso",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Selecione um artigo!");
                 return;
             }
 
@@ -263,15 +247,13 @@ namespace CasaPoupanca
                 {
                     var artigo = (Artigo)listBoxArtigos.SelectedItem;
                     _controller.DeleteArtigo(artigo.Id);
-                    MessageBox.Show("Removido com sucesso!", "Sucesso",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Removido com sucesso!");
                     CarregarArtigos();
                     LimparCampos();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"ERRO: {ex.Message}", "Erro",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"ERRO: {ex.Message}");
                 }
             }
         }
@@ -289,7 +271,6 @@ namespace CasaPoupanca
                     comboBoxTipo.SelectedValue = artigo.TipoArtigoId;
                 else
                 {
-                    // fallback: selecionar manualmente
                     for (int i = 0; i < comboBoxTipo.Items.Count; i++)
                     {
                         if (comboBoxTipo.Items[i] is TipoArtigo t && t.Id == artigo.TipoArtigoId)

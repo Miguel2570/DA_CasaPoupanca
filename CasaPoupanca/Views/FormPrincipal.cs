@@ -47,7 +47,7 @@ namespace CasaPoupanca
 
         private void CarregarComprasAbertas()
         {
-            var compras = _compraController.GetComprasPorUtilizador(Session.UtilizadorId);
+            var compras = _compraController.GetComprasAbertasPorUtilizador(Session.UtilizadorId);
             dataGridViewCompras.DataSource = null;
             dataGridViewCompras.DataSource = compras;
         }
@@ -87,7 +87,7 @@ namespace CasaPoupanca
             {
                 Name = "Estado",
                 HeaderText = "Estado",
-                DataPropertyName = "IsFechada",  // Vai buscar o boolean
+                DataPropertyName = "IsFechada",
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
             });
 
@@ -111,16 +111,6 @@ namespace CasaPoupanca
 
         private void buttonNovaCompra_Click(object sender, EventArgs e)
         {
-            var novaCompra = new Compra
-            {
-                Nome = $"Compra {DateTime.Now:dd/MM/yyyy HH:mm}",
-                CriadoPorId = Session.UtilizadorId,
-                DataCriacao = DateTime.Now,
-                IsFechada = false
-            };
-
-            _compraController.AddCompra(novaCompra);
-
             var formCompra = new FormCompra();
             formCompra.ShowDialog();
 
@@ -140,8 +130,7 @@ namespace CasaPoupanca
 
             if (compra.IsFechada)
             {
-                MessageBox.Show("⚠️ Esta compra já está FECHADA e não pode ser alterada. Apenas para consulta.",
-                    "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("⚠️ Esta compra já está FECHADA e não pode ser alterada. Apenas para consulta.");
                 return;
             }
 

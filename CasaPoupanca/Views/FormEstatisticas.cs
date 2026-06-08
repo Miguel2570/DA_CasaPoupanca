@@ -186,8 +186,7 @@ namespace CasaPoupanca
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
             CarregarDados();
-            MessageBox.Show("Dados atualizados!", "Info",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Dados atualizados!");
         }
 
         private void btnExportar_Click(object sender, EventArgs e)
@@ -205,11 +204,6 @@ namespace CasaPoupanca
         {
             _controller?.Dispose();
             base.OnFormClosed(e);
-        }
-
-        private void dataGridViewResumo_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

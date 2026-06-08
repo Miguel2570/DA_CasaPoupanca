@@ -30,7 +30,7 @@ namespace CasaPoupanca
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao carregar itens: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Erro ao carregar itens: {ex.Message}");
             }
         }
 
@@ -113,7 +113,7 @@ namespace CasaPoupanca
             {
                 labelOrcamentoDisponivel.ForeColor = System.Drawing.Color.Red;
                 labelAviso.ForeColor = System.Drawing.Color.Red;
-                labelAviso.Text = "⚠️ Atenção! Orçamento ultrapassado! ⚠️";
+                labelAviso.Text = "Atenção! Orçamento ultrapassado!";
             }
             else
             {
@@ -136,21 +136,21 @@ namespace CasaPoupanca
         {
             if (comboBoxArtigo.SelectedItem == null)
             {
-                MessageBox.Show("Selecione um artigo disponível!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Selecione um artigo disponível!");
                 return;
             }
 
             int quantidade = (int)numericUpDownQuantidade.Value;
             if (quantidade <= 0)
             {
-                MessageBox.Show("A quantidade deve ser maior que zero!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("A quantidade deve ser maior que zero!");
                 return;
             }
 
             decimal precoUnitario = numericUpDownPrecoUnitario.Value;
             if (precoUnitario <= 0)
             {
-                MessageBox.Show("O preço deve ser maior que zero!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("O preço deve ser maior que zero!");
                 return;
             }
 
@@ -183,7 +183,7 @@ namespace CasaPoupanca
                 };
 
                 _controller.AddItemNaoPrevisto(novoItem);
-                MessageBox.Show("Item não previsto adicionado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Item não previsto adicionado com sucesso!");
 
                 CarregarItensNaoPrevistos();
                 LimparCampos();
@@ -191,7 +191,7 @@ namespace CasaPoupanca
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao adicionar item: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Erro ao adicionar item: {ex.Message}");
             }
         }
 
@@ -199,7 +199,7 @@ namespace CasaPoupanca
         {
             if (listBoxItensNaoPrevistos.SelectedItem == null)
             {
-                MessageBox.Show("Selecione um item para remover!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Selecione um item para remover!");
                 return;
             }
 
@@ -210,14 +210,14 @@ namespace CasaPoupanca
                     var item = (ItemCompra)listBoxItensNaoPrevistos.SelectedItem;
                     _controller.RemoverItemNaoPrevisto(item.Id);
 
-                    MessageBox.Show("Item removido com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Item removido com sucesso!");
                     CarregarItensNaoPrevistos();
                     LimparCampos();
                     CarregarOrcamento();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Erro ao remover item: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Erro ao remover item: {ex.Message}");
                 }
             }
         }

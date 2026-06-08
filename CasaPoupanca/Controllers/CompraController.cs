@@ -149,6 +149,7 @@ namespace CasaPoupanca.Controllers
                     return false;
 
                 existing.QuantidadeAdquirida = item.QuantidadeAdquirida;
+                existing.QuantidadePrevista = item.QuantidadePrevista;
                 existing.PrecoUnitario = item.PrecoUnitario;
                 existing.Observacao = item.Observacao;
                 db.SaveChanges();
