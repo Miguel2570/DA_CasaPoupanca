@@ -19,18 +19,13 @@ namespace CasaPoupanca
             InitializeComponent();
             _compraController = new CompraController();
             _artigoController = new ArtigoController();
-            _orcamentoController = new OrcamentoController(); // <- adicionar
+            _orcamentoController = new OrcamentoController();
             InicializarForm();
         }
 
-        public FormCompra(int compraId)
+        public FormCompra(int compraId) : this()
         {
-            InitializeComponent();
-            _compraController = new CompraController();
-            _artigoController = new ArtigoController();
-            _orcamentoController = new OrcamentoController(); // <- adicionar
             _compraSelecionadaId = compraId;
-            InicializarForm();
             CarregarDadosCompra(compraId);
         }
 
@@ -46,7 +41,14 @@ namespace CasaPoupanca
                     LimparCamposCompra();
                 }
 
-                AtualizarOrcamento();
+                AtualizarOrcamentoRestante();
+
+                // Garantir que o labelTotal começa a 0
+                if (labelTotal != null)
+                {
+                    labelTotal.Text = "Total: €0,00";
+                    labelTotal.ForeColor = System.Drawing.Color.Black;
+                }
             }
             catch (Exception ex)
             {
@@ -88,6 +90,7 @@ namespace CasaPoupanca
                     }
 
                     CarregarItensDaCompra(compraId);
+                    AtualizarTotalItens();
 
                     foreach (var item in listBoxListaDeCompras.Items)
                     {
@@ -129,6 +132,7 @@ namespace CasaPoupanca
             listBoxListaDeArtigos.DataSource = null;
             listBoxListaDeArtigos.DataSource = itens;
             listBoxListaDeArtigos.DisplayMember = "DisplayName";
+            AtualizarTotalItens();
         }
 
         private void LimparCamposCompra()
@@ -144,36 +148,71 @@ namespace CasaPoupanca
             buttonGuardar.Enabled = false;
             numericUpDownQuantidade.Value = 1;
             listBoxListaDeArtigos.DataSource = null;
+
+            if (labelTotal != null)
+            {
+                labelTotal.Text = "Total: €0,00";
+                labelTotal.ForeColor = System.Drawing.Color.Black;
+            }
         }
 
-        private void AtualizarOrcamento()
+        private void AtualizarOrcamentoRestante()
         {
-            if (_orcamentoController == null) _orcamentoController = new OrcamentoController();
+            if (labelOrcamento == null) return;
 
             int mes = (int)numericUpDownMes.Value;
             int ano = DateTime.Now.Year;
+
             var orcamento = _orcamentoController.GetOrcamentoPorMesAno(mes, ano);
             decimal orcamentoMensal = orcamento?.Valor ?? 0;
-
-            // Buscar total gasto no mês
             decimal totalGasto = _orcamentoController.CalcularTotalGastoMes(mes, ano);
 
-            // Atualizar label do orçamento
-            labelOrcamento.Text = $"€{orcamentoMensal:F2}";
+            decimal saldoRestante = orcamentoMensal - totalGasto;
 
-            // Atualizar label do total
-            labelTotal.Text = $"Total: €{totalGasto:F2}";
-
-            // Mudar cores se ultrapassou
-            if (totalGasto > orcamentoMensal && orcamentoMensal > 0)
+            if (saldoRestante >= 0)
             {
-                labelOrcamento.ForeColor = System.Drawing.Color.Red;
-                labelTotal.ForeColor = System.Drawing.Color.Red;
+                labelOrcamento.Text = $"Orçamento: €{saldoRestante:F2}";
+                labelOrcamento.ForeColor = System.Drawing.Color.Green;
             }
             else
             {
-                labelOrcamento.ForeColor = System.Drawing.Color.Green;
-                labelTotal.ForeColor = System.Drawing.Color.Black;
+                labelOrcamento.Text = $"Orçamento: €{saldoRestante:F2}";
+                labelOrcamento.ForeColor = System.Drawing.Color.Red;
+            }
+        }
+
+        private void AtualizarTotalItens()
+        {
+            if (!_compraSelecionadaId.HasValue)
+            {
+                if (labelTotal != null)
+                {
+                    labelTotal.Text = "Total: €0,00";
+                    labelTotal.ForeColor = System.Drawing.Color.Black;
+                }
+                return;
+            }
+
+            var itens = _compraController.GetItensPrevistos(_compraSelecionadaId.Value);
+            decimal total = itens.Sum(i => i.QuantidadeAdquirida * i.PrecoUnitario);
+
+            if (labelTotal != null)
+            {
+                labelTotal.Text = $"Total: €{total:F2}";
+
+                int mes = (int)numericUpDownMes.Value;
+                int ano = DateTime.Now.Year;
+                var orcamento = _orcamentoController.GetOrcamentoPorMesAno(mes, ano);
+                decimal orcamentoMensal = orcamento?.Valor ?? 0;
+
+                if (total > orcamentoMensal && orcamentoMensal > 0)
+                {
+                    labelTotal.ForeColor = System.Drawing.Color.Red;
+                }
+                else
+                {
+                    labelTotal.ForeColor = System.Drawing.Color.Black;
+                }
             }
         }
 
@@ -226,6 +265,8 @@ namespace CasaPoupanca
                 }
 
                 CarregarItensDaCompra(_compraSelecionadaId.Value);
+                AtualizarTotalItens();
+                AtualizarOrcamentoRestante();
                 numericUpDownQuantidade.Value = 1;
                 buttonGuardar.Enabled = true;
             }
@@ -253,6 +294,8 @@ namespace CasaPoupanca
                 _compraController.UpdateItemPrevisto(item);
                 MessageBox.Show("Item editado com sucesso!");
                 CarregarItensDaCompra(_compraSelecionadaId.Value);
+                AtualizarTotalItens();
+                AtualizarOrcamentoRestante();
                 buttonGuardar.Enabled = true;
             }
             catch (Exception ex)
@@ -274,6 +317,8 @@ namespace CasaPoupanca
                     _compraController.RemoveItemPrevisto(item.Id);
                     MessageBox.Show("Item removido com sucesso!");
                     CarregarItensDaCompra(_compraSelecionadaId.Value);
+                    AtualizarTotalItens();
+                    AtualizarOrcamentoRestante();
 
                     var itens = _compraController.GetItensPrevistos(_compraSelecionadaId.Value);
                     if (!itens.Any())
@@ -469,7 +514,6 @@ namespace CasaPoupanca
                 return;
             }
 
-            // Só cria se não existir compra selecionada
             if (!_compraSelecionadaId.HasValue)
             {
                 try
@@ -523,7 +567,8 @@ namespace CasaPoupanca
 
         private void numericUpDownMes_ValueChanged(object sender, EventArgs e)
         {
-            AtualizarOrcamento();
+            AtualizarOrcamentoRestante();
+            AtualizarTotalItens();
         }
 
         private void listBoxListaDeCompras_SelectedIndexChanged_1(object sender, EventArgs e)
@@ -560,6 +605,7 @@ namespace CasaPoupanca
                 }
 
                 CarregarItensDaCompra(compra.Id);
+                AtualizarTotalItens();
             }
         }
 
