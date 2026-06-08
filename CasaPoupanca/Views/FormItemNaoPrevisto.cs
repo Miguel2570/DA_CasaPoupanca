@@ -89,6 +89,14 @@ namespace CasaPoupanca
         {
             if (comboBoxArtigo.SelectedItem is Artigo artigo)
             {
+                // garantir casas decimais e incremento
+                numericUpDownPrecoUnitario.DecimalPlaces = 2;
+                numericUpDownPrecoUnitario.Increment = 0.01M;
+
+                // ampliar o máximo se necessário (ou usar um máximo fixo adequado)
+                if (artigo.PrecoUnitario > numericUpDownPrecoUnitario.Maximum)
+                    numericUpDownPrecoUnitario.Maximum = artigo.PrecoUnitario;
+
                 numericUpDownPrecoUnitario.Value = artigo.PrecoUnitario;
                 textBoxObservacao.Clear();
                 numericUpDownQuantidade.Focus();
@@ -232,12 +240,9 @@ namespace CasaPoupanca
         {
             if (listBoxItensNaoPrevistos.SelectedItem is ItemCompra item)
             {
-                
                 numericUpDownQuantidade.Value = item.QuantidadeAdquirida;
                 numericUpDownPrecoUnitario.Value = item.PrecoUnitario;
                 textBoxObservacao.Text = item.Observacao;
-
-                
             }
         }
     }

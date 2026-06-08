@@ -166,10 +166,10 @@ namespace CasaPoupanca
             // 
             // buttonVoltar
             // 
-            this.buttonVoltar.Location = new System.Drawing.Point(327, 389);
+            this.buttonVoltar.Location = new System.Drawing.Point(327, 332);
             this.buttonVoltar.Margin = new System.Windows.Forms.Padding(2);
             this.buttonVoltar.Name = "buttonVoltar";
-            this.buttonVoltar.Size = new System.Drawing.Size(70, 23);
+            this.buttonVoltar.Size = new System.Drawing.Size(85, 36);
             this.buttonVoltar.TabIndex = 38;
             this.buttonVoltar.Text = "Voltar";
             this.buttonVoltar.UseVisualStyleBackColor = true;

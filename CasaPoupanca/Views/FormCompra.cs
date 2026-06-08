@@ -23,8 +23,13 @@ namespace CasaPoupanca
             InicializarForm();
         }
 
-        public FormCompra(int compraId) : this()
+        public FormCompra(int compraId)
         {
+            InitializeComponent();
+            _compraController = new CompraController();
+            _artigoController = new ArtigoController();
+            _orcamentoController = new OrcamentoController();
+            InicializarForm();
             _compraSelecionadaId = compraId;
             CarregarDadosCompra(compraId);
         }
@@ -46,17 +51,17 @@ namespace CasaPoupanca
                 AtualizarTotalItens();
 
                 // Ligar eventos
-                buttonAdicionar.Click += ButtonAdicionar_Click;
-                buttonRemover.Click += ButtonRemover_Click;
-                buttonEditar.Click += ButtonEditar_Click;
-                buttonVoltar.Click += ButtonVoltar_Click;
-                buttonCriarLista.Click += ButtonCriarLista_Click;
-                buttonApagarLista.Click += ButtonApagarLista_Click;
-                buttonGuardar.Click += ButtonGuardar_Click;
-                listBoxListaDeCompras.SelectedIndexChanged += ListBoxListaDeCompras_SelectedIndexChanged;
-                listBoxListaDeArtigos.SelectedIndexChanged += ListBoxListaDeArtigos_SelectedIndexChanged;
-                comboBoxFiltroTipo.SelectedIndexChanged += ComboBoxFiltroTipo_SelectedIndexChanged;
-                numericUpDownMes.ValueChanged += NumericUpDownMes_ValueChanged;
+                buttonAdicionar.Click += buttonAdicionar_Click_1;
+                buttonRemover.Click += buttonRemover_Click;
+                buttonEditar.Click += buttonEditar_Click;
+                buttonVoltar.Click += buttonVoltar_Click_1;
+                buttonCriarLista.Click += buttonCriarLista_Click_1;
+                buttonApagarLista.Click += buttonApagarLista_Click;
+                buttonGuardar.Click += buttonGuardar_Click_1;
+                listBoxListaDeCompras.SelectedIndexChanged += listBoxListaDeCompras_SelectedIndexChanged_1;
+                listBoxListaDeArtigos.SelectedIndexChanged += listBoxListaDeArtigos_SelectedIndexChanged_1;
+                comboBoxFiltroTipo.SelectedIndexChanged += comboBoxFiltroTipo_SelectedIndexChanged_1;
+                numericUpDownMes.ValueChanged += numericUpDownMes_ValueChanged_1;
             }
             catch (Exception ex)
             {
@@ -248,7 +253,7 @@ namespace CasaPoupanca
                         CompraId = _compraSelecionadaId.Value,
                         ArtigoId = artigo.Id,
                         QuantidadeAdquirida = quantidade,
-                        QuantidadePrevista = quantidade,
+                        QuantidadePrevista = 0,
                         PrecoUnitario = artigo.PrecoUnitario,
                         IsPrevisto = true
                     };
@@ -321,16 +326,24 @@ namespace CasaPoupanca
 
         // ==================== EVENTOS DO FORMULÁRIO ====================
 
-        private void ButtonAdicionar_Click(object sender, EventArgs e)
+
+        private void listBoxListaDeArtigos_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            // Se há artigo selecionado e compra selecionada, adiciona item
+            if (listBoxListaDeArtigos.SelectedItem is ItemCompra item && !_isReadOnly)
+            {
+                numericUpDownQuantidade.Value = item.QuantidadeAdquirida;
+            }
+        }
+
+        private void buttonAdicionar_Click_1(object sender, EventArgs e)
+        {
             if (listBoxArtigosDisponiveis.SelectedItem != null && _compraSelecionadaId.HasValue && !_isReadOnly)
             {
                 AdicionarItemCompra();
-                return;
+                return; // <--- GARANTE QUE SAI AQUI E NÃO CONTINUA
             }
 
-            // Caso contrário, cria nova compra
+            // Caso contrário, cria nova compra (só entra aqui se a condição acima for falsa)
             string nome = textBoxNomeCompra.Text.Trim();
             if (string.IsNullOrEmpty(nome))
             {
@@ -369,7 +382,7 @@ namespace CasaPoupanca
             }
         }
 
-        private void ButtonRemover_Click(object sender, EventArgs e)
+        private void buttonRemover_Click(object sender, EventArgs e)
         {
             // Se há item selecionado na lista, remove o item
             if (listBoxListaDeArtigos.SelectedItem != null && _compraSelecionadaId.HasValue && !_isReadOnly)
@@ -411,7 +424,7 @@ namespace CasaPoupanca
             }
         }
 
-        private void ButtonEditar_Click(object sender, EventArgs e)
+        private void buttonEditar_Click(object sender, EventArgs e)
         {
             // Se há item selecionado na lista, edita o item
             if (listBoxListaDeArtigos.SelectedItem != null && _compraSelecionadaId.HasValue && !_isReadOnly)
@@ -457,7 +470,7 @@ namespace CasaPoupanca
             }
         }
 
-        private void ButtonGuardar_Click(object sender, EventArgs e)
+        private void buttonGuardar_Click_1(object sender, EventArgs e)
         {
             if (!_compraSelecionadaId.HasValue)
             {
@@ -487,7 +500,7 @@ namespace CasaPoupanca
             }
         }
 
-        private void ButtonCriarLista_Click(object sender, EventArgs e)
+        private void buttonCriarLista_Click_1(object sender, EventArgs e)
         {
             string nome = textBoxNomeCompra.Text.Trim();
             if (string.IsNullOrEmpty(nome))
@@ -498,26 +511,26 @@ namespace CasaPoupanca
 
             if (!_compraSelecionadaId.HasValue)
             {
-                ButtonAdicionar_Click(sender, e);
+                buttonAdicionar_Click_1(sender, e);
             }
         }
 
-        private void ButtonApagarLista_Click(object sender, EventArgs e)
+        private void buttonApagarLista_Click(object sender, EventArgs e)
         {
-            ButtonRemover_Click(sender, e);
+            buttonRemover_Click(sender, e);
         }
 
-        private void ButtonVoltar_Click(object sender, EventArgs e)
+        private void buttonVoltar_Click_1(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void NumericUpDownMes_ValueChanged(object sender, EventArgs e)
+        private void numericUpDownMes_ValueChanged_1(object sender, EventArgs e)
         {
             AtualizarOrcamentoRestante();
         }
 
-        private void ListBoxListaDeCompras_SelectedIndexChanged(object sender, EventArgs e)
+        private void listBoxListaDeCompras_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             if (listBoxListaDeCompras.SelectedItem != null)
             {
@@ -558,15 +571,7 @@ namespace CasaPoupanca
             }
         }
 
-        private void ListBoxListaDeArtigos_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (listBoxListaDeArtigos.SelectedItem is ItemCompra item && !_isReadOnly)
-            {
-                numericUpDownQuantidade.Value = item.QuantidadeAdquirida;
-            }
-        }
-
-        private void ComboBoxFiltroTipo_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBoxFiltroTipo_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             CarregarArtigosDisponiveis();
         }
