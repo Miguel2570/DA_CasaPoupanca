@@ -28,36 +28,174 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.labelArtigos = new System.Windows.Forms.Label();
+            this.listBoxArtigos = new System.Windows.Forms.ListBox();
+            this.labelTipo = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comboBoxTipo = new System.Windows.Forms.ComboBox();
+            this.textBoxNome = new System.Windows.Forms.TextBox();
+            this.labelPreco = new System.Windows.Forms.Label();
+            this.numericUpDownPreco = new System.Windows.Forms.NumericUpDown();
+            this.buttonAdicionar = new System.Windows.Forms.Button();
+            this.buttonEditar = new System.Windows.Forms.Button();
+            this.buttonRemover = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPreco)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // pictureBox3
             // 
-            this.pictureBox1.Image = global::CasaPoupanca.Properties.Resources.final_removebg_preview;
-            this.pictureBox1.Location = new System.Drawing.Point(11, 11);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(107, 86);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 18;
-            this.pictureBox1.TabStop = false;
+            this.pictureBox3.Image = global::CasaPoupanca.Properties.Resources.final_removebg_preview;
+            this.pictureBox3.Location = new System.Drawing.Point(330, 11);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(175, 125);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 22;
+            this.pictureBox3.TabStop = false;
+            // 
+            // labelArtigos
+            // 
+            this.labelArtigos.AutoSize = true;
+            this.labelArtigos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelArtigos.Location = new System.Drawing.Point(382, 125);
+            this.labelArtigos.Name = "labelArtigos";
+            this.labelArtigos.Size = new System.Drawing.Size(66, 20);
+            this.labelArtigos.TabIndex = 23;
+            this.labelArtigos.Text = "Artigos";
+            // 
+            // listBoxArtigos
+            // 
+            this.listBoxArtigos.FormattingEnabled = true;
+            this.listBoxArtigos.Location = new System.Drawing.Point(77, 354);
+            this.listBoxArtigos.Name = "listBoxArtigos";
+            this.listBoxArtigos.Size = new System.Drawing.Size(638, 186);
+            this.listBoxArtigos.TabIndex = 24;
+            this.listBoxArtigos.SelectedIndexChanged += new System.EventHandler(this.listBoxArtigos_SelectedIndexChanged);
+            // 
+            // labelTipo
+            // 
+            this.labelTipo.AutoSize = true;
+            this.labelTipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTipo.Location = new System.Drawing.Point(288, 169);
+            this.labelTipo.Name = "labelTipo";
+            this.labelTipo.Size = new System.Drawing.Size(36, 17);
+            this.labelTipo.TabIndex = 29;
+            this.labelTipo.Text = "Tipo";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(279, 204);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(45, 17);
+            this.label6.TabIndex = 30;
+            this.label6.Text = "Nome";
+            // 
+            // comboBoxTipo
+            // 
+            this.comboBoxTipo.FormattingEnabled = true;
+            this.comboBoxTipo.Location = new System.Drawing.Point(338, 165);
+            this.comboBoxTipo.Name = "comboBoxTipo";
+            this.comboBoxTipo.Size = new System.Drawing.Size(167, 21);
+            this.comboBoxTipo.TabIndex = 31;
+            this.comboBoxTipo.SelectedIndexChanged += new System.EventHandler(this.comboBoxTipo_SelectedIndexChanged_1);
+            // 
+            // textBoxNome
+            // 
+            this.textBoxNome.Location = new System.Drawing.Point(338, 203);
+            this.textBoxNome.Name = "textBoxNome";
+            this.textBoxNome.Size = new System.Drawing.Size(167, 20);
+            this.textBoxNome.TabIndex = 32;
+            // 
+            // labelPreco
+            // 
+            this.labelPreco.AutoSize = true;
+            this.labelPreco.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPreco.Location = new System.Drawing.Point(279, 250);
+            this.labelPreco.Name = "labelPreco";
+            this.labelPreco.Size = new System.Drawing.Size(45, 17);
+            this.labelPreco.TabIndex = 33;
+            this.labelPreco.Text = "Preço";
+            // 
+            // numericUpDownPreco
+            // 
+            this.numericUpDownPreco.Location = new System.Drawing.Point(338, 247);
+            this.numericUpDownPreco.Name = "numericUpDownPreco";
+            this.numericUpDownPreco.Size = new System.Drawing.Size(167, 20);
+            this.numericUpDownPreco.TabIndex = 34;
+            // 
+            // buttonAdicionar
+            // 
+            this.buttonAdicionar.Location = new System.Drawing.Point(282, 296);
+            this.buttonAdicionar.Name = "buttonAdicionar";
+            this.buttonAdicionar.Size = new System.Drawing.Size(75, 23);
+            this.buttonAdicionar.TabIndex = 35;
+            this.buttonAdicionar.Text = "Adicionar";
+            this.buttonAdicionar.UseVisualStyleBackColor = true;
+            this.buttonAdicionar.Click += new System.EventHandler(this.buttonAdicionar_Click_1);
+            // 
+            // buttonEditar
+            // 
+            this.buttonEditar.Location = new System.Drawing.Point(373, 296);
+            this.buttonEditar.Name = "buttonEditar";
+            this.buttonEditar.Size = new System.Drawing.Size(75, 23);
+            this.buttonEditar.TabIndex = 36;
+            this.buttonEditar.Text = "Editar";
+            this.buttonEditar.UseVisualStyleBackColor = true;
+            this.buttonEditar.Click += new System.EventHandler(this.buttonEditar_Click);
+            // 
+            // buttonRemover
+            // 
+            this.buttonRemover.Location = new System.Drawing.Point(464, 296);
+            this.buttonRemover.Name = "buttonRemover";
+            this.buttonRemover.Size = new System.Drawing.Size(75, 23);
+            this.buttonRemover.TabIndex = 37;
+            this.buttonRemover.Text = "Remover";
+            this.buttonRemover.UseVisualStyleBackColor = true;
+            this.buttonRemover.Click += new System.EventHandler(this.buttonRemover_Click_1);
             // 
             // FormArtigo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(864, 542);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.buttonRemover);
+            this.Controls.Add(this.buttonEditar);
+            this.Controls.Add(this.buttonAdicionar);
+            this.Controls.Add(this.numericUpDownPreco);
+            this.Controls.Add(this.labelPreco);
+            this.Controls.Add(this.textBoxNome);
+            this.Controls.Add(this.comboBoxTipo);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.labelTipo);
+            this.Controls.Add(this.listBoxArtigos);
+            this.Controls.Add(this.labelArtigos);
+            this.Controls.Add(this.pictureBox3);
             this.Name = "FormArtigo";
             this.Text = "FormArtigo";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPreco)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Label labelArtigos;
+        private System.Windows.Forms.ListBox listBoxArtigos;
+        private System.Windows.Forms.Label labelTipo;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox comboBoxTipo;
+        private System.Windows.Forms.TextBox textBoxNome;
+        private System.Windows.Forms.Label labelPreco;
+        private System.Windows.Forms.NumericUpDown numericUpDownPreco;
+        private System.Windows.Forms.Button buttonAdicionar;
+        private System.Windows.Forms.Button buttonEditar;
+        private System.Windows.Forms.Button buttonRemover;
     }
 }

@@ -24,7 +24,7 @@ namespace CasaPoupanca
                 ConfigurarNumericUpDown();
                 CarregarTiposComboBox();
 
-                comboBoxTipo.SelectedIndexChanged += ComboBoxTipo_SelectedIndexChanged;
+                comboBoxTipo.SelectedIndexChanged += comboBoxTipo_SelectedIndexChanged_1;
                 listBoxArtigos.Format += ListBoxArtigos_Format;
 
                 CarregarArtigos();
@@ -47,45 +47,33 @@ namespace CasaPoupanca
             numericUpDownPreco.Increment = 0.01M;
         }
 
+        // Ao carregar tipos: configure membros antes do DataSource
         private void CarregarTiposComboBox()
         {
             var tipos = _controller.GetTiposComTodos();
             comboBoxTipo.DataSource = null;
-            comboBoxTipo.DataSource = tipos;
             comboBoxTipo.DisplayMember = "Nome";
             comboBoxTipo.ValueMember = "Id";
+            comboBoxTipo.DataSource = tipos;
         }
 
+        // Ao preencher artigos: proteger o SelectedIndexChanged do listbox
         private void CarregarArtigos()
         {
             try
             {
                 _isLoading = true;
-
-                // Mostra feedback visual
                 Cursor = Cursors.WaitCursor;
                 listBoxArtigos.Enabled = false;
 
                 int? filtroId = null;
-                if (comboBoxTipo.SelectedValue != null && comboBoxTipo.SelectedValue is int)
-                {
-                    int id = (int)comboBoxTipo.SelectedValue;
-                    if (id > 0)
-                    {
-                        filtroId = id;
-                    }
-                }
+                if (comboBoxTipo.SelectedValue != null && comboBoxTipo.SelectedValue is int id && id > 0)
+                    filtroId = id;
 
                 _artigos = _controller.GetArtigosFiltrados(filtroId).ToList();
 
                 listBoxArtigos.DataSource = null;
                 listBoxArtigos.DataSource = _artigos;
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao carregar artigos: {ex.Message}",
-                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -124,7 +112,7 @@ namespace CasaPoupanca
             }
         }
 
-        private void ComboBoxTipo_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBoxTipo_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             if (!_isLoading && comboBoxTipo.SelectedValue != null)
             {
@@ -142,7 +130,7 @@ namespace CasaPoupanca
             listBoxArtigos.ClearSelected();
         }
 
-        private void buttonAdicionar_Click(object sender, EventArgs e)
+        private void buttonAdicionar_Click_1(object sender, EventArgs e)
         {
             // VALIDAÇÕES
             if (string.IsNullOrWhiteSpace(textBoxNome.Text))
@@ -204,7 +192,6 @@ namespace CasaPoupanca
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void buttonEditar_Click(object sender, EventArgs e)
         {
             if (listBoxArtigos.SelectedItem == null)
@@ -260,7 +247,7 @@ namespace CasaPoupanca
             }
         }
 
-        private void buttonRemover_Click(object sender, EventArgs e)
+        private void buttonRemover_Click_1(object sender, EventArgs e)
         {
             if (listBoxArtigos.SelectedItem == null)
             {
@@ -291,11 +278,28 @@ namespace CasaPoupanca
 
         private void listBoxArtigos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listBoxArtigos.SelectedItem is Artigo artigo)
+            if (_isLoading) return;
+
+                if (listBoxArtigos.SelectedItem is Artigo artigo)
             {
                 textBoxNome.Text = artigo.Nome;
-                numericUpDownPreco.Value = artigo.PrecoUnitario;  // Agora aceita valores grandes
-                comboBoxTipo.SelectedValue = artigo.TipoArtigoId;
+                numericUpDownPreco.Value = artigo.PrecoUnitario;
+
+                if (!string.IsNullOrEmpty(comboBoxTipo.ValueMember))
+                    comboBoxTipo.SelectedValue = artigo.TipoArtigoId;
+                else
+                {
+                    // fallback: selecionar manualmente
+                    for (int i = 0; i < comboBoxTipo.Items.Count; i++)
+                    {
+                        if (comboBoxTipo.Items[i] is TipoArtigo t && t.Id == artigo.TipoArtigoId)
+                        {
+                            comboBoxTipo.SelectedIndex = i;
+                            break;
+                        }
+                    }
+                }
+
                 buttonAdicionar.Enabled = false;
                 buttonEditar.Enabled = true;
             }
