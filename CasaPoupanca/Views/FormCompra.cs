@@ -478,5 +478,10 @@ namespace CasaPoupanca
         {
             this.Close();
         }
+
+        private void listBoxListaDeCompras_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -47,10 +47,9 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = global::CasaPoupanca.Properties.Resources.final_removebg_preview;
-            this.pictureBox3.Location = new System.Drawing.Point(330, 11);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox3.Location = new System.Drawing.Point(156, 27);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(175, 125);
+            this.pictureBox3.Size = new System.Drawing.Size(262, 192);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 22;
             this.pictureBox3.TabStop = false;
@@ -59,18 +58,21 @@
             // 
             this.labelArtigos.AutoSize = true;
             this.labelArtigos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelArtigos.Location = new System.Drawing.Point(382, 125);
+            this.labelArtigos.Location = new System.Drawing.Point(234, 202);
+            this.labelArtigos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelArtigos.Name = "labelArtigos";
-            this.labelArtigos.Size = new System.Drawing.Size(66, 20);
+            this.labelArtigos.Size = new System.Drawing.Size(95, 29);
             this.labelArtigos.TabIndex = 23;
             this.labelArtigos.Text = "Artigos";
             // 
             // listBoxArtigos
             // 
             this.listBoxArtigos.FormattingEnabled = true;
-            this.listBoxArtigos.Location = new System.Drawing.Point(77, 354);
+            this.listBoxArtigos.ItemHeight = 20;
+            this.listBoxArtigos.Location = new System.Drawing.Point(31, 536);
+            this.listBoxArtigos.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.listBoxArtigos.Name = "listBoxArtigos";
-            this.listBoxArtigos.Size = new System.Drawing.Size(638, 186);
+            this.listBoxArtigos.Size = new System.Drawing.Size(498, 284);
             this.listBoxArtigos.TabIndex = 24;
             this.listBoxArtigos.SelectedIndexChanged += new System.EventHandler(this.listBoxArtigos_SelectedIndexChanged);
             // 
@@ -78,9 +80,10 @@
             // 
             this.labelTipo.AutoSize = true;
             this.labelTipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTipo.Location = new System.Drawing.Point(288, 169);
+            this.labelTipo.Location = new System.Drawing.Point(124, 289);
+            this.labelTipo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTipo.Name = "labelTipo";
-            this.labelTipo.Size = new System.Drawing.Size(36, 17);
+            this.labelTipo.Size = new System.Drawing.Size(51, 25);
             this.labelTipo.TabIndex = 29;
             this.labelTipo.Text = "Tipo";
             // 
@@ -88,50 +91,56 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(279, 204);
+            this.label6.Location = new System.Drawing.Point(112, 340);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(45, 17);
+            this.label6.Size = new System.Drawing.Size(64, 25);
             this.label6.TabIndex = 30;
             this.label6.Text = "Nome";
             // 
             // comboBoxTipo
             // 
             this.comboBoxTipo.FormattingEnabled = true;
-            this.comboBoxTipo.Location = new System.Drawing.Point(338, 165);
+            this.comboBoxTipo.Location = new System.Drawing.Point(229, 290);
+            this.comboBoxTipo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.comboBoxTipo.Name = "comboBoxTipo";
-            this.comboBoxTipo.Size = new System.Drawing.Size(167, 21);
+            this.comboBoxTipo.Size = new System.Drawing.Size(248, 28);
             this.comboBoxTipo.TabIndex = 31;
             this.comboBoxTipo.SelectedIndexChanged += new System.EventHandler(this.comboBoxTipo_SelectedIndexChanged_1);
             // 
             // textBoxNome
             // 
-            this.textBoxNome.Location = new System.Drawing.Point(338, 203);
+            this.textBoxNome.Location = new System.Drawing.Point(229, 341);
+            this.textBoxNome.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxNome.Name = "textBoxNome";
-            this.textBoxNome.Size = new System.Drawing.Size(167, 20);
+            this.textBoxNome.Size = new System.Drawing.Size(248, 26);
             this.textBoxNome.TabIndex = 32;
             // 
             // labelPreco
             // 
             this.labelPreco.AutoSize = true;
             this.labelPreco.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPreco.Location = new System.Drawing.Point(279, 250);
+            this.labelPreco.Location = new System.Drawing.Point(112, 395);
+            this.labelPreco.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPreco.Name = "labelPreco";
-            this.labelPreco.Size = new System.Drawing.Size(45, 17);
+            this.labelPreco.Size = new System.Drawing.Size(63, 25);
             this.labelPreco.TabIndex = 33;
             this.labelPreco.Text = "Preço";
             // 
             // numericUpDownPreco
             // 
-            this.numericUpDownPreco.Location = new System.Drawing.Point(338, 247);
+            this.numericUpDownPreco.Location = new System.Drawing.Point(229, 394);
+            this.numericUpDownPreco.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.numericUpDownPreco.Name = "numericUpDownPreco";
-            this.numericUpDownPreco.Size = new System.Drawing.Size(167, 20);
+            this.numericUpDownPreco.Size = new System.Drawing.Size(250, 26);
             this.numericUpDownPreco.TabIndex = 34;
             // 
             // buttonAdicionar
             // 
-            this.buttonAdicionar.Location = new System.Drawing.Point(282, 296);
+            this.buttonAdicionar.Location = new System.Drawing.Point(94, 465);
+            this.buttonAdicionar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonAdicionar.Name = "buttonAdicionar";
-            this.buttonAdicionar.Size = new System.Drawing.Size(75, 23);
+            this.buttonAdicionar.Size = new System.Drawing.Size(112, 35);
             this.buttonAdicionar.TabIndex = 35;
             this.buttonAdicionar.Text = "Adicionar";
             this.buttonAdicionar.UseVisualStyleBackColor = true;
@@ -139,9 +148,10 @@
             // 
             // buttonEditar
             // 
-            this.buttonEditar.Location = new System.Drawing.Point(373, 296);
+            this.buttonEditar.Location = new System.Drawing.Point(231, 465);
+            this.buttonEditar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonEditar.Name = "buttonEditar";
-            this.buttonEditar.Size = new System.Drawing.Size(75, 23);
+            this.buttonEditar.Size = new System.Drawing.Size(112, 35);
             this.buttonEditar.TabIndex = 36;
             this.buttonEditar.Text = "Editar";
             this.buttonEditar.UseVisualStyleBackColor = true;
@@ -149,9 +159,10 @@
             // 
             // buttonRemover
             // 
-            this.buttonRemover.Location = new System.Drawing.Point(464, 296);
+            this.buttonRemover.Location = new System.Drawing.Point(367, 465);
+            this.buttonRemover.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonRemover.Name = "buttonRemover";
-            this.buttonRemover.Size = new System.Drawing.Size(75, 23);
+            this.buttonRemover.Size = new System.Drawing.Size(112, 35);
             this.buttonRemover.TabIndex = 37;
             this.buttonRemover.Text = "Remover";
             this.buttonRemover.UseVisualStyleBackColor = true;
@@ -159,9 +170,9 @@
             // 
             // FormArtigo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(864, 542);
+            this.ClientSize = new System.Drawing.Size(577, 834);
             this.Controls.Add(this.buttonRemover);
             this.Controls.Add(this.buttonEditar);
             this.Controls.Add(this.buttonAdicionar);
@@ -174,6 +185,7 @@
             this.Controls.Add(this.listBoxArtigos);
             this.Controls.Add(this.labelArtigos);
             this.Controls.Add(this.pictureBox3);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormArtigo";
             this.Text = "FormArtigo";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
