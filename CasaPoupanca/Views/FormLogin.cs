@@ -45,7 +45,7 @@ namespace CasaPoupanca
 
                     Session.SetUser(utilizador.Id, utilizador.Username);
                     this.Hide();
-                    FormDashboard dashboard = new FormDashboard();
+                    FormPrincipal dashboard = new FormPrincipal();
                     dashboard.ShowDialog();
                     this.Close();
                 }

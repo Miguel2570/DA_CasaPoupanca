@@ -10,6 +10,7 @@ namespace CasaPoupanca
     {
         private int _compraId;
         private decimal _orcamentoDisponivel;
+        private CompraController _compraController;
         private ModoCompraController _controller;
         private Compra _compraAtual;
 
@@ -17,6 +18,7 @@ namespace CasaPoupanca
         {
             InitializeComponent();
             _compraId = compraId;
+            _compraController = new CompraController();
             _controller = new ModoCompraController();
 
             ConfigurarControles();

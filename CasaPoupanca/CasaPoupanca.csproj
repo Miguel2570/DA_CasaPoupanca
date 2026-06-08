@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Controllers\EstatisticasController.cs" />
     <Compile Include="Controllers\OrcamentoController.cs" />
+    <Compile Include="Controllers\PlaneamentoComprasController.cs" />
     <Compile Include="model\Artigo.cs" />
     <Compile Include="model\Compra.cs" />
     <Compile Include="model\Estatisticas.cs" />
@@ -81,11 +82,17 @@
     <Compile Include="Views\FormCompra.Designer.cs">
       <DependentUpon>FormCompra.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\FormDashboard.cs">
+    <Compile Include="Views\FormPlaneamentoCompras.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\FormDashboard.Designer.cs">
-      <DependentUpon>FormDashboard.cs</DependentUpon>
+    <Compile Include="Views\FormPlaneamentoCompras.Designer.cs">
+      <DependentUpon>FormPlaneamentoCompras.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FormPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FormPrincipal.Designer.cs">
+      <DependentUpon>FormPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="model\ConfigDB.cs" />
     <Compile Include="Views\FormEstatisticas.cs">
@@ -157,8 +164,11 @@
     <EmbeddedResource Include="Views\FormCompra.resx">
       <DependentUpon>FormCompra.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\FormDashboard.resx">
-      <DependentUpon>FormDashboard.cs</DependentUpon>
+    <EmbeddedResource Include="Views\FormPlaneamentoCompras.resx">
+      <DependentUpon>FormPlaneamentoCompras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FormPrincipal.resx">
+      <DependentUpon>FormPrincipal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\FormEstatisticas.resx">
       <DependentUpon>FormEstatisticas.cs</DependentUpon>

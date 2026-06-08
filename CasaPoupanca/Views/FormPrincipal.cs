@@ -1,6 +1,7 @@
 ﻿using CasaPoupanca.Controllers;
 using CasaPoupança.database;
 using CasaPoupanca.models;
+using CasaPoupanca.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,11 +14,11 @@ using System.Windows.Forms;
 
 namespace CasaPoupanca
 {
-    public partial class FormDashboard : Form
+    public partial class FormPrincipal : Form
     {
         private OrcamentoController _orcamentoController;
         private CompraController _compraController;
-        public FormDashboard()
+        public FormPrincipal()
         {
             InitializeComponent();
             _orcamentoController = new OrcamentoController();
@@ -26,14 +27,14 @@ namespace CasaPoupanca
 
             this.Activated += (s, e) =>
             {
-                CarregarTodasCompras();
+                CarregarComprasAbertas();
                 CarregarOrcamento();
             };
         }
         private void CarregarDados()
         {
             CarregarOrcamento();
-            CarregarTodasCompras();
+            CarregarComprasAbertas();
             ConfigurarDataGridView();
         }
 
@@ -44,7 +45,7 @@ namespace CasaPoupanca
 
         }
 
-        private void CarregarTodasCompras()
+        private void CarregarComprasAbertas()
         {
             var compras = _compraController.GetComprasPorUtilizador(Session.UtilizadorId);
             dataGridViewCompras.DataSource = null;
@@ -110,10 +111,20 @@ namespace CasaPoupanca
 
         private void buttonNovaCompra_Click(object sender, EventArgs e)
         {
-            FormCompra compra = new FormCompra();
-            compra.ShowDialog();
+            var novaCompra = new Compra
+            {
+                Nome = $"Compra {DateTime.Now:dd/MM/yyyy HH:mm}",
+                CriadoPorId = Session.UtilizadorId,
+                DataCriacao = DateTime.Now,
+                IsFechada = false
+            };
 
-            CarregarTodasCompras();
+            _compraController.AddCompra(novaCompra);
+
+            var formCompra = new FormCompra(novaCompra.Id);
+            formCompra.ShowDialog();
+
+            CarregarComprasAbertas();
             CarregarOrcamento();
         }
 
@@ -137,7 +148,7 @@ namespace CasaPoupanca
             FormModoCompra modocompra = new FormModoCompra(compra.Id);
             modocompra.ShowDialog();
 
-            CarregarTodasCompras();
+            CarregarComprasAbertas();
             CarregarOrcamento();
         }
 
@@ -227,6 +238,12 @@ namespace CasaPoupanca
             login.ShowDialog();
 
             this.Close();
+        }
+
+        private void buttonPlaneamentoCompra_Click(object sender, EventArgs e)
+        {
+            FormPlaneamentoCompras planeamentoCompras = new FormPlaneamentoCompras(Session.UtilizadorId);
+            planeamentoCompras.ShowDialog();
         }
     }
 }

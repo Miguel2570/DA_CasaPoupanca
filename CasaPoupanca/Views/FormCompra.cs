@@ -8,12 +8,13 @@ namespace CasaPoupanca
 {
     public partial class FormCompra : Form
     {
+        private int _compraId;
         private CompraController _compraController;
         private ArtigoController _artigoController;
         private int? _compraSelecionadaId = null;
         private bool _isReadOnly = false;
 
-        public FormCompra()
+        public FormCompra(int compraId)
         {
             InitializeComponent();
             _compraController = new CompraController();

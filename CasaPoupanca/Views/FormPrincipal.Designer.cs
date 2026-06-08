@@ -1,6 +1,6 @@
 ﻿namespace CasaPoupanca
 {
-    partial class FormDashboard
+    partial class FormPrincipal
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDashboard));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPrincipal));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.ficheiroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,6 +50,7 @@
             this.buttonExportarCSV = new System.Windows.Forms.Button();
             this.buttonEstatisticas = new System.Windows.Forms.Button();
             this.buttonLogout = new System.Windows.Forms.Button();
+            this.buttonPlaneamentoCompra = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCompras)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -261,12 +262,24 @@
             this.buttonLogout.UseVisualStyleBackColor = true;
             this.buttonLogout.Click += new System.EventHandler(this.buttonLogout_Click);
             // 
-            // FormDashboard
+            // buttonPlaneamentoCompra
+            // 
+            this.buttonPlaneamentoCompra.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonPlaneamentoCompra.Location = new System.Drawing.Point(667, 230);
+            this.buttonPlaneamentoCompra.Name = "buttonPlaneamentoCompra";
+            this.buttonPlaneamentoCompra.Size = new System.Drawing.Size(112, 41);
+            this.buttonPlaneamentoCompra.TabIndex = 26;
+            this.buttonPlaneamentoCompra.Text = "Planemento Compra";
+            this.buttonPlaneamentoCompra.UseVisualStyleBackColor = true;
+            this.buttonPlaneamentoCompra.Click += new System.EventHandler(this.buttonPlaneamentoCompra_Click);
+            // 
+            // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(852, 488);
+            this.Controls.Add(this.buttonPlaneamentoCompra);
             this.Controls.Add(this.buttonLogout);
             this.Controls.Add(this.buttonEstatisticas);
             this.Controls.Add(this.buttonExportarCSV);
@@ -282,8 +295,8 @@
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.pictureBox1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "FormDashboard";
-            this.Text = "Dashboard";
+            this.Name = "FormPrincipal";
+            this.Text = "Formulario Principal";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCompras)).EndInit();
@@ -313,5 +326,6 @@
         private System.Windows.Forms.Button buttonExportarCSV;
         private System.Windows.Forms.Button buttonEstatisticas;
         private System.Windows.Forms.Button buttonLogout;
+        private System.Windows.Forms.Button buttonPlaneamentoCompra;
     }
 }

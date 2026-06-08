@@ -25,9 +25,22 @@ namespace CasaPoupanca.models
         public virtual Utilizador FechadaPor { get; set; }
         public virtual ICollection<ItemCompra> Itens { get; set; }
 
+        public string DisplayName
+        {
+            get
+            {
+                return $"#{Id} - {DataCriacao:dd/MM/yyyy} - {Nome} - {(IsFechada ? "Fechada" : "Aberta")}";
+            }
+        }
+
         public Compra()
         {
             Itens = new List<ItemCompra>();
+        }
+
+        public override string ToString()
+        {
+            return DisplayName;
         }
     }
 }
