@@ -391,7 +391,7 @@ namespace CasaPoupanca
                 {
                     item.Id,
                     IsPrevisto = false,
-                    Display = $"🛒 {item.Artigo?.Nome ?? item.Observacao} - {item.QuantidadeAdquirida} x €{item.PrecoUnitario:F2} = €{item.QuantidadeAdquirida * item.PrecoUnitario:F2}"
+                    Display = $"✅ {item.Artigo?.Nome ?? item.Observacao} - {item.QuantidadeAdquirida} x €{item.PrecoUnitario:F2} = €{item.QuantidadeAdquirida * item.PrecoUnitario:F2}"
                 });
             }
 
