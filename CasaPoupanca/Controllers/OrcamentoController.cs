@@ -21,7 +21,7 @@ namespace CasaPoupanca.Controllers
                         .ToList();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return new List<Orcamento>();
             }
@@ -37,7 +37,7 @@ namespace CasaPoupanca.Controllers
                         .FirstOrDefault(o => o.Mes == mes && o.Ano == ano);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
@@ -60,7 +60,7 @@ namespace CasaPoupanca.Controllers
                     return true;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
@@ -99,7 +99,7 @@ namespace CasaPoupanca.Controllers
                     return salvos > 0;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
@@ -122,7 +122,7 @@ namespace CasaPoupanca.Controllers
                     return true;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
@@ -136,7 +136,7 @@ namespace CasaPoupanca.Controllers
                 int anoAtual = DateTime.Now.Year;
                 return GetOrcamentoPorMesAno(mesAtual, anoAtual);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
@@ -149,7 +149,7 @@ namespace CasaPoupanca.Controllers
                 var orcamento = GetOrcamentoAtual();
                 return orcamento?.Valor ?? 0;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return 0;
             }

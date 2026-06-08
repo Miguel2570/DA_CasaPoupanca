@@ -10,6 +10,7 @@ namespace CasaPoupanca
     {
         private CompraController _compraController;
         private ArtigoController _artigoController;
+        private OrcamentoController _orcamentoController;
         private int? _compraSelecionadaId = null;
         private bool _isReadOnly = false;
 
@@ -18,6 +19,7 @@ namespace CasaPoupanca
             InitializeComponent();
             _compraController = new CompraController();
             _artigoController = new ArtigoController();
+            _orcamentoController = new OrcamentoController(); // <- adicionar
             InicializarForm();
         }
 
@@ -26,6 +28,7 @@ namespace CasaPoupanca
             InitializeComponent();
             _compraController = new CompraController();
             _artigoController = new ArtigoController();
+            _orcamentoController = new OrcamentoController(); // <- adicionar
             _compraSelecionadaId = compraId;
             InicializarForm();
             CarregarDadosCompra(compraId);
@@ -145,12 +148,33 @@ namespace CasaPoupanca
 
         private void AtualizarOrcamento()
         {
+            if (_orcamentoController == null) _orcamentoController = new OrcamentoController();
+
             int mes = (int)numericUpDownMes.Value;
             int ano = DateTime.Now.Year;
-            int utilizadorId = Session.UtilizadorId;
+            var orcamento = _orcamentoController.GetOrcamentoPorMesAno(mes, ano);
+            decimal orcamentoMensal = orcamento?.Valor ?? 0;
 
-            var totalGasto = _compraController.GetTotalGastoComprasFechadas(mes, ano, utilizadorId);
+            // Buscar total gasto no mês
+            decimal totalGasto = _orcamentoController.CalcularTotalGastoMes(mes, ano);
+
+            // Atualizar label do orçamento
+            labelOrcamento.Text = $"€{orcamentoMensal:F2}";
+
+            // Atualizar label do total
             labelTotal.Text = $"Total: €{totalGasto:F2}";
+
+            // Mudar cores se ultrapassou
+            if (totalGasto > orcamentoMensal && orcamentoMensal > 0)
+            {
+                labelOrcamento.ForeColor = System.Drawing.Color.Red;
+                labelTotal.ForeColor = System.Drawing.Color.Red;
+            }
+            else
+            {
+                labelOrcamento.ForeColor = System.Drawing.Color.Green;
+                labelTotal.ForeColor = System.Drawing.Color.Black;
+            }
         }
 
         private void AdicionarItemCompra()

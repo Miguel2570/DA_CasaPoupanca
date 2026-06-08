@@ -172,9 +172,9 @@
             // 
             // buttonVoltar
             // 
-            this.buttonVoltar.Location = new System.Drawing.Point(213, 681);
+            this.buttonVoltar.Location = new System.Drawing.Point(195, 681);
             this.buttonVoltar.Name = "buttonVoltar";
-            this.buttonVoltar.Size = new System.Drawing.Size(75, 23);
+            this.buttonVoltar.Size = new System.Drawing.Size(93, 28);
             this.buttonVoltar.TabIndex = 38;
             this.buttonVoltar.Text = "Voltar";
             this.buttonVoltar.UseVisualStyleBackColor = true;
