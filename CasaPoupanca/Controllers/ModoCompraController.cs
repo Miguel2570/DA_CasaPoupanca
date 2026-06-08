@@ -163,5 +163,19 @@ namespace CasaPoupanca.Controllers
                 return true;
             }
         }
+
+        public void AdquirirItemNaoPrevisto(int itemId, int quantidade, decimal precoUnitario)
+        {
+            using (var db = new CasaPoupancaDB())
+            {
+                var item = db.ItensCompra.Find(itemId);
+                if (item == null)
+                    throw new Exception("Item não encontrado.");
+
+                item.QuantidadeAdquirida = quantidade;
+                item.PrecoUnitario = precoUnitario;
+                db.SaveChanges();
+            }
+        }
     }
 }

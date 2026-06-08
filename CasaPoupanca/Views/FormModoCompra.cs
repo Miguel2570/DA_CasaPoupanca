@@ -1,6 +1,7 @@
 ﻿using CasaPoupanca.Controllers;
 using CasaPoupanca.models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -27,6 +28,7 @@ namespace CasaPoupanca
                 CarregarOrcamento();
                 CarregarItensPrevistos();
                 CarregarItensNaoPrevistos();
+                CarregarListaFinal();
             }
             catch (Exception ex)
             {
@@ -91,34 +93,54 @@ namespace CasaPoupanca
 
         private void CarregarItensPrevistos()
         {
-            var itens = _controller.GetItensPrevistos(_compraId);
+            var itens = _controller.GetItensPrevistos(_compraId)
+        .Where(i => i.QuantidadeAdquirida == 0)
+        .ToList();
 
-            var itensFormatados = itens.Select(i => new
+            if (itens.Count == 0)
             {
-                i.Id,
-                Display = i.QuantidadeAdquirida > 0
-                    ? $"✅ {i.Artigo?.Nome} - {i.QuantidadeAdquirida} x €{i.PrecoUnitario:F2} = €{i.QuantidadeAdquirida * i.PrecoUnitario:F2}"
-                    : $"📋 {i.Artigo?.Nome} - {i.QuantidadePrevista} x €{i.PrecoUnitario:F2} = €{i.QuantidadePrevista * i.PrecoUnitario:F2}"
-            }).ToList();
+                listBoxItensPrevistos.DataSource = null;
+                listBoxItensPrevistos.Items.Clear();
+            }
+            else
+            {
+                var itensFormatados = itens.Select(i => new
+                {
+                    i.Id,
+                    Display = $"📋 {i.Artigo?.Nome} - Previsto: {i.QuantidadePrevista} x €{i.PrecoUnitario:F2}"
+                }).ToList();
 
-            listBoxItensPrevistos.DataSource = itensFormatados;
-            listBoxItensPrevistos.DisplayMember = "Display";
-            listBoxItensPrevistos.ValueMember = "Id";
+                listBoxItensPrevistos.DataSource = null;
+                listBoxItensPrevistos.DataSource = itensFormatados;
+                listBoxItensPrevistos.DisplayMember = "Display";
+                listBoxItensPrevistos.ValueMember = "Id";
+            }
         }
 
         private void CarregarItensNaoPrevistos()
         {
-            var itens = _controller.GetItensNaoPrevistos(_compraId);
+            var itens = _controller.GetItensNaoPrevistos(_compraId)
+        .Where(i => i.QuantidadeAdquirida == 0)
+        .ToList();
 
-            var itensFormatados = itens.Select(i => new
+            if (itens.Count == 0)
             {
-                i.Id,
-                Display = $"🛒 {i.Artigo?.Nome ?? i.Observacao} - {i.QuantidadeAdquirida} x €{i.PrecoUnitario:F2} = €{i.QuantidadeAdquirida * i.PrecoUnitario:F2}"
-            }).ToList();
+                listBoxItensNaoPrevistos.DataSource = null;
+                listBoxItensNaoPrevistos.Items.Clear();
+            }
+            else
+            {
+                var itensFormatados = itens.Select(i => new
+                {
+                    i.Id,
+                    Display = $"🛒 {i.Artigo?.Nome ?? i.Observacao} - {i.QuantidadePrevista} x €{i.PrecoUnitario:F2}"
+                }).ToList();
 
-            listBoxItensNaoPrevistos.DataSource = itensFormatados;
-            listBoxItensNaoPrevistos.DisplayMember = "Display";
-            listBoxItensNaoPrevistos.ValueMember = "Id";
+                listBoxItensNaoPrevistos.DataSource = null;
+                listBoxItensNaoPrevistos.DataSource = itensFormatados;
+                listBoxItensNaoPrevistos.DisplayMember = "Display";
+                listBoxItensNaoPrevistos.ValueMember = "Id";
+            }
         }
 
         private void LimparCamposAdquirir()
@@ -148,15 +170,13 @@ namespace CasaPoupanca
 
             if (quantidade <= 0)
             {
-                MessageBox.Show("Quantidade deve ser maior que zero.", "Validação",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Quantidade deve ser maior que zero.", "Validação");
                 return;
             }
 
             if (precoUnitario <= 0)
             {
-                MessageBox.Show("Preço deve ser maior que zero.", "Validação",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Preço deve ser maior que zero.", "Validação");
                 return;
             }
 
@@ -165,50 +185,26 @@ namespace CasaPoupanca
                 var item = _controller.GetItemCompraById(itemId);
                 if (item == null)
                 {
-                    MessageBox.Show("Item não encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Item não encontrado.");
                     return;
                 }
 
                 decimal totalCompra = quantidade * precoUnitario;
-                decimal totalGastoAposCompra = _controller.GetTotalGastoCompra(_compraId) + totalCompra;
-                decimal orcamentoAtual = _controller.GetOrcamentoDisponivel(Session.UtilizadorId,
-                    _compraAtual?.DataCriacao.Month ?? DateTime.Now.Month,
-                    _compraAtual?.DataCriacao.Year ?? DateTime.Now.Year);
-
-                if (totalGastoAposCompra > orcamentoAtual && orcamentoAtual > 0)
-                {
-                    DialogResult result = MessageBox.Show(
-                        $"Esta compra vai custar {totalCompra:C2}. Isso fará ultrapassar o orçamento disponível ({orcamentoAtual:C2}).\n\nDeseja continuar?",
-                        "Aviso de Orçamento", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                    if (result != DialogResult.Yes)
-                        return;
-                }
-
-                if (quantidade > item.QuantidadePrevista)
-                {
-                    DialogResult result = MessageBox.Show(
-                        $"A quantidade a adquirir ({quantidade}) é maior que a prevista ({item.QuantidadePrevista}).\n\nDeseja continuar?",
-                        "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                    if (result != DialogResult.Yes)
-                        return;
-                }
 
                 _controller.AdquirirItemPrevisto(itemId, quantidade, precoUnitario);
 
-                MessageBox.Show($"✅ Item adquirido com sucesso!\n\nTotal: {totalCompra:C2}", "Sucesso",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"✅ Item adquirido com sucesso!\n\n{quantidade} x €{precoUnitario:F2} = €{totalCompra:C2}",
+                    "Sucesso");
 
+                // Atualizar todas as listas
                 CarregarOrcamento();
                 CarregarItensPrevistos();
-                CarregarItensNaoPrevistos();
+                CarregarListaFinal();
                 LimparCamposAdquirir();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao adquirir item: {ex.Message}", "Erro",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Erro ao adquirir item: {ex.Message}");
             }
         }
 
@@ -367,6 +363,144 @@ namespace CasaPoupanca
                     numericUpDownQuantidadeAdquirir.Value = item.QuantidadeAdquirida > 0 ? item.QuantidadeAdquirida : 1;
                     numericUpDownPrecoUnitarioAdquirir.Value = item.PrecoUnitario > 0 ? item.PrecoUnitario : 0.01M;
                 }
+            }
+        }
+
+        private void CarregarListaFinal()
+        {
+            var itensPrevistos = _controller.GetItensPrevistos(_compraId)
+                .Where(i => i.QuantidadeAdquirida > 0).ToList();
+            var itensNaoPrevistos = _controller.GetItensNaoPrevistos(_compraId)
+                .Where(i => i.QuantidadeAdquirida > 0).ToList();
+
+            var todosAdquiridos = new List<object>();
+
+            foreach (var item in itensPrevistos)
+            {
+                todosAdquiridos.Add(new
+                {
+                    item.Id,
+                    IsPrevisto = true,
+                    Display = $"✅ {item.Artigo?.Nome} - {item.QuantidadeAdquirida} x €{item.PrecoUnitario:F2} = €{item.QuantidadeAdquirida * item.PrecoUnitario:F2}"
+                });
+            }
+
+            foreach (var item in itensNaoPrevistos)
+            {
+                todosAdquiridos.Add(new
+                {
+                    item.Id,
+                    IsPrevisto = false,
+                    Display = $"🛒 {item.Artigo?.Nome ?? item.Observacao} - {item.QuantidadeAdquirida} x €{item.PrecoUnitario:F2} = €{item.QuantidadeAdquirida * item.PrecoUnitario:F2}"
+                });
+            }
+
+            listBoxListaFinal.DataSource = null;
+            listBoxListaFinal.DataSource = todosAdquiridos;
+            listBoxListaFinal.DisplayMember = "Display";
+            listBoxListaFinal.ValueMember = "Id";
+        }
+
+        private void buttonSalvar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MessageBox.Show("Compra guardada com sucesso!");
+                CarregarOrcamento();
+                CarregarItensPrevistos();
+                CarregarItensNaoPrevistos();
+                CarregarListaFinal();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao guardar: {ex.Message}");
+            }
+        }
+
+        private void buttonRemoverItemListaFinal_Click(object sender, EventArgs e)
+        {
+            if (listBoxListaFinal.SelectedItem == null)
+            {
+                MessageBox.Show("Selecione um item na lista final para remover.", "Aviso");
+                return;
+            }
+
+            var selected = listBoxListaFinal.SelectedItem;
+            var itemId = (int)selected.GetType().GetProperty("Id").GetValue(selected);
+            var isPrevisto = (bool)selected.GetType().GetProperty("IsPrevisto").GetValue(selected);
+
+            DialogResult resultado = MessageBox.Show(
+                "Remover este item da lista final? Ele voltará para a lista de itens por adquirir.",
+                "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (resultado == DialogResult.Yes)
+            {
+                try
+                {
+                    var item = _controller.GetItemCompraById(itemId);
+                    if (item != null)
+                    {
+                        // Repor a quantidade para 0 (volta a não adquirido)
+                        item.QuantidadeAdquirida = 0;
+
+                        if (isPrevisto)
+                        {
+                            // Para itens previstos, voltam à lista de previstos
+                            _controller.AdquirirItemPrevisto(itemId, 0, item.PrecoUnitario);
+                        }
+                        else
+                        {
+                            // Para não previstos, remove completamente
+                            _controller.RemoverItemNaoPrevisto(itemId);
+                        }
+
+                        MessageBox.Show("Item removido da lista final!");
+                        CarregarItensPrevistos();
+                        CarregarItensNaoPrevistos();
+                        CarregarListaFinal();
+                        CarregarOrcamento();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Erro ao remover item: {ex.Message}");
+                }
+            }
+        }
+
+        private void buttonAdquirirItemNaoPrevisto_Click(object sender, EventArgs e)
+        {
+            if (listBoxItensNaoPrevistos.SelectedItem == null)
+            {
+                MessageBox.Show("Selecione um item não previsto para adquirir.", "Aviso");
+                return;
+            }
+
+            var selected = listBoxItensNaoPrevistos.SelectedItem;
+            var itemId = (int)selected.GetType().GetProperty("Id").GetValue(selected);
+
+            int quantidade = (int)numericUpDownQuantidadeAdquirir.Value;
+            decimal precoUnitario = numericUpDownPrecoUnitarioAdquirir.Value;
+
+            if (quantidade <= 0)
+            {
+                MessageBox.Show("Quantidade deve ser maior que zero.");
+                return;
+            }
+
+            try
+            {
+                _controller.AdquirirItemNaoPrevisto(itemId, quantidade, precoUnitario);
+
+                MessageBox.Show("✅ Item não previsto adquirido com sucesso!");
+                CarregarOrcamento();
+                CarregarItensNaoPrevistos();
+                CarregarListaFinal();
+                LimparCamposAdquirir();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao adquirir item: {ex.Message}");
             }
         }
     }

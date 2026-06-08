@@ -176,8 +176,7 @@ namespace CasaPoupanca
                 {
                     CompraId = _compraId,
                     ArtigoId = artigo.Id,
-                    QuantidadePrevista = 0,
-                    // Não marcar como adquirido ao adicionar — evita deduzir do orçamento imediatamente
+                    QuantidadePrevista = quantidade,
                     QuantidadeAdquirida = 0,
                     PrecoUnitario = precoUnitario,
                     IsPrevisto = false,
