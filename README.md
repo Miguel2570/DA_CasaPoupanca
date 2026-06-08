@@ -92,6 +92,7 @@ No primeiro acesso não existem utilizadores registados.
 | Estado | Cor |
 |----------|----------|
 | Orçamento disponível | 🟢 Verde |
+| Restam menos de 10% | 🟠 Laranja |
 | Orçamento ultrapassado | 🔴 Vermelho |
 
 ---
