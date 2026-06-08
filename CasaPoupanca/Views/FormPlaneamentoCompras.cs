@@ -99,37 +99,70 @@ namespace CasaPoupanca.Views
 
             listBoxDetalhesCompra.Items.Add($"Total Gasto: {_controller.GetTotalGasto(compra.Id):C}");
 
-            // Mostrar resumo de itens
+            // Mostrar itens detalhados
             var compraDetalhes = _controller.GetCompraDetalhes(compra.Id);
 
             if (compraDetalhes?.Itens != null && compraDetalhes.Itens.Any())
             {
+                // Separar itens previstos e não previstos
+                var itensPrevistos = compraDetalhes.Itens.Where(i => i.IsPrevisto).ToList();
+                var itensNaoPrevistos = compraDetalhes.Itens.Where(i => !i.IsPrevisto).ToList();
+
+                // Calcular totais
                 int totalItens = compraDetalhes.Itens.Count;
-                int itensPrevistos = compraDetalhes.Itens.Count(i => i.IsPrevisto);
-                int itensNaoPrevistos = totalItens - itensPrevistos;
+                decimal totalPrevistos = itensPrevistos.Sum(i => i.QuantidadeAdquirida * i.PrecoUnitario);
+                decimal totalNaoPrevistos = itensNaoPrevistos.Sum(i => i.QuantidadeAdquirida * i.PrecoUnitario);
 
                 listBoxDetalhesCompra.Items.Add("");
-                listBoxDetalhesCompra.Items.Add("--- Resumo ---");
-                listBoxDetalhesCompra.Items.Add($"Total Itens: {totalItens}");
-                listBoxDetalhesCompra.Items.Add($"Itens Previstos: {itensPrevistos}");
-                listBoxDetalhesCompra.Items.Add($"Itens Não Previstos: {itensNaoPrevistos}");
-
-                // Mostrar últimos 3 itens
+                listBoxDetalhesCompra.Items.Add("══════════ RESUMO ══════════");
+                listBoxDetalhesCompra.Items.Add($"Total de Itens: {totalItens}");
+                listBoxDetalhesCompra.Items.Add($"Valor Total: {compraDetalhes.Itens.Sum(i => i.QuantidadeAdquirida * i.PrecoUnitario):C}");
                 listBoxDetalhesCompra.Items.Add("");
-                listBoxDetalhesCompra.Items.Add("--- Últimos Itens ---");
-                foreach (var item in compraDetalhes.Itens.Take(3))
+
+                // Mostrar itens previstos
+                listBoxDetalhesCompra.Items.Add("═══ ITENS PREVISTOS ═══");
+                listBoxDetalhesCompra.Items.Add($"Quantidade: {itensPrevistos.Count} | Total: {totalPrevistos:C}");
+                listBoxDetalhesCompra.Items.Add("───────────────────────────");
+
+                if (itensPrevistos.Any())
                 {
-                    string nome = item.Artigo?.Nome ?? "Artigo?";
-                    listBoxDetalhesCompra.Items.Add($"  • {nome}: {item.QuantidadeAdquirida} x €{item.PrecoUnitario:F2}");
+                    foreach (var item in itensPrevistos)
+                    {
+                        string nome = item.Artigo?.Nome ?? "Artigo?";
+                        decimal subtotal = item.QuantidadeAdquirida * item.PrecoUnitario;
+                        listBoxDetalhesCompra.Items.Add($"  ✓ {nome}: {item.QuantidadeAdquirida} x €{item.PrecoUnitario:F2} = €{subtotal:F2}");
+                    }
+                }
+                else
+                {
+                    listBoxDetalhesCompra.Items.Add("  Nenhum item previsto");
                 }
 
-                if (compraDetalhes.Itens.Count > 3)
-                    listBoxDetalhesCompra.Items.Add($"  ... e mais {compraDetalhes.Itens.Count - 3} itens");
+                listBoxDetalhesCompra.Items.Add("");
+
+                // Mostrar itens não previstos
+                listBoxDetalhesCompra.Items.Add("═══ ITENS NÃO PREVISTOS ═══");
+                listBoxDetalhesCompra.Items.Add($"Quantidade: {itensNaoPrevistos.Count} | Total: {totalNaoPrevistos:C}");
+                listBoxDetalhesCompra.Items.Add("───────────────────────────");
+
+                if (itensNaoPrevistos.Any())
+                {
+                    foreach (var item in itensNaoPrevistos)
+                    {
+                        string nome = item.Artigo?.Nome ?? "Artigo?";
+                        decimal subtotal = item.QuantidadeAdquirida * item.PrecoUnitario;
+                        listBoxDetalhesCompra.Items.Add($"  ✗ {nome}: {item.QuantidadeAdquirida} x €{item.PrecoUnitario:F2} = €{subtotal:F2}");
+                    }
+                }
+                else
+                {
+                    listBoxDetalhesCompra.Items.Add("  Nenhum item não previsto");
+                }
             }
             else
             {
                 listBoxDetalhesCompra.Items.Add("");
-                listBoxDetalhesCompra.Items.Add("--- Sem itens ---");
+                listBoxDetalhesCompra.Items.Add("--- Sem itens registrados ---");
             }
         }
 

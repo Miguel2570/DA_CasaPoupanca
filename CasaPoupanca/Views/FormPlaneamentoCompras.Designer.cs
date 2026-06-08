@@ -61,9 +61,9 @@
             // listBoxListaCompras
             // 
             this.listBoxListaCompras.FormattingEnabled = true;
-            this.listBoxListaCompras.Location = new System.Drawing.Point(20, 160);
+            this.listBoxListaCompras.Location = new System.Drawing.Point(20, 150);
             this.listBoxListaCompras.Name = "listBoxListaCompras";
-            this.listBoxListaCompras.Size = new System.Drawing.Size(336, 186);
+            this.listBoxListaCompras.Size = new System.Drawing.Size(421, 225);
             this.listBoxListaCompras.TabIndex = 2;
             // 
             // label2
@@ -87,15 +87,15 @@
             // listBoxDetalhesCompra
             // 
             this.listBoxDetalhesCompra.FormattingEnabled = true;
-            this.listBoxDetalhesCompra.Location = new System.Drawing.Point(518, 160);
+            this.listBoxDetalhesCompra.Location = new System.Drawing.Point(518, 150);
             this.listBoxDetalhesCompra.Name = "listBoxDetalhesCompra";
-            this.listBoxDetalhesCompra.Size = new System.Drawing.Size(333, 186);
+            this.listBoxDetalhesCompra.Size = new System.Drawing.Size(421, 225);
             this.listBoxDetalhesCompra.TabIndex = 6;
             // 
             // labelTotalCompras
             // 
             this.labelTotalCompras.AutoSize = true;
-            this.labelTotalCompras.Location = new System.Drawing.Point(17, 368);
+            this.labelTotalCompras.Location = new System.Drawing.Point(17, 391);
             this.labelTotalCompras.Name = "labelTotalCompras";
             this.labelTotalCompras.Size = new System.Drawing.Size(147, 13);
             this.labelTotalCompras.TabIndex = 7;
@@ -103,7 +103,7 @@
             // 
             // buttonGerirCompra
             // 
-            this.buttonGerirCompra.Location = new System.Drawing.Point(386, 160);
+            this.buttonGerirCompra.Location = new System.Drawing.Point(226, 87);
             this.buttonGerirCompra.Name = "buttonGerirCompra";
             this.buttonGerirCompra.Size = new System.Drawing.Size(87, 28);
             this.buttonGerirCompra.TabIndex = 8;
@@ -114,7 +114,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::CasaPoupanca.Properties.Resources.final_removebg_preview;
-            this.pictureBox1.Location = new System.Drawing.Point(759, 11);
+            this.pictureBox1.Location = new System.Drawing.Point(871, 11);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(92, 67);
@@ -126,7 +126,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(863, 450);
+            this.ClientSize = new System.Drawing.Size(974, 450);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.buttonGerirCompra);
             this.Controls.Add(this.labelTotalCompras);
