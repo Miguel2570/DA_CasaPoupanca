@@ -15,51 +15,40 @@
 
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.buttonAdicionar = new System.Windows.Forms.Button();
-            this.buttonRemover = new System.Windows.Forms.Button();
-            this.textBoxNomeCompra = new System.Windows.Forms.TextBox();
-            this.buttonEditar = new System.Windows.Forms.Button();
-            this.buttonVoltar = new System.Windows.Forms.Button();
-            this.listBoxListaDeArtigos = new System.Windows.Forms.ListBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.labelOrcamento = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.labelTotal = new System.Windows.Forms.Label();
+            this.buttonVoltar = new System.Windows.Forms.Button();
+            this.groupBoxItensCompra = new System.Windows.Forms.GroupBox();
+            this.listBoxListaDeArtigos = new System.Windows.Forms.ListBox();
+            this.buttonEditar = new System.Windows.Forms.Button();
+            this.buttonRemover = new System.Windows.Forms.Button();
+            this.groupBoxArtigosDisponiveisBox = new System.Windows.Forms.GroupBox();
+            this.comboBoxFiltroTipo = new System.Windows.Forms.ComboBox();
+            this.labelFiltro = new System.Windows.Forms.Label();
+            this.listBoxArtigosDisponiveis = new System.Windows.Forms.ListBox();
+            this.buttonAdicionar = new System.Windows.Forms.Button();
+            this.groupBoxDados = new System.Windows.Forms.GroupBox();
+            this.textBoxNomeCompra = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.numericUpDownMes = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
+            this.numericUpDownQuantidade = new System.Windows.Forms.NumericUpDown();
+            this.groupBoxListas = new System.Windows.Forms.GroupBox();
             this.listBoxListaDeCompras = new System.Windows.Forms.ListBox();
             this.buttonCriarLista = new System.Windows.Forms.Button();
             this.buttonApagarLista = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.listBoxArtigosDisponiveis = new System.Windows.Forms.ListBox();
-            this.numericUpDownQuantidade = new System.Windows.Forms.NumericUpDown();
-            this.label4 = new System.Windows.Forms.Label();
-            this.numericUpDownMes = new System.Windows.Forms.NumericUpDown();
             this.buttonGuardar = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.labelTotal = new System.Windows.Forms.Label();
-            this.groupBoxItensCompra = new System.Windows.Forms.GroupBox();
-            this.groupBoxArtigosDisponiveisBox = new System.Windows.Forms.GroupBox();
-            this.groupBoxDados = new System.Windows.Forms.GroupBox();
-            this.groupBoxListas = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantidade)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMes)).BeginInit();
             this.groupBoxItensCompra.SuspendLayout();
             this.groupBoxArtigosDisponiveisBox.SuspendLayout();
             this.groupBoxDados.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantidade)).BeginInit();
             this.groupBoxListas.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(146, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(246, 29);
-            this.label1.TabIndex = 18;
-            this.label1.Text = "Criar/Editar Compra";
             // 
             // pictureBox1
             // 
@@ -72,50 +61,72 @@
             this.pictureBox1.TabIndex = 19;
             this.pictureBox1.TabStop = false;
             // 
-            // label2
+            // label1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label2.Location = new System.Drawing.Point(11, 41);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(155, 22);
-            this.label2.TabIndex = 49;
-            this.label2.Text = "Nome da Compra:";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.label1.Location = new System.Drawing.Point(146, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(246, 29);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "Criar/Editar Compra";
             // 
-            // buttonAdicionar
+            // labelOrcamento
             // 
-            this.buttonAdicionar.BackColor = System.Drawing.Color.LightGreen;
-            this.buttonAdicionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonAdicionar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.buttonAdicionar.Location = new System.Drawing.Point(96, 350);
-            this.buttonAdicionar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.buttonAdicionar.Name = "buttonAdicionar";
-            this.buttonAdicionar.Size = new System.Drawing.Size(146, 44);
-            this.buttonAdicionar.TabIndex = 38;
-            this.buttonAdicionar.Text = "Adicionar Item";
-            this.buttonAdicionar.UseVisualStyleBackColor = false;
+            this.labelOrcamento.AutoSize = true;
+            this.labelOrcamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.labelOrcamento.Location = new System.Drawing.Point(146, 62);
+            this.labelOrcamento.Name = "labelOrcamento";
+            this.labelOrcamento.Size = new System.Drawing.Size(169, 25);
+            this.labelOrcamento.TabIndex = 34;
+            this.labelOrcamento.Text = "Orçamento: €0,00";
             // 
-            // buttonRemover
+            // labelTotal
             // 
-            this.buttonRemover.BackColor = System.Drawing.Color.LightCoral;
-            this.buttonRemover.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonRemover.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.buttonRemover.Location = new System.Drawing.Point(11, 350);
-            this.buttonRemover.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.buttonRemover.Name = "buttonRemover";
-            this.buttonRemover.Size = new System.Drawing.Size(146, 44);
-            this.buttonRemover.TabIndex = 56;
-            this.buttonRemover.Text = "Remover Item";
-            this.buttonRemover.UseVisualStyleBackColor = false;
+            this.labelTotal.AutoSize = true;
+            this.labelTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.labelTotal.Location = new System.Drawing.Point(146, 94);
+            this.labelTotal.Name = "labelTotal";
+            this.labelTotal.Size = new System.Drawing.Size(128, 25);
+            this.labelTotal.TabIndex = 35;
+            this.labelTotal.Text = "Total: €0,00";
             // 
-            // textBoxNomeCompra
+            // buttonVoltar
             // 
-            this.textBoxNomeCompra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.textBoxNomeCompra.Location = new System.Drawing.Point(167, 38);
-            this.textBoxNomeCompra.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxNomeCompra.Name = "textBoxNomeCompra";
-            this.textBoxNomeCompra.Size = new System.Drawing.Size(165, 28);
-            this.textBoxNomeCompra.TabIndex = 30;
+            this.buttonVoltar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonVoltar.Location = new System.Drawing.Point(14, 650);
+            this.buttonVoltar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.buttonVoltar.Name = "buttonVoltar";
+            this.buttonVoltar.Size = new System.Drawing.Size(225, 44);
+            this.buttonVoltar.TabIndex = 42;
+            this.buttonVoltar.Text = "Voltar";
+            this.buttonVoltar.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxItensCompra
+            // 
+            this.groupBoxItensCompra.Controls.Add(this.listBoxListaDeArtigos);
+            this.groupBoxItensCompra.Controls.Add(this.buttonEditar);
+            this.groupBoxItensCompra.Controls.Add(this.buttonRemover);
+            this.groupBoxItensCompra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.groupBoxItensCompra.Location = new System.Drawing.Point(14, 150);
+            this.groupBoxItensCompra.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBoxItensCompra.Name = "groupBoxItensCompra";
+            this.groupBoxItensCompra.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBoxItensCompra.Size = new System.Drawing.Size(338, 475);
+            this.groupBoxItensCompra.TabIndex = 36;
+            this.groupBoxItensCompra.TabStop = false;
+            this.groupBoxItensCompra.Text = "Itens da Compra";
+            // 
+            // listBoxListaDeArtigos
+            // 
+            this.listBoxListaDeArtigos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.listBoxListaDeArtigos.FormattingEnabled = true;
+            this.listBoxListaDeArtigos.ItemHeight = 22;
+            this.listBoxListaDeArtigos.Location = new System.Drawing.Point(11, 31);
+            this.listBoxListaDeArtigos.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.listBoxListaDeArtigos.Name = "listBoxListaDeArtigos";
+            this.listBoxListaDeArtigos.Size = new System.Drawing.Size(314, 290);
+            this.listBoxListaDeArtigos.TabIndex = 43;
             // 
             // buttonEditar
             // 
@@ -130,27 +141,116 @@
             this.buttonEditar.Text = "Editar Item";
             this.buttonEditar.UseVisualStyleBackColor = false;
             // 
-            // buttonVoltar
+            // buttonRemover
             // 
-            this.buttonVoltar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonVoltar.Location = new System.Drawing.Point(14, 650);
-            this.buttonVoltar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.buttonVoltar.Name = "buttonVoltar";
-            this.buttonVoltar.Size = new System.Drawing.Size(225, 44);
-            this.buttonVoltar.TabIndex = 42;
-            this.buttonVoltar.Text = "Voltar";
-            this.buttonVoltar.UseVisualStyleBackColor = true;
+            this.buttonRemover.BackColor = System.Drawing.Color.LightCoral;
+            this.buttonRemover.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonRemover.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.buttonRemover.Location = new System.Drawing.Point(11, 350);
+            this.buttonRemover.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.buttonRemover.Name = "buttonRemover";
+            this.buttonRemover.Size = new System.Drawing.Size(146, 44);
+            this.buttonRemover.TabIndex = 56;
+            this.buttonRemover.Text = "Remover Item";
+            this.buttonRemover.UseVisualStyleBackColor = false;
             // 
-            // listBoxListaDeArtigos
+            // groupBoxArtigosDisponiveisBox
             // 
-            this.listBoxListaDeArtigos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.listBoxListaDeArtigos.FormattingEnabled = true;
-            this.listBoxListaDeArtigos.ItemHeight = 22;
-            this.listBoxListaDeArtigos.Location = new System.Drawing.Point(11, 31);
-            this.listBoxListaDeArtigos.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.listBoxListaDeArtigos.Name = "listBoxListaDeArtigos";
-            this.listBoxListaDeArtigos.Size = new System.Drawing.Size(314, 290);
-            this.listBoxListaDeArtigos.TabIndex = 43;
+            this.groupBoxArtigosDisponiveisBox.Controls.Add(this.comboBoxFiltroTipo);
+            this.groupBoxArtigosDisponiveisBox.Controls.Add(this.labelFiltro);
+            this.groupBoxArtigosDisponiveisBox.Controls.Add(this.listBoxArtigosDisponiveis);
+            this.groupBoxArtigosDisponiveisBox.Controls.Add(this.buttonAdicionar);
+            this.groupBoxArtigosDisponiveisBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.groupBoxArtigosDisponiveisBox.Location = new System.Drawing.Point(371, 150);
+            this.groupBoxArtigosDisponiveisBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBoxArtigosDisponiveisBox.Name = "groupBoxArtigosDisponiveisBox";
+            this.groupBoxArtigosDisponiveisBox.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBoxArtigosDisponiveisBox.Size = new System.Drawing.Size(338, 475);
+            this.groupBoxArtigosDisponiveisBox.TabIndex = 37;
+            this.groupBoxArtigosDisponiveisBox.TabStop = false;
+            this.groupBoxArtigosDisponiveisBox.Text = "Artigos Disponíveis";
+            // 
+            // comboBoxFiltroTipo
+            // 
+            this.comboBoxFiltroTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxFiltroTipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.comboBoxFiltroTipo.FormattingEnabled = true;
+            this.comboBoxFiltroTipo.Location = new System.Drawing.Point(109, 31);
+            this.comboBoxFiltroTipo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.comboBoxFiltroTipo.Name = "comboBoxFiltroTipo";
+            this.comboBoxFiltroTipo.Size = new System.Drawing.Size(217, 30);
+            this.comboBoxFiltroTipo.TabIndex = 51;
+            // 
+            // labelFiltro
+            // 
+            this.labelFiltro.AutoSize = true;
+            this.labelFiltro.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.labelFiltro.Location = new System.Drawing.Point(11, 35);
+            this.labelFiltro.Name = "labelFiltro";
+            this.labelFiltro.Size = new System.Drawing.Size(92, 22);
+            this.labelFiltro.TabIndex = 52;
+            this.labelFiltro.Text = "Filtrar por:";
+            // 
+            // listBoxArtigosDisponiveis
+            // 
+            this.listBoxArtigosDisponiveis.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.listBoxArtigosDisponiveis.FormattingEnabled = true;
+            this.listBoxArtigosDisponiveis.ItemHeight = 22;
+            this.listBoxArtigosDisponiveis.Location = new System.Drawing.Point(11, 75);
+            this.listBoxArtigosDisponiveis.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.listBoxArtigosDisponiveis.Name = "listBoxArtigosDisponiveis";
+            this.listBoxArtigosDisponiveis.Size = new System.Drawing.Size(314, 246);
+            this.listBoxArtigosDisponiveis.TabIndex = 50;
+            // 
+            // buttonAdicionar
+            // 
+            this.buttonAdicionar.BackColor = System.Drawing.Color.LightGreen;
+            this.buttonAdicionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAdicionar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.buttonAdicionar.Location = new System.Drawing.Point(96, 350);
+            this.buttonAdicionar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.buttonAdicionar.Name = "buttonAdicionar";
+            this.buttonAdicionar.Size = new System.Drawing.Size(146, 44);
+            this.buttonAdicionar.TabIndex = 38;
+            this.buttonAdicionar.Text = "Adicionar Item";
+            this.buttonAdicionar.UseVisualStyleBackColor = false;
+            // 
+            // groupBoxDados
+            // 
+            this.groupBoxDados.Controls.Add(this.textBoxNomeCompra);
+            this.groupBoxDados.Controls.Add(this.label2);
+            this.groupBoxDados.Controls.Add(this.label7);
+            this.groupBoxDados.Controls.Add(this.numericUpDownMes);
+            this.groupBoxDados.Controls.Add(this.label4);
+            this.groupBoxDados.Controls.Add(this.numericUpDownQuantidade);
+            this.groupBoxDados.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.groupBoxDados.Location = new System.Drawing.Point(731, 150);
+            this.groupBoxDados.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBoxDados.Name = "groupBoxDados";
+            this.groupBoxDados.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBoxDados.Size = new System.Drawing.Size(338, 225);
+            this.groupBoxDados.TabIndex = 38;
+            this.groupBoxDados.TabStop = false;
+            this.groupBoxDados.Text = "Dados da Compra";
+            // 
+            // textBoxNomeCompra
+            // 
+            this.textBoxNomeCompra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.textBoxNomeCompra.Location = new System.Drawing.Point(146, 38);
+            this.textBoxNomeCompra.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxNomeCompra.Name = "textBoxNomeCompra";
+            this.textBoxNomeCompra.Size = new System.Drawing.Size(180, 28);
+            this.textBoxNomeCompra.TabIndex = 30;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label2.Location = new System.Drawing.Point(11, 41);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(155, 22);
+            this.label2.TabIndex = 49;
+            this.label2.Text = "Nome da Compra:";
             // 
             // label7
             // 
@@ -162,22 +262,74 @@
             this.label7.TabIndex = 45;
             this.label7.Text = "Mês:";
             // 
-            // labelOrcamento
+            // numericUpDownMes
             // 
-            this.labelOrcamento.AutoSize = true;
-            this.labelOrcamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.labelOrcamento.Location = new System.Drawing.Point(146, 62);
-            this.labelOrcamento.Name = "labelOrcamento";
-            this.labelOrcamento.Size = new System.Drawing.Size(169, 25);
-            this.labelOrcamento.TabIndex = 34;
-            this.labelOrcamento.Text = "Orçamento: €0,00";
+            this.numericUpDownMes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.numericUpDownMes.Location = new System.Drawing.Point(146, 81);
+            this.numericUpDownMes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.numericUpDownMes.Maximum = new decimal(new int[] {
+            12,
+            0,
+            0,
+            0});
+            this.numericUpDownMes.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDownMes.Name = "numericUpDownMes";
+            this.numericUpDownMes.Size = new System.Drawing.Size(90, 28);
+            this.numericUpDownMes.TabIndex = 47;
+            this.numericUpDownMes.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
-            // label10
+            // label4
             // 
-            this.label10.Location = new System.Drawing.Point(0, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(100, 23);
-            this.label10.TabIndex = 0;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label4.Location = new System.Drawing.Point(11, 131);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(108, 22);
+            this.label4.TabIndex = 47;
+            this.label4.Text = "Quantidade:";
+            // 
+            // numericUpDownQuantidade
+            // 
+            this.numericUpDownQuantidade.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.numericUpDownQuantidade.Location = new System.Drawing.Point(146, 125);
+            this.numericUpDownQuantidade.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.numericUpDownQuantidade.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDownQuantidade.Name = "numericUpDownQuantidade";
+            this.numericUpDownQuantidade.Size = new System.Drawing.Size(135, 28);
+            this.numericUpDownQuantidade.TabIndex = 52;
+            this.numericUpDownQuantidade.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // groupBoxListas
+            // 
+            this.groupBoxListas.Controls.Add(this.listBoxListaDeCompras);
+            this.groupBoxListas.Controls.Add(this.buttonCriarLista);
+            this.groupBoxListas.Controls.Add(this.buttonApagarLista);
+            this.groupBoxListas.Controls.Add(this.buttonGuardar);
+            this.groupBoxListas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.groupBoxListas.Location = new System.Drawing.Point(731, 388);
+            this.groupBoxListas.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBoxListas.Name = "groupBoxListas";
+            this.groupBoxListas.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBoxListas.Size = new System.Drawing.Size(338, 238);
+            this.groupBoxListas.TabIndex = 40;
+            this.groupBoxListas.TabStop = false;
+            this.groupBoxListas.Text = "Listas de Compras";
             // 
             // listBoxListaDeCompras
             // 
@@ -216,77 +368,6 @@
             this.buttonApagarLista.Text = "Apagar Lista";
             this.buttonApagarLista.UseVisualStyleBackColor = false;
             // 
-            // label3
-            // 
-            this.label3.Location = new System.Drawing.Point(0, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(100, 23);
-            this.label3.TabIndex = 0;
-            // 
-            // listBoxArtigosDisponiveis
-            // 
-            this.listBoxArtigosDisponiveis.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.listBoxArtigosDisponiveis.FormattingEnabled = true;
-            this.listBoxArtigosDisponiveis.ItemHeight = 22;
-            this.listBoxArtigosDisponiveis.Location = new System.Drawing.Point(11, 31);
-            this.listBoxArtigosDisponiveis.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.listBoxArtigosDisponiveis.Name = "listBoxArtigosDisponiveis";
-            this.listBoxArtigosDisponiveis.Size = new System.Drawing.Size(314, 290);
-            this.listBoxArtigosDisponiveis.TabIndex = 50;
-            // 
-            // numericUpDownQuantidade
-            // 
-            this.numericUpDownQuantidade.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.numericUpDownQuantidade.Location = new System.Drawing.Point(146, 125);
-            this.numericUpDownQuantidade.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.numericUpDownQuantidade.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDownQuantidade.Name = "numericUpDownQuantidade";
-            this.numericUpDownQuantidade.Size = new System.Drawing.Size(135, 28);
-            this.numericUpDownQuantidade.TabIndex = 52;
-            this.numericUpDownQuantidade.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label4.Location = new System.Drawing.Point(11, 131);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(108, 22);
-            this.label4.TabIndex = 47;
-            this.label4.Text = "Quantidade:";
-            // 
-            // numericUpDownMes
-            // 
-            this.numericUpDownMes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.numericUpDownMes.Location = new System.Drawing.Point(146, 81);
-            this.numericUpDownMes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.numericUpDownMes.Maximum = new decimal(new int[] {
-            12,
-            0,
-            0,
-            0});
-            this.numericUpDownMes.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDownMes.Name = "numericUpDownMes";
-            this.numericUpDownMes.Size = new System.Drawing.Size(90, 28);
-            this.numericUpDownMes.TabIndex = 47;
-            this.numericUpDownMes.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
             // buttonGuardar
             // 
             this.buttonGuardar.BackColor = System.Drawing.Color.Gold;
@@ -299,86 +380,6 @@
             this.buttonGuardar.TabIndex = 48;
             this.buttonGuardar.Text = "Guardar Compra";
             this.buttonGuardar.UseVisualStyleBackColor = false;
-            // 
-            // label5
-            // 
-            this.label5.Location = new System.Drawing.Point(0, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(100, 23);
-            this.label5.TabIndex = 0;
-            // 
-            // labelTotal
-            // 
-            this.labelTotal.AutoSize = true;
-            this.labelTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.labelTotal.Location = new System.Drawing.Point(146, 94);
-            this.labelTotal.Name = "labelTotal";
-            this.labelTotal.Size = new System.Drawing.Size(128, 25);
-            this.labelTotal.TabIndex = 35;
-            this.labelTotal.Text = "Total: €0,00";
-            // 
-            // groupBoxItensCompra
-            // 
-            this.groupBoxItensCompra.Controls.Add(this.listBoxListaDeArtigos);
-            this.groupBoxItensCompra.Controls.Add(this.buttonEditar);
-            this.groupBoxItensCompra.Controls.Add(this.buttonRemover);
-            this.groupBoxItensCompra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.groupBoxItensCompra.Location = new System.Drawing.Point(14, 150);
-            this.groupBoxItensCompra.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBoxItensCompra.Name = "groupBoxItensCompra";
-            this.groupBoxItensCompra.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBoxItensCompra.Size = new System.Drawing.Size(338, 475);
-            this.groupBoxItensCompra.TabIndex = 36;
-            this.groupBoxItensCompra.TabStop = false;
-            this.groupBoxItensCompra.Text = "Itens da Compra";
-            // 
-            // groupBoxArtigosDisponiveisBox
-            // 
-            this.groupBoxArtigosDisponiveisBox.Controls.Add(this.listBoxArtigosDisponiveis);
-            this.groupBoxArtigosDisponiveisBox.Controls.Add(this.buttonAdicionar);
-            this.groupBoxArtigosDisponiveisBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.groupBoxArtigosDisponiveisBox.Location = new System.Drawing.Point(371, 150);
-            this.groupBoxArtigosDisponiveisBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBoxArtigosDisponiveisBox.Name = "groupBoxArtigosDisponiveisBox";
-            this.groupBoxArtigosDisponiveisBox.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBoxArtigosDisponiveisBox.Size = new System.Drawing.Size(338, 475);
-            this.groupBoxArtigosDisponiveisBox.TabIndex = 37;
-            this.groupBoxArtigosDisponiveisBox.TabStop = false;
-            this.groupBoxArtigosDisponiveisBox.Text = "Artigos Disponíveis";
-            // 
-            // groupBoxDados
-            // 
-            this.groupBoxDados.Controls.Add(this.textBoxNomeCompra);
-            this.groupBoxDados.Controls.Add(this.label2);
-            this.groupBoxDados.Controls.Add(this.label7);
-            this.groupBoxDados.Controls.Add(this.numericUpDownMes);
-            this.groupBoxDados.Controls.Add(this.label4);
-            this.groupBoxDados.Controls.Add(this.numericUpDownQuantidade);
-            this.groupBoxDados.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.groupBoxDados.Location = new System.Drawing.Point(731, 150);
-            this.groupBoxDados.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBoxDados.Name = "groupBoxDados";
-            this.groupBoxDados.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBoxDados.Size = new System.Drawing.Size(338, 225);
-            this.groupBoxDados.TabIndex = 38;
-            this.groupBoxDados.TabStop = false;
-            this.groupBoxDados.Text = "Dados da Compra";
-            // 
-            // groupBoxListas
-            // 
-            this.groupBoxListas.Controls.Add(this.listBoxListaDeCompras);
-            this.groupBoxListas.Controls.Add(this.buttonCriarLista);
-            this.groupBoxListas.Controls.Add(this.buttonApagarLista);
-            this.groupBoxListas.Controls.Add(this.buttonGuardar);
-            this.groupBoxListas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.groupBoxListas.Location = new System.Drawing.Point(731, 388);
-            this.groupBoxListas.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBoxListas.Name = "groupBoxListas";
-            this.groupBoxListas.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBoxListas.Size = new System.Drawing.Size(338, 238);
-            this.groupBoxListas.TabIndex = 40;
-            this.groupBoxListas.TabStop = false;
-            this.groupBoxListas.Text = "Listas de Compras";
             // 
             // FormCompra
             // 
@@ -402,12 +403,13 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestão de Compras";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantidade)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMes)).EndInit();
             this.groupBoxItensCompra.ResumeLayout(false);
             this.groupBoxArtigosDisponiveisBox.ResumeLayout(false);
+            this.groupBoxArtigosDisponiveisBox.PerformLayout();
             this.groupBoxDados.ResumeLayout(false);
             this.groupBoxDados.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantidade)).EndInit();
             this.groupBoxListas.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -441,5 +443,7 @@
         private System.Windows.Forms.GroupBox groupBoxArtigosDisponiveisBox;
         private System.Windows.Forms.GroupBox groupBoxDados;
         private System.Windows.Forms.GroupBox groupBoxListas;
+        private System.Windows.Forms.ComboBox comboBoxFiltroTipo;
+        private System.Windows.Forms.Label labelFiltro;
     }
 }
