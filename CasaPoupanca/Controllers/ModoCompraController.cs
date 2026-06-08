@@ -17,7 +17,15 @@ namespace CasaPoupanca.Controllers
             }
         }
 
-        // Items
+        public ItemCompra GetItemCompraById(int id)
+        {
+            using (var db = new CasaPoupancaDB())
+            {
+                return db.ItensCompra
+                    .Include(i => i.Artigo)
+                    .FirstOrDefault(i => i.Id == id);
+            }
+        }
 
         public List<ItemCompra> GetItensPrevistos(int compraId)
         {
@@ -25,8 +33,8 @@ namespace CasaPoupanca.Controllers
             {
                 return db.ItensCompra
                     .Where(i => i.CompraId == compraId && i.IsPrevisto)
-                    .Include("Artigo")
-                    .Include("Artigo.TipoArtigo")
+                    .Include(i => i.Artigo)
+                    .Include(i => i.Artigo.TipoArtigo)
                     .ToList();
             }
         }
@@ -42,7 +50,9 @@ namespace CasaPoupanca.Controllers
                     .ToList();
             }
         }
-        public decimal GetTotalGastoCompra(int compraId, int ano, int utilizadorId)
+
+        // CORRIGIDO: Método com apenas 1 argumento
+        public decimal GetTotalGastoCompra(int compraId)
         {
             using (var db = new CasaPoupancaDB())
             {
@@ -59,8 +69,7 @@ namespace CasaPoupanca.Controllers
             using (var db = new CasaPoupancaDB())
             {
                 return db.ItensCompra
-                    .Where(i => i.CompraId == compraId && i.QuantidadeAdquirida < i.QuantidadePrevista)
-                    .Count();
+                    .Count(i => i.CompraId == compraId && i.IsPrevisto && i.QuantidadeAdquirida == 0);
             }
         }
 
@@ -105,25 +114,6 @@ namespace CasaPoupanca.Controllers
             }
         }
 
-        public void AdquirirItemNaoPrevisto(int itemId, int quantidade, decimal precoUnitario)
-        {
-            using (var db = new CasaPoupancaDB())
-            {
-                var item = db.ItensCompra.Find(itemId);
-                if (item == null)
-                    throw new Exception("Item não encontrado.");
-
-                if (item.IsPrevisto)
-                    throw new Exception("Este método é apenas para itens não previstos.");
-
-                // Atualiza quantidade e preço
-                item.QuantidadeAdquirida = quantidade;
-                item.PrecoUnitario = precoUnitario;
-
-                db.SaveChanges();
-            }
-        }
-
         public void FecharCompra(int compraId, int utilizadorId)
         {
             using (var db = new CasaPoupancaDB())
@@ -139,7 +129,6 @@ namespace CasaPoupanca.Controllers
             }
         }
 
-        // Agora aceita mês/ano e considera itens já adquiridos mesmo em compras não fechadas
         public decimal GetOrcamentoDisponivel(int utilizadorId, int mes, int ano)
         {
             using (var db = new CasaPoupancaDB())
@@ -147,20 +136,31 @@ namespace CasaPoupanca.Controllers
                 var orcamento = db.Orcamentos
                     .FirstOrDefault(o => o.CriadoPorId == utilizadorId && o.Mes == mes && o.Ano == ano);
 
-                if (orcamento == null) return 0;
+                decimal valorOrcamento = orcamento?.Valor ?? 0;
 
-                var totalGasto = (from c in db.Compras
-                                  join i in db.ItensCompra on c.Id equals i.CompraId
-                                  where c.CriadoPorId == utilizadorId
-                                        && c.DataCriacao.Year == ano
-                                        && c.DataCriacao.Month == mes
-                                        // incluir gastos de compras fechadas OU itens já adquiridos em compras abertas
-                                        && (c.IsFechada || i.QuantidadeAdquirida > 0)
-                                  select (decimal?)i.QuantidadeAdquirida * i.PrecoUnitario)
-                                  .DefaultIfEmpty(0)
-                                  .Sum() ?? 0;
+                var totalGasto = db.Compras
+                    .Where(c => c.CriadoPorId == utilizadorId &&
+                                c.DataCriacao.Year == ano &&
+                                c.DataCriacao.Month == mes &&
+                                c.IsFechada)
+                    .SelectMany(c => db.ItensCompra.Where(i => i.CompraId == c.Id))
+                    .Sum(i => (decimal?)i.QuantidadeAdquirida * i.PrecoUnitario) ?? 0;
 
-                return orcamento.Valor - totalGasto;
+                return valorOrcamento - totalGasto;
+            }
+        }
+
+        public bool RemoverItemPrevisto(int itemId)
+        {
+            using (var db = new CasaPoupancaDB())
+            {
+                var item = db.ItensCompra.Find(itemId);
+                if (item == null)
+                    return false;
+
+                db.ItensCompra.Remove(item);
+                db.SaveChanges();
+                return true;
             }
         }
     }

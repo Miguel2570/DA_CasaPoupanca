@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CasaPoupanca.Controllers
 {
@@ -36,9 +34,10 @@ namespace CasaPoupanca.Controllers
             return compras.Where(c => c.IsFechada).ToList();
         }
 
-        public decimal GetTotalGasto(int compraId, int ano, int utilizadorId)
+        // CORRIGIDO: Método com apenas 1 argumento (compraId)
+        public decimal GetTotalGasto(int compraId)
         {
-            return _modoCompraController.GetTotalGastoCompra(compraId, ano, utilizadorId);
+            return _modoCompraController.GetTotalGastoCompra(compraId);
         }
 
         public Compra GetCompraDetalhes(int compraId)

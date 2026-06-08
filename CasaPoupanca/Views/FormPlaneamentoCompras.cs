@@ -2,12 +2,7 @@
 using CasaPoupanca.models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CasaPoupanca.Views
@@ -26,7 +21,6 @@ namespace CasaPoupanca.Views
 
             ConfigurarFormulario();
             CarregarCompras();
-
         }
 
         private void ConfigurarFormulario()
@@ -40,6 +34,7 @@ namespace CasaPoupanca.Views
             comboBoxEstado.SelectedIndexChanged += comboBoxEstado_SelectedIndexChanged;
             listBoxListaCompras.SelectedIndexChanged += ListBoxListaCompras_SelectedIndexChanged;
             buttonGerirCompra.Click += buttonGerirCompra_Click;
+            buttonVoltar.Click += buttonVoltar_Click;
         }
 
         private void CarregarCompras()
@@ -77,14 +72,13 @@ namespace CasaPoupanca.Views
             }
         }
 
-
         private void ListBoxListaCompras_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!(listBoxListaCompras.SelectedItem is Compra compra)) return;
 
             listBoxDetalhesCompra.Items.Clear();
 
-            // Informações
+            // Informações básicas
             listBoxDetalhesCompra.Items.Add($"ID: {compra.Id}");
             listBoxDetalhesCompra.Items.Add($"Nome: {compra.Nome}");
             listBoxDetalhesCompra.Items.Add($"Data: {compra.DataCriacao:dd/MM/yyyy HH:mm}");
@@ -93,18 +87,17 @@ namespace CasaPoupanca.Views
             if (compra.DataFecho.HasValue)
                 listBoxDetalhesCompra.Items.Add($"Data Fecho: {compra.DataFecho:dd/MM/yyyy HH:mm}");
 
-            listBoxDetalhesCompra.Items.Add($"Total Gasto: {_controller.GetTotalGasto(compra.Id, compra.DataCriacao.Year, _utilizadorId):C}");
+            // CORRIGIDO: GetTotalGasto com apenas 1 argumento
+            listBoxDetalhesCompra.Items.Add($"Total Gasto: {_controller.GetTotalGasto(compra.Id):C}");
 
             // Mostrar itens detalhados
             var compraDetalhes = _controller.GetCompraDetalhes(compra.Id);
 
             if (compraDetalhes?.Itens != null && compraDetalhes.Itens.Any())
             {
-                // Separar itens previstos e não previstos
                 var itensPrevistos = compraDetalhes.Itens.Where(i => i.IsPrevisto).ToList();
                 var itensNaoPrevistos = compraDetalhes.Itens.Where(i => !i.IsPrevisto).ToList();
 
-                // Calcular totais
                 int totalItens = compraDetalhes.Itens.Count;
                 decimal totalPrevistos = itensPrevistos.Sum(i => i.QuantidadeAdquirida * i.PrecoUnitario);
                 decimal totalNaoPrevistos = itensNaoPrevistos.Sum(i => i.QuantidadeAdquirida * i.PrecoUnitario);
@@ -115,7 +108,7 @@ namespace CasaPoupanca.Views
                 listBoxDetalhesCompra.Items.Add($"Valor Total: {compraDetalhes.Itens.Sum(i => i.QuantidadeAdquirida * i.PrecoUnitario):C}");
                 listBoxDetalhesCompra.Items.Add("");
 
-                // Mostrar itens previstos
+                // Itens previstos
                 listBoxDetalhesCompra.Items.Add("═══ ITENS PREVISTOS ═══");
                 listBoxDetalhesCompra.Items.Add($"Quantidade: {itensPrevistos.Count} | Total: {totalPrevistos:C}");
                 listBoxDetalhesCompra.Items.Add("───────────────────────────");
@@ -136,7 +129,7 @@ namespace CasaPoupanca.Views
 
                 listBoxDetalhesCompra.Items.Add("");
 
-                // Mostrar itens não previstos
+                // Itens não previstos
                 listBoxDetalhesCompra.Items.Add("═══ ITENS NÃO PREVISTOS ═══");
                 listBoxDetalhesCompra.Items.Add($"Quantidade: {itensNaoPrevistos.Count} | Total: {totalNaoPrevistos:C}");
                 listBoxDetalhesCompra.Items.Add("───────────────────────────");
@@ -145,7 +138,7 @@ namespace CasaPoupanca.Views
                 {
                     foreach (var item in itensNaoPrevistos)
                     {
-                        string nome = item.Artigo?.Nome ?? "Artigo?";
+                        string nome = item.Artigo?.Nome ?? (item.Observacao ?? "Item?");
                         decimal subtotal = item.QuantidadeAdquirida * item.PrecoUnitario;
                         listBoxDetalhesCompra.Items.Add($"  ✗ {nome}: {item.QuantidadeAdquirida} x €{item.PrecoUnitario:F2} = €{subtotal:F2}");
                     }
