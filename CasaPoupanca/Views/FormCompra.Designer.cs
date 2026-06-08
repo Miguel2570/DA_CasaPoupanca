@@ -214,6 +214,7 @@
             this.buttonAdicionar.TabIndex = 38;
             this.buttonAdicionar.Text = "Adicionar Item";
             this.buttonAdicionar.UseVisualStyleBackColor = false;
+            this.buttonAdicionar.Click += new System.EventHandler(this.buttonAdicionar_Click_1);
             // 
             // groupBoxDados
             // 
@@ -236,10 +237,10 @@
             // textBoxNomeCompra
             // 
             this.textBoxNomeCompra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.textBoxNomeCompra.Location = new System.Drawing.Point(146, 38);
+            this.textBoxNomeCompra.Location = new System.Drawing.Point(162, 38);
             this.textBoxNomeCompra.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxNomeCompra.Name = "textBoxNomeCompra";
-            this.textBoxNomeCompra.Size = new System.Drawing.Size(180, 28);
+            this.textBoxNomeCompra.Size = new System.Drawing.Size(164, 28);
             this.textBoxNomeCompra.TabIndex = 30;
             // 
             // label2

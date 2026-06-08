@@ -23,6 +23,7 @@ namespace CasaPoupanca
 
             try
             {
+                ConfigurarControles();
                 CarregarTiposArtigo();
                 CarregarItensNaoPrevistos();
                 CarregarOrcamento();
@@ -34,10 +35,26 @@ namespace CasaPoupanca
             }
         }
 
+        private void ConfigurarControles()
+        {
+            numericUpDownPrecoUnitario.DecimalPlaces = 2;
+            numericUpDownPrecoUnitario.Minimum = 0;
+            numericUpDownPrecoUnitario.Maximum = 1000000M;
+            numericUpDownPrecoUnitario.Value = 0; // Começa a 0
+
+            numericUpDownQuantidade.Minimum = 1;
+            numericUpDownQuantidade.Maximum = 999999;
+            numericUpDownQuantidade.Value = 1;
+        }
+
         private void ConfigurarEventos()
         {
-            // Os eventos já estão configurados no designer
-            // Apenas garantir que os métodos existem
+            comboBoxTipoDeArtigo.SelectedIndexChanged += comboBoxTipoDeArtigo_SelectedIndexChanged;
+            comboBoxArtigo.SelectedIndexChanged += comboBoxArtigo_SelectedIndexChanged;
+            buttonAdicionar.Click += buttonAdicionar_Click;
+            buttonRemover.Click += buttonRemover_Click;
+            ButtonCancelar.Click += Cancelar_Click;
+            listBoxItensNaoPrevistos.SelectedIndexChanged += listBoxItensNaoPrevistos_SelectedIndexChanged;
         }
 
         private void CarregarTiposArtigo()
@@ -51,6 +68,9 @@ namespace CasaPoupanca
             comboBoxArtigo.DataSource = null;
             comboBoxArtigo.DisplayMember = "Nome";
             comboBoxArtigo.ValueMember = "Id";
+
+            // Limpar preço quando carrega tipos
+            numericUpDownPrecoUnitario.Value = 0;
         }
 
         private void CarregarArtigosPorTipo(int tipoId)
@@ -67,6 +87,9 @@ namespace CasaPoupanca
             {
                 comboBoxArtigo.DataSource = null;
             }
+
+            // Limpar preço quando carrega novos artigos
+            numericUpDownPrecoUnitario.Value = 0;
         }
 
         private void comboBoxTipoDeArtigo_SelectedIndexChanged(object sender, EventArgs e)
@@ -81,6 +104,7 @@ namespace CasaPoupanca
                 else
                 {
                     comboBoxArtigo.DataSource = null;
+                    numericUpDownPrecoUnitario.Value = 0; // Limpa o preço
                 }
             }
         }
@@ -89,9 +113,15 @@ namespace CasaPoupanca
         {
             if (comboBoxArtigo.SelectedItem is Artigo artigo)
             {
+                // Só mostra preço quando há artigo selecionado
                 numericUpDownPrecoUnitario.Value = artigo.PrecoUnitario;
-                textBoxObservacao.Clear();
+                textBoxObservacao.Text = "";
                 numericUpDownQuantidade.Focus();
+            }
+            else
+            {
+                // Se não há artigo selecionado, o preço fica 0
+                numericUpDownPrecoUnitario.Value = 0;
             }
         }
 
@@ -128,9 +158,9 @@ namespace CasaPoupanca
         {
             comboBoxTipoDeArtigo.SelectedIndex = -1;
             comboBoxArtigo.DataSource = null;
-            textBoxObservacao.Clear();
+            textBoxObservacao.Text = "";
             numericUpDownQuantidade.Value = 1;
-            numericUpDownPrecoUnitario.Value = 0;
+            numericUpDownPrecoUnitario.Value = 0; // Limpa o preço para 0
         }
 
         private void buttonAdicionar_Click(object sender, EventArgs e)
@@ -232,12 +262,9 @@ namespace CasaPoupanca
         {
             if (listBoxItensNaoPrevistos.SelectedItem is ItemCompra item)
             {
-                
-                numericUpDownQuantidade.Value = item.QuantidadeAdquirida;
+                numericUpDownQuantidade.Value = item.QuantidadePrevista > 0 ? item.QuantidadePrevista : 1;
                 numericUpDownPrecoUnitario.Value = item.PrecoUnitario;
-                textBoxObservacao.Text = item.Observacao;
-
-                
+                textBoxObservacao.Text = item.Observacao ?? "";
             }
         }
     }

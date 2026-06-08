@@ -570,5 +570,10 @@ namespace CasaPoupanca
         {
             CarregarArtigosDisponiveis();
         }
+
+        private void buttonAdicionar_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
