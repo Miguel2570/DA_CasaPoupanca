@@ -48,9 +48,11 @@
             this.comboBoxArtigo = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.buttonEditar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantidade)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPrecoUnitario)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label
@@ -68,7 +70,7 @@
             // 
             this.pictureBox1.Image = global::CasaPoupanca.Properties.Resources.final_removebg_preview;
             this.pictureBox1.Location = new System.Drawing.Point(11, 11);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(145, 86);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -87,7 +89,8 @@
             // 
             // ButtonCancelar
             // 
-            this.ButtonCancelar.Location = new System.Drawing.Point(567, 398);
+            this.ButtonCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonCancelar.Location = new System.Drawing.Point(305, 246);
             this.ButtonCancelar.Name = "ButtonCancelar";
             this.ButtonCancelar.Size = new System.Drawing.Size(93, 33);
             this.ButtonCancelar.TabIndex = 23;
@@ -185,7 +188,8 @@
             // 
             // buttonRemover
             // 
-            this.buttonRemover.Location = new System.Drawing.Point(461, 398);
+            this.buttonRemover.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonRemover.Location = new System.Drawing.Point(206, 246);
             this.buttonRemover.Name = "buttonRemover";
             this.buttonRemover.Size = new System.Drawing.Size(93, 33);
             this.buttonRemover.TabIndex = 39;
@@ -206,7 +210,7 @@
             // 
             this.comboBoxTipoDeArtigo.FormattingEnabled = true;
             this.comboBoxTipoDeArtigo.Location = new System.Drawing.Point(102, 224);
-            this.comboBoxTipoDeArtigo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBoxTipoDeArtigo.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxTipoDeArtigo.Name = "comboBoxTipoDeArtigo";
             this.comboBoxTipoDeArtigo.Size = new System.Drawing.Size(121, 21);
             this.comboBoxTipoDeArtigo.TabIndex = 41;
@@ -216,7 +220,7 @@
             // 
             this.comboBoxArtigo.FormattingEnabled = true;
             this.comboBoxArtigo.Location = new System.Drawing.Point(102, 252);
-            this.comboBoxArtigo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBoxArtigo.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxArtigo.Name = "comboBoxArtigo";
             this.comboBoxArtigo.Size = new System.Drawing.Size(121, 21);
             this.comboBoxArtigo.TabIndex = 42;
@@ -224,6 +228,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.buttonEditar);
+            this.groupBox1.Controls.Add(this.ButtonCancelar);
+            this.groupBox1.Controls.Add(this.buttonRemover);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(345, 152);
             this.groupBox1.Name = "groupBox1";
@@ -242,6 +249,17 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Adicionar/Editar Item Não Previsto";
             // 
+            // buttonEditar
+            // 
+            this.buttonEditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonEditar.Location = new System.Drawing.Point(107, 246);
+            this.buttonEditar.Name = "buttonEditar";
+            this.buttonEditar.Size = new System.Drawing.Size(93, 33);
+            this.buttonEditar.TabIndex = 45;
+            this.buttonEditar.Text = "Editar";
+            this.buttonEditar.UseVisualStyleBackColor = true;
+            this.buttonEditar.Click += new System.EventHandler(this.buttonEditar_Click);
+            // 
             // FormItemNaoPrevisto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -251,7 +269,6 @@
             this.Controls.Add(this.comboBoxArtigo);
             this.Controls.Add(this.comboBoxTipoDeArtigo);
             this.Controls.Add(this.Artigo);
-            this.Controls.Add(this.buttonRemover);
             this.Controls.Add(this.labelAviso);
             this.Controls.Add(this.labelOrcamentoDisponivel);
             this.Controls.Add(this.listBoxItensNaoPrevistos);
@@ -262,7 +279,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.ButtonCancelar);
             this.Controls.Add(this.buttonAdicionar);
             this.Controls.Add(this.label);
             this.Controls.Add(this.pictureBox1);
@@ -273,6 +289,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantidade)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPrecoUnitario)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -300,5 +317,6 @@
         private System.Windows.Forms.ComboBox comboBoxArtigo;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button buttonEditar;
     }
 }

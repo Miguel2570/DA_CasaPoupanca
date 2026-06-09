@@ -270,5 +270,92 @@ namespace CasaPoupanca
                 textBoxObservacao.Text = item.Observacao ?? "";
             }
         }
+
+        private void buttonEditar_Click(object sender, EventArgs e)
+        {
+            if (listBoxItensNaoPrevistos.SelectedItem == null)
+            {
+                MessageBox.Show("Selecione um item para editar!", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Verificar se há artigo selecionado
+            if (comboBoxArtigo.SelectedItem == null)
+            {
+                MessageBox.Show("Selecione um artigo disponível!", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int quantidade = (int)numericUpDownQuantidade.Value;
+            if (quantidade <= 0)
+            {
+                MessageBox.Show("A quantidade deve ser maior que zero!", "Validação",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            decimal precoUnitario = numericUpDownPrecoUnitario.Value;
+            if (precoUnitario <= 0)
+            {
+                MessageBox.Show("O preço deve ser maior que zero!", "Validação",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var itemSelecionado = (dynamic)listBoxItensNaoPrevistos.SelectedItem;
+            int itemId = itemSelecionado.Id;
+            var artigo = (Artigo)comboBoxArtigo.SelectedItem;
+
+            decimal totalItem = quantidade * precoUnitario;
+
+            if (totalItem > _orcamentoDisponivel && _orcamentoDisponivel > 0)
+            {
+                DialogResult resultado = MessageBox.Show(
+                    $"Este item custa {totalItem:C2} mas só tem {_orcamentoDisponivel:C2} de orçamento.\n\nDeseja continuar mesmo assim?",
+                    "Atenção! Orçamento insuficiente",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (resultado != DialogResult.Yes)
+                    return;
+            }
+
+            try
+            {
+                var itemEditado = new ItemCompra
+                {
+                    Id = itemId,
+                    CompraId = _compraId,
+                    ArtigoId = artigo.Id,
+                    QuantidadePrevista = quantidade,
+                    PrecoUnitario = precoUnitario,
+                    IsPrevisto = false,
+                    Observacao = textBoxObservacao.Text.Trim()
+                };
+
+                bool resultadoEdicao = _controller.UpdateItemNaoPrevisto(itemEditado);
+
+                if (resultadoEdicao)
+                {
+                    MessageBox.Show("Item editado com sucesso!", "Sucesso",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    CarregarItensNaoPrevistos();
+                    LimparCampos();
+                    CarregarOrcamento();
+                }
+                else
+                {
+                    MessageBox.Show("Erro ao editar item!", "Erro",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao editar item: {ex.Message}", "Erro",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
