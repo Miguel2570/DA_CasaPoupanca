@@ -27,7 +27,6 @@ namespace CasaPoupanca
                 CarregarTiposArtigo();
                 CarregarItensNaoPrevistos();
                 CarregarOrcamento();
-                ConfigurarEventos();
             }
             catch (Exception ex)
             {
@@ -45,16 +44,6 @@ namespace CasaPoupanca
             numericUpDownQuantidade.Minimum = 1;
             numericUpDownQuantidade.Maximum = 999999;
             numericUpDownQuantidade.Value = 1;
-        }
-
-        private void ConfigurarEventos()
-        {
-            comboBoxTipoDeArtigo.SelectedIndexChanged += comboBoxTipoDeArtigo_SelectedIndexChanged;
-            comboBoxArtigo.SelectedIndexChanged += comboBoxArtigo_SelectedIndexChanged;
-            buttonAdicionar.Click += buttonAdicionar_Click;
-            buttonRemover.Click += buttonRemover_Click;
-            ButtonCancelar.Click += Cancelar_Click;
-            listBoxItensNaoPrevistos.SelectedIndexChanged += listBoxItensNaoPrevistos_SelectedIndexChanged;
         }
 
         private void CarregarTiposArtigo()
@@ -128,10 +117,24 @@ namespace CasaPoupanca
         private void CarregarItensNaoPrevistos()
         {
             var itens = _controller.GetItensNaoPrevistos(_compraId);
+
+            var itensFormatados = itens.Select(i => new
+            {
+                i.Id,
+                Display = $"{i.Artigo?.Nome ?? i.Observacao} - {i.QuantidadePrevista} x €{i.PrecoUnitario:F2}"
+            }).ToList();
+
             listBoxItensNaoPrevistos.DataSource = null;
-            listBoxItensNaoPrevistos.DataSource = itens;
-            listBoxItensNaoPrevistos.DisplayMember = "DisplayName";
-            listBoxItensNaoPrevistos.ValueMember = "Id";
+            if (itensFormatados.Count > 0)
+            {
+                listBoxItensNaoPrevistos.DisplayMember = "Display";
+                listBoxItensNaoPrevistos.ValueMember = "Id";
+                listBoxItensNaoPrevistos.DataSource = itensFormatados;
+            }
+            else
+            {
+                listBoxItensNaoPrevistos.Items.Clear();
+            }
         }
 
         private void CarregarOrcamento()

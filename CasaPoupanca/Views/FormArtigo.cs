@@ -126,7 +126,6 @@ namespace CasaPoupanca
             buttonEditar.Enabled = false;
             listBoxArtigos.ClearSelected();
 
-            // Adicionar esta linha para limpar o textBoxId também
             if (textBoxId != null)
                 textBoxId.Clear();
         }

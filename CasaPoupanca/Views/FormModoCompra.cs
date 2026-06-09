@@ -120,8 +120,8 @@ namespace CasaPoupanca
         private void CarregarItensNaoPrevistos()
         {
             var itens = _controller.GetItensNaoPrevistos(_compraId)
-        .Where(i => i.QuantidadeAdquirida == 0)
-        .ToList();
+                .Where(i => i.QuantidadeAdquirida == 0)
+                .ToList();
 
             if (itens.Count == 0)
             {

@@ -13,6 +13,7 @@ namespace CasaPoupanca
         private OrcamentoController _orcamentoController;
         private int? _compraSelecionadaId = null;
         private bool _isReadOnly = false;
+        private bool _isLoadingLista = false;
 
         public FormCompra()
         {
@@ -23,8 +24,13 @@ namespace CasaPoupanca
             InicializarForm();
         }
 
-        public FormCompra(int compraId) : this()
+        public FormCompra(int compraId)
         {
+            InitializeComponent();
+            _compraController = new CompraController();
+            _artigoController = new ArtigoController();
+            _orcamentoController = new OrcamentoController();
+            InicializarForm();
             _compraSelecionadaId = compraId;
             CarregarDadosCompra(compraId);
         }
@@ -44,19 +50,6 @@ namespace CasaPoupanca
 
                 AtualizarOrcamentoRestante();
                 AtualizarTotalItens();
-
-                // Ligar eventos
-                buttonAdicionar.Click += ButtonAdicionar_Click;
-                buttonRemover.Click += ButtonRemover_Click;
-                buttonEditar.Click += ButtonEditar_Click;
-                buttonVoltar.Click += ButtonVoltar_Click;
-                buttonCriarLista.Click += ButtonCriarLista_Click;
-                buttonApagarLista.Click += ButtonApagarLista_Click;
-                buttonGuardar.Click += ButtonGuardar_Click;
-                listBoxListaDeCompras.SelectedIndexChanged += ListBoxListaDeCompras_SelectedIndexChanged;
-                listBoxListaDeArtigos.SelectedIndexChanged += ListBoxListaDeArtigos_SelectedIndexChanged;
-                comboBoxFiltroTipo.SelectedIndexChanged += ComboBoxFiltroTipo_SelectedIndexChanged;
-                numericUpDownMes.ValueChanged += NumericUpDownMes_ValueChanged;
             }
             catch (Exception ex)
             {
@@ -66,11 +59,14 @@ namespace CasaPoupanca
 
         private void CarregarListasDeCompras()
         {
+            _isLoadingLista = true;
             var compras = _compraController.GetComprasAbertasPorUtilizador(Session.UtilizadorId);
             listBoxListaDeCompras.DataSource = null;
             listBoxListaDeCompras.DataSource = compras;
             listBoxListaDeCompras.DisplayMember = "Nome";
             listBoxListaDeCompras.ValueMember = "Id";
+            listBoxListaDeCompras.ClearSelected();
+            _isLoadingLista = false;
         }
 
         private void CarregarFiltroTipos()
@@ -120,7 +116,7 @@ namespace CasaPoupanca
                     if (compra.IsFechada)
                     {
                         _isReadOnly = true;
-                        buttonAdicionar.Enabled = false;
+                        buttonAdicionarItem.Enabled = false;
                         buttonEditar.Enabled = false;
                         buttonRemover.Enabled = false;
                         buttonCriarLista.Enabled = false;
@@ -130,7 +126,7 @@ namespace CasaPoupanca
                     else
                     {
                         _isReadOnly = false;
-                        buttonAdicionar.Enabled = true;
+                        buttonAdicionarItem.Enabled = true;
                         buttonEditar.Enabled = true;
                         buttonRemover.Enabled = true;
                         buttonCriarLista.Enabled = true;
@@ -166,7 +162,7 @@ namespace CasaPoupanca
             textBoxNomeCompra.Clear();
             numericUpDownMes.Value = DateTime.Now.Month;
             _compraSelecionadaId = null;
-            buttonAdicionar.Enabled = true;
+            buttonAdicionarItem.Enabled = true;
             buttonEditar.Enabled = false;
             buttonRemover.Enabled = false;
             buttonCriarLista.Enabled = true;
@@ -202,7 +198,7 @@ namespace CasaPoupanca
             }
 
             var itens = _compraController.GetItensPrevistos(_compraSelecionadaId.Value);
-            decimal total = itens.Sum(i => i.QuantidadeAdquirida * i.PrecoUnitario);
+            decimal total = itens.Sum(i => i.QuantidadePrevista * i.PrecoUnitario);
             labelTotal.Text = $"Total: €{total:F2}";
         }
 
@@ -247,7 +243,7 @@ namespace CasaPoupanca
                     {
                         CompraId = _compraSelecionadaId.Value,
                         ArtigoId = artigo.Id,
-                        QuantidadeAdquirida = quantidade,
+                        QuantidadeAdquirida = 0,
                         QuantidadePrevista = quantidade,
                         PrecoUnitario = artigo.PrecoUnitario,
                         IsPrevisto = true
@@ -321,55 +317,16 @@ namespace CasaPoupanca
 
         // ==================== EVENTOS DO FORMULÁRIO ====================
 
-        private void ButtonAdicionar_Click(object sender, EventArgs e)
+
+        private void listBoxListaDeArtigos_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            // Se há artigo selecionado e compra selecionada, adiciona item
-            if (listBoxArtigosDisponiveis.SelectedItem != null && _compraSelecionadaId.HasValue && !_isReadOnly)
+            if (listBoxListaDeArtigos.SelectedItem is ItemCompra item && !_isReadOnly)
             {
-                AdicionarItemCompra();
-                return;
-            }
-
-            // Caso contrário, cria nova compra
-            string nome = textBoxNomeCompra.Text.Trim();
-            if (string.IsNullOrEmpty(nome))
-            {
-                MessageBox.Show("Por favor, insira o nome da compra.");
-                return;
-            }
-
-            try
-            {
-                var novaCompra = new Compra
-                {
-                    Nome = nome,
-                    DataCriacao = DateTime.Now,
-                    CriadoPorId = Session.UtilizadorId,
-                    IsFechada = false
-                };
-
-                _compraController.AddCompra(novaCompra);
-                MessageBox.Show("Compra criada com sucesso!");
-                CarregarListasDeCompras();
-
-                var compras = _compraController.GetComprasAbertasPorUtilizador(Session.UtilizadorId);
-                var ultimaCompra = compras.FirstOrDefault();
-                if (ultimaCompra != null)
-                {
-                    _compraSelecionadaId = ultimaCompra.Id;
-                    textBoxNomeCompra.Text = ultimaCompra.Nome;
-                    buttonGuardar.Enabled = true;
-                }
-
-                LimparCamposCompra();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao criar compra: {ex.Message}");
+                numericUpDownQuantidade.Value = Math.Max(item.QuantidadePrevista, 1);
             }
         }
 
-        private void ButtonRemover_Click(object sender, EventArgs e)
+        private void buttonRemover_Click(object sender, EventArgs e)
         {
             // Se há item selecionado na lista, remove o item
             if (listBoxListaDeArtigos.SelectedItem != null && _compraSelecionadaId.HasValue && !_isReadOnly)
@@ -411,7 +368,7 @@ namespace CasaPoupanca
             }
         }
 
-        private void ButtonEditar_Click(object sender, EventArgs e)
+        private void buttonEditar_Click(object sender, EventArgs e)
         {
             // Se há item selecionado na lista, edita o item
             if (listBoxListaDeArtigos.SelectedItem != null && _compraSelecionadaId.HasValue && !_isReadOnly)
@@ -457,7 +414,7 @@ namespace CasaPoupanca
             }
         }
 
-        private void ButtonGuardar_Click(object sender, EventArgs e)
+        private void buttonGuardar_Click_1(object sender, EventArgs e)
         {
             if (!_compraSelecionadaId.HasValue)
             {
@@ -487,7 +444,7 @@ namespace CasaPoupanca
             }
         }
 
-        private void ButtonCriarLista_Click(object sender, EventArgs e)
+        private void buttonCriarLista_Click_1(object sender, EventArgs e)
         {
             string nome = textBoxNomeCompra.Text.Trim();
             if (string.IsNullOrEmpty(nome))
@@ -498,27 +455,63 @@ namespace CasaPoupanca
 
             if (!_compraSelecionadaId.HasValue)
             {
-                ButtonAdicionar_Click(sender, e);
+                try
+                {
+                    var novaCompra = new Compra
+                    {
+                        Nome = nome,
+                        DataCriacao = DateTime.Now,
+                        CriadoPorId = Session.UtilizadorId,
+                        IsFechada = false
+                    };
+
+                    _compraController.AddCompra(novaCompra);
+
+                    CarregarListasDeCompras();
+
+                    var compras = _compraController.GetComprasAbertasPorUtilizador(Session.UtilizadorId);
+                    var compraCriada = compras.OrderByDescending(c => c.Id).FirstOrDefault();
+
+                    if (compraCriada != null)
+                    {
+                        _compraSelecionadaId = compraCriada.Id;
+                        textBoxNomeCompra.Text = compraCriada.Nome;
+                        buttonAdicionarItem.Enabled = true;
+                        buttonEditar.Enabled = true;
+                        buttonRemover.Enabled = true;
+                        buttonApagarLista.Enabled = true;
+                        buttonCriarLista.Enabled = false;
+                        buttonGuardar.Enabled = false;
+
+                        MessageBox.Show($"Compra '{nome}' criada com sucesso! Agora pode adicionar itens.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Erro ao criar compra: {ex.Message}");
+                }
             }
         }
 
-        private void ButtonApagarLista_Click(object sender, EventArgs e)
+        private void buttonApagarLista_Click(object sender, EventArgs e)
         {
-            ButtonRemover_Click(sender, e);
+            buttonRemover_Click(sender, e);
         }
 
-        private void ButtonVoltar_Click(object sender, EventArgs e)
+        private void buttonVoltar_Click_1(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void NumericUpDownMes_ValueChanged(object sender, EventArgs e)
+        private void numericUpDownMes_ValueChanged_1(object sender, EventArgs e)
         {
             AtualizarOrcamentoRestante();
         }
 
-        private void ListBoxListaDeCompras_SelectedIndexChanged(object sender, EventArgs e)
+        private void listBoxListaDeCompras_SelectedIndexChanged_1(object sender, EventArgs e)
         {
+            if (_isLoadingLista) return;
+
             if (listBoxListaDeCompras.SelectedItem != null)
             {
                 var compra = listBoxListaDeCompras.SelectedItem;
@@ -535,7 +528,7 @@ namespace CasaPoupanca
                     if (isFechadaProp != null && (bool)isFechadaProp.GetValue(compra))
                     {
                         _isReadOnly = true;
-                        buttonAdicionar.Enabled = false;
+                        buttonAdicionarItem.Enabled = false;
                         buttonEditar.Enabled = false;
                         buttonRemover.Enabled = false;
                         buttonCriarLista.Enabled = false;
@@ -546,7 +539,7 @@ namespace CasaPoupanca
                     else
                     {
                         _isReadOnly = false;
-                        buttonAdicionar.Enabled = true;
+                        buttonAdicionarItem.Enabled = true;
                         buttonEditar.Enabled = true;
                         buttonRemover.Enabled = true;
                         buttonCriarLista.Enabled = true;
@@ -558,22 +551,65 @@ namespace CasaPoupanca
             }
         }
 
-        private void ListBoxListaDeArtigos_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (listBoxListaDeArtigos.SelectedItem is ItemCompra item && !_isReadOnly)
-            {
-                numericUpDownQuantidade.Value = item.QuantidadeAdquirida;
-            }
-        }
-
-        private void ComboBoxFiltroTipo_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBoxFiltroTipo_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             CarregarArtigosDisponiveis();
         }
 
-        private void buttonAdicionar_Click_1(object sender, EventArgs e)
+        private void listBoxListaDeCompras_MouseDown(object sender, MouseEventArgs e)
         {
+            int index = listBoxListaDeCompras.IndexFromPoint(e.Location);
+            if (index == ListBox.NoMatches)
+            {
+                listBoxListaDeCompras.ClearSelected();
+                LimparCamposCompra();
+            }
+        }
 
+        private void buttonAdicionarItem_Click(object sender, EventArgs e)
+        {
+            if (listBoxArtigosDisponiveis.SelectedItem != null && _compraSelecionadaId.HasValue && !_isReadOnly)
+            {
+                AdicionarItemCompra();
+                return;
+            }
+
+            // Caso contrário, cria nova compra (só entra aqui se a condição acima for falsa)
+            string nome = textBoxNomeCompra.Text.Trim();
+            if (string.IsNullOrEmpty(nome))
+            {
+                MessageBox.Show("Por favor, insira o nome da compra.");
+                return;
+            }
+
+            try
+            {
+                var novaCompra = new Compra
+                {
+                    Nome = nome,
+                    DataCriacao = DateTime.Now,
+                    CriadoPorId = Session.UtilizadorId,
+                    IsFechada = false
+                };
+
+                _compraController.AddCompra(novaCompra);
+                MessageBox.Show("Compra criada com sucesso!");
+                CarregarListasDeCompras();
+
+                var compras = _compraController.GetComprasAbertasPorUtilizador(Session.UtilizadorId);
+                var ultimaCompra = compras.FirstOrDefault();
+                if (ultimaCompra != null)
+                {
+                    _compraSelecionadaId = ultimaCompra.Id;
+                    textBoxNomeCompra.Text = ultimaCompra.Nome;
+                    buttonGuardar.Enabled = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao criar compra: {ex.Message}");
+            }
         }
     }
 }
