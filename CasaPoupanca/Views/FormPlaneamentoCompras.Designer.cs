@@ -39,6 +39,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.buttonNovaCompra = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -46,7 +47,12 @@
             // 
             // comboBoxEstado
             // 
+            this.comboBoxEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxEstado.FormattingEnabled = true;
+            this.comboBoxEstado.Items.AddRange(new object[] {
+            "Todas",
+            "Aberta",
+            "Fechada"});
             this.comboBoxEstado.Location = new System.Drawing.Point(71, 24);
             this.comboBoxEstado.Name = "comboBoxEstado";
             this.comboBoxEstado.Size = new System.Drawing.Size(121, 21);
@@ -70,6 +76,7 @@
             this.listBoxListaCompras.Name = "listBoxListaCompras";
             this.listBoxListaCompras.Size = new System.Drawing.Size(407, 225);
             this.listBoxListaCompras.TabIndex = 2;
+            this.listBoxListaCompras.SelectedIndexChanged += new System.EventHandler(this.listBoxListaCompras_SelectedIndexChanged_1);
             // 
             // listBoxDetalhesCompra
             // 
@@ -92,7 +99,7 @@
             // buttonGerirCompra
             // 
             this.buttonGerirCompra.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonGerirCompra.Location = new System.Drawing.Point(220, 19);
+            this.buttonGerirCompra.Location = new System.Drawing.Point(314, 19);
             this.buttonGerirCompra.Name = "buttonGerirCompra";
             this.buttonGerirCompra.Size = new System.Drawing.Size(87, 28);
             this.buttonGerirCompra.TabIndex = 8;
@@ -104,7 +111,7 @@
             // 
             this.pictureBox1.Image = global::CasaPoupanca.Properties.Resources.final_removebg_preview;
             this.pictureBox1.Location = new System.Drawing.Point(871, 11);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(92, 67);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -114,7 +121,7 @@
             // buttonVoltar
             // 
             this.buttonVoltar.Location = new System.Drawing.Point(20, 401);
-            this.buttonVoltar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonVoltar.Margin = new System.Windows.Forms.Padding(2);
             this.buttonVoltar.Name = "buttonVoltar";
             this.buttonVoltar.Size = new System.Drawing.Size(75, 23);
             this.buttonVoltar.TabIndex = 20;
@@ -124,13 +131,14 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.buttonNovaCompra);
             this.groupBox1.Controls.Add(this.buttonGerirCompra);
             this.groupBox1.Controls.Add(this.comboBoxEstado);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(20, 33);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(351, 71);
+            this.groupBox1.Size = new System.Drawing.Size(436, 71);
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtrar";
@@ -155,6 +163,17 @@
             this.groupBox3.TabIndex = 23;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Lista Detalhes Compra";
+            // 
+            // buttonNovaCompra
+            // 
+            this.buttonNovaCompra.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonNovaCompra.Location = new System.Drawing.Point(209, 19);
+            this.buttonNovaCompra.Name = "buttonNovaCompra";
+            this.buttonNovaCompra.Size = new System.Drawing.Size(87, 28);
+            this.buttonNovaCompra.TabIndex = 9;
+            this.buttonNovaCompra.Text = "Nova Compra";
+            this.buttonNovaCompra.UseVisualStyleBackColor = true;
+            this.buttonNovaCompra.Click += new System.EventHandler(this.buttonNovaCompra_Click);
             // 
             // FormPlaneamentoCompras
             // 
@@ -192,5 +211,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button buttonNovaCompra;
     }
 }
