@@ -30,11 +30,6 @@ namespace CasaPoupanca.Views
 
             comboBoxEstado.Items.AddRange(new[] { "Todas", "Aberta", "Fechada" });
             comboBoxEstado.SelectedIndex = 0;
-
-            comboBoxEstado.SelectedIndexChanged += comboBoxEstado_SelectedIndexChanged;
-            listBoxListaCompras.SelectedIndexChanged += ListBoxListaCompras_SelectedIndexChanged;
-            buttonGerirCompra.Click += buttonGerirCompra_Click;
-            buttonVoltar.Click += buttonVoltar_Click;
         }
 
         private void CarregarCompras()

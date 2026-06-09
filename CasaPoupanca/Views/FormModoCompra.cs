@@ -133,7 +133,7 @@ namespace CasaPoupanca
                 var itensFormatados = itens.Select(i => new
                 {
                     i.Id,
-                    Display = $"🛒 {i.Artigo?.Nome ?? i.Observacao} - {i.QuantidadePrevista} x €{i.PrecoUnitario:F2}"
+                    Display = $"✅ {i.Artigo?.Nome ?? i.Observacao} - {i.QuantidadePrevista} x €{i.PrecoUnitario:F2}"
                 }).ToList();
 
                 listBoxItensNaoPrevistos.DataSource = null;
@@ -519,6 +519,11 @@ namespace CasaPoupanca
             {
                 MessageBox.Show($"Erro ao adquirir item: {ex.Message}");
             }
+        }
+
+        private void FormModoCompra_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

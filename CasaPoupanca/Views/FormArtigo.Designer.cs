@@ -47,6 +47,9 @@ namespace CasaPoupanca
             this.textBoxId = new System.Windows.Forms.TextBox();
             this.buttonProcurar = new System.Windows.Forms.Button();
             this.buttonLimpar = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPreco)).BeginInit();
             this.SuspendLayout();
@@ -75,7 +78,7 @@ namespace CasaPoupanca
             // listBoxArtigos
             // 
             this.listBoxArtigos.FormattingEnabled = true;
-            this.listBoxArtigos.Location = new System.Drawing.Point(445, 226);
+            this.listBoxArtigos.Location = new System.Drawing.Point(619, 210);
             this.listBoxArtigos.Name = "listBoxArtigos";
             this.listBoxArtigos.Size = new System.Drawing.Size(333, 186);
             this.listBoxArtigos.TabIndex = 24;
@@ -85,7 +88,7 @@ namespace CasaPoupanca
             // 
             this.labelTipo.AutoSize = true;
             this.labelTipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTipo.Location = new System.Drawing.Point(53, 156);
+            this.labelTipo.Location = new System.Drawing.Point(34, 215);
             this.labelTipo.Name = "labelTipo";
             this.labelTipo.Size = new System.Drawing.Size(36, 17);
             this.labelTipo.TabIndex = 29;
@@ -95,7 +98,7 @@ namespace CasaPoupanca
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(44, 199);
+            this.label6.Location = new System.Drawing.Point(25, 258);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(45, 17);
             this.label6.TabIndex = 30;
@@ -104,7 +107,7 @@ namespace CasaPoupanca
             // comboBoxTipo
             // 
             this.comboBoxTipo.FormattingEnabled = true;
-            this.comboBoxTipo.Location = new System.Drawing.Point(121, 156);
+            this.comboBoxTipo.Location = new System.Drawing.Point(102, 215);
             this.comboBoxTipo.Name = "comboBoxTipo";
             this.comboBoxTipo.Size = new System.Drawing.Size(167, 21);
             this.comboBoxTipo.TabIndex = 31;
@@ -112,7 +115,7 @@ namespace CasaPoupanca
             // 
             // textBoxNome
             // 
-            this.textBoxNome.Location = new System.Drawing.Point(121, 196);
+            this.textBoxNome.Location = new System.Drawing.Point(102, 255);
             this.textBoxNome.Name = "textBoxNome";
             this.textBoxNome.Size = new System.Drawing.Size(167, 20);
             this.textBoxNome.TabIndex = 32;
@@ -121,7 +124,7 @@ namespace CasaPoupanca
             // 
             this.labelPreco.AutoSize = true;
             this.labelPreco.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPreco.Location = new System.Drawing.Point(44, 242);
+            this.labelPreco.Location = new System.Drawing.Point(25, 301);
             this.labelPreco.Name = "labelPreco";
             this.labelPreco.Size = new System.Drawing.Size(45, 17);
             this.labelPreco.TabIndex = 33;
@@ -129,14 +132,14 @@ namespace CasaPoupanca
             // 
             // numericUpDownPreco
             // 
-            this.numericUpDownPreco.Location = new System.Drawing.Point(122, 239);
+            this.numericUpDownPreco.Location = new System.Drawing.Point(103, 298);
             this.numericUpDownPreco.Name = "numericUpDownPreco";
             this.numericUpDownPreco.Size = new System.Drawing.Size(166, 20);
             this.numericUpDownPreco.TabIndex = 34;
             // 
             // buttonAdicionar
             // 
-            this.buttonAdicionar.Location = new System.Drawing.Point(327, 156);
+            this.buttonAdicionar.Location = new System.Drawing.Point(299, 210);
             this.buttonAdicionar.Name = "buttonAdicionar";
             this.buttonAdicionar.Size = new System.Drawing.Size(85, 37);
             this.buttonAdicionar.TabIndex = 35;
@@ -146,7 +149,7 @@ namespace CasaPoupanca
             // 
             // buttonEditar
             // 
-            this.buttonEditar.Location = new System.Drawing.Point(327, 212);
+            this.buttonEditar.Location = new System.Drawing.Point(299, 318);
             this.buttonEditar.Name = "buttonEditar";
             this.buttonEditar.Size = new System.Drawing.Size(85, 35);
             this.buttonEditar.TabIndex = 36;
@@ -156,7 +159,7 @@ namespace CasaPoupanca
             // 
             // buttonRemover
             // 
-            this.buttonRemover.Location = new System.Drawing.Point(327, 269);
+            this.buttonRemover.Location = new System.Drawing.Point(299, 266);
             this.buttonRemover.Name = "buttonRemover";
             this.buttonRemover.Size = new System.Drawing.Size(85, 36);
             this.buttonRemover.TabIndex = 37;
@@ -166,7 +169,7 @@ namespace CasaPoupanca
             // 
             // buttonVoltar
             // 
-            this.buttonVoltar.Location = new System.Drawing.Point(327, 332);
+            this.buttonVoltar.Location = new System.Drawing.Point(299, 376);
             this.buttonVoltar.Margin = new System.Windows.Forms.Padding(2);
             this.buttonVoltar.Name = "buttonVoltar";
             this.buttonVoltar.Size = new System.Drawing.Size(85, 36);
@@ -179,7 +182,7 @@ namespace CasaPoupanca
             // 
             this.labelId.AutoSize = true;
             this.labelId.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelId.Location = new System.Drawing.Point(442, 161);
+            this.labelId.Location = new System.Drawing.Point(415, 215);
             this.labelId.Name = "labelId";
             this.labelId.Size = new System.Drawing.Size(19, 17);
             this.labelId.TabIndex = 39;
@@ -187,14 +190,14 @@ namespace CasaPoupanca
             // 
             // textBoxId
             // 
-            this.textBoxId.Location = new System.Drawing.Point(499, 158);
+            this.textBoxId.Location = new System.Drawing.Point(418, 247);
             this.textBoxId.Name = "textBoxId";
             this.textBoxId.Size = new System.Drawing.Size(167, 20);
             this.textBoxId.TabIndex = 40;
             // 
             // buttonProcurar
             // 
-            this.buttonProcurar.Location = new System.Drawing.Point(499, 184);
+            this.buttonProcurar.Location = new System.Drawing.Point(418, 273);
             this.buttonProcurar.Name = "buttonProcurar";
             this.buttonProcurar.Size = new System.Drawing.Size(75, 23);
             this.buttonProcurar.TabIndex = 41;
@@ -204,7 +207,7 @@ namespace CasaPoupanca
             // 
             // buttonLimpar
             // 
-            this.buttonLimpar.Location = new System.Drawing.Point(591, 184);
+            this.buttonLimpar.Location = new System.Drawing.Point(510, 273);
             this.buttonLimpar.Name = "buttonLimpar";
             this.buttonLimpar.Size = new System.Drawing.Size(75, 23);
             this.buttonLimpar.TabIndex = 42;
@@ -212,11 +215,42 @@ namespace CasaPoupanca
             this.buttonLimpar.UseVisualStyleBackColor = true;
             this.buttonLimpar.Click += new System.EventHandler(this.buttonLimpar_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(28, 187);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(253, 225);
+            this.groupBox1.TabIndex = 43;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Adicionar/Editar Artigo";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(398, 187);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(197, 225);
+            this.groupBox2.TabIndex = 44;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Procurar por ID";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Location = new System.Drawing.Point(601, 187);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(377, 225);
+            this.groupBox3.TabIndex = 45;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Lista de Artigos";
+            // 
             // FormArtigo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(839, 484);
+            this.ClientSize = new System.Drawing.Size(1017, 484);
             this.Controls.Add(this.buttonLimpar);
             this.Controls.Add(this.buttonProcurar);
             this.Controls.Add(this.textBoxId);
@@ -234,6 +268,9 @@ namespace CasaPoupanca
             this.Controls.Add(this.listBoxArtigos);
             this.Controls.Add(this.labelArtigos);
             this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox3);
             this.Name = "FormArtigo";
             this.Text = "FormArtigo";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -262,7 +299,8 @@ namespace CasaPoupanca
         private System.Windows.Forms.TextBox textBoxId;
         private System.Windows.Forms.Button buttonProcurar;
         private System.Windows.Forms.Button buttonLimpar;
-
-       
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox3;
     }
 }
