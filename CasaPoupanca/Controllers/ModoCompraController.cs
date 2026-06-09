@@ -194,5 +194,16 @@ namespace CasaPoupanca.Controllers
                 return true;
             }
         }
+
+        public decimal GetOrcamentoTotal(int utilizadorId, int mes, int ano)
+        {
+            using (var db = new CasaPoupancaDB())
+            {
+                var orcamento = db.Orcamentos
+                    .FirstOrDefault(o => o.CriadoPorId == utilizadorId && o.Mes == mes && o.Ano == ano);
+
+                return orcamento?.Valor ?? 0;
+            }
+        }
     }
 }

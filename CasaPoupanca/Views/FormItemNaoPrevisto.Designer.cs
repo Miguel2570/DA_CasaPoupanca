@@ -47,8 +47,8 @@
             this.comboBoxTipoDeArtigo = new System.Windows.Forms.ComboBox();
             this.comboBoxArtigo = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.buttonEditar = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantidade)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPrecoUnitario)).BeginInit();
@@ -182,9 +182,9 @@
             this.labelOrcamentoDisponivel.Location = new System.Drawing.Point(13, 119);
             this.labelOrcamentoDisponivel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelOrcamentoDisponivel.Name = "labelOrcamentoDisponivel";
-            this.labelOrcamentoDisponivel.Size = new System.Drawing.Size(242, 20);
+            this.labelOrcamentoDisponivel.Size = new System.Drawing.Size(128, 20);
             this.labelOrcamentoDisponivel.TabIndex = 36;
-            this.labelOrcamentoDisponivel.Text = "Orçamento Disponível: 500,00 €  ";
+            this.labelOrcamentoDisponivel.Text = "Orçamento: X €  ";
             // 
             // buttonRemover
             // 
@@ -239,16 +239,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lista de Itens Não Previstos";
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(11, 196);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(228, 209);
-            this.groupBox2.TabIndex = 44;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Adicionar/Editar Item Não Previsto";
-            // 
             // buttonEditar
             // 
             this.buttonEditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -259,6 +249,16 @@
             this.buttonEditar.Text = "Editar";
             this.buttonEditar.UseVisualStyleBackColor = true;
             this.buttonEditar.Click += new System.EventHandler(this.buttonEditar_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(11, 196);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(228, 209);
+            this.groupBox2.TabIndex = 44;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Adicionar/Editar Item Não Previsto";
             // 
             // FormItemNaoPrevisto
             // 

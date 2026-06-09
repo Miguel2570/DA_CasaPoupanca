@@ -181,12 +181,9 @@ namespace CasaPoupanca
             int ano = DateTime.Now.Year;
 
             var orcamento = _orcamentoController.GetOrcamentoPorMesAno(mes, ano);
-            decimal orcamentoMensal = orcamento?.Valor ?? 0;
-            decimal totalGasto = _orcamentoController.CalcularTotalGastoMes(mes, ano);
-            decimal saldoRestante = orcamentoMensal - totalGasto;
+            decimal valor = orcamento?.Valor ?? 0;
 
-            labelOrcamento.Text = $"Orçamento: €{saldoRestante:F2}";
-            labelOrcamento.ForeColor = saldoRestante < 0 ? System.Drawing.Color.Red : System.Drawing.Color.Green;
+            labelOrcamento.Text = $"Orçamento: €{valor:F2}";
         }
 
         private void AtualizarTotalItens()

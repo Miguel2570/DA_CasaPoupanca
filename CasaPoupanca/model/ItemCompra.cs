@@ -22,10 +22,12 @@ namespace CasaPoupanca.models
         {
             get
             {
-                if (Artigo == null)
-                    return $"{QuantidadeAdquirida} x €{PrecoUnitario:F2} = €{QuantidadeAdquirida * PrecoUnitario:F2}";
+                int quantidade = QuantidadeAdquirida > 0 ? QuantidadeAdquirida : QuantidadePrevista;
 
-                return $"{Artigo.Nome} - {QuantidadeAdquirida} x €{PrecoUnitario:F2} = €{QuantidadeAdquirida * PrecoUnitario:F2}";
+                if (Artigo == null)
+                    return $"{quantidade} x €{PrecoUnitario:F2} = €{quantidade * PrecoUnitario:F2}";
+
+                return $"{Artigo.Nome} - {quantidade} x €{PrecoUnitario:F2} = €{quantidade * PrecoUnitario:F2}";
             }
         }
     }

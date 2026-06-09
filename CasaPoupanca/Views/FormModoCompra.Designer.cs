@@ -66,9 +66,9 @@
             this.labelOrcamentoDisponivel.Location = new System.Drawing.Point(120, 42);
             this.labelOrcamentoDisponivel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelOrcamentoDisponivel.Name = "labelOrcamentoDisponivel";
-            this.labelOrcamentoDisponivel.Size = new System.Drawing.Size(122, 17);
+            this.labelOrcamentoDisponivel.Size = new System.Drawing.Size(178, 17);
             this.labelOrcamentoDisponivel.TabIndex = 34;
-            this.labelOrcamentoDisponivel.Text = "Orçamento: €0,00";
+            this.labelOrcamentoDisponivel.Text = "Orçamento restante: €0,00";
             // 
             // labelAviso
             // 

@@ -148,19 +148,18 @@ namespace CasaPoupanca
         {
             var dataAtual = DateTime.Now;
             _orcamentoDisponivel = _controller.GetOrcamentoDisponivel(Session.UtilizadorId, dataAtual.Month, dataAtual.Year);
-            labelOrcamentoDisponivel.Text = $"Orçamento Disponível: {_orcamentoDisponivel:C2}";
+            labelOrcamentoDisponivel.Text = $"Orçamento: {_orcamentoDisponivel:C2}";
 
             if (_orcamentoDisponivel < 0)
             {
                 labelOrcamentoDisponivel.ForeColor = System.Drawing.Color.Red;
+                labelAviso.Text = "⚠️ Orçamento ultrapassado!";
                 labelAviso.ForeColor = System.Drawing.Color.Red;
-                labelAviso.Text = "Atenção! Orçamento ultrapassado!";
             }
             else
             {
                 labelOrcamentoDisponivel.ForeColor = System.Drawing.Color.Green;
-                labelAviso.ForeColor = System.Drawing.Color.Black;
-                labelAviso.Text = "(Alerta vermelho se ultrapassar)";
+                labelAviso.Text = "";
             }
         }
 
