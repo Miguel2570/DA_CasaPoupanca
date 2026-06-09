@@ -86,14 +86,21 @@ namespace CasaPoupanca
             if (comboBoxTipoDeArtigo.SelectedValue != null)
             {
                 int tipoId = 0;
-                if (int.TryParse(comboBoxTipoDeArtigo.SelectedValue.ToString(), out tipoId) && tipoId > 0)
+                if (int.TryParse(comboBoxTipoDeArtigo.SelectedValue.ToString(), out tipoId))
                 {
-                    CarregarArtigosPorTipo(tipoId);
-                }
-                else
-                {
-                    comboBoxArtigo.DataSource = null;
-                    numericUpDownPrecoUnitario.Value = 0; // Limpa o preço
+                    if (tipoId > 0)
+                    {
+                        CarregarArtigosPorTipo(tipoId);
+                    }
+                    else
+                    {
+                        var todosArtigos = _artigoController.GetAllArtigos();
+                        comboBoxArtigo.DataSource = todosArtigos;
+                        comboBoxArtigo.DisplayMember = "Nome";
+                        comboBoxArtigo.ValueMember = "Id";
+                        comboBoxArtigo.SelectedIndex = -1;
+                        numericUpDownPrecoUnitario.Value = 0;
+                    }
                 }
             }
         }
@@ -241,8 +248,10 @@ namespace CasaPoupanca
             {
                 try
                 {
-                    var item = (ItemCompra)listBoxItensNaoPrevistos.SelectedItem;
-                    _controller.RemoverItemNaoPrevisto(item.Id);
+                    var selected = listBoxItensNaoPrevistos.SelectedItem;
+                    var itemId = (int)selected.GetType().GetProperty("Id").GetValue(selected);
+
+                    _controller.RemoverItemNaoPrevisto(itemId);
 
                     MessageBox.Show("Item removido com sucesso!");
                     CarregarItensNaoPrevistos();
@@ -263,11 +272,18 @@ namespace CasaPoupanca
 
         private void listBoxItensNaoPrevistos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listBoxItensNaoPrevistos.SelectedItem is ItemCompra item)
+            if (listBoxItensNaoPrevistos.SelectedItem != null)
             {
-                numericUpDownQuantidade.Value = item.QuantidadePrevista > 0 ? item.QuantidadePrevista : 1;
-                numericUpDownPrecoUnitario.Value = item.PrecoUnitario;
-                textBoxObservacao.Text = item.Observacao ?? "";
+                var selected = listBoxItensNaoPrevistos.SelectedItem;
+                var itemId = (int)selected.GetType().GetProperty("Id").GetValue(selected);
+                var item = _controller.GetItemCompraById(itemId);
+
+                if (item != null)
+                {
+                    numericUpDownQuantidade.Value = item.QuantidadePrevista > 0 ? item.QuantidadePrevista : 1;
+                    numericUpDownPrecoUnitario.Value = item.PrecoUnitario;
+                    textBoxObservacao.Text = item.Observacao ?? "";
+                }
             }
         }
 
