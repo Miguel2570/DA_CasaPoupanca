@@ -18,6 +18,7 @@ namespace CasaPoupanca
         private void InitializeComponent()
         {
             this.groupBoxInfo = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.labelUsername = new System.Windows.Forms.Label();
             this.groupBoxStats = new System.Windows.Forms.GroupBox();
             this.labelUltimaCompraValor = new System.Windows.Forms.Label();
@@ -31,7 +32,6 @@ namespace CasaPoupanca
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.buttonVoltar = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBoxInfo.SuspendLayout();
             this.groupBoxStats.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -49,6 +49,15 @@ namespace CasaPoupanca
             this.groupBoxInfo.TabIndex = 1;
             this.groupBoxInfo.TabStop = false;
             this.groupBoxInfo.Text = "Informações Pessoais";
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.label1.Location = new System.Drawing.Point(102, 41);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(81, 20);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "label1";
             // 
             // labelUsername
             // 
@@ -127,7 +136,7 @@ namespace CasaPoupanca
             this.labelTotalCompras.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.labelTotalCompras.Location = new System.Drawing.Point(15, 60);
             this.labelTotalCompras.Name = "labelTotalCompras";
-            this.labelTotalCompras.Size = new System.Drawing.Size(100, 20);
+            this.labelTotalCompras.Size = new System.Drawing.Size(116, 20);
             this.labelTotalCompras.TabIndex = 2;
             this.labelTotalCompras.Text = "Total de Compras:";
             // 
@@ -182,18 +191,9 @@ namespace CasaPoupanca
             this.pictureBox2.TabIndex = 15;
             this.pictureBox2.TabStop = false;
             // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.label1.Location = new System.Drawing.Point(102, 41);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(81, 20);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "label1";
-            // 
             // FormProfile
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(550, 480);

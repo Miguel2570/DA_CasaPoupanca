@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxMes = new System.Windows.Forms.ComboBox();
@@ -37,15 +35,15 @@
             this.comboBoxAno = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxValor = new System.Windows.Forms.TextBox();
-            this.dataGridViewOrcamento = new System.Windows.Forms.DataGridView();
             this.buttonRemover = new System.Windows.Forms.Button();
             this.buttonEditar = new System.Windows.Forms.Button();
             this.buttonAdicionar = new System.Windows.Forms.Button();
             this.buttonVoltar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.listBoxOrcamentos = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrcamento)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,7 +51,7 @@
             // 
             this.pictureBox1.Image = global::CasaPoupanca.Properties.Resources.final_removebg_preview;
             this.pictureBox1.Location = new System.Drawing.Point(11, 11);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(90, 71);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -73,6 +71,7 @@
             // 
             // comboBoxMes
             // 
+            this.comboBoxMes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxMes.FormattingEnabled = true;
             this.comboBoxMes.Items.AddRange(new object[] {
             "1",
@@ -88,7 +87,7 @@
             "11",
             "12"});
             this.comboBoxMes.Location = new System.Drawing.Point(97, 25);
-            this.comboBoxMes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBoxMes.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxMes.Name = "comboBoxMes";
             this.comboBoxMes.Size = new System.Drawing.Size(142, 21);
             this.comboBoxMes.TabIndex = 18;
@@ -106,6 +105,7 @@
             // 
             // comboBoxAno
             // 
+            this.comboBoxAno.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxAno.FormattingEnabled = true;
             this.comboBoxAno.Items.AddRange(new object[] {
             "2025",
@@ -113,7 +113,7 @@
             "2027",
             "2028"});
             this.comboBoxAno.Location = new System.Drawing.Point(97, 65);
-            this.comboBoxAno.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBoxAno.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxAno.Name = "comboBoxAno";
             this.comboBoxAno.Size = new System.Drawing.Size(142, 21);
             this.comboBoxAno.TabIndex = 20;
@@ -131,49 +131,12 @@
             // 
             // textBoxValor
             // 
+            this.textBoxValor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxValor.Location = new System.Drawing.Point(97, 105);
-            this.textBoxValor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxValor.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxValor.Name = "textBoxValor";
             this.textBoxValor.Size = new System.Drawing.Size(142, 20);
             this.textBoxValor.TabIndex = 22;
-            // 
-            // dataGridViewOrcamento
-            // 
-            this.dataGridViewOrcamento.AllowUserToAddRows = false;
-            this.dataGridViewOrcamento.AllowUserToDeleteRows = false;
-            this.dataGridViewOrcamento.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridViewOrcamento.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewOrcamento.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridViewOrcamento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewOrcamento.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridViewOrcamento.Location = new System.Drawing.Point(331, 124);
-            this.dataGridViewOrcamento.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.dataGridViewOrcamento.Name = "dataGridViewOrcamento";
-            this.dataGridViewOrcamento.ReadOnly = true;
-            this.dataGridViewOrcamento.RowHeadersVisible = false;
-            this.dataGridViewOrcamento.RowHeadersWidth = 62;
-            this.dataGridViewOrcamento.RowTemplate.Height = 28;
-            this.dataGridViewOrcamento.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewOrcamento.Size = new System.Drawing.Size(306, 172);
-            this.dataGridViewOrcamento.TabIndex = 24;
-            this.dataGridViewOrcamento.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewOrcamento_CellClick);
-            this.dataGridViewOrcamento.SelectionChanged += new System.EventHandler(this.dataGridViewOrcamento_SelectionChanged);
             // 
             // buttonRemover
             // 
@@ -221,10 +184,11 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.listBoxOrcamentos);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(318, 101);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(332, 205);
+            this.groupBox1.Size = new System.Drawing.Size(408, 205);
             this.groupBox1.TabIndex = 30;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lista de Orçamentos";
@@ -248,22 +212,31 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Criar/Editar/Eliminar Orçamentos";
             // 
+            // listBoxOrcamentos
+            // 
+            this.listBoxOrcamentos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxOrcamentos.FormattingEnabled = true;
+            this.listBoxOrcamentos.Location = new System.Drawing.Point(6, 19);
+            this.listBoxOrcamentos.Name = "listBoxOrcamentos";
+            this.listBoxOrcamentos.Size = new System.Drawing.Size(396, 173);
+            this.listBoxOrcamentos.TabIndex = 0;
+            this.listBoxOrcamentos.SelectedIndexChanged += new System.EventHandler(this.listBoxOrcamentos_SelectedIndexChanged);
+            // 
             // FormOrcamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(662, 373);
+            this.ClientSize = new System.Drawing.Size(738, 373);
             this.Controls.Add(this.buttonVoltar);
-            this.Controls.Add(this.dataGridViewOrcamento);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormOrcamento";
             this.Text = " ";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrcamento)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
@@ -279,12 +252,12 @@
         private System.Windows.Forms.ComboBox comboBoxAno;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxValor;
-        private System.Windows.Forms.DataGridView dataGridViewOrcamento;
         private System.Windows.Forms.Button buttonRemover;
         private System.Windows.Forms.Button buttonEditar;
         private System.Windows.Forms.Button buttonAdicionar;
         private System.Windows.Forms.Button buttonVoltar;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ListBox listBoxOrcamentos;
     }
 }

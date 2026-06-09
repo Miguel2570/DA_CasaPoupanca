@@ -1,4 +1,5 @@
-﻿using CasaPoupança.database;
+﻿using CasaPoupanca.Controllers;
+using CasaPoupança.database;
 using CasaPoupanca.models;
 using System;
 using System.Collections.Generic;
@@ -14,47 +15,44 @@ namespace CasaPoupanca
 {
     public partial class FormProfile : Form
     {
+        private ProfileController _controller;
         public FormProfile()
         {
             InitializeComponent();
+            _controller = new ProfileController();
             CarregarDadosPerfil();
         }
 
         private void CarregarDadosPerfil()
         {
-            using (var db = new CasaPoupancaDB())
+            try
             {
-                var utilizador = db.Utilizadores.Find(Session.UtilizadorId);
+                var utilizador = _controller.GetUtilizador(Session.UtilizadorId);
                 if (utilizador != null)
                 {
                     label1.Text = utilizador.Username;
-                    
-                    // Estatísticas
                     labelDataRegistoValor.Text = utilizador.DataRegisto.ToString("dd/MM/yyyy");
 
-                    var compras = db.Compras.Where(c => c.CriadoPorId == Session.UtilizadorId).ToList();
-                    labelTotalComprasValor.Text = compras.Count.ToString();
+                    int totalCompras = _controller.GetTotalCompras(Session.UtilizadorId);
+                    labelTotalComprasValor.Text = totalCompras.ToString();
 
-                    decimal totalGasto = 0;
-                    var comprasFechadas = compras.Where(c => c.IsFechada).ToList();
-                    foreach (var compra in comprasFechadas)
-                    {
-                        var itens = db.ItensCompra.Where(i => i.CompraId == compra.Id);
-                        totalGasto += itens.Sum(i => i.QuantidadeAdquirida * i.PrecoUnitario);
-                    }
+                    decimal totalGasto = _controller.GetTotalGasto(Session.UtilizadorId);
                     labelTotalGastoValor.Text = totalGasto.ToString("C");
 
-                    var ultimaCompra = compras.OrderByDescending(c => c.DataCriacao).FirstOrDefault();
-                    labelUltimaCompraValor.Text = ultimaCompra != null ? ultimaCompra.DataCriacao.ToString("dd/MM/yyyy") : "Sem compras";
+                    var dataUltimaCompra = _controller.GetDataUltimaCompra(Session.UtilizadorId);
+                    labelUltimaCompraValor.Text = dataUltimaCompra.HasValue
+                        ? dataUltimaCompra.Value.ToString("dd/MM/yyyy")
+                        : "Sem compras";
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar perfil: {ex.Message}");
+            }
         }
-
-       
-            private void buttonVoltar_Click(object sender, EventArgs e)
+        private void buttonVoltar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-    
     }
 }

@@ -21,10 +21,8 @@ namespace CasaPoupanca
         {
             InitializeComponent();
             _controller = new ArtigoController();
-            ConfigurarDataGridView();
             CarregarTiposArtigo();
 
-            dataGridViewTipoArtigo.DataBindingComplete += dataGridViewTipoArtigo_DataBindingComplete;
             LimparCampos();
         }
 
@@ -34,39 +32,24 @@ namespace CasaPoupanca
             _tipoEditandoId = null;
             buttonAdicionar.Enabled = true;
             buttonEditar.Enabled = false;
-        }
-
-        private void ConfigurarDataGridView()
-        {
-            dataGridViewTipoArtigo.AutoGenerateColumns = false;
-            dataGridViewTipoArtigo.Columns.Clear();
-
-            dataGridViewTipoArtigo.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "Id",
-                HeaderText = "ID",
-                DataPropertyName = "Id",
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
-            });
-
-            dataGridViewTipoArtigo.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "Nome",
-                HeaderText = "Nome do Tipo",
-                DataPropertyName = "Nome",
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
-            });
+            listBoxTiposArtigo.ClearSelected();
         }
 
         private void CarregarTiposArtigo()
         {
-            var tipos = _controller.GetAllTipos();
+            var tipos = _controller.GetAllTipos().OrderBy(t => t.Id).ToList();
 
-            // Ordenar por ID antes de atribuir ao DataGridView
-            var tiposOrdenados = tipos.OrderBy(t => t.Id).ToList();
+            var tiposFormatados = tipos.Select(t => new
+            {
+                t.Id,
+                Display = $"{t.Id} - {t.Nome}"
+            }).ToList();
 
-            dataGridViewTipoArtigo.DataSource = null;
-            dataGridViewTipoArtigo.DataSource = tiposOrdenados;
+            listBoxTiposArtigo.DataSource = null;
+            listBoxTiposArtigo.DisplayMember = "Display";
+            listBoxTiposArtigo.ValueMember = "Id";
+            listBoxTiposArtigo.DataSource = tiposFormatados;
+            listBoxTiposArtigo.ClearSelected();
         }
 
         private void buttonAdicionar_Click(object sender, EventArgs e)
@@ -132,13 +115,11 @@ namespace CasaPoupanca
 
         private void buttonRemover_Click(object sender, EventArgs e)
         {
-            if (_tipoEditandoId == null && dataGridViewTipoArtigo.CurrentRow == null)
+            if (_tipoEditandoId == null)
             {
                 MessageBox.Show("Selecione um tipo de artigo para remover.");
                 return;
             }
-
-            int id = _tipoEditandoId ?? (int)dataGridViewTipoArtigo.CurrentRow.Cells["Id"].Value;
 
             DialogResult resultado = MessageBox.Show(
                 "Tem certeza que deseja remover este tipo de artigo?\n\nOs artigos associados também serão removidos.",
@@ -146,7 +127,7 @@ namespace CasaPoupanca
 
             if (resultado == DialogResult.Yes)
             {
-                if (_controller.DeleteTipo(id))
+                if (_controller.DeleteTipo(_tipoEditandoId.Value))
                 {
                     MessageBox.Show("Tipo de artigo removido!");
                     LimparCampos();
@@ -159,27 +140,32 @@ namespace CasaPoupanca
             }
         }
 
-        private void dataGridViewTipoArtigo_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dataGridViewTipoArtigo.CurrentRow != null)
-            {
-                _tipoEditandoId = (int)dataGridViewTipoArtigo.CurrentRow.Cells["Id"].Value;
-                textBoxNome.Text = dataGridViewTipoArtigo.CurrentRow.Cells["Nome"].Value.ToString();
-
-                buttonAdicionar.Enabled = false;
-                buttonEditar.Enabled = true;
-            }
-        }
-
         private void buttonVoltar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void dataGridViewTipoArtigo_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        private void listBoxTiposArtigo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            dataGridViewTipoArtigo.ClearSelection();
-            LimparCampos();
+            if (listBoxTiposArtigo.SelectedItem != null)
+            {
+                var selected = listBoxTiposArtigo.SelectedItem;
+                var itemId = (int)selected.GetType().GetProperty("Id").GetValue(selected);
+                var tipo = _controller.GetAllTipos().FirstOrDefault(t => t.Id == itemId);
+
+                if (tipo != null)
+                {
+                    _tipoEditandoId = tipo.Id;
+                    textBoxNome.Text = tipo.Nome;
+
+                    buttonAdicionar.Enabled = false;
+                    buttonEditar.Enabled = true;
+                }
+            }
+            else
+            {
+                LimparCampos();
+            }
         }
     }
 }

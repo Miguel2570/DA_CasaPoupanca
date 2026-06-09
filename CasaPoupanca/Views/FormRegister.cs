@@ -20,6 +20,7 @@ namespace CasaPoupanca
         public FormRegister()
         {
             InitializeComponent();
+            _controller = new AuthController();
             textBoxPasswordRegister.UseSystemPasswordChar = true; //fica com *
             textBoxConfirmarPassword.UseSystemPasswordChar = true; //fica com *
         }
@@ -49,7 +50,6 @@ namespace CasaPoupanca
 
             try
             {
-                var auth = new AuthController();
                 var novoUtilizador = new Utilizador
                 {
                     Nome = name,
@@ -58,7 +58,7 @@ namespace CasaPoupanca
                     DataRegisto = DateTime.Now,
                 };
 
-                if (auth.Register(novoUtilizador))
+                if (_controller.Register(novoUtilizador))
                 {
                     MessageBox.Show("Registo bem-sucedido!");
                     this.Close();

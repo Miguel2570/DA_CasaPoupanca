@@ -446,17 +446,14 @@
         private System.Windows.Forms.ListBox listBoxListaDeArtigos;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label labelOrcamento;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ListBox listBoxListaDeCompras;
         private System.Windows.Forms.Button buttonCriarLista;
         private System.Windows.Forms.Button buttonApagarLista;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ListBox listBoxArtigosDisponiveis;
         private System.Windows.Forms.NumericUpDown numericUpDownQuantidade;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown numericUpDownMes;
         private System.Windows.Forms.Button buttonGuardar;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label labelTotal;
         private System.Windows.Forms.GroupBox groupBoxItensCompra;
         private System.Windows.Forms.GroupBox groupBoxArtigosDisponiveisBox;
