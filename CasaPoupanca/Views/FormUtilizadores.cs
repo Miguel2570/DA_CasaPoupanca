@@ -1,4 +1,5 @@
-﻿using CasaPoupança.database;
+﻿using CasaPoupanca.Controllers;
+using CasaPoupança.database;
 using CasaPoupanca.models;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,7 @@ namespace CasaPoupanca
             listBoxUtilizadores.ValueMember = "Id";
             listBoxUtilizadores.DrawMode = DrawMode.OwnerDrawFixed;
             listBoxUtilizadores.DrawItem += ListBoxUtilizadores_DrawItem;
+            listBoxUtilizadores.SelectedIndexChanged += listBoxUtilizadores_SelectedIndexChanged;
         }
 
         private void ListBoxUtilizadores_DrawItem(object sender, DrawItemEventArgs e)
@@ -150,6 +152,98 @@ namespace CasaPoupanca
         private void buttonVoltar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void buttonEditar_Click(object sender, EventArgs e)
+        {
+            if (_utilizadorEditandoId == null)
+            {
+                MessageBox.Show("Selecione um utilizador para editar.", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Validar campos
+            string nome = textBoxNome.Text.Trim();
+            string username = textBoxUsername.Text.Trim();
+
+            if (string.IsNullOrEmpty(nome))
+            {
+                MessageBox.Show("Preencha o nome do utilizador.", "Campo Obrigatório",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBoxNome.Focus();
+                return;
+            }
+
+            if (string.IsNullOrEmpty(username))
+            {
+                MessageBox.Show("Preencha o username.", "Campo Obrigatório",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBoxUsername.Focus();
+                return;
+            }
+
+            try
+            {
+                using (var db = new CasaPoupancaDB())
+                {
+                    // Verificar se o username já existe (exceto o próprio utilizador)
+                    bool usernameExiste = db.Utilizadores.Any(u => u.Username == username && u.Id != _utilizadorEditandoId.Value);
+
+                    if (usernameExiste)
+                    {
+                        MessageBox.Show("Este username já está em uso. Escolha outro.", "Erro",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        textBoxUsername.Focus();
+                        return;
+                    }
+
+                    var utilizador = db.Utilizadores.Find(_utilizadorEditandoId.Value);
+
+                    if (utilizador == null)
+                    {
+                        MessageBox.Show("Utilizador não encontrado.", "Erro",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        LimparCampos();
+                        CarregarUtilizadores();
+                        return;
+                    }
+
+                    // Atualizar os dados
+                    utilizador.Nome = nome;
+                    utilizador.Username = username;
+
+                    // Se a password foi preenchida, aplicar o HASH antes de guardar
+                    string password = textBoxPassword.Text.Trim();
+                    if (!string.IsNullOrEmpty(password))
+                    {
+                        if (password.Length < 4)
+                        {
+                            MessageBox.Show("A password deve ter pelo menos 6 caracteres.", "Validação",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            textBoxPassword.Focus();
+                            return;
+                        }
+
+                        // APLICAR O HASH À PASSWORD (igual ao AuthController)
+                        utilizador.Password = AuthController.HashPassword(password);
+                    }
+
+                    db.SaveChanges();
+
+                    MessageBox.Show("Utilizador editado com sucesso!", "Sucesso",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Recarregar a lista e limpar campos
+                    CarregarUtilizadores();
+                    LimparCampos();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao editar utilizador: {ex.Message}", "Erro",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
