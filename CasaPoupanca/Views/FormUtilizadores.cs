@@ -192,8 +192,7 @@ namespace CasaPoupanca
 
                     if (usernameExiste)
                     {
-                        MessageBox.Show("Este username já está em uso. Escolha outro.", "Erro",
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Este username já está em uso. Escolha outro.", "Erro");
                         textBoxUsername.Focus();
                         return;
                     }
@@ -202,8 +201,7 @@ namespace CasaPoupanca
 
                     if (utilizador == null)
                     {
-                        MessageBox.Show("Utilizador não encontrado.", "Erro",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Utilizador não encontrado.", "Erro");
                         LimparCampos();
                         CarregarUtilizadores();
                         return;
@@ -219,8 +217,7 @@ namespace CasaPoupanca
                     {
                         if (password.Length < 4)
                         {
-                            MessageBox.Show("A password deve ter pelo menos 6 caracteres.", "Validação",
-                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show("A password deve ter pelo menos 6 caracteres.", "Validação");
                             textBoxPassword.Focus();
                             return;
                         }
@@ -231,8 +228,7 @@ namespace CasaPoupanca
 
                     db.SaveChanges();
 
-                    MessageBox.Show("Utilizador editado com sucesso!", "Sucesso",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Utilizador editado com sucesso!", "Sucesso");
 
                     // Recarregar a lista e limpar campos
                     CarregarUtilizadores();
@@ -241,8 +237,7 @@ namespace CasaPoupanca
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao editar utilizador: {ex.Message}", "Erro",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Erro ao editar utilizador: {ex.Message}", "Erro");
             }
         }
     }
