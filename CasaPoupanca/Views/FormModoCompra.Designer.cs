@@ -66,9 +66,9 @@
             this.labelOrcamentoDisponivel.Location = new System.Drawing.Point(120, 42);
             this.labelOrcamentoDisponivel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelOrcamentoDisponivel.Name = "labelOrcamentoDisponivel";
-            this.labelOrcamentoDisponivel.Size = new System.Drawing.Size(122, 17);
+            this.labelOrcamentoDisponivel.Size = new System.Drawing.Size(178, 17);
             this.labelOrcamentoDisponivel.TabIndex = 34;
-            this.labelOrcamentoDisponivel.Text = "Orçamento: €0,00";
+            this.labelOrcamentoDisponivel.Text = "Orçamento restante: €0,00";
             // 
             // labelAviso
             // 
@@ -119,6 +119,7 @@
             // 
             // listBoxItensPrevistos
             // 
+            this.listBoxItensPrevistos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxItensPrevistos.FormattingEnabled = true;
             this.listBoxItensPrevistos.Location = new System.Drawing.Point(7, 20);
             this.listBoxItensPrevistos.Margin = new System.Windows.Forms.Padding(2);
@@ -130,6 +131,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(13, 23);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
@@ -140,6 +142,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(157, 23);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
@@ -151,6 +154,7 @@
             // 
             this.buttonAddItemNaoPrevisto.BackColor = System.Drawing.Color.LightBlue;
             this.buttonAddItemNaoPrevisto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAddItemNaoPrevisto.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonAddItemNaoPrevisto.Location = new System.Drawing.Point(146, 214);
             this.buttonAddItemNaoPrevisto.Margin = new System.Windows.Forms.Padding(2);
             this.buttonAddItemNaoPrevisto.Name = "buttonAddItemNaoPrevisto";
@@ -162,6 +166,7 @@
             // 
             // listBoxItensNaoPrevistos
             // 
+            this.listBoxItensNaoPrevistos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxItensNaoPrevistos.FormattingEnabled = true;
             this.listBoxItensNaoPrevistos.Location = new System.Drawing.Point(7, 20);
             this.listBoxItensNaoPrevistos.Margin = new System.Windows.Forms.Padding(2);
@@ -172,6 +177,7 @@
             // 
             // numericUpDownQuantidadeAdquirir
             // 
+            this.numericUpDownQuantidadeAdquirir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numericUpDownQuantidadeAdquirir.Location = new System.Drawing.Point(81, 20);
             this.numericUpDownQuantidadeAdquirir.Margin = new System.Windows.Forms.Padding(2);
             this.numericUpDownQuantidadeAdquirir.Minimum = new decimal(new int[] {
@@ -191,6 +197,7 @@
             // numericUpDownPrecoUnitarioAdquirir
             // 
             this.numericUpDownPrecoUnitarioAdquirir.DecimalPlaces = 2;
+            this.numericUpDownPrecoUnitarioAdquirir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numericUpDownPrecoUnitarioAdquirir.Location = new System.Drawing.Point(236, 20);
             this.numericUpDownPrecoUnitarioAdquirir.Margin = new System.Windows.Forms.Padding(2);
             this.numericUpDownPrecoUnitarioAdquirir.Minimum = new decimal(new int[] {
@@ -211,6 +218,7 @@
             // 
             this.buttonRemoverItemNaoPrevisto.BackColor = System.Drawing.Color.LightCoral;
             this.buttonRemoverItemNaoPrevisto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonRemoverItemNaoPrevisto.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonRemoverItemNaoPrevisto.Location = new System.Drawing.Point(327, 214);
             this.buttonRemoverItemNaoPrevisto.Margin = new System.Windows.Forms.Padding(2);
             this.buttonRemoverItemNaoPrevisto.Name = "buttonRemoverItemNaoPrevisto";
@@ -224,6 +232,7 @@
             // 
             this.buttonAdquirirItemPrevisto.BackColor = System.Drawing.Color.LightGreen;
             this.buttonAdquirirItemPrevisto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAdquirirItemPrevisto.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonAdquirirItemPrevisto.Location = new System.Drawing.Point(7, 214);
             this.buttonAdquirirItemPrevisto.Margin = new System.Windows.Forms.Padding(2);
             this.buttonAdquirirItemPrevisto.Name = "buttonAdquirirItemPrevisto";
@@ -237,6 +246,7 @@
             // 
             this.buttonRemoverItemPrevisto.BackColor = System.Drawing.Color.LightCoral;
             this.buttonRemoverItemPrevisto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonRemoverItemPrevisto.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonRemoverItemPrevisto.Location = new System.Drawing.Point(120, 214);
             this.buttonRemoverItemPrevisto.Margin = new System.Windows.Forms.Padding(2);
             this.buttonRemoverItemPrevisto.Name = "buttonRemoverItemPrevisto";
@@ -251,6 +261,7 @@
             this.groupBoxPrevistos.Controls.Add(this.listBoxItensPrevistos);
             this.groupBoxPrevistos.Controls.Add(this.buttonAdquirirItemPrevisto);
             this.groupBoxPrevistos.Controls.Add(this.buttonRemoverItemPrevisto);
+            this.groupBoxPrevistos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxPrevistos.Location = new System.Drawing.Point(8, 84);
             this.groupBoxPrevistos.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxPrevistos.Name = "groupBoxPrevistos";
@@ -266,6 +277,7 @@
             this.groupBoxNaoPrevistos.Controls.Add(this.listBoxItensNaoPrevistos);
             this.groupBoxNaoPrevistos.Controls.Add(this.buttonAddItemNaoPrevisto);
             this.groupBoxNaoPrevistos.Controls.Add(this.buttonRemoverItemNaoPrevisto);
+            this.groupBoxNaoPrevistos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxNaoPrevistos.Location = new System.Drawing.Point(253, 84);
             this.groupBoxNaoPrevistos.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxNaoPrevistos.Name = "groupBoxNaoPrevistos";
@@ -279,6 +291,7 @@
             // 
             this.buttonAdquirirItemNaoPrevisto.BackColor = System.Drawing.Color.LightGreen;
             this.buttonAdquirirItemNaoPrevisto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAdquirirItemNaoPrevisto.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonAdquirirItemNaoPrevisto.Location = new System.Drawing.Point(7, 214);
             this.buttonAdquirirItemNaoPrevisto.Margin = new System.Windows.Forms.Padding(2);
             this.buttonAdquirirItemNaoPrevisto.Name = "buttonAdquirirItemNaoPrevisto";
@@ -294,6 +307,7 @@
             this.groupBoxAdquirir.Controls.Add(this.label2);
             this.groupBoxAdquirir.Controls.Add(this.numericUpDownQuantidadeAdquirir);
             this.groupBoxAdquirir.Controls.Add(this.numericUpDownPrecoUnitarioAdquirir);
+            this.groupBoxAdquirir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxAdquirir.Location = new System.Drawing.Point(8, 354);
             this.groupBoxAdquirir.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxAdquirir.Name = "groupBoxAdquirir";
@@ -308,6 +322,7 @@
             this.groupBox1.Controls.Add(this.listBoxListaFinal);
             this.groupBox1.Controls.Add(this.buttonSalvar);
             this.groupBox1.Controls.Add(this.buttonRemoverItemListaFinal);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(695, 84);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
@@ -319,6 +334,7 @@
             // 
             // listBoxListaFinal
             // 
+            this.listBoxListaFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxListaFinal.FormattingEnabled = true;
             this.listBoxListaFinal.Location = new System.Drawing.Point(7, 20);
             this.listBoxListaFinal.Margin = new System.Windows.Forms.Padding(2);
@@ -330,6 +346,7 @@
             // 
             this.buttonSalvar.BackColor = System.Drawing.Color.LightGreen;
             this.buttonSalvar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSalvar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSalvar.Location = new System.Drawing.Point(7, 214);
             this.buttonSalvar.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSalvar.Name = "buttonSalvar";
@@ -343,6 +360,7 @@
             // 
             this.buttonRemoverItemListaFinal.BackColor = System.Drawing.Color.LightCoral;
             this.buttonRemoverItemListaFinal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonRemoverItemListaFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonRemoverItemListaFinal.Location = new System.Drawing.Point(120, 214);
             this.buttonRemoverItemListaFinal.Margin = new System.Windows.Forms.Padding(2);
             this.buttonRemoverItemListaFinal.Name = "buttonRemoverItemListaFinal";
@@ -374,6 +392,7 @@
             this.Name = "FormModoCompra";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Modo Compra";
+            this.Load += new System.EventHandler(this.FormModoCompra_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantidadeAdquirir)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPrecoUnitarioAdquirir)).EndInit();

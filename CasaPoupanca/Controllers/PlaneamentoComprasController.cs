@@ -31,7 +31,10 @@ namespace CasaPoupanca.Controllers
             if (filtro == "Aberta")
                 return compras.Where(c => !c.IsFechada).ToList();
 
-            return compras.Where(c => c.IsFechada).ToList();
+            if (filtro == "Fechada")
+                return compras.Where(c => c.IsFechada).ToList();
+
+            return compras;
         }
 
         // CORRIGIDO: Método com apenas 1 argumento (compraId)

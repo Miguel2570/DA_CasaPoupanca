@@ -59,6 +59,7 @@
     <Compile Include="Controllers\EstatisticasController.cs" />
     <Compile Include="Controllers\OrcamentoController.cs" />
     <Compile Include="Controllers\PlaneamentoComprasController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="model\Artigo.cs" />
     <Compile Include="model\Compra.cs" />
     <Compile Include="model\Estatisticas.cs" />

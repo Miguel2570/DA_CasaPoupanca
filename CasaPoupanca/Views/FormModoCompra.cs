@@ -68,19 +68,19 @@ namespace CasaPoupanca
             decimal totalGasto = _controller.GetTotalGastoCompra(_compraId);
             decimal restante = _orcamentoDisponivel - totalGasto;
 
-            labelOrcamentoDisponivel.Text = $"Orçamento: {restante:C2}";
+            labelOrcamentoDisponivel.Text = $"Orçamento restante: {restante:C2}";
 
             if (restante < 0)
             {
                 labelOrcamentoDisponivel.ForeColor = System.Drawing.Color.Red;
-                labelAviso.Text = "⚠️ ATENÇÃO: Orçamento ultrapassado!";
+                labelAviso.Text = "⚠️ Orçamento ultrapassado!";
                 labelAviso.ForeColor = System.Drawing.Color.Red;
                 labelAviso.Visible = true;
             }
-            else if (restante < (_orcamentoDisponivel * 0.1M) && _orcamentoDisponivel > 0)
+            else if (_orcamentoDisponivel > 0 && restante < (_orcamentoDisponivel * 0.1M))
             {
                 labelOrcamentoDisponivel.ForeColor = System.Drawing.Color.Orange;
-                labelAviso.Text = "⚠️ ATENÇÃO: Orçamento a terminar!";
+                labelAviso.Text = "⚠️ Restam menos de 10%!";
                 labelAviso.ForeColor = System.Drawing.Color.Orange;
                 labelAviso.Visible = true;
             }
@@ -120,8 +120,8 @@ namespace CasaPoupanca
         private void CarregarItensNaoPrevistos()
         {
             var itens = _controller.GetItensNaoPrevistos(_compraId)
-        .Where(i => i.QuantidadeAdquirida == 0)
-        .ToList();
+                .Where(i => i.QuantidadeAdquirida == 0)
+                .ToList();
 
             if (itens.Count == 0)
             {
@@ -133,7 +133,7 @@ namespace CasaPoupanca
                 var itensFormatados = itens.Select(i => new
                 {
                     i.Id,
-                    Display = $"🛒 {i.Artigo?.Nome ?? i.Observacao} - {i.QuantidadePrevista} x €{i.PrecoUnitario:F2}"
+                    Display = $"✅ {i.Artigo?.Nome ?? i.Observacao} - {i.QuantidadePrevista} x €{i.PrecoUnitario:F2}"
                 }).ToList();
 
                 listBoxItensNaoPrevistos.DataSource = null;
@@ -249,6 +249,7 @@ namespace CasaPoupanca
             formItemNaoPrevisto.ShowDialog();
 
             CarregarItensNaoPrevistos();
+            CarregarListaFinal();
             CarregarOrcamento();
         }
 
@@ -347,8 +348,8 @@ namespace CasaPoupanca
 
                 if (item != null)
                 {
-                    numericUpDownQuantidadeAdquirir.Value = Math.Min(item.QuantidadePrevista, 1);
-                    numericUpDownPrecoUnitarioAdquirir.Value = item.PrecoUnitario;
+                    numericUpDownQuantidadeAdquirir.Value = item.QuantidadeAdquirida > 0 ? item.QuantidadeAdquirida : 1;
+                    numericUpDownPrecoUnitarioAdquirir.Value = item.PrecoUnitario > 0 ? item.PrecoUnitario : 0.01M;
                 }
             }
         }
@@ -454,29 +455,20 @@ namespace CasaPoupanca
             {
                 try
                 {
-                    var item = _controller.GetItemCompraById(itemId);
-                    if (item != null)
+                    if (isPrevisto)
                     {
-                        // Repor a quantidade para 0 (volta a não adquirido)
-                        item.QuantidadeAdquirida = 0;
-
-                        if (isPrevisto)
-                        {
-                            // Para itens previstos, voltam à lista de previstos
-                            _controller.AdquirirItemPrevisto(itemId, 0, item.PrecoUnitario);
-                        }
-                        else
-                        {
-                            // Para não previstos, remove completamente
-                            _controller.RemoverItemNaoPrevisto(itemId);
-                        }
-
-                        MessageBox.Show("Item removido da lista final!");
-                        CarregarItensPrevistos();
-                        CarregarItensNaoPrevistos();
-                        CarregarListaFinal();
-                        CarregarOrcamento();
+                        _controller.AdquirirItemPrevisto(itemId, 0, 0);
                     }
+                    else
+                    {
+                        _controller.AdquirirItemNaoPrevisto(itemId, 0, 0);
+                    }
+
+                    MessageBox.Show("Item removido da lista final!");
+                    CarregarItensPrevistos();
+                    CarregarItensNaoPrevistos();
+                    CarregarListaFinal();
+                    CarregarOrcamento();
                 }
                 catch (Exception ex)
                 {
@@ -519,6 +511,11 @@ namespace CasaPoupanca
             {
                 MessageBox.Show($"Erro ao adquirir item: {ex.Message}");
             }
+        }
+
+        private void FormModoCompra_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

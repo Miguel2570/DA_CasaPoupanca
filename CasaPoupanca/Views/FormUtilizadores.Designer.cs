@@ -40,6 +40,7 @@
             this.listBoxUtilizadores = new System.Windows.Forms.ListBox();
             this.textBoxNome = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.buttonEditar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -150,12 +151,23 @@
             this.label6.TabIndex = 32;
             this.label6.Text = "Nome";
             // 
+            // buttonEditar
+            // 
+            this.buttonEditar.Location = new System.Drawing.Point(61, 244);
+            this.buttonEditar.Name = "buttonEditar";
+            this.buttonEditar.Size = new System.Drawing.Size(75, 23);
+            this.buttonEditar.TabIndex = 35;
+            this.buttonEditar.Text = "Editar";
+            this.buttonEditar.UseVisualStyleBackColor = true;
+            this.buttonEditar.Click += new System.EventHandler(this.buttonEditar_Click);
+            // 
             // FormUtilizadores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1115, 515);
+            this.Controls.Add(this.buttonEditar);
             this.Controls.Add(this.textBoxNome);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.listBoxUtilizadores);
@@ -190,5 +202,6 @@
         private System.Windows.Forms.ListBox listBoxUtilizadores;
         private System.Windows.Forms.TextBox textBoxNome;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button buttonEditar;
     }
 }

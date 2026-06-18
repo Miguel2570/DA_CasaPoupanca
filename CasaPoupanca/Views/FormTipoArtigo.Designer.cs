@@ -28,18 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxNome = new System.Windows.Forms.TextBox();
             this.buttonAdicionar = new System.Windows.Forms.Button();
             this.buttonEditar = new System.Windows.Forms.Button();
             this.buttonRemover = new System.Windows.Forms.Button();
-            this.dataGridViewTipoArtigo = new System.Windows.Forms.DataGridView();
             this.buttonVoltar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTipoArtigo)).BeginInit();
+            this.listBoxTiposArtigo = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -89,48 +86,10 @@
             this.buttonRemover.UseVisualStyleBackColor = true;
             this.buttonRemover.Click += new System.EventHandler(this.buttonRemover_Click);
             // 
-            // dataGridViewTipoArtigo
-            // 
-            this.dataGridViewTipoArtigo.AllowUserToAddRows = false;
-            this.dataGridViewTipoArtigo.AllowUserToDeleteRows = false;
-            this.dataGridViewTipoArtigo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridViewTipoArtigo.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridViewTipoArtigo.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTipoArtigo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridViewTipoArtigo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTipoArtigo.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridViewTipoArtigo.GridColor = System.Drawing.Color.White;
-            this.dataGridViewTipoArtigo.Location = new System.Drawing.Point(21, 194);
-            this.dataGridViewTipoArtigo.Name = "dataGridViewTipoArtigo";
-            this.dataGridViewTipoArtigo.ReadOnly = true;
-            this.dataGridViewTipoArtigo.RowHeadersVisible = false;
-            this.dataGridViewTipoArtigo.RowHeadersWidth = 62;
-            this.dataGridViewTipoArtigo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewTipoArtigo.Size = new System.Drawing.Size(351, 246);
-            this.dataGridViewTipoArtigo.TabIndex = 5;
-            this.dataGridViewTipoArtigo.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridViewTipoArtigo_DataBindingComplete);
-            this.dataGridViewTipoArtigo.SelectionChanged += new System.EventHandler(this.dataGridViewTipoArtigo_SelectionChanged);
-            // 
             // buttonVoltar
             // 
             this.buttonVoltar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.buttonVoltar.Location = new System.Drawing.Point(159, 456);
+            this.buttonVoltar.Location = new System.Drawing.Point(101, 418);
             this.buttonVoltar.Name = "buttonVoltar";
             this.buttonVoltar.Size = new System.Drawing.Size(70, 23);
             this.buttonVoltar.TabIndex = 6;
@@ -159,16 +118,25 @@
             this.label4.TabIndex = 16;
             this.label4.Text = "T. Artigos";
             // 
+            // listBoxTiposArtigo
+            // 
+            this.listBoxTiposArtigo.FormattingEnabled = true;
+            this.listBoxTiposArtigo.Location = new System.Drawing.Point(21, 195);
+            this.listBoxTiposArtigo.Name = "listBoxTiposArtigo";
+            this.listBoxTiposArtigo.Size = new System.Drawing.Size(235, 199);
+            this.listBoxTiposArtigo.TabIndex = 17;
+            this.listBoxTiposArtigo.SelectedIndexChanged += new System.EventHandler(this.listBoxTiposArtigo_SelectedIndexChanged);
+            // 
             // FormTipoArtigo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(396, 491);
+            this.ClientSize = new System.Drawing.Size(297, 491);
+            this.Controls.Add(this.listBoxTiposArtigo);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.buttonVoltar);
-            this.Controls.Add(this.dataGridViewTipoArtigo);
             this.Controls.Add(this.buttonRemover);
             this.Controls.Add(this.buttonEditar);
             this.Controls.Add(this.buttonAdicionar);
@@ -176,7 +144,6 @@
             this.Controls.Add(this.label1);
             this.Name = "FormTipoArtigo";
             this.Text = "FormTipoArtigo";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTipoArtigo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -190,9 +157,9 @@
         private System.Windows.Forms.Button buttonAdicionar;
         private System.Windows.Forms.Button buttonEditar;
         private System.Windows.Forms.Button buttonRemover;
-        private System.Windows.Forms.DataGridView dataGridViewTipoArtigo;
         private System.Windows.Forms.Button buttonVoltar;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ListBox listBoxTiposArtigo;
     }
 }

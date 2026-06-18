@@ -177,5 +177,33 @@ namespace CasaPoupanca.Controllers
                 db.SaveChanges();
             }
         }
+        public bool UpdateItemNaoPrevisto(ItemCompra item)
+        {
+            using (var db = new CasaPoupancaDB())
+            {
+                var existing = db.ItensCompra.Find(item.Id);
+                if (existing == null)
+                    return false;
+
+                existing.ArtigoId = item.ArtigoId;
+                existing.QuantidadePrevista = item.QuantidadePrevista;
+                existing.PrecoUnitario = item.PrecoUnitario;
+                existing.Observacao = item.Observacao;
+
+                db.SaveChanges();
+                return true;
+            }
+        }
+
+        public decimal GetOrcamentoTotal(int utilizadorId, int mes, int ano)
+        {
+            using (var db = new CasaPoupancaDB())
+            {
+                var orcamento = db.Orcamentos
+                    .FirstOrDefault(o => o.CriadoPorId == utilizadorId && o.Mes == mes && o.Ano == ano);
+
+                return orcamento?.Valor ?? 0;
+            }
+        }
     }
 }
